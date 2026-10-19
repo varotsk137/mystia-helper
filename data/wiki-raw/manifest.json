@@ -1,0 +1,33 @@
+{
+  "fetchedAt": "2026-10-19T08:22:10.042Z",
+  "modules": {
+    "Ingredient/data": {
+      "file": "Ingredient_data.lua",
+      "revisionTimestamp": "2024-06-02T14:38:39Z"
+    },
+    "Beverage/data": {
+      "file": "Beverage_data.lua",
+      "revisionTimestamp": "2024-07-09T22:00:14Z"
+    },
+    "Cuisine/data": {
+      "file": "Cuisine_data.lua",
+      "revisionTimestamp": "2025-01-06T03:01:29Z"
+    },
+    "Customer/data": {
+      "file": "Customer_data.lua",
+      "revisionTimestamp": "2026-05-04T07:31:40Z"
+    },
+    "Customer/locations": {
+      "file": "Customer_locations.lua",
+      "revisionTimestamp": "2024-01-28T12:26:40Z"
+    },
+    "Merchant/data": {
+      "file": "Merchant_data.lua",
+      "revisionTimestamp": "2024-07-09T20:37:34Z"
+    },
+    "Partner/data": {
+      "file": "Partner_data.lua",
+      "revisionTimestamp": "2024-09-19T01:53:45Z"
+    }
+  }
+}

@@ -1,0 +1,10540 @@
+{
+ "meta": {
+  "source": "https://touhou-mystias-izakaya.fandom.com",
+  "fetchedAt": "2026-10-19T08:22:10.042Z",
+  "builtAt": "2026-10-19T08:24:38.080Z",
+  "dlcs": [
+   "BaseGame",
+   "DLC1",
+   "DLC2",
+   "DLC3",
+   "DLC4",
+   "DLC5"
+  ]
+ },
+ "locations": [
+  {
+   "name": "Youkai Trail",
+   "dlc": "BaseGame",
+   "rareCustomers": [
+    "Wriggle Nightbug",
+    "Chen",
+    "Rumia"
+   ]
+  },
+  {
+   "name": "Human Village",
+   "dlc": "BaseGame",
+   "rareCustomers": [
+    "Hieda no Akyuu",
+    "Keine Kamishirasawa",
+    "Kasen Ibaraki"
+   ]
+  },
+  {
+   "name": "Hakurei Shrine",
+   "dlc": "BaseGame",
+   "rareCustomers": [
+    "Reimu Hakurei",
+    "Suika Ibuki",
+    "Tenshi Hinanawi"
+   ]
+  },
+  {
+   "name": "Scarlet Devil Mansion",
+   "dlc": "BaseGame",
+   "rareCustomers": [
+    "Hong Meiling",
+    "Cirno",
+    "Patchouli Knowledge"
+   ]
+  },
+  {
+   "name": "Bamboo Forest of the Lost",
+   "dlc": "BaseGame",
+   "rareCustomers": [
+    "Fujiwara no Mokou",
+    "Kaguya Houraisan",
+    "Tewi Inaba"
+   ]
+  },
+  {
+   "name": "Forest of Magic",
+   "dlc": "DLC1",
+   "rareCustomers": [
+    "Marisa Kirisame",
+    "Alice",
+    "Narumi Yatadera"
+   ]
+  },
+  {
+   "name": "Youkai Mountain",
+   "dlc": "DLC1",
+   "rareCustomers": [
+    "Nitori Kawashiro",
+    "Momiji Inubashiri",
+    "Sanae Kochiya"
+   ]
+  },
+  {
+   "name": "Former Hell",
+   "dlc": "DLC2",
+   "rareCustomers": [
+    "Yamame Kurodani",
+    "Parsee Mizuhashi",
+    "Yuugi Hoshiguma"
+   ]
+  },
+  {
+   "name": "Palace of the Earth Spirits",
+   "dlc": "DLC2",
+   "rareCustomers": [
+    "Satori Komeiji",
+    "Rin Kaenbyou",
+    "Utsuho Reiuji"
+   ]
+  },
+  {
+   "name": "Myouren Temple",
+   "dlc": "DLC3",
+   "rareCustomers": [
+    "Kogasa Tatara",
+    "Minamitsu Murasa",
+    "Nue Houjuu"
+   ]
+  },
+  {
+   "name": "Divine Spirit Mausoleum",
+   "dlc": "DLC3",
+   "rareCustomers": [
+    "Mononobe no Futo",
+    "Seiga Kaku",
+    "Soga no Tojiko"
+   ]
+  },
+  {
+   "name": "Garden of the Sun",
+   "dlc": "DLC4",
+   "rareCustomers": [
+    "Aya Shameimaru",
+    "Medicine Melancholy",
+    "Yuuka Kazami"
+   ]
+  },
+  {
+   "name": "Shining Needle Castle",
+   "dlc": "DLC4",
+   "rareCustomers": [
+    "Seija Kijin",
+    "Shinmyoumaru Sukuna",
+    "Kagerou Imaizumi"
+   ]
+  },
+  {
+   "name": "Makai",
+   "dlc": "DLC5",
+   "rareCustomers": [
+    "Ellen",
+    "Mima",
+    "Louise"
+   ]
+  },
+  {
+   "name": "Lunar Capital",
+   "dlc": "DLC5",
+   "rareCustomers": [
+    "Reisen",
+    "Watatsuki no Toyohime",
+    "Watatsuki no Yorihime"
+   ]
+  }
+ ],
+ "ingredients": [
+  {
+   "name": "Trout",
+   "dlc": "BaseGame",
+   "category": "Seafood",
+   "level": 1,
+   "price": 8,
+   "tags": [
+    "Aquatic",
+    "Fresh"
+   ]
+  },
+  {
+   "name": "Lamprey",
+   "dlc": "BaseGame",
+   "category": "Seafood",
+   "level": 2,
+   "price": 14,
+   "tags": [
+    "Aquatic",
+    "Fresh",
+    "Signature"
+   ]
+  },
+  {
+   "name": "Salmon",
+   "dlc": "BaseGame",
+   "category": "Seafood",
+   "level": 3,
+   "price": 24,
+   "tags": [
+    "Aquatic",
+    "Premium",
+    "Fresh"
+   ]
+  },
+  {
+   "name": "Tuna",
+   "dlc": "BaseGame",
+   "category": "Seafood",
+   "level": 3,
+   "price": 30,
+   "tags": [
+    "Aquatic",
+    "Premium",
+    "Fresh"
+   ]
+  },
+  {
+   "name": "Premium Tuna",
+   "dlc": "BaseGame",
+   "category": "Seafood",
+   "level": 5,
+   "price": 34,
+   "tags": [
+    "Aquatic",
+    "Legendary",
+    "Premium",
+    "Fresh",
+    "Sea Delicacy"
+   ]
+  },
+  {
+   "name": "Pufferfish",
+   "dlc": "BaseGame",
+   "category": "Seafood",
+   "level": 5,
+   "price": 42,
+   "tags": [
+    "Aquatic",
+    "Fresh",
+    "Sea Delicacy"
+   ]
+  },
+  {
+   "name": "Shrimp",
+   "dlc": "BaseGame",
+   "category": "Seafood",
+   "level": 2,
+   "price": 30,
+   "tags": [
+    "Aquatic",
+    "Fresh"
+   ]
+  },
+  {
+   "name": "Tofu",
+   "dlc": "BaseGame",
+   "category": "Vegetable",
+   "level": 1,
+   "price": 8,
+   "tags": [
+    "Homecooking",
+    "Mild",
+    "Vegetarian"
+   ]
+  },
+  {
+   "name": "Potato",
+   "dlc": "BaseGame",
+   "category": "Vegetable",
+   "level": 2,
+   "price": 10,
+   "tags": [
+    "Homecooking",
+    "Vegetarian"
+   ]
+  },
+  {
+   "name": "Onion",
+   "dlc": "BaseGame",
+   "category": "Vegetable",
+   "level": 2,
+   "price": 12,
+   "tags": [
+    "Fresh",
+    "Vegetarian"
+   ]
+  },
+  {
+   "name": "Pumpkin",
+   "dlc": "BaseGame",
+   "category": "Vegetable",
+   "level": 2,
+   "price": 14,
+   "tags": [
+    "Filling",
+    "Vegetarian"
+   ]
+  },
+  {
+   "name": "Radish",
+   "dlc": "BaseGame",
+   "category": "Vegetable",
+   "level": 2,
+   "price": 16,
+   "tags": [
+    "Good w/ Alcohol",
+    "Vegetarian"
+   ]
+  },
+  {
+   "name": "Seaweed",
+   "dlc": "BaseGame",
+   "category": "Vegetable",
+   "level": 1,
+   "price": 3,
+   "tags": [
+    "Fresh",
+    "Vegetarian"
+   ]
+  },
+  {
+   "name": "Mushroom",
+   "dlc": "BaseGame",
+   "category": "Vegetable",
+   "level": 3,
+   "price": 18,
+   "tags": [
+    "Fungus",
+    "Fresh",
+    "Vegetarian"
+   ]
+  },
+  {
+   "name": "Truffle",
+   "dlc": "BaseGame",
+   "category": "Vegetable",
+   "level": 5,
+   "price": 50,
+   "tags": [
+    "Fungus",
+    "Legendary",
+    "Mountain Delicacy",
+    "Premium",
+    "Fresh",
+    "Vegetarian"
+   ]
+  },
+  {
+   "name": "Bamboo Shoot",
+   "dlc": "BaseGame",
+   "category": "Vegetable",
+   "level": 3,
+   "price": 40,
+   "tags": [
+    "Mild",
+    "Vegetarian"
+   ]
+  },
+  {
+   "name": "Pork",
+   "dlc": "BaseGame",
+   "category": "Meat",
+   "level": 1,
+   "price": 10,
+   "tags": [
+    "Meat"
+   ]
+  },
+  {
+   "name": "Beef",
+   "dlc": "BaseGame",
+   "category": "Meat",
+   "level": 2,
+   "price": 15,
+   "tags": [
+    "Meat"
+   ]
+  },
+  {
+   "name": "Venison",
+   "dlc": "BaseGame",
+   "category": "Meat",
+   "level": 2,
+   "price": 20,
+   "tags": [
+    "Meat"
+   ]
+  },
+  {
+   "name": "Boar Meat",
+   "dlc": "BaseGame",
+   "category": "Meat",
+   "level": 3,
+   "price": 25,
+   "tags": [
+    "Meat"
+   ]
+  },
+  {
+   "name": "Iberico Pork",
+   "dlc": "BaseGame",
+   "category": "Meat",
+   "level": 4,
+   "price": 35,
+   "tags": [
+    "Legendary",
+    "Meat",
+    "Mountain Delicacy"
+   ]
+  },
+  {
+   "name": "Wagyu Beef",
+   "dlc": "BaseGame",
+   "category": "Meat",
+   "level": 5,
+   "price": 40,
+   "tags": [
+    "Legendary",
+    "Meat",
+    "Premium"
+   ]
+  },
+  {
+   "name": "Egg",
+   "dlc": "BaseGame",
+   "category": "Other",
+   "level": 1,
+   "price": 4,
+   "tags": [
+    "Raw"
+   ]
+  },
+  {
+   "name": "Peach",
+   "dlc": "BaseGame",
+   "category": "Other",
+   "level": 3,
+   "price": 10,
+   "tags": [
+    "Fruity",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Ginkgo Nut",
+   "dlc": "BaseGame",
+   "category": "Other",
+   "level": 2,
+   "price": 7,
+   "tags": [
+    "Photogenic"
+   ]
+  },
+  {
+   "name": "Honey",
+   "dlc": "BaseGame",
+   "category": "Other",
+   "level": 2,
+   "price": 15,
+   "tags": [
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Cicada Slough",
+   "dlc": "BaseGame",
+   "category": "Other",
+   "level": 1,
+   "price": 5,
+   "tags": [
+    "Peculiar"
+   ]
+  },
+  {
+   "name": "Udumbara",
+   "dlc": "BaseGame",
+   "category": "Other",
+   "level": 5,
+   "price": 70,
+   "tags": [
+    "Dreamy",
+    "Legendary",
+    "Premium",
+    "Wonderful"
+   ]
+  },
+  {
+   "name": "Dew",
+   "dlc": "BaseGame",
+   "category": "Other",
+   "level": 1,
+   "price": 10,
+   "tags": [
+    "Mild"
+   ]
+  },
+  {
+   "name": "Butter",
+   "dlc": "BaseGame",
+   "category": "Other",
+   "level": 2,
+   "price": 8,
+   "tags": [
+    "Greasy"
+   ]
+  },
+  {
+   "name": "Flour",
+   "dlc": "BaseGame",
+   "category": "Other",
+   "level": 2,
+   "price": 10,
+   "tags": [
+    "Filling"
+   ]
+  },
+  {
+   "name": "Bamboo",
+   "dlc": "BaseGame",
+   "category": "Other",
+   "level": 3,
+   "price": 15,
+   "tags": [
+    "Photogenic"
+   ]
+  },
+  {
+   "name": "Sticky Rice",
+   "dlc": "BaseGame",
+   "category": "Other",
+   "level": 3,
+   "price": 15,
+   "tags": []
+  },
+  {
+   "name": "Lunar Herb",
+   "dlc": "BaseGame",
+   "category": "Other",
+   "level": 5,
+   "price": 70,
+   "tags": [
+    "Cultural Heritage",
+    "Dreamy",
+    "Mild",
+    "Wonderful"
+   ]
+  },
+  {
+   "name": "Ice Cube",
+   "dlc": "BaseGame",
+   "category": "Other",
+   "level": 1,
+   "price": 2,
+   "tags": [
+    "Refreshing"
+   ]
+  },
+  {
+   "name": "Chili",
+   "dlc": "BaseGame",
+   "category": "Other",
+   "level": 1,
+   "price": 2,
+   "tags": [
+    "Spicy"
+   ]
+  },
+  {
+   "name": "Grapes",
+   "dlc": "BaseGame",
+   "category": "Other",
+   "level": 1,
+   "price": 5,
+   "tags": [
+    "Fruity",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Reisen",
+   "dlc": "BaseGame",
+   "category": "Other",
+   "level": 10,
+   "price": 530000,
+   "tags": [
+    "Photogenic",
+    "Signature",
+    "Specialty",
+    "Wonderful"
+   ]
+  },
+  {
+   "name": "Octopus",
+   "dlc": "DLC1",
+   "category": "Seafood",
+   "level": 2,
+   "price": 12,
+   "tags": [
+    "Aquatic",
+    "Fresh",
+    "Sea Delicacy"
+   ]
+  },
+  {
+   "name": "Sea Urchin",
+   "dlc": "DLC1",
+   "category": "Seafood",
+   "level": 3,
+   "price": 18,
+   "tags": [
+    "Aquatic",
+    "Legendary",
+    "Premium",
+    "Fresh",
+    "Sea Delicacy"
+   ]
+  },
+  {
+   "name": "Crab",
+   "dlc": "DLC1",
+   "category": "Seafood",
+   "level": 3,
+   "price": 10,
+   "tags": [
+    "Aquatic",
+    "Premium",
+    "Fresh"
+   ]
+  },
+  {
+   "name": "Cucumber",
+   "dlc": "DLC1",
+   "category": "Vegetable",
+   "level": 1,
+   "price": 7,
+   "tags": [
+    "Homecooking",
+    "Mild",
+    "Vegetarian"
+   ]
+  },
+  {
+   "name": "Black Salt",
+   "dlc": "DLC1",
+   "category": "Other",
+   "level": 1,
+   "price": 3,
+   "tags": [
+    "Salty"
+   ]
+  },
+  {
+   "name": "Cream",
+   "dlc": "DLC1",
+   "category": "Other",
+   "level": 1,
+   "price": 9,
+   "tags": [
+    "Homecooking",
+    "Sweet",
+    "Western"
+   ]
+  },
+  {
+   "name": "Cheese",
+   "dlc": "DLC2",
+   "category": "Other",
+   "level": 2,
+   "price": 18,
+   "tags": [
+    "Premium",
+    "Salty",
+    "Fresh"
+   ]
+  },
+  {
+   "name": "Bingdi Lotus",
+   "dlc": "DLC2",
+   "category": "Other",
+   "level": 3,
+   "price": 36,
+   "tags": [
+    "Cultural Heritage",
+    "Dreamy",
+    "Legendary",
+    "Mild",
+    "Premium"
+   ]
+  },
+  {
+   "name": "Lemon",
+   "dlc": "DLC2",
+   "category": "Other",
+   "level": 1,
+   "price": 8,
+   "tags": [
+    "Fruity",
+    "Sour"
+   ]
+  },
+  {
+   "name": "Chestnut",
+   "dlc": "DLC3",
+   "category": "Vegetable",
+   "level": 2,
+   "price": 10,
+   "tags": [
+    "Homecooking",
+    "Vegetarian"
+   ]
+  },
+  {
+   "name": "Lotus Seed",
+   "dlc": "DLC3",
+   "category": "Other",
+   "level": 3,
+   "price": 22,
+   "tags": [
+    "Cultural Heritage",
+    "Mild",
+    "Signature"
+   ]
+  },
+  {
+   "name": "Pine Nut",
+   "dlc": "DLC3",
+   "category": "Other",
+   "level": 2,
+   "price": 15,
+   "tags": [
+    "Mild",
+    "Premium",
+    "Signature"
+   ]
+  },
+  {
+   "name": "Sweet Potato",
+   "dlc": "DLC3",
+   "category": "Other",
+   "level": 1,
+   "price": 8,
+   "tags": [
+    "Filling"
+   ]
+  },
+  {
+   "name": "Red Toon",
+   "dlc": "DLC4",
+   "category": "Vegetable",
+   "level": 2,
+   "price": 20,
+   "tags": [
+    "Poison",
+    "Vegetarian"
+   ]
+  },
+  {
+   "name": "Tomato",
+   "dlc": "DLC4",
+   "category": "Vegetable",
+   "level": 1,
+   "price": 8,
+   "tags": [
+    "Vegetarian"
+   ]
+  },
+  {
+   "name": "Plum",
+   "dlc": "DLC4",
+   "category": "Other",
+   "level": 1,
+   "price": 12,
+   "tags": [
+    "Salty",
+    "Small Portion"
+   ]
+  },
+  {
+   "name": "Red Bean",
+   "dlc": "DLC4",
+   "category": "Other",
+   "level": 2,
+   "price": 18,
+   "tags": [
+    "Homecooking"
+   ]
+  },
+  {
+   "name": "Flower",
+   "dlc": "DLC4",
+   "category": "Other",
+   "level": 3,
+   "price": 45,
+   "tags": [
+    "Dreamy",
+    "Photogenic"
+   ]
+  },
+  {
+   "name": "Broccoli",
+   "dlc": "DLC5",
+   "category": "Vegetable",
+   "level": 2,
+   "price": 18,
+   "tags": [
+    "Vegetarian",
+    "Homecooking"
+   ]
+  },
+  {
+   "name": "Cocoa Bean",
+   "dlc": "DLC5",
+   "category": "Other",
+   "level": 3,
+   "price": 22,
+   "tags": [
+    "Sweet",
+    "Wonderful"
+   ]
+  },
+  {
+   "name": "Creeping Fig",
+   "dlc": "DLC5",
+   "category": "Other",
+   "level": 2,
+   "price": 21,
+   "tags": [
+    "Refreshing",
+    "Dreamy"
+   ]
+  },
+  {
+   "name": "Snow Fungus",
+   "dlc": "DLC5",
+   "category": "Other",
+   "level": 3,
+   "price": 14,
+   "tags": [
+    "Fungus",
+    "Mild"
+   ]
+  },
+  {
+   "name": "Strong Capsaicin",
+   "dlc": "DLC5",
+   "category": "Other",
+   "level": 5,
+   "price": 0,
+   "tags": [
+    "Divine Punishment"
+   ]
+  },
+  {
+   "name": "Jiguru Berry",
+   "dlc": "DLC5",
+   "category": "Other",
+   "level": 5,
+   "price": 10,
+   "tags": [
+    "Divine Punishment"
+   ]
+  }
+ ],
+ "beverages": [
+  {
+   "name": "Green Tea",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 1,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol"
+   ]
+  },
+  {
+   "name": "Fruity Highball",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 12,
+   "alcohol": "Low Alcohol",
+   "tags": [
+    "Low Alcohol",
+    "Bitter",
+    "Chillable",
+    "Cocktail",
+    "Fruity",
+    "Sweet",
+    "Western"
+   ]
+  },
+  {
+   "name": "Fruity Sour",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 12,
+   "alcohol": "Low Alcohol",
+   "tags": [
+    "Low Alcohol",
+    "Bitter",
+    "Chillable",
+    "Cocktail",
+    "Fruity",
+    "Shochu",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Mio",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 18,
+   "alcohol": "Low Alcohol",
+   "tags": [
+    "Low Alcohol",
+    "Bitter",
+    "Chillable",
+    "Cocktail",
+    "Dry",
+    "Sake",
+    "Sweet",
+    "Soda"
+   ]
+  },
+  {
+   "name": "ZUN Beer",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 18,
+   "alcohol": "Low Alcohol",
+   "tags": [
+    "Low Alcohol",
+    "Beer",
+    "Bitter",
+    "Chillable"
+   ]
+  },
+  {
+   "name": "Sangetsusei",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 34,
+   "alcohol": "Mid Alcohol",
+   "tags": [
+    "Mid Alcohol",
+    "Chillable",
+    "Heatable",
+    "Neat",
+    "Sake"
+   ]
+  },
+  {
+   "name": "Umeshu",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 32,
+   "alcohol": "Mid Alcohol",
+   "tags": [
+    "Mid Alcohol",
+    "Chillable",
+    "Fruity",
+    "Heatable",
+    "Liquor"
+   ]
+  },
+  {
+   "name": "Tengu Tango",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 70,
+   "alcohol": "High Alcohol",
+   "tags": [
+    "High Alcohol",
+    "Chillable",
+    "Heatable",
+    "Neat",
+    "Sake"
+   ]
+  },
+  {
+   "name": "Bloody Remy",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 45,
+   "alcohol": "Low Alcohol",
+   "tags": [
+    "Low Alcohol",
+    "Chillable",
+    "Cocktail",
+    "Western"
+   ]
+  },
+  {
+   "name": "Divine Wheat",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 45,
+   "alcohol": "Mid Alcohol",
+   "tags": [
+    "Mid Alcohol",
+    "Chillable",
+    "Heatable",
+    "Neat",
+    "Shochu"
+   ]
+  },
+  {
+   "name": "Dassai",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 130,
+   "alcohol": "Mid Alcohol",
+   "tags": [
+    "Mid Alcohol",
+    "Chillable",
+    "Heatable",
+    "Neat",
+    "Sake"
+   ]
+  },
+  {
+   "name": "Akatsuki",
+   "dlc": "BaseGame",
+   "level": 4,
+   "price": 400,
+   "alcohol": "High Alcohol",
+   "tags": [
+    "High Alcohol",
+    "Chillable",
+    "Neat",
+    "Western"
+   ]
+  },
+  {
+   "name": "Sparrow Sake",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 50,
+   "alcohol": "Mid Alcohol",
+   "tags": [
+    "Mid Alcohol",
+    "Chillable",
+    "Dry",
+    "Heatable",
+    "Sake"
+   ]
+  },
+  {
+   "name": "Scarlet Tea",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 25,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol",
+    "Fruity",
+    "Heatable",
+    "Stimulating"
+   ]
+  },
+  {
+   "name": "Affogato",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 35,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol",
+    "Chillable",
+    "Bitter",
+    "Stimulating",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Scarlet Mist",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 75,
+   "alcohol": "Mid Alcohol",
+   "tags": [
+    "Mid Alcohol",
+    "Heatable",
+    "Western"
+   ]
+  },
+  {
+   "name": "Negroni",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 100,
+   "alcohol": "Mid Alcohol",
+   "tags": [
+    "Mid Alcohol",
+    "Bitter",
+    "Chillable",
+    "Cocktail",
+    "Fruity",
+    "Western"
+   ]
+  },
+  {
+   "name": "Godfather",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 180,
+   "alcohol": "High Alcohol",
+   "tags": [
+    "High Alcohol",
+    "Bitter",
+    "Chillable",
+    "Cocktail",
+    "Vintage",
+    "Western"
+   ]
+  },
+  {
+   "name": "Wind Priestess",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 130,
+   "alcohol": "Mid Alcohol",
+   "tags": [
+    "Mid Alcohol",
+    "Chillable",
+    "Cocktail",
+    "Modern",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Cassia Wine",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 60,
+   "alcohol": "Low Alcohol",
+   "tags": [
+    "Low Alcohol",
+    "Chillable",
+    "Heatable",
+    "Sweet",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Full Moon's Eve",
+   "dlc": "BaseGame",
+   "level": 4,
+   "price": 440,
+   "alcohol": "Mid Alcohol",
+   "tags": [
+    "Mid Alcohol",
+    "Chillable",
+    "Heatable",
+    "Sake",
+    "Sweet",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Fire Rat's Robe",
+   "dlc": "BaseGame",
+   "level": 4,
+   "price": 420,
+   "alcohol": "High Alcohol",
+   "tags": [
+    "High Alcohol",
+    "Dry",
+    "Heatable",
+    "Shochu"
+   ]
+  },
+  {
+   "name": "Jade Dew Tea",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 50,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol",
+    "Heatable",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Moon Rocket",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 45,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol",
+    "Chillable",
+    "Modern",
+    "Soda"
+   ]
+  },
+  {
+   "name": "Milk",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 16,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol",
+    "Neat"
+   ]
+  },
+  {
+   "name": "Grapefruit Juice",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 24,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol",
+    "Fruity"
+   ]
+  },
+  {
+   "name": "Ramune",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 30,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol",
+    "Modern",
+    "Soda"
+   ]
+  },
+  {
+   "name": "Iceberg Kedama Lemonade",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 45,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol",
+    "Chillable",
+    "Fruity",
+    "Neat",
+    "Soda",
+    "Stimulating",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "GIANT Popsicle!",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 35,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol",
+    "Modern",
+    "Stimulating",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Daiginjo",
+   "dlc": "DLC1",
+   "level": 3,
+   "price": 210,
+   "alcohol": "Mid Alcohol",
+   "tags": [
+    "Mid Alcohol",
+    "Chillable",
+    "Fruity",
+    "Neat",
+    "Sake",
+    "Sweet",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Coffee",
+   "dlc": "DLC1",
+   "level": 2,
+   "price": 62,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol",
+    "Bitter",
+    "Chillable",
+    "Heatable",
+    "Modern",
+    "Stimulating"
+   ]
+  },
+  {
+   "name": "Fairy Dew",
+   "dlc": "DLC1",
+   "level": 2,
+   "price": 80,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol",
+    "Chillable",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Ice Cream Smoothie",
+   "dlc": "DLC1",
+   "level": 1,
+   "price": 42,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol",
+    "Chillable",
+    "Sweet",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Ordinary Fitness Tea",
+   "dlc": "DLC1",
+   "level": 2,
+   "price": 32,
+   "alcohol": "Mid Alcohol",
+   "tags": [
+    "Mid Alcohol",
+    "Bitter",
+    "Liquor",
+    "Soda"
+   ]
+  },
+  {
+   "name": "Oni Killer",
+   "dlc": "DLC2",
+   "level": 4,
+   "price": 320,
+   "alcohol": "High Alcohol",
+   "tags": [
+    "High Alcohol",
+    "Chillable",
+    "Dry",
+    "Shochu",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Ribovitan",
+   "dlc": "DLC2",
+   "level": 2,
+   "price": 45,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol",
+    "Neat",
+    "Stimulating",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Komeiji Ice Cream",
+   "dlc": "DLC2",
+   "level": 2,
+   "price": 35,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol",
+    "Fruity",
+    "Modern",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Mango Pomelo Sago",
+   "dlc": "DLC3",
+   "level": 2,
+   "price": 50,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol",
+    "Chillable",
+    "Fruity"
+   ]
+  },
+  {
+   "name": "Qilin",
+   "dlc": "DLC3",
+   "level": 3,
+   "price": 180,
+   "alcohol": "Mid Alcohol",
+   "tags": [
+    "Mid Alcohol",
+    "Beer",
+    "Neat"
+   ]
+  },
+  {
+   "name": "This Side Up",
+   "dlc": "DLC4",
+   "level": 3,
+   "price": 150,
+   "alcohol": "High Alcohol",
+   "tags": [
+    "High Alcohol",
+    "Shochu"
+   ]
+  },
+  {
+   "name": "Drunken Bard",
+   "dlc": "DLC4",
+   "level": 3,
+   "price": 100,
+   "alcohol": "Low Alcohol",
+   "tags": [
+    "Low Alcohol",
+    "Neat",
+    "Fruity",
+    "Vintage",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Daughter of the Sea",
+   "dlc": "DLC5",
+   "level": 3,
+   "price": 80,
+   "alcohol": "Low Alcohol",
+   "tags": [
+    "Low Alcohol",
+    "Soda",
+    "Dry",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Makai Coffee",
+   "dlc": "DLC5",
+   "level": 4,
+   "price": 210,
+   "alcohol": "High Alcohol",
+   "tags": [
+    "High Alcohol",
+    "Stimulating",
+    "Heatable",
+    "Western"
+   ]
+  },
+  {
+   "name": "Mojito Sphere",
+   "dlc": "DLC5",
+   "level": 4,
+   "price": 300,
+   "alcohol": "Low Alcohol",
+   "tags": [
+    "Low Alcohol",
+    "Soda",
+    "Modern",
+    "Cocktail"
+   ]
+  },
+  {
+   "name": "Space Beer",
+   "dlc": "DLC5",
+   "level": 3,
+   "price": 42,
+   "alcohol": "Mid Alcohol",
+   "tags": [
+    "Mid Alcohol",
+    "Modern",
+    "Fruity",
+    "Beer"
+   ]
+  },
+  {
+   "name": "Satellite Ice Coffee",
+   "dlc": "DLC5",
+   "level": 3,
+   "price": 96,
+   "alcohol": "No Alcohol",
+   "tags": [
+    "No Alcohol",
+    "Modern",
+    "Stimulating",
+    "Bitter"
+   ]
+  }
+ ],
+ "recipes": [
+  {
+   "name": "Dark Matter",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 1,
+   "tags": [
+    "Dark Matter"
+   ],
+   "bannedTags": [],
+   "ingredients": [],
+   "cookware": "Any",
+   "cookTime": 0
+  },
+  {
+   "name": "Seafood Miso Soup",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 8,
+   "tags": [
+    "Economical",
+    "Homecooking",
+    "Soup",
+    "Vegetarian"
+   ],
+   "bannedTags": [
+    "Greasy"
+   ],
+   "ingredients": [
+    "Seaweed"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Grilled Lamprey",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 22,
+   "tags": [
+    "Aquatic",
+    "Grilled",
+    "Signature"
+   ],
+   "bannedTags": [
+    "Meat",
+    "Vegetarian"
+   ],
+   "ingredients": [
+    "Lamprey"
+   ],
+   "cookware": "Grill",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Fresh Tofu",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 21,
+   "tags": [
+    "Good w/ Alcohol",
+    "Homecooking",
+    "Mild",
+    "Small Portion",
+    "Vegetarian"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Radish",
+    "Tofu"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 3
+  },
+  {
+   "name": "Rice Ball",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 6,
+   "tags": [
+    "Economical",
+    "Filling",
+    "Homecooking",
+    "Japanese",
+    "Vegetarian"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Seaweed"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 3
+  },
+  {
+   "name": "Boiled Tofu",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 22,
+   "tags": [
+    "Homecooking",
+    "Mild",
+    "Vegetarian"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Tofu"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Secret Dried Fish Crisps",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 30,
+   "tags": [
+    "Aquatic",
+    "Salty",
+    "Fresh",
+    "Small Portion"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Trout"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Dew Runny Eggs",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 18,
+   "tags": [
+    "Economical",
+    "Mild",
+    "Raw"
+   ],
+   "bannedTags": [
+    "Aquatic",
+    "Greasy",
+    "Meat"
+   ],
+   "ingredients": [
+    "Dew",
+    "Egg"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 1.8
+  },
+  {
+   "name": "Stinky Tofu",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 24,
+   "tags": [
+    "Chinese",
+    "Spicy",
+    "Peculiar",
+    "Vegetarian"
+   ],
+   "bannedTags": [
+    "Fruity",
+    "Sweet"
+   ],
+   "ingredients": [
+    "Tofu",
+    "Chili"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 3
+  },
+  {
+   "name": "Roasted Mushroom",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 18,
+   "tags": [
+    "Grilled",
+    "Economical",
+    "Fungus",
+    "Hot",
+    "Salty",
+    "Vegetarian"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Mushroom"
+   ],
+   "cookware": "Grill",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Pork Bowl",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 20,
+   "tags": [
+    "Filling",
+    "Homecooking",
+    "Meat"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Pork"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Fried Cicada Sloughs",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 19,
+   "tags": [
+    "Economical",
+    "Greasy",
+    "Peculiar"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Cicada Slough"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Potato Croquettes",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 22,
+   "tags": [
+    "Greasy",
+    "Homecooking",
+    "Vegetarian"
+   ],
+   "bannedTags": [
+    "Refreshing"
+   ],
+   "ingredients": [
+    "Potato"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Cubic Kedama Ice Cream",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 75,
+   "tags": [
+    "Refreshing",
+    "Dreamy",
+    "Expensive",
+    "Photogenic",
+    "Sweet",
+    "Western"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Dew",
+    "Tofu",
+    "Honey",
+    "Egg"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Cubic Kedama Volcanic Tofu",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 85,
+   "tags": [
+    "Chinese",
+    "Expensive",
+    "Photogenic",
+    "Fresh",
+    "Vegetarian",
+    "Wonderful"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Tofu",
+    "Chili",
+    "Beef",
+    "Onion"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Scarlet Devil Cake",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 60,
+   "tags": [
+    "Dreamy",
+    "Photogenic",
+    "Peculiar",
+    "Sweet",
+    "Western"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Dew",
+    "Pumpkin",
+    "Potato",
+    "Honey"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Unconscious Youkai Mousse",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 60,
+   "tags": [
+    "Dreamy",
+    "Photogenic",
+    "Premium",
+    "Sweet",
+    "Western"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Tofu",
+    "Butter",
+    "Honey",
+    "Onion"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Tonkotsu Ramen",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 60,
+   "tags": [
+    "Filling",
+    "Homecooking",
+    "Meat",
+    "Salty"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Pork",
+    "Egg",
+    "Seaweed"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Pork & Trout Kebab",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 26,
+   "tags": [
+    "Aquatic",
+    "Grilled",
+    "Homecooking",
+    "Meat"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Trout",
+    "Pork"
+   ],
+   "cookware": "Grill",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Udumbara Cake",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 78,
+   "tags": [
+    "Dreamy",
+    "Expensive",
+    "Legendary",
+    "Photogenic",
+    "Premium",
+    "Sweet"
+   ],
+   "bannedTags": [
+    "Aquatic",
+    "Meat"
+   ],
+   "ingredients": [
+    "Udumbara",
+    "Dew"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Deep Fried Tofu",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 16,
+   "tags": [
+    "Economical",
+    "Greasy",
+    "Homecooking",
+    "Japanese",
+    "Vegetarian"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Tofu"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Miso Tofu",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 21,
+   "tags": [
+    "Homecooking",
+    "Japanese",
+    "Mild",
+    "Soup",
+    "Vegetarian"
+   ],
+   "bannedTags": [
+    "Greasy"
+   ],
+   "ingredients": [
+    "Tofu"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Fried Lampreys",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 27,
+   "tags": [
+    "Aquatic",
+    "Greasy",
+    "Signature"
+   ],
+   "bannedTags": [
+    "Refreshing"
+   ],
+   "ingredients": [
+    "Lamprey"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Tofu Stew",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 19,
+   "tags": [
+    "Economical",
+    "Hot",
+    "Japanese",
+    "Mild",
+    "Vegetarian"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Tofu"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 3
+  },
+  {
+   "name": "Power Soup",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 34,
+   "tags": [
+    "Hot",
+    "Meat",
+    "Mountain Delicacy",
+    "Soup",
+    "Strength-Boosting"
+   ],
+   "bannedTags": [
+    "Refreshing",
+    "Small Portion"
+   ],
+   "ingredients": [
+    "Seaweed",
+    "Boar Meat"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Scholar's Ginkgo",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 60,
+   "tags": [
+    "Chinese",
+    "Cultural Heritage",
+    "Sweet",
+    "Vegetarian"
+   ],
+   "bannedTags": [
+    "Salty"
+   ],
+   "ingredients": [
+    "Ginkgo Nut",
+    "Honey"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Beef Bowl",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 20,
+   "tags": [
+    "Filling",
+    "Homecooking",
+    "Meat"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Beef"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Vegetable Salad",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 56,
+   "tags": [
+    "Refreshing",
+    "Mild",
+    "Raw",
+    "Vegetarian"
+   ],
+   "bannedTags": [
+    "Aquatic",
+    "Hot",
+    "Meat"
+   ],
+   "ingredients": [
+    "Potato",
+    "Onion",
+    "Pumpkin"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 3
+  },
+  {
+   "name": "Pork Rice Ball",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 14,
+   "tags": [
+    "Economical",
+    "Filling",
+    "Homecooking",
+    "Japanese",
+    "Meat"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Pork"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Imitation Bear Paw",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 70,
+   "tags": [
+    "Aquatic",
+    "Expensive",
+    "Meat",
+    "Mountain Delicacy",
+    "Premium",
+    "Fresh",
+    "Strength-Boosting",
+    "Wonderful"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Iberico Pork",
+    "Bamboo Shoot",
+    "Pufferfish"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Shirayuki",
+   "dlc": "BaseGame",
+   "level": 4,
+   "price": 98,
+   "tags": [
+    "Aquatic",
+    "Cultural Heritage",
+    "Expensive",
+    "Japanese",
+    "Meat",
+    "Premium"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Pufferfish",
+    "Lamprey",
+    "Seaweed"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Pink Rice Ball",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 30,
+   "tags": [
+    "Aquatic",
+    "Filling",
+    "Homecooking",
+    "Hot",
+    "Japanese",
+    "Vegetarian"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Onion",
+    "Trout"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Carved Rose Salad",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 20,
+   "tags": [
+    "Refreshing",
+    "Mild",
+    "Photogenic",
+    "Vegetarian"
+   ],
+   "bannedTags": [
+    "Hot",
+    "Meat"
+   ],
+   "ingredients": [
+    "Radish"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 3
+  },
+  {
+   "name": "Hodgepodge",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 40,
+   "tags": [
+    "Homecooking",
+    "Hot",
+    "Meat",
+    "Fresh"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Seaweed",
+    "Trout",
+    "Tofu"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 3
+  },
+  {
+   "name": "Fried Pork Cutlet",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 25,
+   "tags": [
+    "Filling",
+    "Greasy",
+    "Homecooking",
+    "Meat"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Pork"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Pork Stir Fry",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 15,
+   "tags": [
+    "Economical",
+    "Chinese",
+    "Good w/ Alcohol",
+    "Greasy",
+    "Homecooking",
+    "Meat"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Pork"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Daimyo's Feast",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 105,
+   "tags": [
+    "Aquatic",
+    "Expensive",
+    "Filling",
+    "Meat",
+    "Mountain Delicacy",
+    "Premium"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Iberico Pork",
+    "Wagyu Beef",
+    "Pufferfish"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 6
+  },
+  {
+   "name": "Energy Skewer",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 50,
+   "tags": [
+    "Grilled",
+    "Filling",
+    "Meat"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Beef",
+    "Onion",
+    "Pumpkin"
+   ],
+   "cookware": "Grill",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Peach Tapioca",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 55,
+   "tags": [
+    "Refreshing",
+    "Fruity",
+    "Photogenic",
+    "Soup",
+    "Sweet",
+    "Vegetarian"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Peach",
+    "Ice Cube",
+    "Dew"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Falling Blossoms",
+   "dlc": "BaseGame",
+   "level": 4,
+   "price": 50,
+   "tags": [
+    "Aquatic",
+    "Japanese",
+    "Photogenic",
+    "Premium",
+    "Raw",
+    "Sea Delicacy",
+    "Small Portion"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Premium Tuna"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Niten Ichiryu",
+   "dlc": "BaseGame",
+   "level": 4,
+   "price": 90,
+   "tags": [
+    "Aura-Bursting",
+    "Grilled",
+    "Cultural Heritage",
+    "Expensive",
+    "Meat",
+    "Mountain Delicacy",
+    "Premium"
+   ],
+   "bannedTags": [
+    "Homecooking"
+   ],
+   "ingredients": [
+    "Iberico Pork",
+    "Boar Meat"
+   ],
+   "cookware": "Grill",
+   "cookTime": 10.8
+  },
+  {
+   "name": "Peach & Shrimp Salad",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 25,
+   "tags": [
+    "Aquatic",
+    "Fruity",
+    "Mild",
+    "Photogenic",
+    "Sweet",
+    "Vegetarian",
+    "Wonderful"
+   ],
+   "bannedTags": [
+    "Meat",
+    "Salty"
+   ],
+   "ingredients": [
+    "Peach",
+    "Ice Cube",
+    "Shrimp"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 6
+  },
+  {
+   "name": "Tangyuan",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 35,
+   "tags": [
+    "Chinese",
+    "Cultural Heritage",
+    "Homecooking",
+    "Vegetarian"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Sticky Rice"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 3
+  },
+  {
+   "name": "Dumplings",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 35,
+   "tags": [
+    "Chinese",
+    "Cultural Heritage",
+    "Homecooking",
+    "Vegetarian"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Flour"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 3
+  },
+  {
+   "name": "Scone",
+   "dlc": "BaseGame",
+   "level": 1,
+   "price": 8,
+   "tags": [
+    "Economical",
+    "Filling",
+    "Western"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Butter",
+    "Flour"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Salmon Steak",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 58,
+   "tags": [
+    "Meat",
+    "Fresh",
+    "Western"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Salmon",
+    "Bamboo Shoot"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 6
+  },
+  {
+   "name": "Pancakes with Syrup",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 22,
+   "tags": [
+    "Filling",
+    "Sweet",
+    "Western"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Honey",
+    "Flour",
+    "Egg"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 5.4
+  },
+  {
+   "name": "Hunter's Casserole",
+   "dlc": "BaseGame",
+   "level": 4,
+   "price": 66,
+   "tags": [
+    "Expensive",
+    "Filling",
+    "Greasy",
+    "Hot",
+    "Meat",
+    "Mountain Delicacy"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Potato",
+    "Pumpkin",
+    "Iberico Pork"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Kabayaki Lampreys",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 42,
+   "tags": [
+    "Aquatic",
+    "Greasy",
+    "Fresh",
+    "Signature",
+    "Vegetarian"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Onion",
+    "Lamprey"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Classic Steak",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 60,
+   "tags": [
+    "Filling",
+    "Greasy",
+    "Meat",
+    "Western"
+   ],
+   "bannedTags": [
+    "Refreshing",
+    "Sweet"
+   ],
+   "ingredients": [
+    "Wagyu Beef",
+    "Butter"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Real・Seafood Miso Soup",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 55,
+   "tags": [
+    "Aquatic",
+    "Homecooking",
+    "Mild",
+    "Soup"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Salmon",
+    "Trout"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Eggs Benedict",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 35,
+   "tags": [
+    "Filling",
+    "Raw",
+    "Small Portion",
+    "Western"
+   ],
+   "bannedTags": [
+    "Fruity",
+    "Sweet"
+   ],
+   "ingredients": [
+    "Egg",
+    "Bamboo Shoot",
+    "Butter",
+    "Flour"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Golden Ribs Soup",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 65,
+   "tags": [
+    "Chinese",
+    "Expensive",
+    "Hot",
+    "Meat",
+    "Soup"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Ginkgo Nut",
+    "Radish",
+    "Pork"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Cantonese Char Siu",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 70,
+   "tags": [
+    "Chinese",
+    "Expensive",
+    "Greasy",
+    "Meat",
+    "Sweet",
+    "Wonderful"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Pork",
+    "Honey"
+   ],
+   "cookware": "Grill",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Sashimi Platter",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 88,
+   "tags": [
+    "Aquatic",
+    "Expensive",
+    "Japanese",
+    "Photogenic",
+    "Premium",
+    "Raw"
+   ],
+   "bannedTags": [
+    "Hot"
+   ],
+   "ingredients": [
+    "Salmon",
+    "Tuna"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 3
+  },
+  {
+   "name": "Italian Risotto",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 70,
+   "tags": [
+    "Expensive",
+    "Filling",
+    "Fungus",
+    "Fresh",
+    "Western"
+   ],
+   "bannedTags": [
+    "Sweet"
+   ],
+   "ingredients": [
+    "Onion",
+    "Mushroom",
+    "Bamboo Shoot",
+    "Butter"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Rainbow Pan-fried Pork Buns",
+   "dlc": "BaseGame",
+   "level": 4,
+   "price": 128,
+   "tags": [
+    "Chinese",
+    "Dreamy",
+    "Expensive",
+    "Fungus",
+    "Legendary",
+    "Meat",
+    "Premium"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Mushroom",
+    "Iberico Pork"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Creamy Vegetable Chowder",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 20,
+   "tags": [
+    "Fungus",
+    "Soup",
+    "Vegetarian",
+    "Western"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Mushroom",
+    "Onion",
+    "Butter"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 5.4
+  },
+  {
+   "name": "Pork & Bamboo Shoots Stir Fry",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 25,
+   "tags": [
+    "Good w/ Alcohol",
+    "Homecooking",
+    "Meat"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Bamboo Shoot",
+    "Pork"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 6
+  },
+  {
+   "name": "Mochi",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 30,
+   "tags": [
+    "Japanese",
+    "Small Portion",
+    "Sweet"
+   ],
+   "bannedTags": [
+    "Aquatic",
+    "Meat",
+    "Salty",
+    "Fresh"
+   ],
+   "ingredients": [
+    "Sticky Rice"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Beef Wellington",
+   "dlc": "BaseGame",
+   "level": 4,
+   "price": 150,
+   "tags": [
+    "Expensive",
+    "Legendary",
+    "Meat",
+    "Mountain Delicacy",
+    "Premium",
+    "Western"
+   ],
+   "bannedTags": [
+    "Refreshing",
+    "Sweet"
+   ],
+   "ingredients": [
+    "Wagyu Beef",
+    "Flour",
+    "Egg",
+    "Butter",
+    "Truffle"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 8.4
+  },
+  {
+   "name": "Ino-Shika-Chou",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 78,
+   "tags": [
+    "Cultural Heritage",
+    "Expensive",
+    "Meat",
+    "Photogenic",
+    "Premium"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Boar Meat",
+    "Venison",
+    "Lunar Herb"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Flowing Somen",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 40,
+   "tags": [
+    "Refreshing",
+    "Mild",
+    "Vegetarian",
+    "Wonderful"
+   ],
+   "bannedTags": [
+    "Greasy"
+   ],
+   "ingredients": [
+    "Flour",
+    "Bamboo"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Peach Yatsuhashi",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 55,
+   "tags": [
+    "Fruity",
+    "Japanese",
+    "Sweet"
+   ],
+   "bannedTags": [
+    "Aquatic",
+    "Meat",
+    "Salty",
+    "Fresh"
+   ],
+   "ingredients": [
+    "Sticky Rice",
+    "Peach"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 3
+  },
+  {
+   "name": "Kaguya-hime",
+   "dlc": "BaseGame",
+   "level": 4,
+   "price": 65,
+   "tags": [
+    "Cultural Heritage",
+    "Expensive",
+    "Japanese",
+    "Legendary",
+    "Meat",
+    "Photogenic",
+    "Premium",
+    "Specialty"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Bamboo",
+    "Bamboo Shoot",
+    "Truffle",
+    "Ginkgo Nut",
+    "Iberico Pork"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Immortal Turkey",
+   "dlc": "BaseGame",
+   "level": 4,
+   "price": 65,
+   "tags": [
+    "Aura-Bursting",
+    "Grilled",
+    "Expensive",
+    "Legendary",
+    "Photogenic",
+    "Premium",
+    "Western"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Flour",
+    "Honey",
+    "Potato",
+    "Onion",
+    "Radish"
+   ],
+   "cookware": "Grill",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Steamed Egg & Bamboo Shoots",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 40,
+   "tags": [
+    "Fungus",
+    "Homecooking",
+    "Mild"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Bamboo",
+    "Egg",
+    "Seaweed",
+    "Mushroom"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Mapo Tofu",
+   "dlc": "BaseGame",
+   "level": 2,
+   "price": 32,
+   "tags": [
+    "Chinese",
+    "Hot",
+    "Spicy",
+    "Vegetarian"
+   ],
+   "bannedTags": [
+    "Refreshing",
+    "Fruity",
+    "Sweet"
+   ],
+   "ingredients": [
+    "Tofu",
+    "Pork",
+    "Chili"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Lunar Dango",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 80,
+   "tags": [
+    "Expensive",
+    "Japanese",
+    "Specialty",
+    "Sweet",
+    "Wonderful"
+   ],
+   "bannedTags": [
+    "Aquatic",
+    "Meat",
+    "Salty",
+    "Fresh"
+   ],
+   "ingredients": [
+    "Lunar Herb",
+    "Sticky Rice"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Lunar Lover Biscuits",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 66,
+   "tags": [
+    "Expensive",
+    "Photogenic",
+    "Small Portion",
+    "Specialty",
+    "Sweet"
+   ],
+   "bannedTags": [
+    "Aquatic",
+    "Meat",
+    "Vegetarian"
+   ],
+   "ingredients": [
+    "Butter",
+    "Flour",
+    "Egg",
+    "Lunar Herb"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 6
+  },
+  {
+   "name": "Sichuan Boiled Fish",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 68,
+   "tags": [
+    "Aquatic",
+    "Aura-Bursting",
+    "Chinese",
+    "Expensive",
+    "Hot",
+    "Spicy"
+   ],
+   "bannedTags": [
+    "Refreshing",
+    "Fruity",
+    "Meat",
+    "Sweet"
+   ],
+   "ingredients": [
+    "Trout",
+    "Chili"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Hourai Branch",
+   "dlc": "BaseGame",
+   "level": 5,
+   "price": 125,
+   "tags": [
+    "Grilled",
+    "Cultural Heritage",
+    "Expensive",
+    "Legendary",
+    "Meat",
+    "Premium"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Bamboo",
+    "Pork",
+    "Salmon",
+    "Wagyu Beef",
+    "Venison"
+   ],
+   "cookware": "Grill",
+   "cookTime": 7.8
+  },
+  {
+   "name": "Fuji's Lava",
+   "dlc": "BaseGame",
+   "level": 3,
+   "price": 125,
+   "tags": [
+    "Aquatic",
+    "Expensive",
+    "Filling",
+    "Fungus",
+    "Hot",
+    "Meat",
+    "Premium",
+    "Strength-Boosting"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Beef",
+    "Wagyu Beef",
+    "Pufferfish",
+    "Truffle"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Pork & Mushroom Stir Fry",
+   "dlc": "DLC1",
+   "level": 1,
+   "price": 20,
+   "tags": [
+    "Fungus",
+    "Greasy",
+    "Homecooking",
+    "Meat"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Mushroom",
+    "Pork"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Secret Savory Mushroom Hotpot",
+   "dlc": "DLC1",
+   "level": 3,
+   "price": 62,
+   "tags": [
+    "Expensive",
+    "Fungus",
+    "Japanese",
+    "Fresh",
+    "Specialty"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Truffle",
+    "Mushroom",
+    "Dew"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 5.4
+  },
+  {
+   "name": "Deep Fried Shrimp Tempura",
+   "dlc": "DLC1",
+   "level": 1,
+   "price": 22,
+   "tags": [
+    "Good w/ Alcohol",
+    "Greasy"
+   ],
+   "bannedTags": [
+    "Mild"
+   ],
+   "ingredients": [
+    "Shrimp",
+    "Flour"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Cream of Mushroom Soup",
+   "dlc": "DLC1",
+   "level": 1,
+   "price": 28,
+   "tags": [
+    "Fungus",
+    "Homecooking",
+    "Photogenic"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Mushroom",
+    "Potato",
+    "Cream"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Pickles",
+   "dlc": "DLC1",
+   "level": 1,
+   "price": 16,
+   "tags": [
+    "Economical",
+    "Good w/ Alcohol",
+    "Salty",
+    "Small Portion",
+    "Vegetarian"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Cucumber",
+    "Black Salt"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Nigiri Sushi",
+   "dlc": "DLC1",
+   "level": 1,
+   "price": 28,
+   "tags": [
+    "Aquatic",
+    "Cultural Heritage",
+    "Japanese",
+    "Mild",
+    "Raw",
+    "Fresh"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Salmon",
+    "Tuna"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Mushroom Maiden's Tip Tap Pot",
+   "dlc": "DLC1",
+   "level": 4,
+   "price": 112,
+   "tags": [
+    "Aquatic",
+    "Expensive",
+    "Fungus",
+    "Greasy",
+    "Hot",
+    "Photogenic",
+    "Salty",
+    "Fresh",
+    "Spicy"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Mushroom",
+    "Shrimp",
+    "Octopus",
+    "Chili"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 8.4
+  },
+  {
+   "name": "Okonomiyaki",
+   "dlc": "DLC1",
+   "level": 2,
+   "price": 24,
+   "tags": [
+    "Japanese",
+    "Photogenic",
+    "Signature",
+    "Small Portion"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Flour",
+    "Egg",
+    "Radish"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Shrimp-Stuffed Pumpkin",
+   "dlc": "DLC1",
+   "level": 2,
+   "price": 55,
+   "tags": [
+    "Aquatic",
+    "Filling",
+    "Mild",
+    "Photogenic",
+    "Fresh",
+    "Specialty",
+    "Sweet"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Pumpkin",
+    "Shrimp",
+    "Tofu"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 5.4
+  },
+  {
+   "name": "Ordinary \"Eat Me\" Cupcake",
+   "dlc": "DLC1",
+   "level": 2,
+   "price": 56,
+   "tags": [
+    "Cultural Heritage",
+    "Fruity",
+    "Photogenic",
+    "Premium",
+    "Sweet"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Egg",
+    "Grapes",
+    "Cream"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Golden Crispy Fish Cakes",
+   "dlc": "DLC1",
+   "level": 2,
+   "price": 40,
+   "tags": [
+    "Aquatic",
+    "Good w/ Alcohol",
+    "Greasy",
+    "Strength-Boosting"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Trout",
+    "Flour",
+    "Honey"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 5.4
+  },
+  {
+   "name": "Creamy Crab",
+   "dlc": "DLC1",
+   "level": 3,
+   "price": 88,
+   "tags": [
+    "Expensive",
+    "Good w/ Alcohol",
+    "Premium",
+    "Photogenic",
+    "Fresh",
+    "Sea Delicacy",
+    "Signature"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Cream",
+    "Crab"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Takoyaki",
+   "dlc": "DLC1",
+   "level": 2,
+   "price": 36,
+   "tags": [
+    "Aquatic",
+    "Filling",
+    "Photogenic",
+    "Small Portion",
+    "Signature"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Flour",
+    "Seaweed",
+    "Octopus"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Imitation Shirikodama",
+   "dlc": "DLC1",
+   "level": 4,
+   "price": 120,
+   "tags": [
+    "Dreamy",
+    "Expensive",
+    "Good w/ Alcohol",
+    "Hot",
+    "Legendary",
+    "Small Portion",
+    "Peculiar"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Venison",
+    "Truffle",
+    "Cicada Slough"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 7.2
+  },
+  {
+   "name": "All-Meat Feast",
+   "dlc": "DLC1",
+   "level": 4,
+   "price": 115,
+   "tags": [
+    "Expensive",
+    "Good w/ Alcohol",
+    "Hot",
+    "Large Portion",
+    "Meat",
+    "Mountain Delicacy",
+    "Photogenic",
+    "Premium",
+    "Salty"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Boar Meat",
+    "Venison",
+    "Iberico Pork",
+    "Wagyu Beef"
+   ],
+   "cookware": "Grill",
+   "cookTime": 8.4
+  },
+  {
+   "name": "Buddha Jumps Over The Wall",
+   "dlc": "DLC1",
+   "level": 4,
+   "price": 160,
+   "tags": [
+    "Aquatic",
+    "Chinese",
+    "Cultural Heritage",
+    "Expensive",
+    "Fungus",
+    "Legendary",
+    "Meat",
+    "Mountain Delicacy",
+    "Photogenic",
+    "Premium",
+    "Specialty",
+    "Strength-Boosting"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Wagyu Beef",
+    "Premium Tuna",
+    "Iberico Pork",
+    "Pufferfish",
+    "Truffle"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 10.8
+  },
+  {
+   "name": "Sea Urchin Sashimi",
+   "dlc": "DLC1",
+   "level": 4,
+   "price": 108,
+   "tags": [
+    "Expensive",
+    "Photogenic",
+    "Premium",
+    "Sea Delicacy",
+    "Small Portion",
+    "Specialty",
+    "Sweet",
+    "Wonderful"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Sea Urchin",
+    "Dew"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Seven-Colored Yokan",
+   "dlc": "DLC1",
+   "level": 4,
+   "price": 92,
+   "tags": [
+    "Cultural Heritage",
+    "Dreamy",
+    "Expensive",
+    "Fruity",
+    "Photogenic",
+    "Premium",
+    "Sweet",
+    "Wonderful"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Seaweed",
+    "Grapes",
+    "Dew",
+    "Udumbara"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Cheese Omelette",
+   "dlc": "DLC2",
+   "level": 1,
+   "price": 26,
+   "tags": [
+    "Greasy",
+    "Raw",
+    "Salty",
+    "Fresh"
+   ],
+   "bannedTags": [
+    "Meat"
+   ],
+   "ingredients": [
+    "Egg",
+    "Cheese"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Lion's Head",
+   "dlc": "DLC2",
+   "level": 1,
+   "price": 28,
+   "tags": [
+    "Good w/ Alcohol",
+    "Meat",
+    "Fresh",
+    "Signature",
+    "Specialty"
+   ],
+   "bannedTags": [
+    "Aquatic",
+    "Filling"
+   ],
+   "ingredients": [
+    "Beef"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Neko-manma",
+   "dlc": "DLC2",
+   "level": 1,
+   "price": 26,
+   "tags": [
+    "Aquatic",
+    "Fresh",
+    "Small Portion"
+   ],
+   "bannedTags": [
+    "Greasy"
+   ],
+   "ingredients": [
+    "Trout",
+    "Dew",
+    "Flour"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 3
+  },
+  {
+   "name": "Sakura Pudding",
+   "dlc": "DLC2",
+   "level": 2,
+   "price": 32,
+   "tags": [
+    "Refreshing",
+    "Fruity",
+    "Photogenic",
+    "Small Portion",
+    "Specialty",
+    "Sweet"
+   ],
+   "bannedTags": [
+    "Greasy",
+    "Salty"
+   ],
+   "ingredients": [
+    "Honey",
+    "Peach"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Salmon Tempura",
+   "dlc": "DLC2",
+   "level": 2,
+   "price": 44,
+   "tags": [
+    "Aquatic",
+    "Greasy",
+    "Premium",
+    "Fresh",
+    "Small Portion"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Salmon",
+    "Butter",
+    "Egg",
+    "Flour"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Instant☆Death",
+   "dlc": "DLC2",
+   "level": 3,
+   "price": 62,
+   "tags": [
+    "Grilled",
+    "Expensive",
+    "Filling",
+    "Greasy",
+    "Meat",
+    "Mountain Delicacy",
+    "Strength-Boosting"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Boar Meat",
+    "Venison",
+    "Onion"
+   ],
+   "cookware": "Grill",
+   "cookTime": 5.4
+  },
+  {
+   "name": "Crispy Spirals",
+   "dlc": "DLC2",
+   "level": 1,
+   "price": 42,
+   "tags": [
+    "Filling",
+    "Raw",
+    "Specialty",
+    "Peculiar"
+   ],
+   "bannedTags": [
+    "Greasy"
+   ],
+   "ingredients": [
+    "Flour",
+    "Honey",
+    "Cicada Slough"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 3
+  },
+  {
+   "name": "Misery Cheese Sticks",
+   "dlc": "DLC2",
+   "level": 1,
+   "price": 25,
+   "tags": [
+    "Good w/ Alcohol",
+    "Salty",
+    "Fresh",
+    "Specialty"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Cheese",
+    "Ginkgo Nut",
+    "Ginkgo Nut"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Giant Tamagoyaki",
+   "dlc": "DLC2",
+   "level": 2,
+   "price": 60,
+   "tags": [
+    "Filling",
+    "Japanese",
+    "Premium",
+    "Strength-Boosting",
+    "Sweet"
+   ],
+   "bannedTags": [
+    "Good w/ Alcohol"
+   ],
+   "ingredients": [
+    "Flour",
+    "Flour",
+    "Egg",
+    "Egg"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Ceiling-Longing Pie",
+   "dlc": "DLC2",
+   "level": 2,
+   "price": 66,
+   "tags": [
+    "Expensive",
+    "Good w/ Alcohol",
+    "Photogenic",
+    "Sea Delicacy",
+    "Signature",
+    "Specialty",
+    "Peculiar"
+   ],
+   "bannedTags": [
+    "Meat"
+   ],
+   "ingredients": [
+    "Trout",
+    "Flour",
+    "Peach"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 5.4
+  },
+  {
+   "name": "Energy Pudding",
+   "dlc": "DLC2",
+   "level": 2,
+   "price": 42,
+   "tags": [
+    "Refreshing",
+    "Fruity",
+    "Small Portion",
+    "Sour",
+    "Strength-Boosting",
+    "Sweet"
+   ],
+   "bannedTags": [
+    "Greasy",
+    "Salty"
+   ],
+   "ingredients": [
+    "Grapes",
+    "Grapes",
+    "Lemon"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Dragon Carp",
+   "dlc": "DLC2",
+   "level": 4,
+   "price": 142,
+   "tags": [
+    "Aquatic",
+    "Chinese",
+    "Cultural Heritage",
+    "Dreamy",
+    "Expensive",
+    "Fungus",
+    "Large Portion",
+    "Meat",
+    "Premium",
+    "Fresh",
+    "Sea Delicacy",
+    "Sweet"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Premium Tuna",
+    "Venison",
+    "Honey",
+    "Lunar Herb",
+    "Truffle"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Oedo Boat Feast",
+   "dlc": "DLC2",
+   "level": 4,
+   "price": 206,
+   "tags": [
+    "Aquatic",
+    "Cultural Heritage",
+    "Expensive",
+    "Good w/ Alcohol",
+    "Japanese",
+    "Legendary",
+    "Photogenic",
+    "Premium",
+    "Raw",
+    "Fresh",
+    "Sea Delicacy",
+    "Signature"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Salmon",
+    "Tuna",
+    "Premium Tuna",
+    "Trout",
+    "Ice Cube"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 14.4
+  },
+  {
+   "name": "Burn-out Pudding",
+   "dlc": "DLC2",
+   "level": 4,
+   "price": 73,
+   "tags": [
+    "Refreshing",
+    "Dreamy",
+    "Expensive",
+    "Fruity",
+    "Signature",
+    "Small Portion",
+    "Sour",
+    "Strength-Boosting",
+    "Sweet"
+   ],
+   "bannedTags": [
+    "Greasy",
+    "Salty"
+   ],
+   "ingredients": [
+    "Grapes",
+    "Honey",
+    "Lemon",
+    "Lemon"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 4.8
+  },
+  {
+   "name": "CAUTION!! Hellish Spice!",
+   "dlc": "DLC2",
+   "level": 4,
+   "price": 108,
+   "tags": [
+    "Expensive",
+    "Greasy",
+    "Hot",
+    "Meat",
+    "Photogenic",
+    "Salty",
+    "Spicy",
+    "Peculiar",
+    "Strength-Boosting"
+   ],
+   "bannedTags": [
+    "Mild",
+    "Vegetarian"
+   ],
+   "ingredients": [
+    "Chili",
+    "Chili",
+    "Chili",
+    "Cheese",
+    "Beef"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Kabuto Steamed Cake",
+   "dlc": "DLC2",
+   "level": 3,
+   "price": 105,
+   "tags": [
+    "Expensive",
+    "Filling",
+    "Photogenic",
+    "Premium",
+    "Raw",
+    "Fresh",
+    "Signature",
+    "Peculiar",
+    "Strength-Boosting",
+    "Specialty"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Flour",
+    "Iberico Pork",
+    "Honey",
+    "Cicada Slough"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Gloomy Fruit Pie",
+   "dlc": "DLC2",
+   "level": 2,
+   "price": 36,
+   "tags": [
+    "Fruity",
+    "Salty",
+    "Fresh",
+    "Sour",
+    "Specialty"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Lemon",
+    "Grapes",
+    "Cheese"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Agony Oden",
+   "dlc": "DLC2",
+   "level": 4,
+   "price": 92,
+   "tags": [
+    "Expensive",
+    "Filling",
+    "Hot",
+    "Large Portion",
+    "Meat",
+    "Premium",
+    "Fresh",
+    "Specialty",
+    "Spicy",
+    "Strength-Boosting"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Chili",
+    "Chili",
+    "Beef",
+    "Radish",
+    "Tofu"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Baked Sweet Potato",
+   "dlc": "DLC3",
+   "level": 1,
+   "price": 25,
+   "tags": [
+    "Economical",
+    "Filling",
+    "Homecooking",
+    "Sweet"
+   ],
+   "bannedTags": [
+    "Good w/ Alcohol"
+   ],
+   "ingredients": [
+    "Sweet Potato"
+   ],
+   "cookware": "Grill",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Yashouma Dango",
+   "dlc": "DLC3",
+   "level": 2,
+   "price": 45,
+   "tags": [
+    "Cultural Heritage",
+    "Filling",
+    "Photogenic",
+    "Peculiar"
+   ],
+   "bannedTags": [
+    "Meat"
+   ],
+   "ingredients": [
+    "Sticky Rice",
+    "Sticky Rice"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 5.4
+  },
+  {
+   "name": "Heart-Throbbing Surprise!",
+   "dlc": "DLC3",
+   "level": 4,
+   "price": 90,
+   "tags": [
+    "Dreamy",
+    "Expensive",
+    "Photogenic",
+    "Specialty",
+    "Peculiar",
+    "Strength-Boosting",
+    "Wonderful"
+   ],
+   "bannedTags": [
+    "Homecooking"
+   ],
+   "ingredients": [
+    "Mushroom",
+    "Udumbara",
+    "Honey",
+    "Cream"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Biscay Biscuits",
+   "dlc": "DLC3",
+   "level": 1,
+   "price": 26,
+   "tags": [
+    "Filling",
+    "Hot",
+    "Salty"
+   ],
+   "bannedTags": [
+    "Sour"
+   ],
+   "ingredients": [
+    "Flour",
+    "Cheese"
+   ],
+   "cookware": "Grill",
+   "cookTime": 3
+  },
+  {
+   "name": "Smoked Buccaneer",
+   "dlc": "DLC3",
+   "level": 2,
+   "price": 58,
+   "tags": [
+    "Large Portion",
+    "Legendary",
+    "Meat",
+    "Specialty",
+    "Strength-Boosting"
+   ],
+   "bannedTags": [
+    "Sour"
+   ],
+   "ingredients": [
+    "Beef",
+    "Black Salt",
+    "Chili",
+    "Honey"
+   ],
+   "cookware": "Grill",
+   "cookTime": 5.4
+  },
+  {
+   "name": "Buddha's Delight",
+   "dlc": "DLC3",
+   "level": 4,
+   "price": 97,
+   "tags": [
+    "Refreshing",
+    "Cultural Heritage",
+    "Dreamy",
+    "Expensive",
+    "Mild",
+    "Premium",
+    "Fresh",
+    "Specialty",
+    "Vegetarian"
+   ],
+   "bannedTags": [
+    "Meat",
+    "Spicy"
+   ],
+   "ingredients": [
+    "Udumbara",
+    "Bamboo Shoot",
+    "Truffle",
+    "Pine Nut",
+    "Lotus Seed"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Unzan Cotton Candy",
+   "dlc": "DLC3",
+   "level": 1,
+   "price": 20,
+   "tags": [
+    "Fruity",
+    "Specialty",
+    "Sweet",
+    "Wonderful"
+   ],
+   "bannedTags": [
+    "Meat",
+    "Salty"
+   ],
+   "ingredients": [
+    "Honey",
+    "Peach"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Pure White Lotus",
+   "dlc": "DLC3",
+   "level": 2,
+   "price": 56,
+   "tags": [
+    "Mild",
+    "Photogenic",
+    "Small Portion",
+    "Specialty",
+    "Vegetarian"
+   ],
+   "bannedTags": [
+    "Spicy"
+   ],
+   "ingredients": [
+    "Ginkgo Nut",
+    "Lotus Seed",
+    "Flour",
+    "Butter"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 6
+  },
+  {
+   "name": "Star Lotus Ship",
+   "dlc": "DLC3",
+   "level": 4,
+   "price": 132,
+   "tags": [
+    "Refreshing",
+    "Dreamy",
+    "Expensive",
+    "Photogenic",
+    "Premium",
+    "Raw",
+    "Fresh",
+    "Signature",
+    "Specialty",
+    "Wonderful"
+   ],
+   "bannedTags": [
+    "Peculiar"
+   ],
+   "ingredients": [
+    "Pumpkin",
+    "Lotus Seed",
+    "Tuna",
+    "Bingdi Lotus",
+    "Lunar Herb"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 7.8
+  },
+  {
+   "name": "Pine Nut Cake",
+   "dlc": "DLC3",
+   "level": 2,
+   "price": 46,
+   "tags": [
+    "Mild",
+    "Specialty"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Sticky Rice",
+    "Pine Nut"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 4.8
+  },
+  {
+   "name": "White Deer, Unyielding Pine",
+   "dlc": "DLC3",
+   "level": 3,
+   "price": 72,
+   "tags": [
+    "Cultural Heritage",
+    "Expensive",
+    "Meat",
+    "Mountain Delicacy",
+    "Premium",
+    "Specialty"
+   ],
+   "bannedTags": [
+    "Sour"
+   ],
+   "ingredients": [
+    "Venison",
+    "Ginkgo Nut",
+    "Pine Nut"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Eight Trigram Fish Maws",
+   "dlc": "DLC3",
+   "level": 4,
+   "price": 136,
+   "tags": [
+    "Aquatic",
+    "Refreshing",
+    "Cultural Heritage",
+    "Expensive",
+    "Mild",
+    "Premium",
+    "Fresh"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Premium Tuna",
+    "Mushroom",
+    "Radish",
+    "Egg",
+    "Ginkgo Nut"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 8.4
+  },
+  {
+   "name": "Honeyed Chestnut",
+   "dlc": "DLC3",
+   "level": 1,
+   "price": 30,
+   "tags": [
+    "Small Portion",
+    "Specialty",
+    "Sweet"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Honey",
+    "Chestnut"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Tianshi's Stewed Mushrooms",
+   "dlc": "DLC3",
+   "level": 2,
+   "price": 55,
+   "tags": [
+    "Chinese",
+    "Fungus",
+    "Homecooking",
+    "Specialty",
+    "Vegetarian"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Chestnut",
+    "Mushroom",
+    "Truffle"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Lotus Fish Lamps",
+   "dlc": "DLC3",
+   "level": 4,
+   "price": 94,
+   "tags": [
+    "Aquatic",
+    "Chinese",
+    "Cultural Heritage",
+    "Dreamy",
+    "Expensive",
+    "Legendary",
+    "Mild",
+    "Wonderful"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Premium Tuna",
+    "Bingdi Lotus",
+    "Lotus Seed",
+    "Dew"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 6.6
+  },
+  {
+   "name": "Candied Sweet Potato",
+   "dlc": "DLC3",
+   "level": 1,
+   "price": 30,
+   "tags": [
+    "Filling",
+    "Homecooking",
+    "Sweet",
+    "Vegetarian"
+   ],
+   "bannedTags": [
+    "Raw"
+   ],
+   "ingredients": [
+    "Sweet Potato",
+    "Honey"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Golden Two-Shroom Wrap",
+   "dlc": "DLC3",
+   "level": 3,
+   "price": 63,
+   "tags": [
+    "Expensive",
+    "Fungus",
+    "Good w/ Alcohol",
+    "Greasy",
+    "Homecooking",
+    "Hot",
+    "Meat",
+    "Signature"
+   ],
+   "bannedTags": [
+    "Refreshing"
+   ],
+   "ingredients": [
+    "Pork",
+    "Mushroom",
+    "Truffle"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 5.4
+  },
+  {
+   "name": "Tempura Platter",
+   "dlc": "DLC3",
+   "level": 3,
+   "price": 72,
+   "tags": [
+    "Expensive",
+    "Meat",
+    "Fungus",
+    "Good w/ Alcohol",
+    "Greasy",
+    "Homecooking",
+    "Japanese",
+    "Signature",
+    "Strength-Boosting"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Iberico Pork",
+    "Truffle",
+    "Lamprey",
+    "Lunar Herb"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Tomato Fries",
+   "dlc": "DLC4",
+   "level": 1,
+   "price": 26,
+   "tags": [
+    "Peculiar",
+    "Wonderful",
+    "Small Portion"
+   ],
+   "bannedTags": [
+    "Aquatic"
+   ],
+   "ingredients": [
+    "Tomato",
+    "Potato"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Peach Braised Pork",
+   "dlc": "DLC4",
+   "level": 2,
+   "price": 42,
+   "tags": [
+    "Meat",
+    "Good w/ Alcohol",
+    "Wonderful",
+    "Fruity"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Honey",
+    "Peach",
+    "Pork"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Against The World!",
+   "dlc": "DLC4",
+   "level": 4,
+   "price": 124,
+   "tags": [
+    "Expensive",
+    "Mountain Delicacy",
+    "Refreshing",
+    "Peculiar",
+    "Fungus",
+    "Wonderful",
+    "Dreamy",
+    "Aura-Bursting"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Bamboo",
+    "Flower",
+    "Plum",
+    "Iberico Pork",
+    "Truffle"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Red Bean Daifuku",
+   "dlc": "DLC4",
+   "level": 2,
+   "price": 28,
+   "tags": [
+    "Japanese",
+    "Sweet",
+    "Small Portion"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Red Bean",
+    "Sticky Rice"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Dorayaki",
+   "dlc": "DLC4",
+   "level": 2,
+   "price": 40,
+   "tags": [
+    "Vegetarian",
+    "Japanese",
+    "Sweet",
+    "Specialty"
+   ],
+   "bannedTags": [
+    "Meat"
+   ],
+   "ingredients": [
+    "Red Bean",
+    "Egg",
+    "Flour"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Palace of the Han",
+   "dlc": "DLC4",
+   "level": 4,
+   "price": 115,
+   "tags": [
+    "Expensive",
+    "Aquatic",
+    "Premium",
+    "Legendary",
+    "Chinese",
+    "Peculiar",
+    "Cultural Heritage",
+    "Soup"
+   ],
+   "bannedTags": [
+    "Greasy"
+   ],
+   "ingredients": [
+    "Lamprey",
+    "Tofu",
+    "Crab",
+    "Bamboo",
+    "Dew"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Bamboo Meat Pot",
+   "dlc": "DLC4",
+   "level": 3,
+   "price": 42,
+   "tags": [
+    "Meat",
+    "Homecooking",
+    "Filling"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Bamboo",
+    "Bamboo Shoot",
+    "Beef"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Rice Powder Meat",
+   "dlc": "DLC4",
+   "level": 3,
+   "price": 72,
+   "tags": [
+    "Expensive",
+    "Meat",
+    "Homecooking",
+    "Mountain Delicacy"
+   ],
+   "bannedTags": [
+    "Raw"
+   ],
+   "ingredients": [
+    "Bamboo",
+    "Dew",
+    "Iberico Pork"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 5.4
+  },
+  {
+   "name": "Bamboo Spring",
+   "dlc": "DLC4",
+   "level": 4,
+   "price": 99,
+   "tags": [
+    "Expensive",
+    "Premium",
+    "Mountain Delicacy",
+    "Signature",
+    "Photogenic",
+    "Cultural Heritage"
+   ],
+   "bannedTags": [
+    "Peculiar",
+    "Fungus"
+   ],
+   "ingredients": [
+    "Cucumber",
+    "Egg",
+    "Radish",
+    "Venison",
+    "Lunar Herb"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 8.4
+  },
+  {
+   "name": "Plum Tea Rice",
+   "dlc": "DLC4",
+   "level": 1,
+   "price": 32,
+   "tags": [
+    "Homecooking",
+    "Japanese"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Plum",
+    "Seaweed"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 2.4
+  },
+  {
+   "name": "Urchin Steamed Egg",
+   "dlc": "DLC4",
+   "level": 3,
+   "price": 112,
+   "tags": [
+    "Expensive",
+    "Sea Delicacy",
+    "Fresh",
+    "Photogenic"
+   ],
+   "bannedTags": [
+    "Mountain Delicacy"
+   ],
+   "ingredients": [
+    "Sea Urchin",
+    "Egg"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Scrumptious Storm",
+   "dlc": "DLC4",
+   "level": 5,
+   "price": 185,
+   "tags": [
+    "Expensive",
+    "Meat",
+    "Greasy",
+    "Filling",
+    "Raw",
+    "Signature",
+    "Photogenic",
+    "Strength-Boosting"
+   ],
+   "bannedTags": [
+    "Refreshing",
+    "Mild"
+   ],
+   "ingredients": [
+    "Onion",
+    "Boar Meat",
+    "Beef",
+    "Truffle",
+    "Tomato"
+   ],
+   "cookware": "Grill",
+   "cookTime": 10.8
+  },
+  {
+   "name": "Mushroom Herb Road",
+   "dlc": "DLC4",
+   "level": 1,
+   "price": 24,
+   "tags": [
+    "Mild",
+    "Cultural Heritage",
+    "Fungus",
+    "Specialty"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Red Toon",
+    "Mushroom"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Nature's Beauty",
+   "dlc": "DLC4",
+   "level": 3,
+   "price": 78,
+   "tags": [
+    "Expensive",
+    "Premium",
+    "Wonderful",
+    "Dreamy",
+    "Specialty"
+   ],
+   "bannedTags": [
+    "Hot",
+    "Greasy"
+   ],
+   "ingredients": [
+    "Flower",
+    "Lunar Herb",
+    "Cream"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 5.4
+  },
+  {
+   "name": "Faint Dream",
+   "dlc": "DLC4",
+   "level": 4,
+   "price": 133,
+   "tags": [
+    "Expensive",
+    "Premium",
+    "Mild",
+    "Western",
+    "Sweet",
+    "Photogenic",
+    "Refreshing",
+    "Dreamy"
+   ],
+   "bannedTags": [
+    "Meat",
+    "Good w/ Alcohol",
+    "Aquatic"
+   ],
+   "ingredients": [
+    "Flower",
+    "Udumbara",
+    "Lunar Herb",
+    "Dew",
+    "Cream"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Toon Pancake",
+   "dlc": "DLC4",
+   "level": 1,
+   "price": 30,
+   "tags": [
+    "Signature",
+    "Specialty"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Red Toon",
+    "Egg"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 3.6
+  },
+  {
+   "name": "Miasma Garden",
+   "dlc": "DLC4",
+   "level": 3,
+   "price": 58,
+   "tags": [
+    "Aquatic",
+    "Signature",
+    "Peculiar",
+    "Poison"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Pufferfish",
+    "Plum",
+    "Lamprey",
+    "Ginkgo Nut"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Little Sweet \"Poison\"",
+   "dlc": "DLC4",
+   "level": 3,
+   "price": 87,
+   "tags": [
+    "Expensive",
+    "Premium",
+    "Sweet",
+    "Photogenic",
+    "Small Portion",
+    "Dreamy"
+   ],
+   "bannedTags": [
+    "Meat"
+   ],
+   "ingredients": [
+    "Udumbara",
+    "Cream",
+    "Grapes",
+    "Ginkgo Nut"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 6
+  },
+  {
+   "name": "Eel Bowl with Egg",
+   "dlc": "DLC5",
+   "level": 2,
+   "price": 45,
+   "tags": [
+    "Aquatic",
+    "Raw",
+    "Signature"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Lamprey",
+    "Egg"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 3
+  },
+  {
+   "name": "Drunk Shrimp in Bamboo",
+   "dlc": "DLC5",
+   "level": 3,
+   "price": 60,
+   "tags": [
+    "Aquatic",
+    "Fresh",
+    "Raw",
+    "Peculiar"
+   ],
+   "bannedTags": [
+    "Filling"
+   ],
+   "ingredients": [
+    "Bamboo",
+    "Shrimp",
+    "Broccoli"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 3
+  },
+  {
+   "name": "Two-flavor Beef Hotpot",
+   "dlc": "DLC5",
+   "level": 4,
+   "price": 188,
+   "tags": [
+    "Expensive",
+    "Meat",
+    "Homecooking",
+    "Mountain Delicacy",
+    "Chinese",
+    "Hot",
+    "Strength-Boosting",
+    "Fungus",
+    "Spicy"
+   ],
+   "bannedTags": [
+    "Refreshing",
+    "Dreamy"
+   ],
+   "ingredients": [
+    "Chili",
+    "Radish",
+    "Truffle",
+    "Beef",
+    "Wagyu Beef"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 3
+  },
+  {
+   "name": "Kitten Canele",
+   "dlc": "DLC5",
+   "level": 2,
+   "price": 45,
+   "tags": [
+    "Filling",
+    "Sweet",
+    "Photogenic"
+   ],
+   "bannedTags": [
+    "Peculiar"
+   ],
+   "ingredients": [
+    "Cocoa Bean",
+    "Flour",
+    "Egg"
+   ],
+   "cookware": "Grill",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Kitten Pizza",
+   "dlc": "DLC5",
+   "level": 3,
+   "price": 75,
+   "tags": [
+    "Expensive",
+    "Filling",
+    "Western",
+    "Photogenic",
+    "Fungus"
+   ],
+   "bannedTags": [
+    "Refreshing"
+   ],
+   "ingredients": [
+    "Mushroom",
+    "Onion",
+    "Broccoli",
+    "Boar Meat"
+   ],
+   "cookware": "Grill",
+   "cookTime": 6
+  },
+  {
+   "name": "Kitten's Water Play",
+   "dlc": "DLC5",
+   "level": 4,
+   "price": 120,
+   "tags": [
+    "Expensive",
+    "Vegetarian",
+    "Sweet",
+    "Photogenic",
+    "Refreshing",
+    "Wonderful",
+    "Dreamy"
+   ],
+   "bannedTags": [
+    "Good w/ Alcohol",
+    "Hot"
+   ],
+   "ingredients": [
+    "Peach",
+    "Creeping Fig",
+    "Cream",
+    "Cocoa Bean",
+    "Flour"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Long Hair Princess",
+   "dlc": "DLC5",
+   "level": 2,
+   "price": 36,
+   "tags": [
+    "Aquatic",
+    "Filling",
+    "Photogenic"
+   ],
+   "bannedTags": [
+    "Peculiar"
+   ],
+   "ingredients": [
+    "Pumpkin",
+    "Shrimp"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 3
+  },
+  {
+   "name": "Urchin Raindrop Cake",
+   "dlc": "DLC5",
+   "level": 4,
+   "price": 128,
+   "tags": [
+    "Expensive",
+    "Aquatic",
+    "Premium",
+    "Refreshing",
+    "Small Portion",
+    "Dreamy"
+   ],
+   "bannedTags": [
+    "Filling"
+   ],
+   "ingredients": [
+    "Sea Urchin",
+    "Tuna",
+    "Snow Fungus",
+    "Dew"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Mad Hatter's Tea Party",
+   "dlc": "DLC5",
+   "level": 5,
+   "price": 188,
+   "tags": [
+    "Expensive",
+    "Western",
+    "Sweet",
+    "Photogenic",
+    "Fungus",
+    "Wonderful",
+    "Dreamy",
+    "Specialty"
+   ],
+   "bannedTags": [
+    "Greasy"
+   ],
+   "ingredients": [
+    "Cocoa Bean",
+    "Cream",
+    "Flour",
+    "Mushroom",
+    "Broccoli"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 9
+  },
+  {
+   "name": "Peach Flower Crystal Roll",
+   "dlc": "DLC5",
+   "level": 3,
+   "price": 60,
+   "tags": [
+    "Premium",
+    "Japanese",
+    "Sweet",
+    "Photogenic",
+    "Small Portion",
+    "Dreamy",
+    "Specialty"
+   ],
+   "bannedTags": [
+    "Meat",
+    "Peculiar",
+    "Filling",
+    "Fungus"
+   ],
+   "ingredients": [
+    "Peach",
+    "Red Bean",
+    "Creeping Fig"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Moonlight over the Lotus Pond",
+   "dlc": "DLC5",
+   "level": 4,
+   "price": 128,
+   "tags": [
+    "Expensive",
+    "Premium",
+    "Mild",
+    "Chinese",
+    "Sweet",
+    "Photogenic",
+    "Refreshing",
+    "Cultural Heritage"
+   ],
+   "bannedTags": [
+    "Meat",
+    "Peculiar",
+    "Good w/ Alcohol",
+    "Hot"
+   ],
+   "ingredients": [
+    "Grapes",
+    "Creeping Fig",
+    "Cream",
+    "Snow Fungus"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 7.2
+  },
+  {
+   "name": "Dragonsong Peach",
+   "dlc": "DLC5",
+   "level": 5,
+   "price": 199,
+   "tags": [
+    "Expensive",
+    "Premium",
+    "Legendary",
+    "Mild",
+    "Sweet",
+    "Refreshing",
+    "Wonderful",
+    "Specialty",
+    "Fruity"
+   ],
+   "bannedTags": [
+    "Fungus",
+    "Meat",
+    "Sea Delicacy",
+    "Peculiar",
+    "Raw"
+   ],
+   "ingredients": [
+    "Cocoa Bean",
+    "Peach",
+    "Peach",
+    "Peach",
+    "Peach"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 10.8
+  },
+  {
+   "name": "Molecular Egg",
+   "dlc": "DLC5",
+   "level": 3,
+   "price": 80,
+   "tags": [
+    "Expensive",
+    "Vegetarian",
+    "Premium",
+    "Mild",
+    "Sweet",
+    "Wonderful",
+    "Small Portion"
+   ],
+   "bannedTags": [
+    "Mountain Delicacy"
+   ],
+   "ingredients": [
+    "Cocoa Bean",
+    "Pumpkin",
+    "Cream"
+   ],
+   "cookware": "Cutting Board",
+   "cookTime": 4.2
+  },
+  {
+   "name": "Origin of Life",
+   "dlc": "DLC5",
+   "level": 4,
+   "price": 124,
+   "tags": [
+    "Expensive",
+    "Premium",
+    "Legendary",
+    "Mild",
+    "Raw",
+    "Fungus",
+    "Wonderful",
+    "Soup"
+   ],
+   "bannedTags": [
+    "Mountain Delicacy"
+   ],
+   "ingredients": [
+    "Cocoa Bean",
+    "Snow Fungus",
+    "Pumpkin",
+    "Dew"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 7.8
+  },
+  {
+   "name": "Planet Mars",
+   "dlc": "DLC5",
+   "level": 5,
+   "price": 198,
+   "tags": [
+    "Expensive",
+    "Aquatic",
+    "Premium",
+    "Legendary",
+    "Sea Delicacy",
+    "Photogenic",
+    "Cultural Heritage",
+    "Wonderful",
+    "Fruity"
+   ],
+   "bannedTags": [
+    "Mountain Delicacy"
+   ],
+   "ingredients": [
+    "Creeping Fig",
+    "Grapes",
+    "Crab",
+    "Dew"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 14.4
+  },
+  {
+   "name": "Heart-warming Congee",
+   "dlc": "DLC5",
+   "level": 1,
+   "price": 35,
+   "tags": [
+    "Mild",
+    "Sweet",
+    "Specialty"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Snow Fungus",
+    "Lotus Seed"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 3
+  },
+  {
+   "name": "Hot Pepper Soup",
+   "dlc": "DLC5",
+   "level": 2,
+   "price": 60,
+   "tags": [
+    "Homecooking",
+    "Chinese",
+    "Hot",
+    "Soup",
+    "Spicy",
+    "Aura-Bursting"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Chili",
+    "Beef",
+    "Tofu"
+   ],
+   "cookware": "Frying Pan",
+   "cookTime": 4.8
+  },
+  {
+   "name": "Supreme Seafood Noodles",
+   "dlc": "DLC5",
+   "level": 4,
+   "price": 135,
+   "tags": [
+    "Expensive",
+    "Aquatic",
+    "Homecooking",
+    "Premium",
+    "Filling",
+    "Sea Delicacy",
+    "Fresh"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Premium Tuna",
+    "Seaweed",
+    "Octopus",
+    "Crab",
+    "Shrimp"
+   ],
+   "cookware": "Boiling Pot",
+   "cookTime": 6
+  }
+ ],
+ "normalCustomers": [
+  {
+   "name": "Youkai Rabbit",
+   "dlc": "BaseGame",
+   "locations": [
+    "Youkai Trail",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Forest of Magic",
+    "Youkai Mountain",
+    "Palace of the Earth Spirits"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Refreshing",
+    "Fruity",
+    "Homecooking",
+    "Salty",
+    "Fresh",
+    "Signature",
+    "Strength-Boosting",
+    "Sweet"
+   ],
+   "likedDrinkTags": [
+    "No Alcohol"
+   ],
+   "description": "Even as a youkai, they still like fresh and sweet food. How cute! Of course, it's impossible for a youkai to have a meal without meat. Oh well, at least they're still cute, even when eating meat~"
+  },
+  {
+   "name": "Youkai Cat",
+   "dlc": "BaseGame",
+   "locations": [
+    "Youkai Trail",
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Forest of Magic",
+    "Youkai Mountain",
+    "Palace of the Earth Spirits"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Chinese",
+    "Refreshing",
+    "Meat",
+    "Sea Delicacy",
+    "Signature"
+   ],
+   "likedDrinkTags": [
+    "Beer",
+    "Bitter",
+    "Chillable"
+   ],
+   "description": "A youkai cat. Hard to misidentify them because they have two tails. Supposedly, stronger nekomata have tails further apart. They look cute, but they're actually mean, fierce, and aggressive! In Gensokyo, even wild cats are picky eaters."
+  },
+  {
+   "name": "Youkai Tanuki",
+   "dlc": "BaseGame",
+   "locations": [
+    "Youkai Trail",
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Youkai Mountain",
+    "Forest of Magic"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Filling",
+    "Greasy",
+    "Meat",
+    "Mountain Delicacy",
+    "Salty",
+    "Signature"
+   ],
+   "likedDrinkTags": [
+    "Dry",
+    "Sweet"
+   ],
+   "description": "A short-tempered youkai who always acts as if they are better than everyone else. In reality, they're not strong enough to back up their stance. However, tanukis are very good at tricks and disguises. Beware, they may pay their bill with leaves!"
+  },
+  {
+   "name": "Youkai Fox",
+   "dlc": "BaseGame",
+   "locations": [
+    "Youkai Trail",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Youkai Mountain",
+    "Former Hell"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Chinese",
+    "Japanese",
+    "Meat",
+    "Signature",
+    "Small Portion"
+   ],
+   "likedDrinkTags": [
+    "Neat"
+   ],
+   "description": "They often talk as if they know everything. Feels like they're just bragging about their old age and ego. That said, sometimes their advice is actually pretty useful. Maybe they really did learn a thing or two given their long life span."
+  },
+  {
+   "name": "Youkai Snake",
+   "dlc": "BaseGame",
+   "locations": [
+    "Youkai Trail",
+    "Youkai Mountain",
+    "Former Hell"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Good w/ Alcohol",
+    "Meat",
+    "Mountain Delicacy",
+    "Strength-Boosting"
+   ],
+   "likedDrinkTags": [
+    "Sake",
+    "Shochu"
+   ],
+   "description": "Supposedly an ancient monster... Well, the key word is \"ancient\". They are no longer the fearsome monsters now. Just be careful about them dining and dashing..."
+  },
+  {
+   "name": "Human Child",
+   "dlc": "BaseGame",
+   "locations": [
+    "Human Village"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Chinese",
+    "Refreshing",
+    "Filling",
+    "Homecooking",
+    "Meat",
+    "Salty",
+    "Signature",
+    "Sweet"
+   ],
+   "likedDrinkTags": [
+    "No Alcohol"
+   ],
+   "description": "Noisy tiny human brats. Creatures like this used to be my... well, after spending some time with them, they're actually not as bad as I first thought. Their smiles can easily erase my fatigue, it's almost magical."
+  },
+  {
+   "name": "Human Male",
+   "dlc": "BaseGame",
+   "locations": [
+    "Human Village"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Cultural Heritage",
+    "Good w/ Alcohol",
+    "Hot",
+    "Japanese",
+    "Meat",
+    "Salty",
+    "Fresh"
+   ],
+   "likedDrinkTags": [
+    "Heatable",
+    "Shochu"
+   ],
+   "description": "There's nothing extraordinary about him. He's always talking to himself, and complains a lot when he's drunk. Nevertheless, I heard that human males are usually the strongest in their species and are often relied on by others."
+  },
+  {
+   "name": "Human Female",
+   "dlc": "BaseGame",
+   "locations": [
+    "Human Village",
+    "Hakurei Shrine"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Aquatic",
+    "Refreshing",
+    "Premium",
+    "Salty",
+    "Fresh",
+    "Signature"
+   ],
+   "likedDrinkTags": [
+    "Chillable"
+   ],
+   "description": "If they are in a group, then they will go on and on and on, chatting about their trivial daily life or complimenting each other on dresses, and jewels. However, occasionally they share cooking techniques or new recipes. I'm not going to complain about that, of course."
+  },
+  {
+   "name": "Human Elder",
+   "dlc": "BaseGame",
+   "locations": [
+    "Human Village",
+    "Hakurei Shrine"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Hot",
+    "Photogenic",
+    "Premium",
+    "Signature"
+   ],
+   "likedDrinkTags": [
+    "Low Alcohol"
+   ],
+   "description": "A human senior who has merely lived for a few decades, a fraction of a normal youkai's life span. However, I can sense a faint sage aura coming from some of them... Might not be a bad idea to follow their suggestions once in a while."
+  },
+  {
+   "name": "Saemon",
+   "dlc": "BaseGame",
+   "locations": [
+    "Human Village",
+    "Hakurei Shrine"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Premium",
+    "Raw",
+    "Peculiar",
+    "Strength-Boosting"
+   ],
+   "likedDrinkTags": [
+    "High Alcohol"
+   ],
+   "description": "They are supposedly famous food critics among humans. They would even travel far and wide in search of great food... It's tough for humans to stay alive already. Oh well, I'll satisfy their stomach~"
+  },
+  {
+   "name": "Zashiki-warashi",
+   "dlc": "BaseGame",
+   "locations": [
+    "Hakurei Shrine"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Refreshing",
+    "Japanese",
+    "Mountain Delicacy",
+    "Raw",
+    "Signature",
+    "Sweet"
+   ],
+   "likedDrinkTags": [
+    "Low Alcohol",
+    "No Alcohol"
+   ],
+   "description": "I previously thought that zashiki-warashi were earthbound and unable to go elsewhere, but that's actually a mistaken belief. It seems that they can attach themselves to an object and travel anywhere. Oh, there's also a rumor saying that this youkai can make the host lucky. At least I hope its's true."
+  },
+  {
+   "name": "Kappa",
+   "dlc": "BaseGame",
+   "locations": [
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion",
+    "Youkai Mountain",
+    "Forest of Magic"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Hot",
+    "Large Portion",
+    "Premium",
+    "Sea Delicacy",
+    "Signature",
+    "Small Portion",
+    "Peculiar"
+   ],
+   "likedDrinkTags": [
+    "Sweet"
+   ],
+   "description": "Kappa in legends are just good swimmers. However, in Gensokyo, they're also excellent businessmen. I should ask one to be my mentor. You can frequently see them thinking and writing and completely ignoring their surrounding environment... It's quite charming and interesting, actually"
+  },
+  {
+   "name": "Goblin",
+   "dlc": "BaseGame",
+   "locations": [],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Refreshing",
+    "Greasy",
+    "Hot",
+    "Mountain Delicacy",
+    "Premium",
+    "Strength-Boosting"
+   ],
+   "likedDrinkTags": [
+    "Sake",
+    "Western"
+   ],
+   "description": "These customers give me a little bit of a headache. They're cautious but kind of ugly, and sometimes frighten human guests. It makes no sense to me as humans get along pretty well with other youkai dining here..."
+  },
+  {
+   "name": "Tengu",
+   "dlc": "BaseGame",
+   "locations": [
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Youkai Mountain"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Fungus",
+    "Photogenic",
+    "Premium",
+    "Signature"
+   ],
+   "likedDrinkTags": [
+    "Sake",
+    "Shochu"
+   ],
+   "description": "They're polite, but pretty persistent. Well, at least those tengu that visit my izakaya. I have a hard time dealing with them, but they're my customers in the end. I'll do my best to make them happy!"
+  },
+  {
+   "name": "Fairy",
+   "dlc": "BaseGame",
+   "locations": [
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Forest of Magic"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Dreamy",
+    "Fruity",
+    "Fungus",
+    "Photogenic",
+    "Fresh",
+    "Specialty",
+    "Sweet"
+   ],
+   "likedDrinkTags": [
+    "Fruity",
+    "Neat",
+    "Soda",
+    "Sweet"
+   ],
+   "description": "Actually, fairies don't have to eat. They're simply imitating others. They love anything fun and play pranks on others. Beware of their traps!"
+  },
+  {
+   "name": "White Wolf Tengu",
+   "dlc": "DLC1",
+   "locations": [
+    "Youkai Mountain"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Filling",
+    "Greasy",
+    "Meat",
+    "Mountain Delicacy",
+    "Raw",
+    "Salty",
+    "Fresh",
+    "Signature",
+    "Specialty"
+   ],
+   "likedDrinkTags": [
+    "High Alcohol",
+    "Mid Alcohol",
+    "Sake",
+    "Shochu"
+   ],
+   "description": "Tengu society has a strict hierarchy with the whtie wolf tengu acting as the mountain guards. It's probably because of their duties that most of them have a strict personality. However, sometimes they drink too much and end up a little too chatty."
+  },
+  {
+   "name": "Yamanba",
+   "dlc": "DLC1",
+   "locations": [
+    "Youkai Mountain"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Filling",
+    "Homecooking",
+    "Meat",
+    "Premium",
+    "Fresh",
+    "Peculiar",
+    "Strength-Boosting"
+   ],
+   "likedDrinkTags": [
+    "High Alcohol",
+    "Neat",
+    "Shochu",
+    "Vintage"
+   ],
+   "description": "A solitary youkai race that live in the Youkai Mountain but barely communicate even among themselves. Rumor says they capture wandering children lost in the mountains... but that's a misunderstanding. While they may speak harshly, it's just because they aren't good with words. In fact, they are very straightforward and kind."
+  },
+  {
+   "name": "Yamawaro",
+   "dlc": "DLC1",
+   "locations": [
+    "Youkai Mountain"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Hot",
+    "Large Portion",
+    "Mountain Delicacy",
+    "Premium",
+    "Signature",
+    "Small Portion",
+    "Peculiar"
+   ],
+   "likedDrinkTags": [
+    "Bitter",
+    "Mid Alcohol"
+   ],
+   "description": "A kappa who abandoned the river in favor of the peak of Youkai Mountain. They establish base camps and are experts on the mountain. Their research in economics is particularly advanced. I have no idea what they mean by private equity, merger and acquisition, or capital market... that's beyond me..."
+  },
+  {
+   "name": "Magician",
+   "dlc": "DLC1",
+   "locations": [
+    "Forest of Magic"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Refreshing",
+    "Homecooking",
+    "Legendary",
+    "Mild",
+    "Photogenic",
+    "Premium",
+    "Fresh",
+    "Vegetarian",
+    "Western"
+   ],
+   "likedDrinkTags": [
+    "Cocktail",
+    "Heatable",
+    "Stimulating",
+    "Western"
+   ],
+   "description": "The mushrooms in the Forest of Magic can help to concentrate magical power, so many magicians live there. Most of them live alone like hermits. I guess magic itself is a lonely thing~"
+  },
+  {
+   "name": "Forest Fairy",
+   "dlc": "DLC1",
+   "locations": [
+    "Forest of Magic"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Chinese",
+    "Refreshing",
+    "Dreamy",
+    "Homecooking",
+    "Japanese",
+    "Fresh",
+    "Signature",
+    "Small Portion",
+    "Sweet"
+   ],
+   "likedDrinkTags": [
+    "Fruity",
+    "Low Alcohol",
+    "No Alcohol",
+    "Sake",
+    "Sweet"
+   ],
+   "description": "The more fairies there are, the more natural an environment is. The Forest of Magic is rich in all kinds of resources partially thanks to all the fairies living there. It is said that every tree is home to a fairy. Some fairies like to play pranks, so be careful around trees."
+  },
+  {
+   "name": "Lost Doll",
+   "dlc": "DLC1",
+   "locations": [
+    "Forest of Magic"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Dreamy",
+    "Fungus",
+    "Homecooking",
+    "Photogenic",
+    "Raw",
+    "Salty",
+    "Small Portion",
+    "Peculiar"
+   ],
+   "likedDrinkTags": [
+    "Bitter",
+    "Fruity",
+    "Soda",
+    "Stimulating"
+   ],
+   "description": "A doll of unknown origin. As of yet, I'm not sure if she's a tsukumogami. After all, there is a magician living in the forest who can manipulate dolls... but she doesn't really look like she's being manipulated. I guess she must be a tsukumogami, right?"
+  },
+  {
+   "name": "Tsuchigumo",
+   "dlc": "DLC2",
+   "locations": [
+    "Former Hell"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Filling",
+    "Greasy",
+    "Large Portion",
+    "Meat",
+    "Mountain Delicacy",
+    "Raw",
+    "Fresh",
+    "Peculiar",
+    "Sweet"
+   ],
+   "likedDrinkTags": [
+    "Mid Alcohol",
+    "Chillable",
+    "Liquor",
+    "Neat",
+    "Sweet",
+    "Bitter",
+    "Modern"
+   ],
+   "description": "Tsuchigumo are spiders lurking in the Dark Blowhole. They're a bit of a peculiar bunch, but they're very passionate about architecture. They even frequently discuss problems related to architecture among each other. Maybe I can learn something too."
+  },
+  {
+   "name": "Oni",
+   "dlc": "DLC2",
+   "locations": [
+    "Former Hell"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Aura-Bursting",
+    "Good w/ Alcohol",
+    "Legendary",
+    "Meat",
+    "Premium",
+    "Fresh",
+    "Specialty",
+    "Strength-Boosting"
+   ],
+   "likedDrinkTags": [
+    "High Alcohol",
+    "Mid Alcohol",
+    "Neat",
+    "Shochu"
+   ],
+   "description": "A legendary race of youkai said to have existed long before ancient times! It's said that they're the strongest race in Gensokyo, but in reality they've left a long time ago. I never imagined they'd be living in the Underworld. Most oni are pretty straightforward, but they're also really fierce, so absolutely never lie in front of them!"
+  },
+  {
+   "name": "Hone-onna",
+   "dlc": "DLC2",
+   "locations": [
+    "Former Hell"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Refreshing",
+    "Fungus",
+    "Mild",
+    "Raw",
+    "Fresh",
+    "Sour",
+    "Peculiar",
+    "Vegetarian"
+   ],
+   "likedDrinkTags": [
+    "Beer",
+    "Bitter",
+    "Fruity",
+    "Heatable",
+    "Low Alcohol"
+   ],
+   "description": "They're all really pretty! These ladies handle themselves in a gentle and mature way, carrying a lantern decorate with peonies wherever they go. They can supposedly charm passing humans, though every time I ran into one at the cave they'd help illuminate the path ahead for me."
+  },
+  {
+   "name": "Hell Raven",
+   "dlc": "DLC2",
+   "locations": [
+    "Palace of the Earth Spirits"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Aura-Bursting",
+    "Homecooking",
+    "Meat",
+    "Mountain Delicacy",
+    "Salty",
+    "Sea Delicacy",
+    "Small Portion",
+    "Sour"
+   ],
+   "likedDrinkTags": [
+    "Beer",
+    "Bitter",
+    "Dry",
+    "Heatable",
+    "Mid Alcohol"
+   ],
+   "description": "Hell ravens reside in the lowest level of hell. While most youkai in Former Hell moved there due to their original homes becoming defunct, hell ravens have always been living in hell, making them the earliest residents here."
+  },
+  {
+   "name": "Ubume",
+   "dlc": "DLC2",
+   "locations": [
+    "Palace of the Earth Spirits"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Aquatic",
+    "Cultural Heritage",
+    "Homecooking",
+    "Mild",
+    "Fresh",
+    "Sour",
+    "Peculiar"
+   ],
+   "likedDrinkTags": [
+    "Low Alcohol",
+    "Shochu",
+    "Bitter",
+    "Heatable"
+   ],
+   "description": "Legends say ubume become birds when wearing their feathers, and become young girls when not. They can read people's fortune by collecting their fingernails, so most of them work as fortune tellers. They always speak in riddles, probably because they want to maintaintheir mystique."
+  },
+  {
+   "name": "Youkai Leopard",
+   "dlc": "DLC2",
+   "locations": [
+    "Palace of the Earth Spirits"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Greasy",
+    "Hot",
+    "Meat",
+    "Mountain Delicacy",
+    "Premium",
+    "Raw",
+    "Sea Delicacy",
+    "Specialty"
+   ],
+   "likedDrinkTags": [
+    "Dry",
+    "High Alcohol",
+    "Mid Alcohol",
+    "Neat"
+   ],
+   "description": "Fierce and ferocious. Stubborn yet candid. Due to my natural instincts, I'm a tiny bit afraid of them... although, while leopards are powerful by nature, there aren't many that manage to become youkai."
+  },
+  {
+   "name": "Monk",
+   "dlc": "DLC3",
+   "locations": [
+    "Myouren Temple"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Good w/ Alcohol",
+    "Homecooking",
+    "Meat",
+    "Mountain Delicacy",
+    "Strength-Boosting"
+   ],
+   "likedDrinkTags": [
+    "Heatable",
+    "High Alcohol",
+    "Mid Alcohol",
+    "Shochu",
+    "Vintage"
+   ],
+   "description": "Humans might not understand, but I know... the monks training at Myouren Temple are mostly youkai. They do engage in some Buddhist training like the six perfections, but no one has observed any results. A lot of youkai still do whatever they want outside of training."
+  },
+  {
+   "name": "Youkai Mouse",
+   "dlc": "DLC3",
+   "locations": [
+    "Myouren Temple"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Dreamy",
+    "Fruity",
+    "Homecooking",
+    "Large Portion",
+    "Premium"
+   ],
+   "likedDrinkTags": [
+    "Cocktail",
+    "Fruity",
+    "Liquor",
+    "Modern",
+    "Sweet"
+   ],
+   "description": "The treasure hunters you'll find everywhere in Gensokyo. Befriend them and you'll never have to worry about losing anything again. Though if you ask them to find food, they might eat it all before they even return it to you."
+  },
+  {
+   "name": "Hachishaku-sama",
+   "dlc": "DLC3",
+   "locations": [
+    "Myouren Temple"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Refreshing",
+    "Japanese",
+    "Photogenic",
+    "Fresh",
+    "Western"
+   ],
+   "likedDrinkTags": [
+    "Chillable",
+    "Cocktail",
+    "Liquor",
+    "Low Alcohol",
+    "Western"
+   ],
+   "description": "An eight-feet tall monster. Their skin is very pale due to wearing a sombrero all the time. They used to love wearing a white one-piece dress too, resulting in them becoming unnoticed during the day and their entire race had to starve, which is why they're as thin as a rake. Now, some of the more progressive ones are looking for more eye-catching attire."
+  },
+  {
+   "name": "Taoist",
+   "dlc": "DLC3",
+   "locations": [
+    "Divine Spirit Mausoleum"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Homecooking",
+    "Mild",
+    "Mountain Delicacy",
+    "Signature",
+    "Small Portion",
+    "Specialty"
+   ],
+   "likedDrinkTags": [
+    "Bitter",
+    "Low Alcohol",
+    "Modern",
+    "Stimulating"
+   ],
+   "description": "Many in the Divine Spirit Mausoleum worship Miko as their teacher, hoping to learn hermit arts. They seem to only be used for miscellaneous tasks though. They all look determined and full of ambition... so maybe doing miscellaneous tasks is also an interesting job?"
+  },
+  {
+   "name": "Jiangshi",
+   "dlc": "DLC3",
+   "locations": [
+    "Divine Spirit Mausoleum"
+   ],
+   "likesAllTags": true,
+   "undocumented": false,
+   "likedFoodTags": [],
+   "likedDrinkTags": [],
+   "description": "Undead controlled by a wicked hermit. They're corpses, but they won't decompose, being stronger than they were while alive. Their brains are no-good, so communicating with them is very hard. At least they aren't picky about food. Apparently humans temporarily turn into them if they get bitten by one, which I think is pretty interesting. It's kind of like a Jiangshi demo?"
+  },
+  {
+   "name": "Hermit",
+   "dlc": "DLC3",
+   "locations": [
+    "Divine Spirit Mausoleum"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Dreamy",
+    "Fruity",
+    "Mild",
+    "Premium",
+    "Small Portion",
+    "Vegetarian"
+   ],
+   "likedDrinkTags": [
+    "Fruity",
+    "Low Alcohol",
+    "Sake",
+    "Soda",
+    "Sweet",
+    "Vintage"
+   ],
+   "description": "Humans who, through years of training, gained abilities surpassing that of a normal human. A delicacy for many youkai, their life could be said to be one of peril. Their harsh life is probably why all of them have weird personalities..."
+  },
+  {
+   "name": "Inchling",
+   "dlc": "DLC4",
+   "locations": [
+    "Shining Needle Castle"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Japanese",
+    "Small Portion",
+    "Strength-Boosting",
+    "Legendary",
+    "Aura-Bursting",
+    "Dreamy"
+   ],
+   "likedDrinkTags": [
+    "Vintage",
+    "Chillable",
+    "Heatable",
+    "Sweet",
+    "Beer"
+   ],
+   "description": "Legends say they're the descendants of Sukuna-bikona, with bodies only the size of an inch. Having stayed in the castle all their lives, a lack of common sense is the norm among them. However, they possess a strong thirst for knowledge and are very eager to explore the world outside."
+  },
+  {
+   "name": "Delinquent Boy",
+   "dlc": "DLC4",
+   "locations": [
+    "Shining Needle Castle"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Japanese",
+    "Good w/ Alcohol",
+    "Filling",
+    "Homecooking",
+    "Strength-Boosting"
+   ],
+   "likedDrinkTags": [
+    "Shochu",
+    "Bitter",
+    "Stimulating",
+    "Heatable",
+    "High Alcohol",
+    "Beer"
+   ],
+   "description": "Boys from all around Gensokyo lured in by Seija. Most if not all of them are young men uncertain about their future, following Seija out of zeal for her \"grand design\", but now they seem even more uncertain..."
+  },
+  {
+   "name": "Delinquent Girl",
+   "dlc": "DLC4",
+   "locations": [
+    "Shining Needle Castle"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Japanese",
+    "Homecooking",
+    "Premium",
+    "Hot",
+    "Photogenic"
+   ],
+   "likedDrinkTags": [
+    "Fruity",
+    "Modern",
+    "Soda",
+    "Mid Alcohol",
+    "Beer"
+   ],
+   "description": "Girls from all around Gensokyo lured in by Seija. Most if not all of them are young women uncertain about their future, following Seija out of zeal for her \"grand design\", but now they seem even more uncertain..."
+  },
+  {
+   "name": "Toy Soldier",
+   "dlc": "DLC4",
+   "locations": [
+    "Shining Needle Castle"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Western",
+    "Wonderful",
+    "Sea Delicacy",
+    "Refreshing",
+    "Signature"
+   ],
+   "likedDrinkTags": [
+    "Modern",
+    "Liquor",
+    "Neat",
+    "Western"
+   ],
+   "description": "Toys that have come alive because of the miracle mallet's magic. Due to an unknown person, the magic in their bodies that should've gone back to the mallet have been converted into their own magic, thus giving them true lives."
+  },
+  {
+   "name": "Convalla Fairy",
+   "dlc": "DLC4",
+   "locations": [
+    "Garden of the Sun"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Poison",
+    "Raw",
+    "Dreamy",
+    "Good w/ Alcohol",
+    "Small Portion"
+   ],
+   "likedDrinkTags": [
+    "Dry",
+    "Soda",
+    "Mid Alcohol",
+    "Neat"
+   ],
+   "description": "Fairies living in lilies-of-the-valley. Spends every day attempting to answer the question of \"Who on earth is this 'Lily' Miss Medicine talks about?\" The bounty has already reached 99 \"world's roundest rocks\", but the mystery still remains unsolved."
+  },
+  {
+   "name": "Sunflower Fairy",
+   "dlc": "DLC4",
+   "locations": [
+    "Garden of the Sun"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Specialty",
+    "Wonderful",
+    "Sweet",
+    "Strength-Boosting",
+    "Fresh"
+   ],
+   "likedDrinkTags": [
+    "Sweet",
+    "Fruity",
+    "Soda",
+    "Liquor"
+   ],
+   "description": "Fairies living in sunflowers. Some say these fairies sneakily adjust a sunflower's position, hence why sunflowers always face towards the sun. This ultimate technique of theirs have already fooled countless humans, and is what they take pride in."
+  },
+  {
+   "name": "Rose Fairy",
+   "dlc": "DLC4",
+   "locations": [
+    "Garden of the Sun"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Photogenic",
+    "Small Portion",
+    "Premium",
+    "Signature",
+    "Western"
+   ],
+   "likedDrinkTags": [
+    "Modern",
+    "Cocktail",
+    "Low Alcohol",
+    "Sweet"
+   ],
+   "description": "Fairies living in roses. They heard from somewhere that the rose is a certain planet's one-of-a-kind, most cared-for flower, starting a craze of moving house among them. Not a single fairy has succeeded yet."
+  },
+  {
+   "name": "Kage-onna",
+   "dlc": "DLC4",
+   "locations": [
+    "Garden of the Sun"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Peculiar",
+    "Refreshing",
+    "Japanese",
+    "Raw",
+    "Wonderful",
+    "Homecooking"
+   ],
+   "likedDrinkTags": [
+    "Bitter",
+    "Vintage",
+    "High Alcohol",
+    "Stimulating",
+    "Chillable"
+   ],
+   "description": "A spirit somewhere between a phantom and a vengeful spirit. Apparently they harbored hatred when they passed away, so they love playing pranks on humans. If you ever see the shadow of a person walking around the house at night, yet you can't find anyone, it's the doing of the kage-onna. They look a bit gloomy, but that's just an act."
+  },
+  {
+   "name": "Poker Soldier",
+   "dlc": "DLC5",
+   "locations": [
+    "Makai"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Filling",
+    "Homecooking",
+    "Greasy",
+    "Salty",
+    "Signature",
+    "Refreshing"
+   ],
+   "likedDrinkTags": [
+    "Stimulating",
+    "Heatable",
+    "Bitter",
+    "Mid Alcohol"
+   ],
+   "description": "A poker card figure formed from the Makai creator's magic. Honest to the point of being mute, they are very self-conscious at patrolling even when work is not assigned. They're also always expecting someone to fall out of the sky, seems to be related to some rabbit hole story?"
+  },
+  {
+   "name": "Clown",
+   "dlc": "DLC5",
+   "locations": [
+    "Makai"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Premium",
+    "Peculiar",
+    "Fungus",
+    "Good w/ Alcohol",
+    "Raw",
+    "Photogenic"
+   ],
+   "likedDrinkTags": [
+    "Liquor",
+    "Dry",
+    "Chillable",
+    "Neat"
+   ],
+   "description": "A poker card figure formed from the Makai creator's magic, who takes up a position similar to that of a soldier commander. Not only do they lack the demeanor of an officer, they don't even have jobs to assign to the soldiers. Wandering around Makai all day, they looks more like a street performer than a soldier commander."
+  },
+  {
+   "name": "Mad Cap",
+   "dlc": "DLC5",
+   "locations": [
+    "Makai"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Photogenic",
+    "Wonderful",
+    "Dreamy",
+    "Peculiar",
+    "Fungus",
+    "Western"
+   ],
+   "likedDrinkTags": [
+    "Western",
+    "Stimulating",
+    "High Alcohol",
+    "Modern"
+   ],
+   "description": "Craftsman who excels in making hats and tailoring. Words have it that because they need mercury to preserve non-woven cloth for making hats, they often go into spasm or sometimes even hallucinate from mercury poisoning; thus, they are called Mad Caps. But I understand, below the cover of madness is their passion and persistence to their own work."
+  },
+  {
+   "name": "Lunarian",
+   "dlc": "DLC5",
+   "locations": [
+    "Lunar Capital"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Chinese",
+    "Mild",
+    "Legendary",
+    "Dreamy",
+    "Wonderful",
+    "Sea Delicacy"
+   ],
+   "likedDrinkTags": [
+    "Modern",
+    "Cocktail",
+    "Fruity",
+    "Soda",
+    "Sake"
+   ],
+   "description": "Humans living in the Lunar Capital. They gave up their lifespan, and dedicated themselves to remove impurity and get rid of death. But they aren't immortal, as they can still die from accidents or warfares, meaning they still have a tiny bit of impurity on them."
+  },
+  {
+   "name": "Medicine-Pounding Rabbit",
+   "dlc": "DLC5",
+   "locations": [
+    "Lunar Capital"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Filling",
+    "Refreshing",
+    "Mountain Delicacy",
+    "Japanese",
+    "Chinese",
+    "Sweet"
+   ],
+   "likedDrinkTags": [
+    "Stimulating",
+    "Sweet",
+    "Beer",
+    "Shochu",
+    "Mid Alcohol"
+   ],
+   "description": "Moon rabbits responsible for pounding medicine. It looks like they're pounding rice cake, but it was in fact medicine in the mortar. Their act of pounding medicine was not for making valuable medicine, but for redeeming someone's sins. Because they're constantly repeating vain-looking labor, they accumulated quite a lot of fatigue."
+  },
+  {
+   "name": "Lunar Emissary",
+   "dlc": "DLC5",
+   "locations": [
+    "Lunar Capital"
+   ],
+   "likesAllTags": false,
+   "undocumented": false,
+   "likedFoodTags": [
+    "Legendary",
+    "Filling",
+    "Strength-Boosting",
+    "Specialty",
+    "Western",
+    "Signature"
+   ],
+   "likedDrinkTags": [
+    "No Alcohol",
+    "Modern",
+    "Bitter",
+    "Stimulating",
+    "Heatable"
+   ],
+   "description": "Moon rabbits responsible for guarding the Lunar Capital. Lunar Emissaries, compared to other moon rabbits' jobs, is relatively more disciplined. In order to ensure they can engage in war with Earthen humans in critical moments, they need to undergo strict training, which isn't easy."
+  }
+ ],
+ "rareCustomers": [
+  {
+   "name": "Wriggle Nightbug",
+   "shortName": "Wriggle",
+   "kind": "rare",
+   "dlc": "BaseGame",
+   "homeLocation": "Youkai Trail",
+   "budget": {
+    "min": 200,
+    "max": 400
+   },
+   "locations": [
+    "Youkai Trail",
+    "Forest of Magic",
+    "Garden of the Sun"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Meat",
+    "Raw",
+    "Peculiar",
+    "Sweet"
+   ],
+   "dislikedFoodTags": [
+    "Refreshing",
+    "Mild",
+    "Vegetarian"
+   ],
+   "likedDrinkTags": [
+    "Low Alcohol",
+    "Chillable"
+   ]
+  },
+  {
+   "name": "Chen",
+   "shortName": "Chen",
+   "kind": "rare",
+   "dlc": "BaseGame",
+   "homeLocation": "Youkai Trail",
+   "budget": {
+    "min": 400,
+    "max": 600
+   },
+   "locations": [
+    "Youkai Trail"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Aquatic",
+    "Grilled",
+    "Greasy",
+    "Meat",
+    "Sweet",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Hot",
+    "Peculiar",
+    "Vegetarian",
+    "Trend - Unpopular"
+   ],
+   "likedDrinkTags": [
+    "Dry",
+    "Fruity"
+   ]
+  },
+  {
+   "name": "Rumia",
+   "shortName": "Rumia",
+   "kind": "rare",
+   "dlc": "BaseGame",
+   "homeLocation": "Youkai Trail",
+   "budget": {
+    "min": 150,
+    "max": 350
+   },
+   "locations": [
+    "Youkai Trail",
+    "Forest of Magic"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Filling",
+    "Meat",
+    "Raw",
+    "Signature",
+    "Peculiar",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Expensive",
+    "Good w/ Alcohol",
+    "Trend - Unpopular"
+   ],
+   "likedDrinkTags": [
+    "Bitter",
+    "Soda"
+   ]
+  },
+  {
+   "name": "Hieda no Akyuu",
+   "shortName": "Akyuu",
+   "kind": "rare",
+   "dlc": "BaseGame",
+   "homeLocation": "Human Village",
+   "budget": {
+    "min": 500,
+    "max": 800
+   },
+   "locations": [
+    "Human Village",
+    "Myouren Temple"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Cultural Heritage",
+    "Japanese",
+    "Mild",
+    "Premium",
+    "Soup",
+    "Sweet",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Greasy",
+    "Hot",
+    "Salty",
+    "Trend - Unpopular"
+   ],
+   "likedDrinkTags": [
+    "Heatable",
+    "Sake"
+   ]
+  },
+  {
+   "name": "Keine Kamishirasawa",
+   "shortName": "Keine",
+   "kind": "rare",
+   "dlc": "BaseGame",
+   "homeLocation": "Human Village",
+   "budget": {
+    "min": 400,
+    "max": 800
+   },
+   "locations": [
+    "Human Village",
+    "Forest of Magic",
+    "Myouren Temple"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Chinese",
+    "Cultural Heritage",
+    "Homecooking",
+    "Japanese",
+    "Mild",
+    "Vegetarian",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Greasy",
+    "Large Portion",
+    "Salty",
+    "Trend - Unpopular"
+   ],
+   "likedDrinkTags": [
+    "Liquor",
+    "Sake",
+    "Shochu"
+   ]
+  },
+  {
+   "name": "Kasen Ibaraki",
+   "shortName": "Kasen",
+   "kind": "rare",
+   "dlc": "BaseGame",
+   "homeLocation": "Human Village",
+   "budget": {
+    "min": 400,
+    "max": 600
+   },
+   "locations": [
+    "Human Village",
+    "Former Hell",
+    "Divine Spirit Mausoleum"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Cultural Heritage",
+    "Good w/ Alcohol",
+    "Homecooking",
+    "Japanese"
+   ],
+   "dislikedFoodTags": [
+    "Economical",
+    "Raw",
+    "Spicy"
+   ],
+   "likedDrinkTags": [
+    "Mid Alcohol",
+    "Neat",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Reimu Hakurei",
+   "shortName": "Reimu",
+   "kind": "rare",
+   "dlc": "BaseGame",
+   "homeLocation": "Hakurei Shrine",
+   "budget": {
+    "min": 150,
+    "max": 300
+   },
+   "locations": [
+    "Youkai Trail",
+    "Human Village",
+    "Hakurei Shrine",
+    "Forest of Magic",
+    "Youkai Mountain"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Filling",
+    "Economical",
+    "Premium",
+    "Sweet",
+    "Wonderful",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Expensive",
+    "Good w/ Alcohol",
+    "Trend - Unpopular"
+   ],
+   "likedDrinkTags": [
+    "Heatable",
+    "Low Alcohol",
+    "No Alcohol"
+   ]
+  },
+  {
+   "name": "Suika Ibuki",
+   "shortName": "Suika",
+   "kind": "rare",
+   "dlc": "BaseGame",
+   "homeLocation": "Hakurei Shrine",
+   "budget": {
+    "min": 600,
+    "max": 800
+   },
+   "locations": [
+    "Hakurei Shrine",
+    "Youkai Mountain",
+    "Shining Needle Castle"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Good w/ Alcohol",
+    "Japanese",
+    "Meat",
+    "Small Portion",
+    "Strength-Boosting",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Greasy",
+    "Trend - Unpopular"
+   ],
+   "likedDrinkTags": [
+    "High Alcohol",
+    "Neat"
+   ]
+  },
+  {
+   "name": "Tenshi Hinanawi",
+   "shortName": "Tenshi",
+   "kind": "rare",
+   "dlc": "BaseGame",
+   "homeLocation": "Hakurei Shrine",
+   "budget": {
+    "min": 2000,
+    "max": 3000
+   },
+   "locations": [
+    "Hakurei Shrine",
+    "Youkai Mountain",
+    "Former Hell",
+    "Divine Spirit Mausoleum",
+    "Garden of the Sun"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Expensive",
+    "Fruity",
+    "Legendary",
+    "Mild",
+    "Photogenic",
+    "Sweet",
+    "Vegetarian",
+    "Trend - Unpopular"
+   ],
+   "dislikedFoodTags": [
+    "Greasy",
+    "Homecooking",
+    "Meat",
+    "Trend - Popular"
+   ],
+   "likedDrinkTags": [
+    "Cocktail",
+    "High Alcohol"
+   ]
+  },
+  {
+   "name": "Hong Meiling",
+   "shortName": "Meiling",
+   "kind": "rare",
+   "dlc": "BaseGame",
+   "homeLocation": "Scarlet Devil Mansion",
+   "budget": {
+    "min": 200,
+    "max": 400
+   },
+   "locations": [
+    "Scarlet Devil Mansion"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Chinese",
+    "Filling",
+    "Meat",
+    "Strength-Boosting",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Fruity",
+    "Peculiar",
+    "Western",
+    "Trend - Unpopular"
+   ],
+   "likedDrinkTags": [
+    "Heatable",
+    "Stimulating",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Cirno",
+   "shortName": "Cirno",
+   "kind": "rare",
+   "dlc": "BaseGame",
+   "homeLocation": "Scarlet Devil Mansion",
+   "budget": {
+    "min": 100,
+    "max": 200
+   },
+   "locations": [
+    "Scarlet Devil Mansion",
+    "Youkai Mountain"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Refreshing",
+    "Photogenic",
+    "Peculiar",
+    "Sweet",
+    "Trend - Unpopular"
+   ],
+   "dislikedFoodTags": [
+    "Cultural Heritage",
+    "Expensive",
+    "Good w/ Alcohol",
+    "Trend - Popular"
+   ],
+   "likedDrinkTags": [
+    "Fruity",
+    "Chillable",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Patchouli Knowledge",
+   "shortName": "Patchouli",
+   "kind": "rare",
+   "dlc": "BaseGame",
+   "homeLocation": "Scarlet Devil Mansion",
+   "budget": {
+    "min": 600,
+    "max": 1000
+   },
+   "locations": [
+    "Scarlet Devil Mansion",
+    "Forest of Magic",
+    "Palace of the Earth Spirits"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Dreamy",
+    "Photogenic",
+    "Premium",
+    "Sweet",
+    "Western"
+   ],
+   "dislikedFoodTags": [
+    "Hot",
+    "Raw",
+    "Salty",
+    "Peculiar"
+   ],
+   "likedDrinkTags": [
+    "Cocktail",
+    "Liquor",
+    "Soda"
+   ]
+  },
+  {
+   "name": "Fujiwara no Mokou",
+   "shortName": "Mokou",
+   "kind": "rare",
+   "dlc": "BaseGame",
+   "homeLocation": "Bamboo Forest of the Lost",
+   "budget": {
+    "min": 300,
+    "max": 600
+   },
+   "locations": [
+    "Youkai Trail",
+    "Bamboo Forest of the Lost"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Aura-Bursting",
+    "Fruity",
+    "Hot",
+    "Spicy",
+    "Grilled"
+   ],
+   "dislikedFoodTags": [
+    "Expensive",
+    "Premium",
+    "Wonderful"
+   ],
+   "likedDrinkTags": [
+    "Bitter",
+    "Dry",
+    "Shochu"
+   ]
+  },
+  {
+   "name": "Kaguya Houraisan",
+   "shortName": "Kaguya",
+   "kind": "rare",
+   "dlc": "BaseGame",
+   "homeLocation": "Bamboo Forest of the Lost",
+   "budget": {
+    "min": 1000,
+    "max": 1500
+   },
+   "locations": [
+    "Bamboo Forest of the Lost",
+    "Shining Needle Castle"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Cultural Heritage",
+    "Japanese",
+    "Legendary",
+    "Wonderful",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Large Portion",
+    "Signature",
+    "Peculiar",
+    "Trend - Unpopular"
+   ],
+   "likedDrinkTags": [
+    "Modern",
+    "Sake",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Tewi Inaba",
+   "shortName": "Tewi",
+   "kind": "rare",
+   "dlc": "BaseGame",
+   "homeLocation": "Bamboo Forest of the Lost",
+   "budget": {
+    "min": 200,
+    "max": 400
+   },
+   "locations": [
+    "Bamboo Forest of the Lost"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Refreshing",
+    "Dreamy",
+    "Legendary",
+    "Small Portion",
+    "Sweet",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Greasy",
+    "Mountain Delicacy",
+    "Peculiar",
+    "Trend - Unpopular"
+   ],
+   "likedDrinkTags": [
+    "Fruity",
+    "No Alcohol",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Marisa Kirisame",
+   "shortName": "Marisa",
+   "kind": "rare",
+   "dlc": "DLC1",
+   "homeLocation": "Forest of Magic",
+   "budget": {
+    "min": 3000,
+    "max": 5000
+   },
+   "locations": [
+    "Youkai Trail",
+    "Human Village",
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Forest of Magic",
+    "Youkai Mountain",
+    "Former Hell",
+    "Palace of the Earth Spirits",
+    "Myouren Temple",
+    "Divine Spirit Mausoleum",
+    "Garden of the Sun",
+    "Shining Needle Castle",
+    "Makai",
+    "Lunar Capital"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Fungus",
+    "Greasy",
+    "Hot",
+    "Japanese",
+    "Legendary",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Peculiar",
+    "Trend - Unpopular"
+   ],
+   "likedDrinkTags": [
+    "Chillable",
+    "Low Alcohol"
+   ]
+  },
+  {
+   "name": "Alice",
+   "shortName": "Alice",
+   "kind": "rare",
+   "dlc": "DLC1",
+   "homeLocation": "Forest of Magic",
+   "budget": {
+    "min": 500,
+    "max": 800
+   },
+   "locations": [
+    "Forest of Magic",
+    "Garden of the Sun"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Cultural Heritage",
+    "Homecooking",
+    "Premium",
+    "Sweet",
+    "Western"
+   ],
+   "dislikedFoodTags": [
+    "Filling",
+    "Greasy",
+    "Meat",
+    "Peculiar"
+   ],
+   "likedDrinkTags": [
+    "Low Alcohol",
+    "Modern",
+    "Western"
+   ]
+  },
+  {
+   "name": "Narumi Yatadera",
+   "shortName": "Narumi",
+   "kind": "rare",
+   "dlc": "DLC1",
+   "homeLocation": "Forest of Magic",
+   "budget": {
+    "min": 300,
+    "max": 600
+   },
+   "locations": [
+    "Forest of Magic",
+    "Myouren Temple"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Cultural Heritage",
+    "Japanese",
+    "Mild",
+    "Mountain Delicacy",
+    "Specialty"
+   ],
+   "dislikedFoodTags": [
+    "Filling",
+    "Greasy"
+   ],
+   "likedDrinkTags": [
+    "Chillable",
+    "Low Alcohol",
+    "Mid Alcohol",
+    "Neat",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Nitori Kawashiro",
+   "shortName": "Nitori",
+   "kind": "rare",
+   "dlc": "DLC1",
+   "homeLocation": "Youkai Mountain",
+   "budget": {
+    "min": 400,
+    "max": 500
+   },
+   "locations": [
+    "Youkai Mountain"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Aquatic",
+    "Good w/ Alcohol",
+    "Premium",
+    "Salty",
+    "Signature",
+    "Peculiar"
+   ],
+   "dislikedFoodTags": [
+    "Cultural Heritage",
+    "Mountain Delicacy",
+    "Vegetarian"
+   ],
+   "likedDrinkTags": [
+    "High Alcohol",
+    "Mid Alcohol",
+    "Neat",
+    "Sake"
+   ]
+  },
+  {
+   "name": "Momiji Inubashiri",
+   "shortName": "Momiji",
+   "kind": "rare",
+   "dlc": "DLC1",
+   "homeLocation": "Youkai Mountain",
+   "budget": {
+    "min": 300,
+    "max": 400
+   },
+   "locations": [
+    "Youkai Mountain"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Good w/ Alcohol",
+    "Greasy",
+    "Large Portion",
+    "Meat",
+    "Mountain Delicacy"
+   ],
+   "dislikedFoodTags": [
+    "Mild",
+    "Peculiar",
+    "Vegetarian"
+   ],
+   "likedDrinkTags": [
+    "High Alcohol",
+    "Mid Alcohol",
+    "Neat"
+   ]
+  },
+  {
+   "name": "Sanae Kochiya",
+   "shortName": "Sanae",
+   "kind": "rare",
+   "dlc": "DLC1",
+   "homeLocation": "Youkai Mountain",
+   "budget": {
+    "min": 400,
+    "max": 600
+   },
+   "locations": [
+    "Forest of Magic",
+    "Youkai Mountain",
+    "Myouren Temple",
+    "Divine Spirit Mausoleum"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Dreamy",
+    "Homecooking",
+    "Japanese",
+    "Photogenic",
+    "Sweet"
+   ],
+   "dislikedFoodTags": [
+    "Greasy",
+    "Hot",
+    "Raw",
+    "Peculiar"
+   ],
+   "likedDrinkTags": [
+    "Bitter",
+    "Fruity",
+    "Low Alcohol",
+    "Modern",
+    "Neat",
+    "No Alcohol",
+    "Sake",
+    "Soda",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Yamame Kurodani",
+   "shortName": "Yamame",
+   "kind": "rare",
+   "dlc": "DLC2",
+   "homeLocation": "Former Hell",
+   "budget": {
+    "min": 250,
+    "max": 400
+   },
+   "locations": [
+    "Youkai Trail",
+    "Scarlet Devil Mansion",
+    "Forest of Magic",
+    "Youkai Mountain",
+    "Former Hell"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Photogenic",
+    "Raw",
+    "Fresh",
+    "Peculiar",
+    "Sweet",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Greasy",
+    "Hot",
+    "Salty"
+   ],
+   "likedDrinkTags": [
+    "Beer",
+    "Low Alcohol",
+    "Mid Alcohol",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Parsee Mizuhashi",
+   "shortName": "Parsee",
+   "kind": "rare",
+   "dlc": "DLC2",
+   "homeLocation": "Former Hell",
+   "budget": {
+    "min": 300,
+    "max": 400
+   },
+   "locations": [
+    "Former Hell"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Fruity",
+    "Meat",
+    "Salty",
+    "Fresh",
+    "Sour",
+    "Spicy",
+    "Trend - Unpopular"
+   ],
+   "dislikedFoodTags": [
+    "Sweet",
+    "Trend - Popular"
+   ],
+   "likedDrinkTags": [
+    "Bitter",
+    "Dry",
+    "Heatable",
+    "Neat",
+    "No Alcohol"
+   ]
+  },
+  {
+   "name": "Yuugi Hoshiguma",
+   "shortName": "Yuugi",
+   "kind": "rare",
+   "dlc": "DLC2",
+   "homeLocation": "Former Hell",
+   "budget": {
+    "min": 600,
+    "max": 1000
+   },
+   "locations": [
+    "Hakurei Shrine",
+    "Youkai Mountain",
+    "Palace of the Earth Spirits",
+    "Former Hell"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Aura-Bursting",
+    "Good w/ Alcohol",
+    "Japanese",
+    "Large Portion",
+    "Legendary",
+    "Signature",
+    "Strength-Boosting",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Small Portion",
+    "Peculiar",
+    "Vegetarian"
+   ],
+   "likedDrinkTags": [
+    "Beer",
+    "High Alcohol",
+    "Sake",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Satori Komeiji",
+   "shortName": "Satori",
+   "kind": "rare",
+   "dlc": "DLC2",
+   "homeLocation": "Palace of the Earth Spirits",
+   "budget": {
+    "min": 500,
+    "max": 600
+   },
+   "locations": [
+    "Human Village",
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Forest of Magic",
+    "Palace of the Earth Spirits"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Dreamy",
+    "Homecooking",
+    "Small Portion",
+    "Specialty",
+    "Strength-Boosting",
+    "Sweet"
+   ],
+   "dislikedFoodTags": [
+    "Hot",
+    "Large Portion",
+    "Meat",
+    "Mountain Delicacy",
+    "Peculiar"
+   ],
+   "likedDrinkTags": [
+    "Bitter",
+    "No Alcohol",
+    "Soda",
+    "Stimulating"
+   ]
+  },
+  {
+   "name": "Rin Kaenbyou",
+   "shortName": "Rin",
+   "kind": "rare",
+   "dlc": "DLC2",
+   "homeLocation": "Palace of the Earth Spirits",
+   "budget": {
+    "min": 500,
+    "max": 700
+   },
+   "locations": [
+    "Human Village",
+    "Hakurei Shrine",
+    "Youkai Mountain",
+    "Palace of the Earth Spirits",
+    "Former Hell",
+    "Myouren Temple",
+    "Divine Spirit Mausoleum"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Aquatic",
+    "Dreamy",
+    "Fresh",
+    "Sea Delicacy",
+    "Peculiar",
+    "Sweet",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Hot",
+    "Raw"
+   ],
+   "likedDrinkTags": [
+    "Fruity",
+    "Low Alcohol",
+    "Sake"
+   ]
+  },
+  {
+   "name": "Utsuho Reiuji",
+   "shortName": "Utsuho",
+   "kind": "rare",
+   "dlc": "DLC2",
+   "homeLocation": "Palace of the Earth Spirits",
+   "budget": {
+    "min": 500,
+    "max": 800
+   },
+   "locations": [
+    "Youkai Mountain",
+    "Palace of the Earth Spirits"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Greasy",
+    "Hot",
+    "Meat",
+    "Salty",
+    "Spicy",
+    "Strength-Boosting"
+   ],
+   "dislikedFoodTags": [
+    "Fungus",
+    "Mild"
+   ],
+   "likedDrinkTags": [
+    "Cocktail",
+    "Heatable",
+    "Mid Alcohol"
+   ]
+  },
+  {
+   "name": "Kogasa Tatara",
+   "shortName": "Kogasa",
+   "kind": "rare",
+   "dlc": "DLC3",
+   "homeLocation": "Myouren Temple",
+   "budget": {
+    "min": 150,
+    "max": 300
+   },
+   "locations": [
+    "Myouren Temple",
+    "Shining Needle Castle"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Filling",
+    "Homecooking",
+    "Photogenic",
+    "Peculiar",
+    "Strength-Boosting",
+    "Sweet",
+    "Wonderful",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Hot",
+    "Spicy",
+    "Soup"
+   ],
+   "likedDrinkTags": [
+    "Chillable",
+    "Fruity",
+    "Mid Alcohol",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Minamitsu Murasa",
+   "shortName": "Minamitsu",
+   "kind": "rare",
+   "dlc": "DLC3",
+   "homeLocation": "Myouren Temple",
+   "budget": {
+    "min": 400,
+    "max": 600
+   },
+   "locations": [
+    "Myouren Temple"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Filling",
+    "Meat",
+    "Premium",
+    "Salty",
+    "Fresh",
+    "Specialty",
+    "Strength-Boosting"
+   ],
+   "dislikedFoodTags": [
+    "Small Portion",
+    "Sour",
+    "Peculiar",
+    "Vegetarian"
+   ],
+   "likedDrinkTags": [
+    "Chillable",
+    "Dry",
+    "High Alcohol",
+    "Western"
+   ]
+  },
+  {
+   "name": "Nue Houjuu",
+   "shortName": "Nue",
+   "kind": "rare",
+   "dlc": "DLC3",
+   "homeLocation": "Myouren Temple",
+   "budget": {
+    "min": 300,
+    "max": 500
+   },
+   "locations": [
+    "Myouren Temple",
+    "Shining Needle Castle"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Meat",
+    "Photogenic",
+    "Raw",
+    "Fresh",
+    "Signature",
+    "Specialty",
+    "Peculiar",
+    "Wonderful",
+    "Trend - Unpopular"
+   ],
+   "dislikedFoodTags": [
+    "Sour",
+    "Western",
+    "Trend - Popular"
+   ],
+   "likedDrinkTags": [
+    "Heatable",
+    "Neat",
+    "Shochu",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Mononobe no Futo",
+   "shortName": "Futo",
+   "kind": "rare",
+   "dlc": "DLC3",
+   "homeLocation": "Divine Spirit Mausoleum",
+   "budget": {
+    "min": 600,
+    "max": 900
+   },
+   "locations": [
+    "Divine Spirit Mausoleum"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Aura-Bursting",
+    "Japanese",
+    "Legendary",
+    "Mild",
+    "Mountain Delicacy",
+    "Premium",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Raw",
+    "Western",
+    "Trend - Unpopular"
+   ],
+   "likedDrinkTags": [
+    "Heatable",
+    "Mid Alcohol",
+    "Neat",
+    "Soda"
+   ]
+  },
+  {
+   "name": "Seiga Kaku",
+   "shortName": "Seiga",
+   "kind": "rare",
+   "dlc": "DLC3",
+   "homeLocation": "Divine Spirit Mausoleum",
+   "budget": {
+    "min": 400,
+    "max": 900
+   },
+   "locations": [
+    "Divine Spirit Mausoleum"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Chinese",
+    "Legendary",
+    "Small Portion",
+    "Specialty",
+    "Sweet",
+    "Vegetarian",
+    "Wonderful",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Filling",
+    "Greasy"
+   ],
+   "likedDrinkTags": [
+    "Fruity",
+    "Low Alcohol",
+    "Modern",
+    "Sake"
+   ]
+  },
+  {
+   "name": "Soga no Tojiko",
+   "shortName": "Tojiko",
+   "kind": "rare",
+   "dlc": "DLC3",
+   "homeLocation": "Divine Spirit Mausoleum",
+   "budget": {
+    "min": 500,
+    "max": 600
+   },
+   "locations": [
+    "Divine Spirit Mausoleum"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Grilled",
+    "Filling",
+    "Greasy",
+    "Homecooking",
+    "Japanese",
+    "Signature",
+    "Strength-Boosting"
+   ],
+   "dislikedFoodTags": [
+    "Refreshing",
+    "Sweet"
+   ],
+   "likedDrinkTags": [
+    "Beer",
+    "Bitter",
+    "High Alcohol",
+    "Shochu"
+   ]
+  },
+  {
+   "name": "Aya Shameimaru",
+   "shortName": "Aya",
+   "kind": "rare",
+   "dlc": "DLC4",
+   "homeLocation": "Garden of the Sun",
+   "budget": {
+    "min": 500,
+    "max": 600
+   },
+   "locations": [
+    "Youkai Trail",
+    "Human Village",
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Forest of Magic",
+    "Youkai Mountain",
+    "Former Hell",
+    "Palace of the Earth Spirits",
+    "Myouren Temple",
+    "Divine Spirit Mausoleum",
+    "Garden of the Sun",
+    "Shining Needle Castle",
+    "Makai",
+    "Lunar Capital"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Meat",
+    "Homecooking",
+    "Good w/ Alcohol",
+    "Japanese",
+    "Signature",
+    "Photogenic",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Western",
+    "Trend - Unpopular"
+   ],
+   "likedDrinkTags": [
+    "High Alcohol",
+    "Chillable",
+    "Shochu",
+    "Stimulating"
+   ]
+  },
+  {
+   "name": "Medicine Melancholy",
+   "shortName": "Medicine",
+   "kind": "rare",
+   "dlc": "DLC4",
+   "homeLocation": "Garden of the Sun",
+   "budget": {
+    "min": 200,
+    "max": 400
+   },
+   "locations": [
+    "Garden of the Sun"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Sweet",
+    "Signature",
+    "Photogenic",
+    "Refreshing",
+    "Fungus",
+    "Small Portion",
+    "Dreamy",
+    "Poison"
+   ],
+   "dislikedFoodTags": [
+    "Cultural Heritage"
+   ],
+   "likedDrinkTags": [
+    "No Alcohol",
+    "Fruity",
+    "Sweet",
+    "Bitter"
+   ]
+  },
+  {
+   "name": "Yuuka Kazami",
+   "shortName": "Yuuka",
+   "kind": "rare",
+   "dlc": "DLC4",
+   "homeLocation": "Garden of the Sun",
+   "budget": {
+    "min": 1200,
+    "max": 1800
+   },
+   "locations": [
+    "Garden of the Sun"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Premium",
+    "Legendary",
+    "Mild",
+    "Western",
+    "Wonderful",
+    "Dreamy",
+    "Specialty",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Filling",
+    "Japanese",
+    "Salty",
+    "Hot"
+   ],
+   "likedDrinkTags": [
+    "Cocktail",
+    "Western",
+    "Liquor",
+    "Modern"
+   ]
+  },
+  {
+   "name": "Seija Kijin",
+   "shortName": "Seija",
+   "kind": "rare",
+   "dlc": "DLC4",
+   "homeLocation": "Shining Needle Castle",
+   "budget": {
+    "min": 300,
+    "max": 600
+   },
+   "locations": [
+    "Shining Needle Castle"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Greasy",
+    "Good w/ Alcohol",
+    "Hot",
+    "Strength-Boosting",
+    "Peculiar",
+    "Wonderful",
+    "Aura-Bursting",
+    "Trend - Unpopular"
+   ],
+   "dislikedFoodTags": [
+    "Premium",
+    "Trend - Popular"
+   ],
+   "likedDrinkTags": [
+    "Mid Alcohol",
+    "Shochu",
+    "Neat",
+    "Dry"
+   ]
+  },
+  {
+   "name": "Shinmyoumaru Sukuna",
+   "shortName": "Shinmyoumaru",
+   "kind": "rare",
+   "dlc": "DLC4",
+   "homeLocation": "Shining Needle Castle",
+   "budget": {
+    "min": 600,
+    "max": 1200
+   },
+   "locations": [
+    "Shining Needle Castle"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Legendary",
+    "Japanese",
+    "Sweet",
+    "Photogenic",
+    "Cultural Heritage",
+    "Small Portion",
+    "Aura-Bursting",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Large Portion",
+    "Western"
+   ],
+   "likedDrinkTags": [
+    "Low Alcohol",
+    "Heatable",
+    "Soda",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Kagerou Imaizumi",
+   "shortName": "Kagerou",
+   "kind": "rare",
+   "dlc": "DLC4",
+   "homeLocation": "Shining Needle Castle",
+   "budget": {
+    "min": 300,
+    "max": 600
+   },
+   "locations": [
+    "Bamboo Forest of the Lost",
+    "Shining Needle Castle"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Meat",
+    "Homecooking",
+    "Mountain Delicacy",
+    "Japanese",
+    "Photogenic",
+    "Refreshing",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Hot"
+   ],
+   "likedDrinkTags": [
+    "Mid Alcohol",
+    "Chillable",
+    "Sake",
+    "Neat"
+   ]
+  },
+  {
+   "name": "Ellen",
+   "shortName": "Ellen",
+   "kind": "rare",
+   "dlc": "DLC5",
+   "homeLocation": "Makai",
+   "budget": {
+    "min": 300,
+    "max": 500
+   },
+   "locations": [
+    "Makai"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Western",
+    "Sweet",
+    "Dreamy",
+    "Homecooking",
+    "Filling",
+    "Refreshing",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Greasy",
+    "Aquatic",
+    "Raw"
+   ],
+   "likedDrinkTags": [
+    "Beer",
+    "Sweet",
+    "Heatable",
+    "Vintage",
+    "Low Alcohol"
+   ]
+  },
+  {
+   "name": "Mima",
+   "shortName": "Mima",
+   "kind": "rare",
+   "dlc": "DLC5",
+   "homeLocation": "Makai",
+   "budget": {
+    "min": 2000,
+    "max": 3000
+   },
+   "locations": [
+    "Makai"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Peculiar",
+    "Strength-Boosting",
+    "Fresh",
+    "Mountain Delicacy",
+    "Aquatic",
+    "Fungus",
+    "Raw"
+   ],
+   "dislikedFoodTags": [
+    "Premium",
+    "Mild"
+   ],
+   "likedDrinkTags": [
+    "Chillable",
+    "High Alcohol",
+    "Shochu",
+    "Western",
+    "Dry"
+   ]
+  },
+  {
+   "name": "Louise",
+   "shortName": "Louise",
+   "kind": "rare",
+   "dlc": "DLC5",
+   "homeLocation": "Makai",
+   "budget": {
+    "min": 800,
+    "max": 1000
+   },
+   "locations": [
+    "Youkai Trail",
+    "Human Village",
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Forest of Magic",
+    "Youkai Mountain",
+    "Myouren Temple",
+    "Divine Spirit Mausoleum",
+    "Garden of the Sun",
+    "Shining Needle Castle",
+    "Makai"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Sweet",
+    "Photogenic",
+    "Small Portion",
+    "Specialty",
+    "Western",
+    "Aquatic",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Filling",
+    "Greasy"
+   ],
+   "likedDrinkTags": [
+    "Cocktail",
+    "Chillable",
+    "Modern",
+    "Mid Alcohol",
+    "Beer"
+   ]
+  },
+  {
+   "name": "Reisen",
+   "shortName": "Reisen",
+   "kind": "rare",
+   "dlc": "DLC5",
+   "homeLocation": "Lunar Capital",
+   "budget": {
+    "min": 200,
+    "max": 350
+   },
+   "locations": [
+    "Lunar Capital"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Small Portion",
+    "Sea Delicacy",
+    "Sweet",
+    "Specialty",
+    "Homecooking",
+    "Chinese",
+    "Mountain Delicacy"
+   ],
+   "dislikedFoodTags": [
+    "Expensive",
+    "Wonderful"
+   ],
+   "likedDrinkTags": [
+    "Shochu",
+    "High Alcohol",
+    "Heatable",
+    "Beer",
+    "Bitter"
+   ]
+  },
+  {
+   "name": "Watatsuki no Toyohime",
+   "shortName": "Toyohime",
+   "kind": "rare",
+   "dlc": "DLC5",
+   "homeLocation": "Lunar Capital",
+   "budget": {
+    "min": 1200,
+    "max": 1500
+   },
+   "locations": [
+    "Lunar Capital"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Fruity",
+    "Japanese",
+    "Sweet",
+    "Vegetarian",
+    "Premium",
+    "Refreshing",
+    "Cultural Heritage",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Mountain Delicacy",
+    "Salty",
+    "Strength-Boosting"
+   ],
+   "likedDrinkTags": [
+    "Chillable",
+    "High Alcohol",
+    "Sake",
+    "Vintage",
+    "Fruity"
+   ]
+  },
+  {
+   "name": "Watatsuki no Yorihime",
+   "shortName": "Yorihime",
+   "kind": "rare",
+   "dlc": "DLC5",
+   "homeLocation": "Lunar Capital",
+   "budget": {
+    "min": 1000,
+    "max": 1200
+   },
+   "locations": [
+    "Lunar Capital"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Legendary",
+    "Premium",
+    "Chinese",
+    "Cultural Heritage",
+    "Hot",
+    "Mild",
+    "Small Portion",
+    "Strength-Boosting"
+   ],
+   "dislikedFoodTags": [
+    "Fungus",
+    "Mountain Delicacy"
+   ],
+   "likedDrinkTags": [
+    "Heatable",
+    "Neat",
+    "Stimulating",
+    "Dry",
+    "Shochu"
+   ]
+  },
+  {
+   "name": "Rinnosuke Morichika",
+   "shortName": "Rinnosuke",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": {
+    "min": 250,
+    "max": 400
+   },
+   "locations": [
+    "Human Village",
+    "Forest of Magic",
+    "Garden of the Sun"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Filling",
+    "Homecooking",
+    "Fresh",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Good w/ Alcohol",
+    "Greasy",
+    "Peculiar",
+    "Trend - Unpopular"
+   ],
+   "likedDrinkTags": [
+    "Beer",
+    "Shochu"
+   ]
+  },
+  {
+   "name": "Remilia Scarlet",
+   "shortName": "Remilia",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": {
+    "min": 4950,
+    "max": 5000
+   },
+   "locations": [
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Premium",
+    "Legendary",
+    "Western",
+    "Sweet",
+    "Raw",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Economical",
+    "Salty",
+    "Spicy",
+    "Sour"
+   ],
+   "likedDrinkTags": [
+    "High Alcohol",
+    "Western",
+    "Fruity",
+    "Sweet",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Youmu Konpaku",
+   "shortName": "Youmu",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": {
+    "min": 300,
+    "max": 400
+   },
+   "locations": [
+    "Youkai Trail",
+    "Human Village",
+    "Hakurei Shrine",
+    "Bamboo Forest of the Lost"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Strength-Boosting",
+    "Fresh",
+    "Homecooking",
+    "Mild"
+   ],
+   "dislikedFoodTags": [
+    "Salty",
+    "Greasy",
+    "Peculiar"
+   ],
+   "likedDrinkTags": [
+    "Fruity",
+    "No Alcohol",
+    "Heatable"
+   ]
+  },
+  {
+   "name": "Yuyuko Saigyouji",
+   "shortName": "Yuyuko",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": {
+    "min": 1500,
+    "max": 2000
+   },
+   "locations": [
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Divine Spirit Mausoleum"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Aquatic",
+    "Chinese",
+    "Filling",
+    "Japanese",
+    "Large Portion",
+    "Legendary",
+    "Meat",
+    "Premium"
+   ],
+   "dislikedFoodTags": [
+    "Mild",
+    "Small Portion",
+    "Vegetarian"
+   ],
+   "likedDrinkTags": [
+    "Chillable",
+    "Cocktail",
+    "High Alcohol"
+   ]
+  },
+  {
+   "name": "Meng Chengguo",
+   "shortName": "Chengguo",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": {
+    "min": 1200,
+    "max": 1600
+   },
+   "locations": [
+    "Youkai Trail",
+    "Human Village",
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Forest of Magic",
+    "Youkai Mountain",
+    "Myouren Temple",
+    "Divine Spirit Mausoleum",
+    "Garden of the Sun",
+    "Shining Needle Castle",
+    "Makai",
+    "Lunar Capital"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Aquatic",
+    "Dreamy",
+    "Meat",
+    "Sweet",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Hot",
+    "Peculiar",
+    "Trend - Unpopular"
+   ],
+   "likedDrinkTags": [
+    "Dry",
+    "Fruity",
+    "Chillable",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Three Fairies",
+   "shortName": "Three Fairies",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": {
+    "min": 300,
+    "max": 400
+   },
+   "locations": [
+    "Youkai Trail",
+    "Human Village",
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Youkai Mountain"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Refreshing",
+    "Dreamy",
+    "Fungus",
+    "Homecooking",
+    "Small Portion",
+    "Sweet",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Hot",
+    "Raw",
+    "Peculiar",
+    "Trend - Unpopular"
+   ],
+   "likedDrinkTags": [
+    "Bitter",
+    "Fruity",
+    "No Alcohol",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Rin Satsuki",
+   "shortName": "Rin",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": {
+    "min": 400,
+    "max": 600
+   },
+   "locations": [
+    "Youkai Trail",
+    "Human Village",
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Aquatic",
+    "Chinese",
+    "Homecooking",
+    "Spicy",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Greasy"
+   ],
+   "likedDrinkTags": [
+    "No Alcohol",
+    "Soda",
+    "Sweet"
+   ]
+  },
+  {
+   "name": "Shio Tachisora",
+   "shortName": "Shio",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": {
+    "min": 500,
+    "max": 800
+   },
+   "locations": [
+    "Youkai Trail",
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Youkai Mountain"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Expensive",
+    "Good w/ Alcohol",
+    "Japanese",
+    "Meat",
+    "Mountain Delicacy",
+    "Strength-Boosting"
+   ],
+   "dislikedFoodTags": [
+    "Mild",
+    "Trend - Popular",
+    "Vegetarian"
+   ],
+   "likedDrinkTags": [
+    "Heatable",
+    "High Alcohol",
+    "Chillable"
+   ]
+  },
+  {
+   "name": "Jien Yuu",
+   "shortName": "Jien Yuu",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": {
+    "min": 1300,
+    "max": 1800
+   },
+   "locations": [
+    "Human Village",
+    "Hakurei Shrine"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Chinese",
+    "Cultural Heritage",
+    "Good w/ Alcohol",
+    "Legendary",
+    "Specialty",
+    "Western"
+   ],
+   "dislikedFoodTags": [
+    "Aquatic",
+    "Greasy"
+   ],
+   "likedDrinkTags": [
+    "Cocktail",
+    "Chillable",
+    "Mid Alcohol",
+    "Western"
+   ]
+  },
+  {
+   "name": "Yuuma Toutetsu",
+   "shortName": "Yuuma",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": {
+    "min": 9999,
+    "max": 9999
+   },
+   "locations": [
+    "Youkai Trail",
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Forest of Magic",
+    "Youkai Mountain",
+    "Former Hell",
+    "Palace of the Earth Spirits",
+    "Myouren Temple",
+    "Divine Spirit Mausoleum",
+    "Garden of the Sun",
+    "Shining Needle Castle",
+    "Makai",
+    "Lunar Capital"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Filling",
+    "Large Portion",
+    "Legendary",
+    "Meat",
+    "Premium",
+    "Raw",
+    "Fresh",
+    "Strength-Boosting",
+    "Wonderful"
+   ],
+   "dislikedFoodTags": [],
+   "likedDrinkTags": [
+    "Dry",
+    "High Alcohol",
+    "Neat",
+    "Shochu"
+   ]
+  },
+  {
+   "name": "Koishi Komeiji",
+   "shortName": "Koishi",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": {
+    "min": 800,
+    "max": 1200
+   },
+   "locations": [
+    "Youkai Trail",
+    "Human Village",
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Forest of Magic",
+    "Youkai Mountain",
+    "Former Hell",
+    "Palace of the Earth Spirits",
+    "Myouren Temple",
+    "Divine Spirit Mausoleum",
+    "Garden of the Sun",
+    "Shining Needle Castle",
+    "Makai",
+    "Lunar Capital"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Dreamy",
+    "Raw",
+    "Salty",
+    "Peculiar",
+    "Sweet",
+    "Trend - Unpopular",
+    "Wonderful"
+   ],
+   "dislikedFoodTags": [],
+   "likedDrinkTags": [
+    "Bitter",
+    "High Alcohol",
+    "Shochu",
+    "Soda"
+   ]
+  },
+  {
+   "name": "Okina Matara",
+   "shortName": "Okina",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": null,
+   "locations": [],
+   "undocumented": true,
+   "likedFoodTags": [],
+   "dislikedFoodTags": [],
+   "likedDrinkTags": []
+  },
+  {
+   "name": "Mamizou Futatsuiwa",
+   "shortName": "Mamizou",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": {
+    "min": 1000,
+    "max": 1200
+   },
+   "locations": [
+    "Youkai Trail",
+    "Human Village",
+    "Hakurei Shrine",
+    "Myouren Temple",
+    "Divine Spirit Mausoleum"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Aquatic",
+    "Fruity",
+    "Good w/ Alcohol",
+    "Homecooking",
+    "Japanese",
+    "Legendary",
+    "Meat",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Hot",
+    "Spicy"
+   ],
+   "likedDrinkTags": [
+    "Heatable",
+    "High Alcohol",
+    "Shochu",
+    "Vintage"
+   ]
+  },
+  {
+   "name": "Flandre Scarlet",
+   "shortName": "Flandre",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": null,
+   "locations": [],
+   "undocumented": true,
+   "likedFoodTags": [],
+   "dislikedFoodTags": [],
+   "likedDrinkTags": []
+  },
+  {
+   "name": "Wakasagihime",
+   "shortName": "Wakasagi",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": null,
+   "locations": [],
+   "undocumented": true,
+   "likedFoodTags": [],
+   "dislikedFoodTags": [],
+   "likedDrinkTags": []
+  },
+  {
+   "name": "Eirin Yagokoro",
+   "shortName": "Eirin",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": null,
+   "locations": [],
+   "undocumented": true,
+   "likedFoodTags": [],
+   "dislikedFoodTags": [],
+   "likedDrinkTags": []
+  },
+  {
+   "name": "Sagume Kishin",
+   "shortName": "Sagume",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": null,
+   "locations": [],
+   "undocumented": true,
+   "likedFoodTags": [],
+   "dislikedFoodTags": [],
+   "likedDrinkTags": []
+  },
+  {
+   "name": "Yukari Yakumo",
+   "shortName": "Yukari",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": {
+    "min": 4000,
+    "max": 6000
+   },
+   "locations": [
+    "Youkai Trail",
+    "Human Village",
+    "Hakurei Shrine",
+    "Scarlet Devil Mansion",
+    "Bamboo Forest of the Lost",
+    "Forest of Magic",
+    "Youkai Mountain",
+    "Former Hell",
+    "Palace of the Earth Spirits",
+    "Myouren Temple",
+    "Divine Spirit Mausoleum",
+    "Garden of the Sun",
+    "Shining Needle Castle",
+    "Makai",
+    "Lunar Capital"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Homecooking",
+    "Photogenic",
+    "Refreshing",
+    "Soup",
+    "Premium",
+    "Legendary",
+    "Peculiar"
+   ],
+   "dislikedFoodTags": [
+    "Fungus",
+    "Filling"
+   ],
+   "likedDrinkTags": [
+    "Vintage",
+    "Mid Alcohol",
+    "High Alcohol"
+   ]
+  },
+  {
+   "name": "Shiki Eiki",
+   "shortName": "Shiki",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": null,
+   "locations": [],
+   "undocumented": true,
+   "likedFoodTags": [],
+   "dislikedFoodTags": [],
+   "likedDrinkTags": []
+  },
+  {
+   "name": "Mizuchi Miyadeguchi",
+   "shortName": "Mizuchi",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": null,
+   "locations": [],
+   "undocumented": true,
+   "likedFoodTags": [],
+   "dislikedFoodTags": [],
+   "likedDrinkTags": []
+  },
+  {
+   "name": "Shinki",
+   "shortName": "Shinki",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": null,
+   "locations": [],
+   "undocumented": true,
+   "likedFoodTags": [],
+   "dislikedFoodTags": [],
+   "likedDrinkTags": []
+  }
+ ],
+ "merchants": [
+  {
+   "name": "Grocer",
+   "dlc": "BaseGame",
+   "location": "Youkai Trail",
+   "priceMultiplier": {
+    "min": 0.6,
+    "max": 0.6
+   },
+   "items": [
+    {
+     "name": "Egg",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 10,
+      "max": 10
+     }
+    },
+    {
+     "name": "Pork",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 8,
+      "max": 10
+     }
+    },
+    {
+     "name": "Beef",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 8,
+      "max": 10
+     }
+    },
+    {
+     "name": "Tofu",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 10,
+      "max": 15
+     }
+    },
+    {
+     "name": "Potato",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 8,
+      "max": 10
+     }
+    },
+    {
+     "name": "Onion",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 8,
+      "max": 10
+     }
+    },
+    {
+     "name": "Pumpkin",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Radish",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 8,
+      "max": 10
+     }
+    },
+    {
+     "name": "Seaweed",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 10,
+      "max": 20
+     }
+    },
+    {
+     "name": "Chili",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 4
+     }
+    },
+    {
+     "name": "Fruity Highball",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 10,
+      "max": 15
+     }
+    },
+    {
+     "name": "Mio",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 10,
+      "max": 15
+     }
+    },
+    {
+     "name": "Fruity Sour",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 10,
+      "max": 15
+     }
+    },
+    {
+     "name": "Bamboo Shoot",
+     "type": "Ingredient",
+     "probability": 0.5,
+     "amount": {
+      "min": 2,
+      "max": 3
+     }
+    },
+    {
+     "name": "Salmon",
+     "type": "Ingredient",
+     "probability": 0.5,
+     "amount": {
+      "min": 2,
+      "max": 10
+     }
+    }
+   ]
+  },
+  {
+   "name": "Meng Chengguo",
+   "dlc": "BaseGame",
+   "location": "Youkai Trail",
+   "priceMultiplier": {
+    "min": 0.3,
+    "max": 0.3
+   },
+   "items": [
+    {
+     "name": "Cubic Kedama Ice Cream",
+     "type": "Recipe",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 1
+     }
+    },
+    {
+     "name": "Cubic Kedama Volcanic Tofu",
+     "type": "Recipe",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 1
+     }
+    },
+    {
+     "name": "Iceberg Kedama Lemonade",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 8
+     }
+    }
+   ]
+  },
+  {
+   "name": "Three Fairies",
+   "dlc": "BaseGame",
+   "location": "Youkai Trail",
+   "priceMultiplier": {
+    "min": 0.3,
+    "max": 0.3
+   },
+   "items": [
+    {
+     "name": "Scarlet Devil Cake",
+     "type": "Recipe",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 1
+     }
+    },
+    {
+     "name": "Unconscious Youkai Mousse",
+     "type": "Recipe",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 1
+     }
+    },
+    {
+     "name": "GIANT Popsicle!",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Vintner",
+   "dlc": "BaseGame",
+   "location": "Human Village",
+   "priceMultiplier": {
+    "min": 0.5,
+    "max": 0.7
+   },
+   "items": [
+    {
+     "name": "Umeshu",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 8,
+      "max": 15
+     }
+    },
+    {
+     "name": "ZUN Beer",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 12,
+      "max": 12
+     }
+    },
+    {
+     "name": "Sangetsusei",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 4,
+      "max": 10
+     }
+    },
+    {
+     "name": "Mio",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 8,
+      "max": 12
+     }
+    }
+   ]
+  },
+  {
+   "name": "Seiran",
+   "dlc": "BaseGame",
+   "location": "Human Village",
+   "priceMultiplier": {
+    "min": 0.5,
+    "max": 0.5
+   },
+   "items": [
+    {
+     "name": "Mochi",
+     "type": "Cuisine",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Milk",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Grapefruit Juice",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    }
+   ]
+  },
+  {
+   "name": "Ringo",
+   "dlc": "BaseGame",
+   "location": "Human Village",
+   "priceMultiplier": {
+    "min": 0.7,
+    "max": 0.8
+   },
+   "items": [
+    {
+     "name": "Lunar Dango",
+     "type": "Cuisine",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 2
+     }
+    },
+    {
+     "name": "Ramune",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 4,
+      "max": 8
+     }
+    }
+   ]
+  },
+  {
+   "name": "Farmer",
+   "dlc": "BaseGame",
+   "location": "Human Village",
+   "priceMultiplier": {
+    "min": 0.4,
+    "max": 0.4
+   },
+   "items": [
+    {
+     "name": "Egg",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 6,
+      "max": 10
+     }
+    },
+    {
+     "name": "Pork",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 6,
+      "max": 10
+     }
+    },
+    {
+     "name": "Beef",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 6,
+      "max": 10
+     }
+    },
+    {
+     "name": "Tofu",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 6,
+      "max": 10
+     }
+    },
+    {
+     "name": "Potato",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 6,
+      "max": 10
+     }
+    },
+    {
+     "name": "Onion",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 6,
+      "max": 10
+     }
+    },
+    {
+     "name": "Pumpkin",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 6,
+      "max": 10
+     }
+    },
+    {
+     "name": "Radish",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 6,
+      "max": 10
+     }
+    },
+    {
+     "name": "Seaweed",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 6,
+      "max": 10
+     }
+    },
+    {
+     "name": "Chili",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Rinnosuke",
+   "dlc": "BaseGame",
+   "location": "Human Village",
+   "priceMultiplier": {
+    "min": 0.8,
+    "max": 1.5
+   },
+   "items": [
+    {
+     "name": "Honey",
+     "type": "Ingredient",
+     "probability": 0.3,
+     "amount": {
+      "min": 2,
+      "max": 8
+     }
+    },
+    {
+     "name": "Lamprey",
+     "type": "Ingredient",
+     "probability": 0.3,
+     "amount": {
+      "min": 2,
+      "max": 4
+     }
+    },
+    {
+     "name": "Mushroom",
+     "type": "Ingredient",
+     "probability": 0.3,
+     "amount": {
+      "min": 1,
+      "max": 2
+     }
+    },
+    {
+     "name": "Peach",
+     "type": "Ingredient",
+     "probability": 0.3,
+     "amount": {
+      "min": 2,
+      "max": 4
+     }
+    },
+    {
+     "name": "Ice Cube",
+     "type": "Ingredient",
+     "probability": 0.3,
+     "amount": {
+      "min": 2,
+      "max": 4
+     }
+    },
+    {
+     "name": "Sticky Rice",
+     "type": "Ingredient",
+     "probability": 0.3,
+     "amount": {
+      "min": 1,
+      "max": 2
+     }
+    },
+    {
+     "name": "Bamboo Shoot",
+     "type": "Ingredient",
+     "probability": 0.3,
+     "amount": {
+      "min": 1,
+      "max": 3
+     }
+    },
+    {
+     "name": "Bamboo",
+     "type": "Ingredient",
+     "probability": 0.3,
+     "amount": {
+      "min": 1,
+      "max": 3
+     }
+    },
+    {
+     "name": "Tofu",
+     "type": "Ingredient",
+     "probability": 0.3,
+     "amount": {
+      "min": 2,
+      "max": 8
+     }
+    },
+    {
+     "name": "Cassia Wine",
+     "type": "Beverage",
+     "probability": 0.3,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Kappa Tea Merchant",
+   "dlc": "BaseGame",
+   "location": "Hakurei Shrine",
+   "priceMultiplier": {
+    "min": 0.75,
+    "max": 0.8
+   },
+   "items": [
+    {
+     "name": "Tengu Tango",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Divine Wheat",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 15
+     }
+    },
+    {
+     "name": "Jade Dew Tea",
+     "type": "Beverage",
+     "probability": 0.1,
+     "amount": {
+      "min": 1,
+      "max": 2
+     }
+    }
+   ]
+  },
+  {
+   "name": "Fairy Maid Selling Leftovers",
+   "dlc": "BaseGame",
+   "location": "Hakurei Shrine",
+   "priceMultiplier": {
+    "min": 0.5,
+    "max": 0.6
+   },
+   "items": [
+    {
+     "name": "Akatsuki",
+     "type": "Beverage",
+     "probability": 0.2,
+     "amount": {
+      "min": 1,
+      "max": 1
+     }
+    },
+    {
+     "name": "Bloody Remy",
+     "type": "Beverage",
+     "probability": 0.8,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Pufferfish",
+     "type": "Ingredient",
+     "probability": 0.8,
+     "amount": {
+      "min": 2,
+      "max": 4
+     }
+    },
+    {
+     "name": "Iberico Pork",
+     "type": "Ingredient",
+     "probability": 0.8,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Premium Tuna",
+     "type": "Ingredient",
+     "probability": 0.8,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Boar Meat",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 4,
+      "max": 6
+     }
+    },
+    {
+     "name": "Wagyu Beef",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 1
+     }
+    },
+    {
+     "name": "Truffle",
+     "type": "Ingredient",
+     "probability": 0.8,
+     "amount": {
+      "min": 2,
+      "max": 4
+     }
+    }
+   ]
+  },
+  {
+   "name": "Koakuma",
+   "dlc": "BaseGame",
+   "location": "Scarlet Devil Mansion",
+   "priceMultiplier": {
+    "min": 0.7,
+    "max": 0.7
+   },
+   "items": [
+    {
+     "name": "Affogato",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Scarlet Mist",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Scarlet Tea",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Anonymous Fairy Maid",
+   "dlc": "BaseGame",
+   "location": "Scarlet Devil Mansion",
+   "priceMultiplier": {
+    "min": 0.7,
+    "max": 0.7
+   },
+   "items": [
+    {
+     "name": "Negroni",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 8,
+      "max": 10
+     }
+    },
+    {
+     "name": "Godfather",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 10,
+      "max": 12
+     }
+    }
+   ]
+  },
+  {
+   "name": "Goblin Merchant",
+   "dlc": "BaseGame",
+   "location": "Scarlet Devil Mansion",
+   "priceMultiplier": {
+    "min": 1,
+    "max": 1.3
+   },
+   "items": [
+    {
+     "name": "Butter",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 20,
+      "max": 40
+     }
+    },
+    {
+     "name": "Flour",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 20,
+      "max": 40
+     }
+    },
+    {
+     "name": "Wagyu Beef",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Pufferfish",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Premium Tuna",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Pork Stir Fry",
+     "type": "Cuisine",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 2
+     }
+    }
+   ]
+  },
+  {
+   "name": "Youkai Rabbit Gourmet",
+   "dlc": "BaseGame",
+   "location": "Bamboo Forest of the Lost",
+   "priceMultiplier": {
+    "min": 0.6,
+    "max": 0.9
+   },
+   "items": [
+    {
+     "name": "Full Moon's Eve",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Cassia Wine",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Sticky Rice",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 15,
+      "max": 30
+     }
+    },
+    {
+     "name": "Lunar Herb",
+     "type": "Ingredient",
+     "probability": 0.5,
+     "amount": {
+      "min": 1,
+      "max": 2
+     }
+    },
+    {
+     "name": "Wagyu Beef",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Pufferfish",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Premium Tuna",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Venison",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    }
+   ]
+  },
+  {
+   "name": "Kappa Merchant",
+   "dlc": "DLC1",
+   "location": "Youkai Mountain",
+   "priceMultiplier": {
+    "min": 0.4,
+    "max": 0.6
+   },
+   "items": [
+    {
+     "name": "Octopus",
+     "type": "Ingredient",
+     "probability": 0.5,
+     "amount": {
+      "min": 2,
+      "max": 10
+     }
+    },
+    {
+     "name": "Sea Urchin",
+     "type": "Ingredient",
+     "probability": 0.5,
+     "amount": {
+      "min": 2,
+      "max": 10
+     }
+    },
+    {
+     "name": "Black Salt",
+     "type": "Ingredient",
+     "probability": 0.5,
+     "amount": {
+      "min": 2,
+      "max": 10
+     }
+    },
+    {
+     "name": "Crab",
+     "type": "Ingredient",
+     "probability": 0.5,
+     "amount": {
+      "min": 2,
+      "max": 10
+     }
+    },
+    {
+     "name": "Cucumber",
+     "type": "Ingredient",
+     "probability": 0.5,
+     "amount": {
+      "min": 2,
+      "max": 10
+     }
+    },
+    {
+     "name": "Daiginjo",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 2
+     }
+    }
+   ]
+  },
+  {
+   "name": "Shanghai Doll",
+   "dlc": "DLC1",
+   "location": "Forest of Magic",
+   "priceMultiplier": {
+    "min": 0.35,
+    "max": 0.7
+   },
+   "items": [
+    {
+     "name": "Cream",
+     "type": "Ingredient",
+     "probability": 0.75,
+     "amount": {
+      "min": 7,
+      "max": 10
+     }
+    },
+    {
+     "name": "Egg",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 5
+     }
+    },
+    {
+     "name": "Beef",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 5
+     }
+    },
+    {
+     "name": "Pumpkin",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 5
+     }
+    },
+    {
+     "name": "Truffle",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 5
+     }
+    },
+    {
+     "name": "Mushroom",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 5
+     }
+    },
+    {
+     "name": "Ginkgo Nut",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 5
+     }
+    },
+    {
+     "name": "Honey",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 5
+     }
+    },
+    {
+     "name": "Sticky Rice",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 5
+     }
+    },
+    {
+     "name": "Flour",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 5
+     }
+    },
+    {
+     "name": "Coffee",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 2
+     }
+    },
+    {
+     "name": "Ice Cream Smoothie",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 2
+     }
+    },
+    {
+     "name": "Ordinary Fitness Tea",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 4
+     }
+    }
+   ]
+  },
+  {
+   "name": "Oni Merchant",
+   "dlc": "DLC2",
+   "location": "Former Hell",
+   "priceMultiplier": {
+    "min": 0.8,
+    "max": 0.8
+   },
+   "items": [
+    {
+     "name": "Beef",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Iberico Pork",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 5
+     }
+    },
+    {
+     "name": "Trout",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Salmon",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 4,
+      "max": 8
+     }
+    },
+    {
+     "name": "Bamboo Shoot",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Radish",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Chili",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 10
+     }
+    },
+    {
+     "name": "Cassia Wine",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 10
+     }
+    },
+    {
+     "name": "Oni Killer",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 5
+     }
+    },
+    {
+     "name": "Tengu Tango",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 4,
+      "max": 8
+     }
+    },
+    {
+     "name": "Dassai",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 5
+     }
+    },
+    {
+     "name": "Fire Rat's Robe",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 2
+     }
+    }
+   ]
+  },
+  {
+   "name": "Hell Raven",
+   "dlc": "DLC2",
+   "location": "Palace of the Earth Spirits",
+   "priceMultiplier": {
+    "min": 0.8,
+    "max": 0.8
+   },
+   "items": [
+    {
+     "name": "Tofu",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Butter",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 4,
+      "max": 8
+     }
+    },
+    {
+     "name": "Lunar Herb",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 5
+     }
+    },
+    {
+     "name": "Ginkgo Nut",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 4,
+      "max": 8
+     }
+    },
+    {
+     "name": "Cheese",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 5
+     }
+    },
+    {
+     "name": "Lemon",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 1,
+      "max": 5
+     }
+    },
+    {
+     "name": "Ribovitan",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 4,
+      "max": 8
+     }
+    },
+    {
+     "name": "Komeiji Ice Cream",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    }
+   ]
+  },
+  {
+   "name": "Nazrin",
+   "dlc": "DLC3",
+   "location": "Myouren Temple",
+   "priceMultiplier": {
+    "min": 0.75,
+    "max": 0.75
+   },
+   "items": [
+    {
+     "name": "Black Salt",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Cheese",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Honey",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 6,
+      "max": 16
+     }
+    },
+    {
+     "name": "Cream",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Chili",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Dassai",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Mango Pomelo Sago",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Sweet Potato",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 5
+     }
+    }
+   ]
+  },
+  {
+   "name": "Taoist",
+   "dlc": "DLC3",
+   "location": "Divine Spirit Mausoleum",
+   "priceMultiplier": {
+    "min": 0.85,
+    "max": 0.85
+   },
+   "items": [
+    {
+     "name": "Wagyu Beef",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Venison",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Mushroom",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Truffle",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Salmon",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Tuna",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Pufferfish",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 5,
+      "max": 10
+     }
+    },
+    {
+     "name": "Qilin",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Divine Wheat",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Cassia Wine",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Chestnut",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 5
+     }
+    },
+    {
+     "name": "Pine Nut",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 5
+     }
+    },
+    {
+     "name": "Dew",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 6
+     }
+    }
+   ]
+  },
+  {
+   "name": "Sunflower Fairy",
+   "dlc": "DLC4",
+   "location": "Garden of the Sun",
+   "priceMultiplier": {
+    "min": 0.8,
+    "max": 0.8
+   },
+   "items": [
+    {
+     "name": "Cream",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Honey",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Dew",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Red Toon",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 2,
+      "max": 5
+     }
+    },
+    {
+     "name": "Cassia Wine",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Drunken Bard",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Wind Priestess",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Cucumber",
+     "type": "Ingredient",
+     "probability": 0.7,
+     "amount": {
+      "min": 1,
+      "max": 2
+     }
+    }
+   ]
+  },
+  {
+   "name": "Delinquent Boy",
+   "dlc": "DLC4",
+   "location": "Shining Needle Castle",
+   "priceMultiplier": {
+    "min": 0.9,
+    "max": 0.9
+   },
+   "items": [
+    {
+     "name": "Red Bean",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Plum",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Lamprey",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Boar Meat",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Truffle",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "This Side Up",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Scarlet Mist",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Godfather",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Crab",
+     "type": "Ingredient",
+     "probability": 0.7,
+     "amount": {
+      "min": 1,
+      "max": 2
+     }
+    },
+    {
+     "name": "Sea Urchin",
+     "type": "Ingredient",
+     "probability": 0.6,
+     "amount": {
+      "min": 1,
+      "max": 1
+     }
+    }
+   ]
+  },
+  {
+   "name": "Joker",
+   "dlc": "DLC5",
+   "location": "Makai",
+   "priceMultiplier": {
+    "min": 0.5,
+    "max": 0.9
+   },
+   "items": [
+    {
+     "name": "Cream",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Chili",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Egg",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Daughter of the Sea",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Makai Coffee",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Broccoli",
+     "type": "Ingredient",
+     "probability": 0.75,
+     "amount": {
+      "min": 3,
+      "max": 10
+     }
+    },
+    {
+     "name": "Cocoa Bean",
+     "type": "Ingredient",
+     "probability": 0.75,
+     "amount": {
+      "min": 3,
+      "max": 10
+     }
+    }
+   ]
+  },
+  {
+   "name": "Moon Rabbit",
+   "dlc": "DLC5",
+   "location": "Lunar Capital",
+   "priceMultiplier": {
+    "min": 0.8,
+    "max": 1.2
+   },
+   "items": [
+    {
+     "name": "Red Bean",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Bamboo",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Peach",
+     "type": "Ingredient",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Mojito Sphere",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Space Beer",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Satellite Ice Coffee",
+     "type": "Beverage",
+     "probability": 1,
+     "amount": {
+      "min": 3,
+      "max": 5
+     }
+    },
+    {
+     "name": "Creeping Fig",
+     "type": "Ingredient",
+     "probability": 0.75,
+     "amount": {
+      "min": 3,
+      "max": 10
+     }
+    },
+    {
+     "name": "Snow Fungus",
+     "type": "Ingredient",
+     "probability": 0.75,
+     "amount": {
+      "min": 3,
+      "max": 10
+     }
+    }
+   ]
+  }
+ ],
+ "partners": [
+  {
+   "name": "Kyouko Kasodani",
+   "shortName": "Kyouko",
+   "dlc": "BaseGame",
+   "movementSpeed": "Medium",
+   "workSpeed": "Medium",
+   "revenueShare": 5
+  },
+  {
+   "name": "Kosuzu Motoori",
+   "shortName": "Kosuzu",
+   "dlc": "BaseGame",
+   "movementSpeed": "Slow",
+   "workSpeed": "Fast",
+   "revenueShare": 5
+  },
+  {
+   "name": "Aunn Komano",
+   "shortName": "Aunn",
+   "dlc": "BaseGame",
+   "movementSpeed": "Fast",
+   "workSpeed": "Slow",
+   "revenueShare": 5
+  },
+  {
+   "name": "Sakuya Izayoi",
+   "shortName": "Sakuya",
+   "dlc": "BaseGame",
+   "movementSpeed": "Teleport",
+   "workSpeed": "Fast",
+   "revenueShare": 10
+  },
+  {
+   "name": "Reisen Udongein Inaba",
+   "shortName": "Reisen",
+   "dlc": "BaseGame",
+   "movementSpeed": "Fast",
+   "workSpeed": "Medium",
+   "revenueShare": 10
+  },
+  {
+   "name": "Youmu Konpaku",
+   "shortName": "Youmu",
+   "dlc": "BaseGame",
+   "movementSpeed": "Fast",
+   "workSpeed": "Fast",
+   "revenueShare": 10
+  },
+  {
+   "name": "Hina Kagiyama",
+   "shortName": "Hina",
+   "dlc": "DLC1",
+   "movementSpeed": "Slow",
+   "workSpeed": "Medium",
+   "revenueShare": 0
+  },
+  {
+   "name": "Yumeko",
+   "shortName": "Yumeko",
+   "dlc": "DLC1",
+   "movementSpeed": "Medium",
+   "workSpeed": "Fast",
+   "revenueShare": 5
+  },
+  {
+   "name": "Komachi Onozuka",
+   "shortName": "Komachi",
+   "dlc": "DLC2",
+   "movementSpeed": "Slow",
+   "workSpeed": "Slow",
+   "revenueShare": 0
+  },
+  {
+   "name": "Kisume",
+   "shortName": "Kisume",
+   "dlc": "DLC2",
+   "movementSpeed": "Medium",
+   "workSpeed": "Medium",
+   "revenueShare": 5
+  },
+  {
+   "name": "Yoshika Miyako",
+   "shortName": "Yoshika",
+   "dlc": "DLC3",
+   "movementSpeed": "Slow",
+   "workSpeed": "Slow",
+   "revenueShare": 0
+  },
+  {
+   "name": "Ichirin Kumoi",
+   "shortName": "Ichirin",
+   "dlc": "DLC3",
+   "movementSpeed": "Medium",
+   "workSpeed": "Fast",
+   "revenueShare": 5
+  },
+  {
+   "name": "Eternity Larva",
+   "shortName": "Eternity",
+   "dlc": "DLC4",
+   "movementSpeed": "Fast",
+   "workSpeed": "Medium",
+   "revenueShare": 5
+  },
+  {
+   "name": "Sekibanki",
+   "shortName": "Sekibanki",
+   "dlc": "DLC4",
+   "movementSpeed": "Medium (Increased while headless)",
+   "workSpeed": "Medium (Decreased while headless)",
+   "revenueShare": 7
+  },
+  {
+   "name": "Doremy Sweet",
+   "shortName": "Doremy",
+   "dlc": "DLC5",
+   "movementSpeed": "Slow",
+   "workSpeed": "Slow",
+   "revenueShare": 10
+  },
+  {
+   "name": "Sara",
+   "shortName": "Sara",
+   "dlc": "DLC5",
+   "movementSpeed": "Fast",
+   "workSpeed": "Medium",
+   "revenueShare": 7
+  }
+ ],
+ "tags": {
+  "food": [
+   "Aquatic",
+   "Aura-Bursting",
+   "Chinese",
+   "Cultural Heritage",
+   "Dark Matter",
+   "Divine Punishment",
+   "Dreamy",
+   "Economical",
+   "Expensive",
+   "Filling",
+   "Fresh",
+   "Fruity",
+   "Fungus",
+   "Good w/ Alcohol",
+   "Greasy",
+   "Grilled",
+   "Homecooking",
+   "Hot",
+   "Japanese",
+   "Large Portion",
+   "Legendary",
+   "Meat",
+   "Mild",
+   "Mountain Delicacy",
+   "Peculiar",
+   "Photogenic",
+   "Poison",
+   "Premium",
+   "Raw",
+   "Refreshing",
+   "Salty",
+   "Sea Delicacy",
+   "Signature",
+   "Small Portion",
+   "Soup",
+   "Sour",
+   "Specialty",
+   "Spicy",
+   "Strength-Boosting",
+   "Sweet",
+   "Trend - Popular",
+   "Trend - Unpopular",
+   "Vegetarian",
+   "Western",
+   "Wonderful"
+  ],
+  "drink": [
+   "Beer",
+   "Bitter",
+   "Chillable",
+   "Cocktail",
+   "Dry",
+   "Fruity",
+   "Heatable",
+   "High Alcohol",
+   "Liquor",
+   "Low Alcohol",
+   "Mid Alcohol",
+   "Modern",
+   "Neat",
+   "No Alcohol",
+   "Sake",
+   "Shochu",
+   "Soda",
+   "Stimulating",
+   "Sweet",
+   "Vintage",
+   "Western"
+  ]
+ }
+}
