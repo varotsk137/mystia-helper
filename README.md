@@ -39,3 +39,15 @@ npm run data:images # ดาวน์โหลดภาพไอคอนแล�
 ```
 
 `data:build` จะแก้ชื่อ tag/สถานที่ที่สะกดไม่ตรงกันบน wiki และบันทึกทุกจุดที่แก้ไว้ในรายงาน
+
+## เว็บ
+
+เปิดใช้ได้ที่ https://mystia.varot.me (GitHub Pages) push เข้า `main` แล้ว `.github/workflows/deploy.yml` จะรันเทสต์ build และ deploy ให้เอง ความคืบหน้ากับค่าที่แก้เก็บใน localStorage ของเบราว์เซอร์นั้น ๆ ย้ายเครื่องให้ใช้สำรอง/นำเข้าในหน้าตั้งค่า
+
+ถ้าต้องการเว็บที่ไม่มีภาพจากเกม ให้ build ด้วย `VITE_HIDE_IMAGES=1` แอปจะแสดงตัวอักษรย่อแทนภาพ และไม่มี `dist/images` ในผล build บน GitHub ให้ตั้ง repository variable `HIDE_IMAGES` เป็น `1` (Settings → Secrets and variables → Actions → Variables) แล้วรัน workflow ใหม่
+
+## สัญญาอนุญาต
+
+- **ข้อมูลเกม** (`data/wiki-raw/`, `data/wiki-report.md`, `src/data/gamedata.json`) ดัดแปลงจาก [Touhou Mystia's Izakaya Wiki](https://touhou-mystias-izakaya.fandom.com) ซึ่งใช้ [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) ไฟล์เหล่านี้จึงเผยแพร่ภายใต้ CC BY-SA 3.0 เช่นกัน
+- **ภาพ** ใน `public/images/` เป็นลิขสิทธิ์ของผู้พัฒนาเกม (二色幽紫蝶, Re零同人社) และ 上海アリス幻樂団 ไม่อยู่ภายใต้ CC BY-SA หากเจ้าของสิทธิ์ต้องการให้นำออก แจ้งได้ที่ issue ของ repo นี้
+- Mystia Helper เป็นเครื่องมือแฟนเมด ไม่เกี่ยวข้องกับผู้พัฒนาหรือผู้จัดจำหน่ายเกม

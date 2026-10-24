@@ -3,6 +3,7 @@ import { RareSolverPage } from "./pages/RareSolverPage";
 import { ProgressPage } from "./pages/ProgressPage";
 import { DatabasePage } from "./pages/DatabasePage";
 import { SettingsPage } from "./pages/SettingsPage";
+import { SiteFooter } from "./components/SiteFooter";
 
 type Page = "rare" | "progress" | "database" | "settings";
 
@@ -40,6 +41,7 @@ export default function App() {
         {page === "progress" && <ProgressPage />}
         {page === "database" && <DatabasePage />}
         {page === "settings" && <SettingsPage />}
+        <SiteFooter />
       </main>
     </div>
   );

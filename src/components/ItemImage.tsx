@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+/** False in builds made with VITE_HIDE_IMAGES=1, which also leave the image files out of dist. */
+export const SHOW_IMAGES = import.meta.env.VITE_HIDE_IMAGES !== "1";
+
 /** Wiki icon or portrait, falling back to the item's initials when there is no image. */
 export function ItemImage({
   src,
@@ -14,7 +17,7 @@ export function ItemImage({
 }) {
   const [failed, setFailed] = useState(false);
   const style = { width: size, height: variant === "portrait" ? Math.round(size * 1.4) : size };
-  if (!src || failed) {
+  if (!SHOW_IMAGES || !src || failed) {
     const initials = name
       .split(/\s+/)
       .slice(0, 2)
