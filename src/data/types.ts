@@ -15,6 +15,8 @@ export interface Location {
 
 export interface Ingredient {
   name: string;
+  /** Path under public/, or null when the wiki has no image. */
+  image: string | null;
   dlc: Dlc;
   category: string;
   level: number;
@@ -24,6 +26,7 @@ export interface Ingredient {
 
 export interface Beverage {
   name: string;
+  image: string | null;
   dlc: Dlc;
   level: number;
   price: number;
@@ -33,6 +36,7 @@ export interface Beverage {
 
 export interface Recipe {
   name: string;
+  image: string | null;
   dlc: Dlc;
   level: number;
   price: number;
@@ -45,6 +49,7 @@ export interface Recipe {
 
 export interface NormalCustomer {
   name: string;
+  image: string | null;
   dlc: Dlc;
   locations: string[];
   likesAllTags: boolean;
@@ -56,6 +61,7 @@ export interface NormalCustomer {
 
 export interface RareCustomer {
   name: string;
+  image: string | null;
   shortName: string;
   kind: "rare" | "special";
   dlc: Dlc | null;
@@ -95,6 +101,7 @@ export interface Partner {
 export interface GameData {
   meta: { source: string; fetchedAt: string; builtAt: string; dlcs: Dlc[] };
   locations: Location[];
+  cookware: { name: string; image: string | null }[];
   ingredients: Ingredient[];
   beverages: Beverage[];
   recipes: Recipe[];

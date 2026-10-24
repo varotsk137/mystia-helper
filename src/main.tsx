@@ -6,12 +6,12 @@ import "@fontsource/ibm-plex-sans-thai/400.css";
 import "@fontsource/ibm-plex-sans-thai/600.css";
 import "./styles.css";
 import App from "./App";
-import { SettingsProvider } from "./settings";
+import { StoreProvider } from "./store";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <SettingsProvider>
+    <StoreProvider>
       <App />
-    </SettingsProvider>
+    </StoreProvider>
   </React.StrictMode>,
 );

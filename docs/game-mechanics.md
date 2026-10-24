@@ -10,7 +10,9 @@ A served dish's tag set is built as:
 2. Plus every tag of every **extra** ingredient added by the player.
 3. Plus `Large Portion` if an **extra** ingredient brings the dish to **5 ingredients total**.
    Recipes whose base already has 5 ingredients do not get it automatically.
-4. Plus the current `Trend - Popular` / `Trend - Unpopular` tag if the dish carries the tag the trend is attached to that day.
+4. Plus `Trend - Popular` if the dish carries any tag the newspaper currently marks as popular, and
+   `Trend - Unpopular` likewise. Several tags can be popular or unpopular at the same time; the player
+   picks them in the app.
 5. Then overrides are applied (left wins, right is removed):
    - Meat > Vegetarian
    - Large Portion > Small Portion

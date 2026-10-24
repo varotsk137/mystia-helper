@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { gameData } from "../data";
 import { computeDishTags, NO_TREND } from "./tags";
-import { budgetStatus, Rating, ratingCap, ratingFromScore, solveRareOrder, type RareOrder } from "./rare";
+import { budgetStatus, evaluateCombo, ingredientEffects, Rating, ratingCap, ratingFromScore, solveRareOrder, type RareOrder } from "./rare";
 
 const recipe = (name: string) => gameData.recipes.find((r) => r.name === name)!;
 const ing = (name: string) => gameData.ingredients.find((i) => i.name === name)!;
@@ -45,7 +45,7 @@ describe("computeDishTags", () => {
   });
 
   it("adds trend tags when the dish has the trending tag", () => {
-    const r = computeDishTags(recipe("Boiled Tofu"), [], { popular: "Mild", unpopular: "Sweet" });
+    const r = computeDishTags(recipe("Boiled Tofu"), [], { popular: ["Sweet", "Mild"], unpopular: ["Spicy"] });
     expect(r.tags).toContain("Trend - Popular");
     expect(r.tags).not.toContain("Trend - Unpopular");
   });
@@ -132,6 +132,46 @@ describe("solveRareOrder", () => {
         }
       });
     }
+  });
+
+  it("evaluates a hand-built dish, including Dark Matter", () => {
+    const o = order("Wriggle Nightbug", "Sweet", "Chillable");
+    const drink = gameData.beverages.find((b) => b.name === "Fruity Highball")!;
+    const ok = evaluateCombo(o, recipe("Boiled Tofu"), [ing("Honey"), ing("Pork")], drink);
+    expect(ok.dish.dish.tags).toContain("Sweet");
+    expect(ok.dish.dish.tags).not.toContain("Vegetarian"); // Meat overrides it
+    const dark = evaluateCombo(o, recipe("Dew Runny Eggs"), [ing("Pork")], drink);
+    expect(dark.dish.dish.tags).toEqual(["Dark Matter"]);
+    expect(dark.dish.score).toBe(-2);
+    expect(dark.dish.requestMet).toBe(false);
+  });
+
+  it("ranks ingredient effects and flags Dark Matter", () => {
+    const o = order("Wriggle Nightbug", "Sweet", "Chillable");
+    const drink = gameData.beverages.find((b) => b.name === "Fruity Highball")!;
+    const effects = ingredientEffects(o, recipe("Dew Runny Eggs"), [], drink, gameData.ingredients);
+    expect(effects.length).toBe(gameData.ingredients.length);
+    const honey = effects.find((e) => e.ingredient.name === "Honey")!;
+    expect(honey.gainedTags).toContain("Sweet");
+    expect(honey.delta).toBeGreaterThan(0);
+    expect(effects.find((e) => e.ingredient.name === "Pork")!.darkMatter).toBe(true);
+    // Dark Matter options sort last.
+    const firstDark = effects.findIndex((e) => e.darkMatter);
+    expect(effects.slice(firstDark).every((e) => e.darkMatter)).toBe(true);
+    // A full dish can't take more.
+    expect(ingredientEffects(o, recipe("Beef Wellington"), [], drink, gameData.ingredients)).toEqual([]);
+  });
+
+  it("scores active trends for customers who care about them", () => {
+    // Chen likes Trend - Popular and dislikes Trend - Unpopular.
+    const chen = customer("Chen");
+    const trend = { popular: ["Grilled", "Sweet"], unpopular: ["Aquatic"] };
+    const { suggestions } = solveRareOrder({ customer: chen, foodRequest: "Meat", drinkRequest: "Dry", trend }, pool, 1000);
+    const top = suggestions[0];
+    expect(top.dish.liked).toContain("Trend - Popular");
+    expect(top.dish.disliked).not.toContain("Trend - Unpopular");
+    const aquatic = suggestions.find((s) => s.dish.dish.tags.includes("Aquatic"));
+    expect(aquatic?.dish.disliked).toContain("Trend - Unpopular");
   });
 
   it("applies Nitori's cucumber rule", () => {

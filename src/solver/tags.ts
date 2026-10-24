@@ -16,13 +16,13 @@ export const TAG_OVERRIDES: ReadonlyArray<readonly [string, string]> = [
   ["Hot", "Refreshing"],
 ];
 
-/** Which food tag today's newspaper marks as popular / unpopular. */
+/** Food tags the newspaper currently marks as popular / unpopular (several can be active at once). */
 export interface Trend {
-  popular: string | null;
-  unpopular: string | null;
+  popular: string[];
+  unpopular: string[];
 }
 
-export const NO_TREND: Trend = { popular: null, unpopular: null };
+export const NO_TREND: Trend = { popular: [], unpopular: [] };
 
 export interface DishTags {
   /** Final tags the customer sees, after overrides and trends. */
@@ -61,8 +61,8 @@ export function computeDishTags(recipe: Recipe, extras: readonly Ingredient[], t
     }
   }
 
-  if (trend.popular && tags.has(trend.popular)) tags.add(TREND_POPULAR);
-  if (trend.unpopular && tags.has(trend.unpopular)) tags.add(TREND_UNPOPULAR);
+  if (trend.popular.some((t) => tags.has(t))) tags.add(TREND_POPULAR);
+  if (trend.unpopular.some((t) => tags.has(t))) tags.add(TREND_UNPOPULAR);
 
   return { tags: [...tags], added: [...added], removed, conflicts: [...conflicts] };
 }

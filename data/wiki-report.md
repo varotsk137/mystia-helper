@@ -5,6 +5,7 @@ Fetched: 2026-10-19T08:22:10.042Z
 | Dataset | Count |
 |---|---|
 | locations | 15 |
+| cookware | 5 |
 | ingredients | 62 |
 | beverages | 46 |
 | recipes | 163 |

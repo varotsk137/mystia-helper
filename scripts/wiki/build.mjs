@@ -282,6 +282,22 @@ const requestedDrink = new Set([
 const foodTagsOnlyOnCustomers = [...requestedFood].filter((t) => !foodTagsOnItems.has(t)).sort();
 const drinkTagsOnlyOnCustomers = [...requestedDrink].filter((t) => !drinkTagsOnItems.has(t)).sort();
 
+// ---------- Images (from fetch-images.mjs, optional) ----------
+const images = await readFile(join(rawDir, "images.json"), "utf8").then(JSON.parse, () => ({}));
+const attachImages = (list, kind) => {
+  for (const item of list) item.image = images[kind]?.[item.name] ?? null;
+};
+attachImages(recipes, "recipes");
+attachImages(ingredients, "ingredients");
+attachImages(beverages, "beverages");
+attachImages(rareCustomers, "customers");
+for (const c of normalCustomers) c.image = null;
+// The five cookware types recipes use ("Any" is only Dark Matter).
+const cookware = [...new Set(recipes.map((r) => r.cookware))]
+  .filter((name) => name && name !== "Any")
+  .sort()
+  .map((name) => ({ name, image: images.cookware?.[name] ?? null }));
+
 // ---------- Output ----------
 const gamedata = {
   meta: {
@@ -291,6 +307,7 @@ const gamedata = {
     dlcs: DLCS,
   },
   locations,
+  cookware,
   ingredients,
   beverages,
   recipes,

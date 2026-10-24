@@ -1,7 +1,7 @@
 // Finds the best dish (+ extra ingredients) and drink for a rare customer's order.
 // Scoring rules: docs/game-mechanics.md.
 import type { Beverage, Ingredient, RareCustomer, Recipe } from "../data/types";
-import { computeDishTags, MAX_INGREDIENTS, TAG_OVERRIDES, LARGE_PORTION, TREND_POPULAR, type DishTags, type Trend } from "./tags";
+import { computeDishTags, DARK_MATTER, MAX_INGREDIENTS, TAG_OVERRIDES, LARGE_PORTION, TREND_POPULAR, TREND_UNPOPULAR, type DishTags, type Trend } from "./tags";
 
 export enum Rating {
   Black = 0,
@@ -99,7 +99,85 @@ function specialRule(customer: RareCustomer, dish: DishOption): { rating: Rating
     return { rating: Rating.Pink, note: "Remilia ได้เค้กทรงหมวกตัวเอง: ชมพูเสมอ", mode: "force" };
   if (customer.name === "Koishi Komeiji" && dish.recipe.name === "Unconscious Youkai Mousse")
     return { rating: Rating.Black, note: "Koishi ได้มูสทรงหมวกตัวเอง: ดำเสมอ", mode: "force" };
+  if (customer.name === "Medicine Melancholy" && dish.dish.conflicts.length > 0)
+    return { rating: Rating.Orange, note: "Medicine ได้ Dark Matter: อย่างน้อยส้ม", mode: "min" };
   return null;
+}
+
+/** Like scoreDish, but a dish with a banned tag is scored as Dark Matter (−2, request not met). */
+function scoreAnyDish(order: RareOrder, recipe: Recipe, extras: Ingredient[]): DishOption {
+  const opt = scoreDish(order, recipe, extras);
+  if (opt) return opt;
+  const dish = computeDishTags(recipe, extras, order.trend);
+  return {
+    recipe,
+    extras,
+    dish: { ...dish, tags: [DARK_MATTER] },
+    liked: [],
+    disliked: [],
+    score: -2,
+    requestMet: false,
+    extraCost: extras.reduce((sum, e) => sum + e.price, 0),
+    substitutes: [],
+  };
+}
+
+function drinkOption(order: RareOrder, beverage: Beverage): DrinkOption {
+  const liked = beverage.tags.filter((t) => order.customer.likedDrinkTags.includes(t));
+  return {
+    beverage,
+    liked,
+    score: liked.length,
+    requestMet: order.drinkRequest === null || beverage.tags.includes(order.drinkRequest),
+  };
+}
+
+/** Rates one specific dish (recipe + extras) and drink for the order. */
+export function evaluateCombo(order: RareOrder, recipe: Recipe, extras: Ingredient[], beverage: Beverage): Suggestion {
+  return combine(order, scoreAnyDish(order, recipe, extras), drinkOption(order, beverage));
+}
+
+export interface IngredientEffect {
+  ingredient: Ingredient;
+  result: Suggestion;
+  /** Score change compared with the dish without this ingredient. */
+  delta: number;
+  gainedTags: string[];
+  lostTags: string[];
+  darkMatter: boolean;
+}
+
+/** What adding each ingredient would do to the current dish. Empty when the dish already has 5 ingredients. */
+export function ingredientEffects(
+  order: RareOrder,
+  recipe: Recipe,
+  extras: Ingredient[],
+  beverage: Beverage,
+  ingredients: readonly Ingredient[],
+): IngredientEffect[] {
+  if (recipe.ingredients.length + extras.length >= MAX_INGREDIENTS) return [];
+  const current = evaluateCombo(order, recipe, extras, beverage);
+  const before = new Set(current.dish.dish.tags);
+  return ingredients
+    .map((ingredient) => {
+      const result = evaluateCombo(order, recipe, [...extras, ingredient], beverage);
+      const after = new Set(result.dish.dish.tags);
+      return {
+        ingredient,
+        result,
+        delta: result.score - current.score,
+        gainedTags: [...after].filter((t) => !before.has(t)),
+        lostTags: [...before].filter((t) => !after.has(t)),
+        darkMatter: result.dish.dish.conflicts.length > 0,
+      };
+    })
+    .sort(
+      (a, b) =>
+        Number(a.darkMatter) - Number(b.darkMatter) ||
+        b.result.rating - a.result.rating ||
+        b.delta - a.delta ||
+        a.ingredient.price - b.ingredient.price,
+    );
 }
 
 function scoreDish(order: RareOrder, recipe: Recipe, extras: Ingredient[]): DishOption | null {
@@ -123,15 +201,7 @@ function scoreDish(order: RareOrder, recipe: Recipe, extras: Ingredient[]): Dish
 
 export function rankDrinks(order: RareOrder, beverages: readonly Beverage[]): DrinkOption[] {
   return beverages
-    .map((beverage) => {
-      const liked = beverage.tags.filter((t) => order.customer.likedDrinkTags.includes(t));
-      return {
-        beverage,
-        liked,
-        score: liked.length,
-        requestMet: order.drinkRequest === null || beverage.tags.includes(order.drinkRequest),
-      };
-    })
+    .map((beverage) => drinkOption(order, beverage))
     .sort((a, b) => Number(b.requestMet) - Number(a.requestMet) || b.score - a.score || a.beverage.price - b.beverage.price);
 }
 
@@ -140,7 +210,8 @@ function wantedTags(order: RareOrder): Set<string> {
   const { likedFoodTags, dislikedFoodTags } = order.customer;
   const wanted = new Set(likedFoodTags);
   if (order.foodRequest) wanted.add(order.foodRequest);
-  if (order.trend.popular && likedFoodTags.includes(TREND_POPULAR)) wanted.add(order.trend.popular);
+  if (likedFoodTags.includes(TREND_POPULAR)) for (const t of order.trend.popular) wanted.add(t);
+  if (likedFoodTags.includes(TREND_UNPOPULAR)) for (const t of order.trend.unpopular) wanted.add(t);
   for (const [winner, loser] of TAG_OVERRIDES) if (dislikedFoodTags.includes(loser)) wanted.add(winner);
   return wanted;
 }

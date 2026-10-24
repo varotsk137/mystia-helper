@@ -10,7 +10,8 @@
     "tauri": "tauri",
     "data:fetch": "node scripts/wiki/fetch.mjs",
     "data:build": "node scripts/wiki/build.mjs",
-    "test": "vitest run"
+    "test": "vitest run",
+    "data:images": "node scripts/wiki/fetch-images.mjs"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans-thai": "^5.2.8",
