@@ -30,9 +30,21 @@ jobs:
       - run: npm ci
       # a solver that miscounts ratings never goes live
       - run: npm test
-      # Repository variable HIDE_IMAGES=1 builds the site without the game's
-      # images (see README). The custom domain mystia.varot.me is set in the
-      # repository's Pages settings, so the site is served from the root.
+
+      # The game's images are not in git; they come from the wiki and stay in
+      # the Actions cache, so only images new to gamedata.json are downloaded.
+      # Repository variable HIDE_IMAGES=1 skips them altogether (see README).
+      - uses: actions/cache@v4
+        if: vars.HIDE_IMAGES != '1'
+        with:
+          path: public/images
+          key: wiki-images-${{ hashFiles('src/data/gamedata.json') }}
+          restore-keys: wiki-images-
+      - run: npm run images
+        if: vars.HIDE_IMAGES != '1'
+
+      # The custom domain mystia.varot.me is set in the repository's Pages
+      # settings, so the site is served from the root.
       - run: npm run build
         env:
           VITE_HIDE_IMAGES: ${{ vars.HIDE_IMAGES }}

@@ -22,6 +22,7 @@
 
 ```bash
 npm install
+npm run images      # ดาวน์โหลดภาพจาก wiki ลง public/images/ (ไม่ได้เก็บใน git) ข้ามได้ถ้าไม่ต้องการภาพ
 npm run tauri dev   # เปิดเป็นแอปเดสก์ท็อป
 npm run dev         # เปิดในเบราว์เซอร์ที่ http://localhost:1420
 npm test            # unit test ของตัวคำนวณ
@@ -35,8 +36,10 @@ npm run tauri build # สร้างไฟล์ติดตั้ง
 ```bash
 npm run data:fetch  # ดาวน์โหลด module ล่าสุดลง data/wiki-raw/
 npm run data:build  # แปลงเป็น src/data/gamedata.json และเขียนรายงานที่ data/wiki-report.md
-npm run data:images # ดาวน์โหลดภาพไอคอนและภาพลูกค้าลง public/images/ แล้วรัน data:build อีกครั้ง
+npm run data:images # จับคู่ไอคอนและภาพลูกค้ากับ item บน wiki ใหม่ (เขียน data/wiki-raw/images.json) แล้วรัน data:build อีกครั้ง
 ```
+
+ภาพจากเกมไม่อยู่ใน git (`public/images/` อยู่ใน `.gitignore`) `npm run images` ดาวน์โหลดเฉพาะไฟล์ที่ `src/data/gamedata.json` อ้างถึงและยังไม่มีในเครื่อง
 
 `data:build` จะแก้ชื่อ tag/สถานที่ที่สะกดไม่ตรงกันบน wiki และบันทึกทุกจุดที่แก้ไว้ในรายงาน
 
@@ -44,10 +47,12 @@ npm run data:images # ดาวน์โหลดภาพไอคอนแล�
 
 เปิดใช้ได้ที่ https://mystia.varot.me (GitHub Pages) push เข้า `main` แล้ว `.github/workflows/deploy.yml` จะรันเทสต์ build และ deploy ให้เอง ความคืบหน้ากับค่าที่แก้เก็บใน localStorage ของเบราว์เซอร์นั้น ๆ ย้ายเครื่องให้ใช้สำรอง/นำเข้าในหน้าตั้งค่า
 
+ตอน build บน GitHub workflow จะดาวน์โหลดภาพจาก wiki และเก็บไว้ใน Actions cache ถ้า wiki ล่มตอนที่ cache ยังไม่มีภาพ deploy จะล้มและเว็บเดิมยังอยู่
+
 ถ้าต้องการเว็บที่ไม่มีภาพจากเกม ให้ build ด้วย `VITE_HIDE_IMAGES=1` แอปจะแสดงตัวอักษรย่อแทนภาพ และไม่มี `dist/images` ในผล build บน GitHub ให้ตั้ง repository variable `HIDE_IMAGES` เป็น `1` (Settings → Secrets and variables → Actions → Variables) แล้วรัน workflow ใหม่
 
 ## สัญญาอนุญาต
 
 - **ข้อมูลเกม** (`data/wiki-raw/`, `data/wiki-report.md`, `src/data/gamedata.json`) ดัดแปลงจาก [Touhou Mystia's Izakaya Wiki](https://touhou-mystias-izakaya.fandom.com) ซึ่งใช้ [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) ไฟล์เหล่านี้จึงเผยแพร่ภายใต้ CC BY-SA 3.0 เช่นกัน
-- **ภาพ** ใน `public/images/` เป็นลิขสิทธิ์ของผู้พัฒนาเกม (二色幽紫蝶, Re零同人社) และ 上海アリス幻樂団 ไม่อยู่ภายใต้ CC BY-SA หากเจ้าของสิทธิ์ต้องการให้นำออก แจ้งได้ที่ issue ของ repo นี้
+- **ภาพ** ที่เว็บแสดง (ดาวน์โหลดจาก wiki ตอน build ไม่ได้อยู่ใน repo นี้) เป็นลิขสิทธิ์ของผู้พัฒนาเกม (二色幽紫蝶, Re零同人社) และ 上海アリス幻樂団 ไม่อยู่ภายใต้ CC BY-SA หากเจ้าของสิทธิ์ต้องการให้นำออก แจ้งได้ที่ issue ของ repo นี้
 - Mystia Helper เป็นเครื่องมือแฟนเมด ไม่เกี่ยวข้องกับผู้พัฒนาหรือผู้จัดจำหน่ายเกม

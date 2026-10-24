@@ -11,7 +11,8 @@
     "data:fetch": "node scripts/wiki/fetch.mjs",
     "data:build": "node scripts/wiki/build.mjs",
     "test": "vitest run",
-    "data:images": "node scripts/wiki/fetch-images.mjs"
+    "data:images": "node scripts/wiki/fetch-images.mjs",
+    "images": "node scripts/wiki/download-images.mjs"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans-thai": "^5.2.8",
