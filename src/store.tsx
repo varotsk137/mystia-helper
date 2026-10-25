@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { gameData, type Beverage, type Dlc, type GameData, type Ingredient, type RareCustomer, type Recipe } from "./data";
 import { NO_TREND, type Trend } from "./solver/tags";
+import { defaultLang, type Lang } from "./lang";
 
 /** Data kinds the player can edit. Keys match GameData. */
 export type EditableKind = "recipes" | "ingredients" | "beverages" | "rareCustomers";
@@ -35,6 +36,7 @@ export interface StoreState {
   cookware: string[];
   /** Enabled collaboration ids; their guests, recipes and drinks are hidden otherwise. */
   collabs: string[];
+  lang: Lang;
 }
 
 const STORAGE_KEY = "mystia-helper.settings";
@@ -46,6 +48,7 @@ const DEFAULTS: StoreState = {
   trend: NO_TREND,
   cookware: gameData.cookware.map((c) => c.name),
   collabs: gameData.collaborations.map((c) => c.id),
+  lang: defaultLang(),
 };
 
 /** Fills in fields missing from older or hand-edited saves. */
@@ -64,13 +67,15 @@ export function normalizeState(raw: unknown): StoreState {
     },
     cookware: Array.isArray(s.cookware) ? s.cookware : DEFAULTS.cookware,
     collabs: Array.isArray(s.collabs) ? s.collabs : DEFAULTS.collabs,
+    lang: s.lang === "th" || s.lang === "en" ? s.lang : DEFAULTS.lang,
   };
 }
 
 function load(): StoreState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? normalizeState(JSON.parse(raw)) : DEFAULTS;
+    // Saves from before the language setting were made in the Thai-only UI, so they stay Thai.
+    return raw ? normalizeState({ lang: "th", ...JSON.parse(raw) }) : DEFAULTS;
   } catch {
     return DEFAULTS;
   }
@@ -87,6 +92,7 @@ interface StoreContextValue {
   setTrend: (trend: Trend) => void;
   setCookware: (cookware: string[]) => void;
   setCollabs: (collabs: string[]) => void;
+  setLang: (lang: Lang) => void;
   replaceState: (next: StoreState) => void;
 }
 
@@ -101,6 +107,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       // Storage unavailable: changes last for this session only.
     }
   }, [state]);
+  useEffect(() => {
+    document.documentElement.lang = state.lang;
+  }, [state.lang]);
 
   const setOwnedDlcs = useCallback((ownedDlcs: Dlc[]) => setState((s) => ({ ...s, ownedDlcs })), []);
   const setProgressEnabled = useCallback(
@@ -128,11 +137,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const setTrend = useCallback((trend: Trend) => setState((s) => ({ ...s, trend })), []);
   const setCookware = useCallback((cookware: string[]) => setState((s) => ({ ...s, cookware })), []);
   const setCollabs = useCallback((collabs: string[]) => setState((s) => ({ ...s, collabs })), []);
+  const setLang = useCallback((lang: Lang) => setState((s) => ({ ...s, lang })), []);
   const replaceState = useCallback((next: StoreState) => setState(normalizeState(next)), []);
 
   const value = useMemo(
-    () => ({ state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, replaceState }),
-    [state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, replaceState],
+    () => ({ state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, setLang, replaceState }),
+    [state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, setLang, replaceState],
   );
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
 }

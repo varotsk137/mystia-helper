@@ -2,7 +2,7 @@
  "meta": {
   "source": "https://touhou-mystias-izakaya.fandom.com",
   "fetchedAt": "2026-10-25T08:40:53.706Z",
-  "builtAt": "2026-10-25T08:40:57.204Z",
+  "builtAt": "2026-10-25T09:03:46.911Z",
   "dlcs": [
    "BaseGame",
    "DLC1",
@@ -6926,6 +6926,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Lamp Sign \"Firefly Phenomenon\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Summon a large group of fireflies, enhancing your izakaya's atmosphere. Guests are 30% more likely to appear."
+      }
+     ]
+    },
+    {
+     "name": "Wriggle Sign \"Nightbug Tornado\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Summon a large group of flying insects, and they bite! Will drive away every single guest in the izakaya. For a small restaurant, this is a very scary skill! That’s not gonna fly with the health inspectors!"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitWriggleNightbug.png"
   },
   {
@@ -6988,6 +7011,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Hermit  Sign \"Fenghuang Egg\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Randomly obtain three fish ingredients already recorded in the notebook. Occasionally gives rare ingredients. Wondering how the fish comes out of nowhere, and why the fish-loving Chen is willing them to you?... No use thinking about it."
+      }
+     ]
+    },
+    {
+     "name": "Direction Sign \"Kimontonkou\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Summon kittens that guests involuntarily want to pet, distracting guests. Reduces the chance of new guests arriving."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitChen.png"
   },
   {
@@ -7050,6 +7096,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Moon Sign \"Moonlight Ray\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Randomly obtain three meat ingredients already recorded in the notebook. Wondering how moonlight generates mystery meats, and why the meat-loving Rumia is willing them to you?... You'll fry your small bird brain."
+      }
+     ]
+    },
+    {
+     "name": "Darkness Sign \"Demarcation\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Releases darkness in the kitchen, making it impossible to tell where’s what, including the beverage rack. Lasts 20 seconds."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitRumia.png"
   },
   {
@@ -7119,6 +7188,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Writing \"Is This All The Work Of Youkai Too?\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Obtain a signed washi by the famous novelist. You can exchange it for something special!"
+      },
+      {
+       "type": "p",
+       "text": "(Washi are used to complete Looking for Miss Akyuu's Signed Washi tasks, and serve no purpose outside of them.)"
+      }
+     ]
+    },
+    {
+     "name": "Symposium \"Unscrupulous Restaurant's Dark History\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Akyuu will expose one of izakaya's disheartening history, forcing the izakaya's atmosphere to drop to zero. Every guest in the izakaya will be depressed upon hearing this as well."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitHiedaNoAkyuu.png"
   },
   {
@@ -7190,6 +7286,69 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Land Sign \"Three Sacred Treasures\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "h",
+       "text": "Three Sacred Treasures - Sword"
+      },
+      {
+       "type": "p",
+       "text": "Randomly obtain two kinds of vegetables."
+      },
+      {
+       "type": "h",
+       "text": "Three Sacred Treasures - Mirror"
+      },
+      {
+       "type": "p",
+       "text": "For the next 15 seconds, new dishes will not cost any ingredients."
+      },
+      {
+       "type": "h",
+       "text": "Three Sacred Treasures - Orb"
+      },
+      {
+       "type": "p",
+       "text": "Opens up the lock to the heart. Randomly reveal a special guest's unknown secret. Assuming they still have unknown secrets left, that is."
+      },
+      {
+       "type": "p",
+       "text": "(Reveals a randomly chosen like/dislike of a Rare Customer that the player has not yet discovered. The revealed preference is added to the Album.)"
+      },
+      {
+       "type": "h",
+       "text": "Three Sacred Treasures - Country"
+      },
+      {
+       "type": "p",
+       "text": "Keine-sensei has seen enough. She is satisfied. She will personally promote your izakaya, attracting many villagers to come and dine."
+      },
+      {
+       "type": "p",
+       "text": "--Isn't it common sense for three sacred treasures to have four pieces?"
+      },
+      {
+       "type": "p",
+       "text": "(Summons 20 guests over 5 seconds.)"
+      }
+     ]
+    },
+    {
+     "name": "Land Sign \"Secret Skill - Headbutt\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Kamishirasawa Homing Headbutt! You will be stunned by Keine-sensei's headbutt for 20 seconds. Smash the movement keys to recover sooner."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitKeineKamishirasawa.png"
   },
   {
@@ -7247,6 +7406,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Artistic Expressions For Fierce Beasts\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Kasen has seen enough. She's satisfied. She asks her pet tiger to perform for her, but you are the one who gets the tips...! Every once in a while, all guests dining and waiting in line will tip you a random amount between 1-30 yen."
+      }
+     ]
+    },
+    {
+     "name": "\"Karma Meditation Training For Mortal Desires\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "All the guests will be forced to train like a hermit! They lose all mortal desires and will only order the cheapest food and green tea for the next 30 seconds."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitKasenIbaraki.png"
   },
   {
@@ -7313,6 +7495,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Dream Sign \"Duplex Barrier\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Create a protective barrier, which can completely negate the next special guest's Punishment Spell Card."
+      }
+     ]
+    },
+    {
+     "name": "Spirit Sign \"Fantasy Seal\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Attacks you with three explosive seals, which will disable three random dishes on your menu. You cannot make those three dishes for the next 30 seconds."
+      },
+      {
+       "type": "p",
+       "text": "(Actual length is 20 seconds.)"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitReimuHakurei.png"
   },
   {
@@ -7375,6 +7584,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Shuten Ultimate \"Oni's Drinking Invitation\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "A lovely mini-Suika will give you a bottle of alcohol. Occasionally will give you something ultra rare! Why does Suika give you her favourite liquor? Liquor's better when everyone's together!"
+      }
+     ]
+    },
+    {
+     "name": "\"Night Parade of a Million Demons\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Three lovely mini-Suika will appear and steal three bottles of your most expensive alcohol. How could something so cute commit something so horrific?"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitSuikaIbuki.png"
   },
   {
@@ -7453,6 +7685,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Sky of Scarlet Perception of All Humankind\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Releases celestial power from Heaven! Will skyrocket every dining guests satisfaction level to 85%."
+      }
+     ]
+    },
+    {
+     "name": "\"Pillars of Divine Punishment\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Summon a danmaku keystone from the sky and destroy a dining table, scaring off whoever is eating there. This dining table must be repaired, and you can't host new guests at that damaged table for the next 60 seconds."
+      },
+      {
+       "type": "p",
+       "text": "(Actually seals two tables. This is true for all izakaya tiers.)"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitTenshiHinanawi.png"
   },
   {
@@ -7510,6 +7769,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Flower Sign \"Gorgeous Sweet Flower\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Meiling couldn't wait to express her excitement anymore! She will perform circus tricks for the next 60 seconds, increasing the atmosphere by 1 point every 2 seconds."
+      }
+     ]
+    },
+    {
+     "name": "\"NOver say no to pOnda\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Summon an angry panda and destroy a dining table. If there is anyone dining at that table, they won't be anymore. Decrease atmosphere points by 10, and make the table unusuable for the next 90 seconds. Call an emergency repair!"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitHongMeiling.png"
   },
   {
@@ -7568,6 +7850,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Sweet Ice Fairy\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Randomly obtain three common drinks with \"chillable\" tag and 2-5 ice cubes."
+      }
+     ]
+    },
+    {
+     "name": "Freeze Sign \"Perfect Freeze\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Randomly Freezes 3 kitchenwares. If you have unfinished dishes in those kitchenwares, they will be frozen and shattered. Lasts 30 seconds."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitCirno.png"
   },
   {
@@ -7632,6 +7937,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Knowledge Bizzare Adventure \"Cultural Atmosphere\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 30 seconds, all dishes with the \"Cultural Background\" tag will receive the highest rating."
+      },
+      {
+       "type": "p",
+       "text": "(This overrides every other rating system. Common Customers will give orange ratings even if the dish is not what they ordered, and Rare Customers always give pink ratings regardless of requested tags. Drinks are ignored for rating entirely.)"
+      }
+     ]
+    },
+    {
+     "name": "Metal & Water Sign \"Mercury Poison\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 30 seconds, all dishes have a 50% chance of becoming Dark Matter."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitPatchouliKnowledge.png"
   },
   {
@@ -7694,6 +8026,37 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Undying \"Fire Bird -Feng Wing Ascension-\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Mokou releases flames that increase the temperatures of all kitchenware, enhancing their efficiency. (Don't ask me how that works on the cutting board. It just works, OK?) For the next 20 seconds, dishes can be completed 50% faster."
+      },
+      {
+       "type": "p",
+       "text": "(Recipes are actually completed twice as fast as they normally would be: the cooking time is 50% as such.)"
+      }
+     ]
+    },
+    {
+     "name": "Fujiwara \"Wounds of Metsuzai Temple\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 30 seconds, it doesn't matter how good the dishes are, guests will only give at most a \"fair\" rating."
+      },
+      {
+       "type": "p",
+       "text": "(All [https://touhou-mystias-izakaya.fandom.com/wiki/Customers?so=search#The_Rating_System ratings] are capped at green while this effect is active.)"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitFujiwaraNoMokou.png"
   },
   {
@@ -7752,6 +8115,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"End of Imperishable Night -Rising World-\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Turn back time and increase operation hours by 30 seconds."
+      },
+      {
+       "type": "p",
+       "text": "(Does not reopen the Izakaya past closing hours.)"
+      }
+     ]
+    },
+    {
+     "name": "Divine Treasure \"Jeweled Branch of Hourai -Dreamlike Paradise-\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Fast forward time and decrease operation hours by 30 seconds. Will forcibly end operations if it reaches midnight."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitKaguyaHouraisan.png"
   },
   {
@@ -7815,6 +8205,49 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Vitality \"Luck From The Forty-Leaves Clover\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "All ingredient collection points' cooldown are instantly refreshed, and give you 1-2 extra ingredients when you collect them the next day."
+      }
+     ]
+    },
+    {
+     "name": "Memory \"Remember That Year's Rabbit Horror\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "You \"were\" a good kid, but it seems necessary to mark fear in your DNA once more. Activates forced sale again. If you refuse, she will activate another punishment spell card."
+      },
+      {
+       "type": "li",
+       "text": "Tewi randomly offers three bundles of items for sale; these are typically rare ingredients, such as Udumbara or Lunar Herb. The price is significantly higher than usual, though it is then lowered based on her satisfaction. If nothing were bought, the follow-up punishment card will be triggered."
+      },
+      {
+       "type": "li",
+       "text": "Rarely, Reisen will be one of the options instead, an \"ingredient\" at a static price of 530,000円. Buying Reisen does not grant access to the actual Reisen as a partner early, but instead sets the Partner Salary of every character to 0%. This effect is permanent and takes place from that night onwards."
+      },
+      {
+       "type": "li",
+       "text": "In addition to the typical triggerings of a punishment spellcard, at the end of each of Tewi's uninvited visits before 3/14, this effect is triggered via dialogue (instead of a spellcard) regardless of the quality of service."
+      },
+      {
+       "type": "h",
+       "text": "Trick \"Combo Disappearance Jutsu\" (Follow-up)"
+      },
+      {
+       "type": "p",
+       "text": "Reset your Combo, and prevents you from accumulating new Combo for the next 30 seconds."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitTewiInaba.png"
   },
   {
@@ -7889,6 +8322,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Shooting Star \"Super Perseid\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Randomly obtain three mushroom ingredients. Occasionally will give you something rare! Wondering why stars create mushrooms, and why the mushroom-loving Marisa is willing them to you?... You'll be unhappy."
+      },
+      {
+       "type": "p",
+       "text": "(Currently, the only mushroom ingredients are Mushroom and Truffle. Odds are roughly 50-50 between the two, slightly skewed towards Mushrooms.)"
+      }
+     ]
+    },
+    {
+     "name": "Magic Spell \"I'll Take That!\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Randomly steal two items. These could be completed dishes, ingredients, or beverages. You don't even have time to cry before Marisa took off with something valuable. Oh, did I mention she doesn't pay the bill when she leaves this way? She denies this as stealing, saying she'll give them back when she dies!"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitMarisaKirisame.png"
   },
   {
@@ -7952,6 +8412,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Waltz Between Children & Dolls\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Alice's dolls will transform into guests and fill all remaining empty seats."
+      },
+      {
+       "type": "p",
+       "text": "(Guests are freely chosen from all common guest types: this is also the only way to gain the Common Customer album entry for Goblins, who are otherwise unused and do not spawn naturally. As guests spawn directly into the seats, this effect works even after closing hours.)"
+      }
+     ]
+    },
+    {
+     "name": "Magic Sign \"Artful Sacrifice\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Throw a magical vial at the kitchen and blow up a random kitchenware. It takes 60 seconds to repair it."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitAlice.png"
   },
   {
@@ -8015,6 +8502,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Magic Sign \"Instand Bodhi\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 60 seconds, guests will pay 50% more tips at checkout."
+      }
+     ]
+    },
+    {
+     "name": "Jizo \"Hellfire Salvation\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Summon Karmic fires that burn three random buffs, removing them and ending their effects."
+      },
+      {
+       "type": "p",
+       "text": "(Can erase any buff, including Izakaya Items and Sparrow Tune rewards. Izakaya Item buffs are lost until the end of the night.)"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitNarumiYatadera.png"
   },
   {
@@ -8083,6 +8597,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Kappa \"Exteeeending Aaaaarm\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 120 seconds, partners can serve food and drinks remotely using kappa tech \"Extending Arm.\""
+      },
+      {
+       "type": "li",
+       "text": "Waitresses and Drink Servers now throw food and drink respectively. This effect works similarly to Mystia's own throwing buff."
+      }
+     ]
+    },
+    {
+     "name": "Water Sign \"Kappa's Flash Flood\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Summons a flood, washing away 3-5 random guests dining at the izakaya."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitNitoriKawashiro.png"
   },
   {
@@ -8144,6 +8685,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Tengu Routine Sips",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "A lot of white wolf tengus will come and dine for a short period of time."
+      },
+      {
+       "type": "p",
+       "text": "(Summoned tengu are ordinary White Wolf Tengu customers, sharing the exact same preferences. If the restaurant is past closing hours, they will not spawn."
+      }
+     ]
+    },
+    {
+     "name": "Marital Law",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Blocks the path to the izakaya and forbids any new guests from coming in for the next 30 seconds."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitMomijiInubashiri.png"
   },
   {
@@ -8215,6 +8783,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Divine Virtue \"Bumper Crop Rice Shower\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Invoke the power of miracles and generate three drinks and three ingredients."
+      }
+     ]
+    },
+    {
+     "name": "Miracle \"Daytime Guest Stars\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Sanae releases a pentagram, putting you in a sealed state that blocks all buffs for the next 30 seconds."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitSanaeKochiya.png"
   },
   {
@@ -8282,6 +8873,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Underground Idol's Party Night\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 30 seconds, queuing guests will be attracted by the idol, they won't leave even if business ends."
+      }
+     ]
+    },
+    {
+     "name": "Small Thread \"Kandata's Rope\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "You're tangled in Yamame's web! Movement speed decreased by 80%, lasts for 30 seconds."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitYamameKurodani.png"
   },
   {
@@ -8351,6 +8965,37 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Jealousy and Overdraft\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Parsee stokes the jealousy of all current guests, increasing their budgets to the same as the richest customer present."
+      },
+      {
+       "type": "p",
+       "text": "(Applies to every guest in the area, whether seated or in line. Does not decay.)"
+      }
+     ]
+    },
+    {
+     "name": "Malice Sign \"Shrine Visit in the Dead of Night\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Upon the Spell Card's declaration, your partners become extremely jealous of profits not being shared with them, causing their salaries for the day to be doubled."
+      },
+      {
+       "type": "p",
+       "text": "(If the player has salaries entirely removed due to owning a certain item, they will pay the original salary which would have been given.)"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitParseeMizuhashi.png"
   },
   {
@@ -8429,6 +9074,53 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"From Song to Dance\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Uses the Hoshiguma Dish to level up a set amount of beverages."
+      },
+      {
+       "type": "li",
+       "text": "Max chance to level up 3 Lv1 beverages."
+      },
+      {
+       "type": "li",
+       "text": "75% chance to level up 2 Lv2 beverages."
+      },
+      {
+       "type": "li",
+       "text": "50% chance to level up 1 Lv3 beverage."
+      }
+     ]
+    },
+    {
+     "name": "Big Four Arcanum \"Knock Out in Three Steps\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Yuugi creates three zones, limiting your movement. Lasts for 60 seconds."
+      },
+      {
+       "type": "li",
+       "text": "First Step: Safe zone"
+      },
+      {
+       "type": "li",
+       "text": "Second Step - Sinner's Shackles: Movement speed decreased by 50% when inside the zone"
+      },
+      {
+       "type": "li",
+       "text": "Third Step - Spirits and Anomalies: Entering this zone will immediately stun you for 30 seconds"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitYuugiHoshiguma.png"
   },
   {
@@ -8504,6 +9196,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Recollection \"Happy Memory\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Activates a random Reward Spell Card from a rare customer that has already been unlocked (excluding Satori herself)."
+      }
+     ]
+    },
+    {
+     "name": "Recollection \"Unhappy Memory\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Activates a random Punishment Spell Card from a rare customer that has already been unlocked (excluding Satori herself)."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitSatoriKomeiji.png"
   },
   {
@@ -8577,6 +9292,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Cat Sign \"Cat's Walk\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 30 seconds, serving beverages tagged with \"Mid Alcohol\" will result in the best rating."
+      },
+      {
+       "type": "p",
+       "text": "(This overrides every other rating system. Common Customers will give orange ratings even if the drink is not what they ordered, and Rare Customers always give pink ratings regardless of requested tags. Cuisines are ignored for rating entirely.)"
+      }
+     ]
+    },
+    {
+     "name": "\"Rekindling of Dead Ashes\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "When Orin leaves, a vengeful spirit will be left at her table which will continue to place orders based on Orin's preferences. Vengeful spirits cannot be kicked out, nor will they pay. They will only disappear once satisfied like a normal guest."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitRinKaenbyou.png"
   },
   {
@@ -8644,6 +9386,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Hell's Tokamak\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 60 seconds, nuclear power overloads the boiling pot and steamer, allowing them to cook dishes instantly."
+      }
+     ]
+    },
+    {
+     "name": "Hell's Light \"Diffuse Hellfire\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "A nuclear explosion will occur the next time you fail to sing a perfect Sparrow Tune, disabling the kitchenware for the night. The explosion will also cause a portion of queuing customers to run for their lives."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitUtsuhoReiuji.png"
   },
   {
@@ -8720,6 +9485,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Rain Sign \"A Rainy Night's Ghost Story\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 30 seconds, dishes with the \"Peculiar\" tag cook 30% faster and provide an additional 30% chance for customers to order again."
+      },
+      {
+       "type": "p",
+       "text": "(Cooking time is actually reduced by 30%, meaning the true speed increase is approximately +43%. Cuisines already having the Peculiar tag, and Cuisines which gain it by adding extra ingredients both count.)"
+      }
+     ]
+    },
+    {
+     "name": "\"Jumbo Phantom Umbrella\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "An enlarged version of Kogasa's umbrella appears in the waiting area, scaring away every normal queueing customer."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitKogasaTatara.png"
   },
   {
@@ -8795,6 +9587,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Lingering Phantom of the Ship\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Gain the Ship Phantom Possession for 15 seconds. Reward spell cards gained while this buff is active (excluding this spell card) have their duration increased. The length of this extension is equal to this spell card's remaining duration when a new spell card is gained."
+      }
+     ]
+    },
+    {
+     "name": "Drowning Sign \"Deep Vortex\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "A vortex spins beneath you, causing you to faint. Unable to move for 5 seconds (speed up by moving). Then movement is reversed for the next 20 seconds."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitMinamitsuMurasa.png"
   },
   {
@@ -8877,6 +9692,65 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Delight \"Touhou RGB\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Spin the UFO wheel with a guaranteed prize, the result will be one of the following:"
+      },
+      {
+       "type": "p",
+       "text": "RRR: for the next 15 seconds, the highest rating will be given regardless of dish served;"
+      },
+      {
+       "type": "p",
+       "text": "GGG: for the next 15 seconds, ingredients and beverages will not be expended;"
+      },
+      {
+       "type": "p",
+       "text": "BBB: for the next 15 seconds, income is increased by 100%;"
+      },
+      {
+       "type": "p",
+       "text": "RGB: gain all three buffs at once"
+      }
+     ]
+    },
+    {
+     "name": "Disgust \"Touhou RRB\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Spin the wheel with a guaranteed miss, the result will be one of the following:"
+      },
+      {
+       "type": "p",
+       "text": "RRG: for the next 15 seconds, the lowest rating will be given regardless of dish served;"
+      },
+      {
+       "type": "p",
+       "text": "GGX: for the next 15 seconds, 3x the amount of ingredients and beverages will be expended;"
+      },
+      {
+       "type": "p",
+       "text": "BBX: for the next 15 seconds, income is decreased by 66%;"
+      },
+      {
+       "type": "p",
+       "text": "RRB: gain all three debuffs at once"
+      },
+      {
+       "type": "p",
+       "text": "(X refers to any color not part of of the two colors; for GGX, X is R or B; for BBX, X is R or G)"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitNueHoujuu.png"
   },
   {
@@ -8946,6 +9820,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Saint Girl \"Sun Goddess's Sacrifice\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For 10 seconds after the spell card is declared, gain a beverage depending on the customer's rating. \"Regular\" ratings give level 1 beverages, \"satisfied\" ratings give level 2 beverages, \"perfect\" ratings give level 3 beverages."
+      },
+      {
+       "type": "p",
+       "text": "(The three ratings are green, orange and pink, respectively.)"
+      }
+     ]
+    },
+    {
+     "name": "Torch Passing \"Tray Basked in Flames\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For 30 seconds after the spell card is declared, only one tray may be used to serve customers. Items remaining in the disabled tray will be burned."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitMononobeNoFuto.png"
   },
   {
@@ -9020,6 +9921,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Wicked Arts \"No Walls Beneath Heaven\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For 30 seconds, partners can move through customers or obstacles within the izakaya."
+      }
+     ]
+    },
+    {
+     "name": "Demonify \"Zouhuo Rumo\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 30 seconds, rare customers are demonified. Every payment they make, regardless of rating, has a 30% chance to unleash a punishment spell card. If they were originally going to unleash one, they unleash it an additional time."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitSeigaKaku.png"
   },
   {
@@ -9093,6 +10017,37 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Thunder's Shadow \"Lighting Speed\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Boosted by lightning, you and all your partners' movement speeds are increased by 30%!"
+      }
+     ]
+    },
+    {
+     "name": "Retribution \"Heavenly Thunder Strike\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The next time you fail to sing perfectly, heavenly thunder will strike and stun a partner for 30 seconds."
+      },
+      {
+       "type": "p",
+       "text": "(Easter Egg: If this thunder strikes Aunn, she will not be stun by it, instead showing the text \"Not Effective\")"
+      },
+      {
+       "type": "p",
+       "text": "(Easter Egg 2: If this thunder strikes Hina, the strike will be deflected by her misfortune and stunning another partner instead if possible.\")"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitSogaNoTojiko.png"
   },
   {
@@ -9175,6 +10130,59 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Crossroads of Trends Taking Gensokyo by Storm\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Word of the shop spreads through the news. The izakaya will become a famous shop tomorrow. Returns to normal in 3 days."
+      },
+      {
+       "type": "p",
+       "text": "Famous Shop: increase guest budget by 10% and guest traffic by 5%, \"signature [sic]\" will become a trending tag."
+      },
+      {
+       "type": "p",
+       "text": "If the izakaya is already a famous shop, or word had already spread that night, this spell card turns into..."
+      }
+     ]
+    },
+    {
+     "name": "\"Peerless Chef of the Izakaya\" (Reward Alt.)",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "All dishes with the \"signature [sic]\" tag on today's menu will become famous (Trend - Popular) dishes."
+      },
+      {
+       "type": "p",
+       "text": "When cooking a famous dish, finish it instantly if cook time is less than 5 seconds;"
+      },
+      {
+       "type": "p",
+       "text": "Guests who like the tag have an additional have an additional 30% chance to make follow-up orders when consuming a famous dish, regain budget equivalent to the drink in their order, and have a 100% chance to increase their follow-up order limit by 1. Lasts 30 seconds."
+      }
+     ]
+    },
+    {
+     "name": "\"Forbidden Technique of the Pen\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Kick off a tornado which attacks the izakaya. Toss-serving is disabled for the next 30 seconds."
+      },
+      {
+       "type": "p",
+       "text": "Also criticize the izakaya on the Bunbunmaru Newspaper, causing the famous shop bonus to disappear tomorrow."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitAyaShameimaru.png"
   },
   {
@@ -9253,6 +10261,37 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Analysis \"Toxin Neutralization\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Removes the Withering garden [sic] status effect (see punishment card for details);"
+      },
+      {
+       "type": "p",
+       "text": "Medicine manipulates all the possibly harmful substances in a dish, making tags not conflict with each other while cooking. Lasts for 30 seconds and immediately gives a drink with the \"mid alcohol [sic]\" tag [sic]"
+      }
+     ]
+    },
+    {
+     "name": "Convalla \"Withering garden [sic]\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Removes the Toxin Neutralization status effect (see reward card for details);"
+      },
+      {
+       "type": "p",
+       "text": "The melancholic poison [sic] tag is added when cooking dishes. Guests who consume this tag will not make follow-up orders. Lasts 30 seconds."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitMedicineMelancholy.png"
   },
   {
@@ -9329,6 +10368,41 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Fragrant Beauties of Nature",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Yuuka plants a flower on the field and uses her ability to make it grow. Plant an additional flower when her mood reaches maximum. Each flower produces 25 in tips in 24 seconds."
+      },
+      {
+       "type": "p",
+       "text": "When a rare guest aside from Yuuka activates a reward spell card, a random flower will absorb the power of this spell card and bloom, attracting rare guests that appear in the area to pay the izakaya a visit. Rare guests attracted by the flower will pick the flower. While a flower is in bloom, guests gain an additional 15 mood after eating. The flower will wither after 15 seconds and be converted into 1 Cloth of Fallen Petals : Able to nullify combo-ending mistakes."
+      },
+      {
+       "type": "p",
+       "text": "(After a flower enters a \"blooming\" state, a rare customer that can naturally spawn in the area will appear, taking the flower and activating the Road of Flowers effect. Once this expires, the player gains 1 stack of Cloth of Fallen Petals.)"
+      }
+     ]
+    },
+    {
+     "name": "\"FINAL SPARK!!!\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "With a gentle smile, Yuuka walks to the topmost position of where she was seated and blows up every table in this column with a magical blast. These tables cannot be repaired for that night. All guests seated at the tables will be scared away."
+      },
+      {
+       "type": "p",
+       "text": "(Due to how tables are organised, Yuuka will destroy every table in the front half of the table list if she is seated in the right column, or every table in the latter half if she is seated on the left.)"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitYuukaKazami.png"
   },
   {
@@ -9403,6 +10477,43 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Deception Sign \"Reverse Psychology\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Using her ability to reverse everything, Seija inverts the preferences of all guests. The disliked tags of all guests (excluding Seija) become tags that they like. Lasts 30 seconds."
+      },
+      {
+       "type": "p",
+       "text": "If the total amount of normal (not rare or special) customers is not less than 7, this becomes..."
+      }
+     ]
+    },
+    {
+     "name": "Reverse Bow \"Decree of the Dream Bow of Heaven and Earth\" (Reward Alt.)",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "All normal guests, including those in the queue, have their follow-up order limit increased by 1 and their budget increased by 25%. Each normal guest can only receive this effect up to 3 times."
+      }
+     ]
+    },
+    {
+     "name": "Turnabout \"Reverse Ideology\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Vive la revolution! Seija and the guest with the highest budget present have their budgets reversed, and for the next 15 seconds the budget of all guests (including Seija) are lowered to the budget of the guest with the lowest budget present."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitSeijaKijin.png"
   },
   {
@@ -9477,6 +10588,37 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Precious Mallet \"Inflation Crisis\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Whack the cash register with the Miraclet Mallet, adding 1 Miracle Mallet's Power to the stack."
+      },
+      {
+       "type": "p",
+       "text": "The charged power of the Miraclet Mallet will inflate revenue when the business ends. The 1st stack of Miracle Mallet's Power increases revenue by 7%. Subsequent stacks increase revenue by 2%."
+      }
+     ]
+    },
+    {
+     "name": "Mini-Mallet \"You Grow Big!\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Under the effects of the Miracle Mallet, your body is enlarged to three times its original size. Lasts 30 seconds"
+      },
+      {
+       "type": "p",
+       "text": "(Most importantly, Mystia can no longer fit inside the cooking area if this effect activates.)"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitShinmyoumaruSukuna.png"
   },
   {
@@ -9545,6 +10687,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Wolf Soul \"Wild Awakening\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Awaken the wild nature of guests, making them love the \"meat\" and \"mountain delicacy\" tag for the next 30 seconds. They will use their own preferences when giving ratings. Guests that had already liked these tags will give the highest rating."
+      }
+     ]
+    },
+    {
+     "name": "Hungry Wolf \"Grand Moonlit Feast\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 30 seconds, if the \"filling\" tag isn't added to a dish, the lowest rating will be given. Guests that had already disliked this tag will give the lowest rating regardless."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitKagerouImaizumi.png"
   },
   {
@@ -9615,6 +10780,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Candy House of Love\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 30 seconds, after completing a guest's order with at least a normal rating, a Fuwa Fuwa Candy drops near the seat for pickup."
+      }
+     ]
+    },
+    {
+     "name": "\"The Cat of Ulthar\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Sokrates intimidates the izakaya's partners, decreasing their movement speed by 30% and working speed by 50%. Lasts 30 seconds."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitEllen.png"
   },
   {
@@ -9689,6 +10877,41 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Reincarnation of the Underworld\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "If no \"Mystic Evil-Sealing Circle\" exists in the izakaya, the circle is summoned. If the circle exists, the circle will receive 2 charges of energy."
+      },
+      {
+       "type": "p",
+       "text": "\"Mystic Evil-Sealing Circle\": Whenever rare guests (excluding Mima) invoke any spell cards, the circle receives 1 charge of energy. When the amount of energy reaches 7, it is consumed, triggering"
+      },
+      {
+       "type": "h",
+       "text": "Dream Sign \"Planck of Time\""
+      },
+      {
+       "type": "p",
+       "text": "All seated guests regain all of their budget, and for the next 20 seconds, cooking dishes will not use ingredients and will be completed instantly. Guests are guaranteed to give the best rating."
+      }
+     ]
+    },
+    {
+     "name": "The Price of Blasphemy",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Sustain Evil Spirit's Grudge: Sparrow Tune effects cannot be obtained and effects from special stations cannot be activated for the next 30 seconds."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitMima.png"
   },
   {
@@ -9769,6 +10992,37 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "“The Legendary Gulliver“",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Louise summons a magical camera in the stall. If the rare guest's original self left the store unfulfilled and still have budget remaining, the camera takes a photograph of the rare guest and converts it into a copy of \"Travel Blog\"."
+      },
+      {
+       "type": "p",
+       "text": "When the day ends, the \"Travel Blog\" is released (if the day had already ended when the photograph was taken, it will be released immediately), projecting the guest from the photograph to visit the izakaya again. Projected rare guests can use spell cards and have the same preferences as the original rare guest, but its budget and order limit starts from where the original rare guest left off at."
+      }
+     ]
+    },
+    {
+     "name": "\"Abandoned Glass Slipper\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The shop will close, and guests in the shop will be forcefully kicked out 60 seconds after the day ends."
+      },
+      {
+       "type": "p",
+       "text": "(Actually only caps post-closing overtime. After operation hours ends, any remaining guests are forced to leave after 60 seconds.)"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitLouise.png"
   },
   {
@@ -9843,6 +11097,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Moon Rabbits' Bonfire Feast\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Call together a grand bonfire feast. Every existing rabbit will generate 1 random ingredient or 1 random drink. New rabbits that appear for the next 30 seconds will also generate an ingredient or drink. The chance for an ingredients is 80%; the chance for a drink is 20%."
+      }
+     ]
+    },
+    {
+     "name": "\"Drunken Stupor\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Reisen shoots a bullet of lunacy, continuously affecting guests present for the next 30 seconds. Guests affected by lunacy will give the worst rating if they're served with drinks without the \"High Alcohol\" tag."
+      },
+      {
+       "type": "p",
+       "text": "Note: Lunacy will interfere with lunacy. . . What does that mean?"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitReisen.png"
   },
   {
@@ -9919,6 +11200,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Radius \"Intertwining Mountain and Sea\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Toyohime links the sea and mountains, connecting with a location in Gensokyo, allowing the location's normal guests and rare guests to visit by going across the \"plane\"."
+      },
+      {
+       "type": "p",
+       "text": "Guest traffic of the location connected by Toyohime's ability will be 33% of original guest traffic."
+      }
+     ]
+    },
+    {
+     "name": "New Moon \"Unshaped Universe\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Toyohime randomly chooses 3 local and invited rare guests who have yet to show up to be \"spirited away\", disallowing them from visiting the izakaya tonight."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitWatatsukiNoToyohime.png"
   },
   {
@@ -9999,6 +11307,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Divine Edict \"Oracle of the Gods\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Yorihime summons divine spirits, applying one Divine Laurel; if the dish provided has the \"legendary\" tag, an additional stack is given."
+      },
+      {
+       "type": "p",
+       "text": "If a rare guest gives a non-perfect rating, consume a stack of \"Divine Laurel\" to invoke a miracle, raising the rating to perfect."
+      }
+     ]
+    },
+    {
+     "name": "Commandment \"Judgement of the Gods\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Yorihime invokes a miracle to seal a portion of legends. For the next 30 seconds, dishes with the \"legendary\" tag or dishes with ingredients that have the \"legendary\" tag cannot be made."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/RareCustomerDefaultPortraitWatatsukiNoYorihime.png"
   },
   {
@@ -10051,6 +11386,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Kourindou Black Friday\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Obtain one Kourindou's 30% off coupon. Expires the next day!"
+      }
+     ]
+    },
+    {
+     "name": "\"Fictitious Intelligence Report\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "One of your special guest's known secrets will be hidden..."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitRinnosukeMorichika.png"
   },
   {
@@ -10137,6 +11495,49 @@
      "variant": "DLC 4"
     }
    ],
+   "spellCards": [
+    {
+     "name": "Scarlet Sign \"Red, the Nightless Castle\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Remilia uses her reputation as the mistress of the Scarlet Devil Mansion to hold a midnight feast. When the day ends, the izakaya enters \"Red, the Nightless Castle\" status (immediately takes effect if day has already ended) and business continues."
+      },
+      {
+       "type": "p",
+       "text": "\"Red, the Nightless Castle\":"
+      },
+      {
+       "type": "li",
+       "text": "Budget of normal guests will not be less than 500;"
+      },
+      {
+       "type": "li",
+       "text": "Working speed of partners increased by 100%. If Sakuya is on-duty, her speed is raised to the max;"
+      },
+      {
+       "type": "li",
+       "text": "Chance of follow-up orders increased by 100%;"
+      },
+      {
+       "type": "p",
+       "text": "If Remilia herself is present at the time of activation, the shop will not close for the next 60 seconds. Instead, normal guests will continue to appear at 300% speed. Otherwise, when the last rare guest leaves, summon fairy maids equivalent to amount of reward spell cards activated that night."
+      }
+     ]
+    },
+    {
+     "name": "Night Sign \"Advent of Second Scarlet Mist\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Remilia puts her might on display, releasing bloody mist which covers the orders panel on the bottom-left. Lasts for 60 seconds."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitRemiliaScarlet.png"
   },
   {
@@ -10185,6 +11586,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Hell Realm Sword \"Two Hundred Yojana in One Slash\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Demonstrates to you an advanced sword technique. You are inspired by this move, and can complete any dishes made on the cutting board instantly."
+      }
+     ]
+    },
+    {
+     "name": "Heaven Sword \"Five Signs of the Dying Deva\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "All guests lose patience twice as fast, and reduce 1 atmosphere point every 2 seconds. Last 60 seconds."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/PartnerDefaultPortraitYoumuKonpaku.png"
   },
   {
@@ -10226,6 +11650,39 @@
    ],
    "collab": null,
    "foodQuotes": [],
+   "spellCards": [
+    {
+     "name": "\"Food Vanishment Jutsu\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "From now until the izakaya closes, every guest will instantly finish the dishes."
+      }
+     ]
+    },
+    {
+     "name": "\"Metamorphosis of Ink-Black Cherry Petals\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "From the second spell-card onward, she will give this reward. She will eat 1-4 food items from the refrigerator going from the last items in order, including them without affect on budget on her tab. This can produce a lot of money by cooking a few expensive items after her first order and putting them in there so they are in back."
+      }
+     ]
+    },
+    {
+     "name": "\"Extra Large for the Same Price\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "From now until the izakaya closes, every dish without all 5 ingredients will receive a bad rating."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitYuyukoSaigyouji.png"
   },
   {
@@ -10274,6 +11731,8 @@
    ],
    "collab": "mcgensokyo",
    "foodQuotes": [],
+   "spellCards": [],
+   "spellCardNote": "This guest does not have spell cards.",
    "image": null
   },
   {
@@ -10318,6 +11777,8 @@
    ],
    "collab": "three-fairies",
    "foodQuotes": [],
+   "spellCards": [],
+   "spellCardNote": "This guest does not have spell cards.",
    "image": "images/customers/SpecialGuestDefaultPortraitThreeFairies.png"
   },
   {
@@ -10355,6 +11816,45 @@
    ],
    "collab": "blooming-chaos-2",
    "foodQuotes": [],
+   "spellCards": [
+    {
+     "name": "\"Help Me Up! I Can Still Eat\"!",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Under Satsuki Rin's special treatment, the negative effects of ingredients such as high cholesterol, high sodium, and high calories have been removed or mitigated. Guests can enjoy delicious food with maximum nutrition. All guests, including those waiting in line, independently have a 30% chance of ordering once more regardless of their budget."
+      },
+      {
+       "type": "p",
+       "text": "(The 30% is rolled separately for all guests - Rin herself can also gained bonus orders this way. The amount of extra orders a guest has this way is marked by a heart symbol alongside a counter, located beneath their table number.)"
+      },
+      {
+       "type": "p",
+       "text": "File:Satsuki Heart.png|The heart sprite used for this Spell Card."
+      },
+      {
+       "type": "p",
+       "text": ""
+      }
+     ]
+    },
+    {
+     "name": "\"Slow and Savor for Health and Vigor\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Eating too quick will harm you! You could get indigestion! All guests, including those waiting in line, will take twice as long to finish their meal. However, other buffs like Toutetsu Feast still take precedence over this skill."
+      },
+      {
+       "type": "p",
+       "text": "(Actually lasts for 60 seconds, and is independent on guests.)"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitRinSatsuki.png"
   },
   {
@@ -10395,6 +11895,29 @@
    ],
    "collab": "blooming-chaos-2",
    "foodQuotes": [],
+   "spellCards": [
+    {
+     "name": "\"It's Party Time!\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Uses the ability of space to confine all diners. As long as they still have cash and have room to finish the next dish, they must order! They will continue to order and cannot leave their seat until the guest has spent over 70% of their budget."
+      }
+     ]
+    },
+    {
+     "name": "Torture \"Arbuda\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 120 seconds, making any dish with the \"mild\" or \"vegetarian\" tags will become Dark Matter."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitShioTachisora.png"
   },
   {
@@ -10432,6 +11955,29 @@
    ],
    "collab": "blooming-chaos-2",
    "foodQuotes": [],
+   "spellCards": [
+    {
+     "name": "Causation \"Eyes Of Deduction And Judgement\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Through the power of logic and deduction, you can now see guests' remaining budget and how many more times they will order."
+      }
+     ]
+    },
+    {
+     "name": "Rhythm \"Upside Downtown\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 60 seconds, all guests will give a random rating regardless of what they receive."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitJienYuu.png"
   },
   {
@@ -10527,6 +12073,37 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Toutetsu's Gluttonous Feast\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "All other guests other than Yuuma will only order the most expensive food and drinks. These orders will ignore their budgets. Lasts 30 seconds."
+      },
+      {
+       "type": "p",
+       "text": "(Overrides the ordering mechanics of Rare Customers - everyone but Yuuma will always order the most expensive food and drink on the menu, without fail.)"
+      }
+     ]
+    },
+    {
+     "name": "\"Dinner of Toutetsu, the Avaricious Beast God\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The frenzied Yuuma will devour 3-5 random ingredients, 1-3 drinks and 1 kitchenware, making it unusable for the rest of the night."
+      },
+      {
+       "type": "p",
+       "text": "During the Hell of Blood Pools challenge, Yuuma will also recover an additional 5% HP."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitYuumaToutetsu.png"
   },
   {
@@ -10606,6 +12183,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Carefree Extreme Unconsciousness\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 60 seconds, ordering, eating, partner actions, and everything else with a cooldown will have no cooldown. Everything happens unconsciously, achieving the maximum speed possible."
+      }
+     ]
+    },
+    {
+     "name": "\"Selfish Extreme Unconsciousness\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 60 seconds, Koishi will hide all normal customer orders. Orders will have to be completed via checking the notebook."
+      },
+      {
+       "type": "p",
+       "text": "(As normal customers order the cuisines and drinks from the menu that satisfy the most liked tags, the player must figure out what this is for each normal customer type.)"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitKoishiKomeiji.png"
   },
   {
@@ -10622,6 +12226,8 @@
    "likedDrinkTags": [],
    "collab": null,
    "foodQuotes": [],
+   "spellCards": [],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitOkinaMatara.png"
   },
   {
@@ -10700,6 +12306,29 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Cardcaptor Tanuki of Ten Transformations\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Summons tanukis to shapeshift into all currently seated customers (excluding Mamizou) and rejoin the queue. Shapeshifted customers have the same preferences and budget as the person they resemble, but rare shapeshifted customers can only unleash their respective spell cards once."
+      }
+     ]
+    },
+    {
+     "name": "\"Best Way to Punish an Immoral Shopkeeper\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "For the next 30 seconds, all the money you receive becomes leaves. You'll only discover them when totaling the day's earnings. All money earned within this period of time does not count as income. Paying with leaves is outrageous!"
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitMamizouFutatsuiwa.png"
   },
   {
@@ -10716,6 +12345,8 @@
    "likedDrinkTags": [],
    "collab": null,
    "foodQuotes": [],
+   "spellCards": [],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitFlandreScarlet.png"
   },
   {
@@ -10732,6 +12363,8 @@
    "likedDrinkTags": [],
    "collab": null,
    "foodQuotes": [],
+   "spellCards": [],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitWakasagihime.png"
   },
   {
@@ -10748,6 +12381,8 @@
    "likedDrinkTags": [],
    "collab": null,
    "foodQuotes": [],
+   "spellCards": [],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitEirinYagokoro.png"
   },
   {
@@ -10764,6 +12399,8 @@
    "likedDrinkTags": [],
    "collab": null,
    "foodQuotes": [],
+   "spellCards": [],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitSagumeKishin.png"
   },
   {
@@ -10850,6 +12487,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "\"Dream World of Humans and Youkai\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "When triggered before the end of the day, the duration of all buffs with more than 44 seconds will be frozen and will not decrease until the end of the day."
+      },
+      {
+       "type": "p",
+       "text": "When triggered for the second time or after day ends, the duration of all buffs with more than 44 seconds will be increased by 10% of its current duration (Each type of buff can have their duration increased by this spell card for a maximum of 17 seconds.)"
+      }
+     ]
+    },
+    {
+     "name": "\"Boundary of Presence and Absence\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Open several gaps that change their location. Approaching a gap will suck you in and teleport you to another gap, while making drinks on your tray disappear. The gaps last for 30 seconds."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitYukariYakumo.png"
   },
   {
@@ -10866,6 +12530,8 @@
    "likedDrinkTags": [],
    "collab": null,
    "foodQuotes": [],
+   "spellCards": [],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitShikiEiki.png"
   },
   {
@@ -10882,6 +12548,8 @@
    "likedDrinkTags": [],
    "collab": null,
    "foodQuotes": [],
+   "spellCards": [],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitMizuchiMiyadeguchi.png"
   },
   {
@@ -10898,6 +12566,8 @@
    "likedDrinkTags": [],
    "collab": null,
    "foodQuotes": [],
+   "spellCards": [],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitShinki.png"
   },
   {
@@ -10972,6 +12642,33 @@
      "variant": null
     }
    ],
+   "spellCards": [
+    {
+     "name": "Blooming Soul \"Shifting Four Emotions\"",
+     "kind": "reward",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "When there is no mask of emotion present, summon the corresponding mask of emotion for that day. Lasts for 30 seconds."
+      },
+      {
+       "type": "p",
+       "text": "If there is already a mask present, increase the duration of its buff by 30 seconds."
+      }
+     ]
+    },
+    {
+     "name": "Dispirited Soul \"Relief of Worldly Desires\"",
+     "kind": "punishment",
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Kokoro performs the Noh of Darkness, affecting the mood of everyone present. Tip rate decreased to 0. Lasts for 66 seconds."
+      }
+     ]
+    }
+   ],
+   "spellCardNote": null,
    "image": "images/customers/SpecialGuestDefaultPortraitHataNoKokoro.png"
   }
  ],

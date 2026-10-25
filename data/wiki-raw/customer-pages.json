@@ -1,0 +1,3590 @@
+{
+  "Wriggle Nightbug": {
+    "page": "Wriggle Nightbug",
+    "quotes": [
+      {
+        "tag": "Sweet",
+        "text": "It would be great if all dishes tasted sweet~",
+        "variant": null
+      },
+      {
+        "tag": "Raw",
+        "text": "Raw meat obviously tastes better than cooked meat!Are you the kind of weirdo that orders well-done steaks?",
+        "variant": null
+      },
+      {
+        "tag": "Meat",
+        "text": "Actually, insects can be carnivores, too!",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "As an insect, I never say no to abnormal food~",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Lamp Sign \"Firefly Phenomenon\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Summon a large group of fireflies, enhancing your izakaya's atmosphere. Guests are 30% more likely to appear."
+          }
+        ]
+      },
+      {
+        "name": "Wriggle Sign \"Nightbug Tornado\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Summon a large group of flying insects, and they bite! Will drive away every single guest in the izakaya. For a small restaurant, this is a very scary skill! That’s not gonna fly with the health inspectors!"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Chen": {
+    "page": "Chen",
+    "quotes": [
+      {
+        "tag": "Grilled",
+        "text": "I want roast meat skewered on a stick!",
+        "variant": null
+      },
+      {
+        "tag": "Aquatic",
+        "text": "Of course cats eat fish~",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "I also like sweets~",
+        "variant": null
+      },
+      {
+        "tag": "Greasy",
+        "text": "Eww… how could it taste good without oil?",
+        "variant": null
+      },
+      {
+        "tag": "Meat",
+        "text": "I'm still growing. You can't grow without eating meat!",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Hermit  Sign \"Fenghuang Egg\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Randomly obtain three fish ingredients already recorded in the notebook. Occasionally gives rare ingredients. Wondering how the fish comes out of nowhere, and why the fish-loving Chen is willing them to you?... No use thinking about it."
+          }
+        ]
+      },
+      {
+        "name": "Direction Sign \"Kimontonkou\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Summon kittens that guests involuntarily want to pet, distracting guests. Reduces the chance of new guests arriving."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Rumia": {
+    "page": "Rumia",
+    "quotes": [
+      {
+        "tag": "Signature",
+        "text": "Do you have any specialty dishes?",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "Those dishes that humans think are strange sound tasty to me~",
+        "variant": null
+      },
+      {
+        "tag": "Meat",
+        "text": "FLESH FLESH FLESH~ I desire flesh~",
+        "variant": null
+      },
+      {
+        "tag": "Raw",
+        "text": "Isn't the freshest way to eat something just to eat it raw?",
+        "variant": null
+      },
+      {
+        "tag": "Filling",
+        "text": "I can't go on without a full stomach~",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Moon Sign \"Moonlight Ray\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Randomly obtain three meat ingredients already recorded in the notebook. Wondering how moonlight generates mystery meats, and why the meat-loving Rumia is willing them to you?... You'll fry your small bird brain."
+          }
+        ]
+      },
+      {
+        "name": "Darkness Sign \"Demarcation\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Releases darkness in the kitchen, making it impossible to tell where’s what, including the beverage rack. Lasts 20 seconds."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Hieda no Akyuu": {
+    "page": "Hieda no Akyuu",
+    "quotes": [
+      {
+        "tag": "Soup",
+        "text": "*cough* *cough* I'm not feeling too well today. Do you have any easily digestible soups?",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "As the head of the Hieda family, I have to constantly monitor my behavior and maintain my status. The food I eat has to match my noble status.",
+        "variant": null
+      },
+      {
+        "tag": "Cultural Heritage",
+        "text": "There are cultures buried in cuisines too. It's actually not that different from what I do.",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "The Hieda family is a traditional Japanese family.",
+        "variant": null
+      },
+      {
+        "tag": "Mild",
+        "text": "The key to a long and healthy life is to eat mild food…",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Eating too many sweets is not good for your health *cough* but it shouldn't be too bad if have [sic] them once in a while...",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Writing \"Is This All The Work Of Youkai Too?\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Obtain a signed washi by the famous novelist. You can exchange it for something special!"
+          },
+          {
+            "type": "p",
+            "text": "(Washi are used to complete Looking for Miss Akyuu's Signed Washi tasks, and serve no purpose outside of them.)"
+          }
+        ]
+      },
+      {
+        "name": "Symposium \"Unscrupulous Restaurant's Dark History\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Akyuu will expose one of izakaya's disheartening history, forcing the izakaya's atmosphere to drop to zero. Every guest in the izakaya will be depressed upon hearing this as well."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Keine Kamishirasawa": {
+    "page": "Keine Kamishirasawa",
+    "quotes": [
+      {
+        "tag": "Chinese",
+        "text": "I wonder what kind of history Chinese cuisines carry?",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "What history lies beneath Japanese cuisines?",
+        "variant": null
+      },
+      {
+        "tag": "Vegetarian",
+        "text": "Your body will feel great when you eat some vegetables.",
+        "variant": null
+      },
+      {
+        "tag": "Mild",
+        "text": "I've been acquiring a taste for mild foods recently...",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "You don't need to be fancy, just some day-to-day home-cooked dishes are fine.",
+        "variant": null
+      },
+      {
+        "tag": "Cultural Heritage",
+        "text": "History and culture go hand in hand.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Land Sign \"Three Sacred Treasures\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "h",
+            "text": "Three Sacred Treasures - Sword"
+          },
+          {
+            "type": "p",
+            "text": "Randomly obtain two kinds of vegetables."
+          },
+          {
+            "type": "h",
+            "text": "Three Sacred Treasures - Mirror"
+          },
+          {
+            "type": "p",
+            "text": "For the next 15 seconds, new dishes will not cost any ingredients."
+          },
+          {
+            "type": "h",
+            "text": "Three Sacred Treasures - Orb"
+          },
+          {
+            "type": "p",
+            "text": "Opens up the lock to the heart. Randomly reveal a special guest's unknown secret. Assuming they still have unknown secrets left, that is."
+          },
+          {
+            "type": "p",
+            "text": "(Reveals a randomly chosen like/dislike of a Rare Customer that the player has not yet discovered. The revealed preference is added to the Album.)"
+          },
+          {
+            "type": "h",
+            "text": "Three Sacred Treasures - Country"
+          },
+          {
+            "type": "p",
+            "text": "Keine-sensei has seen enough. She is satisfied. She will personally promote your izakaya, attracting many villagers to come and dine."
+          },
+          {
+            "type": "p",
+            "text": "--Isn't it common sense for three sacred treasures to have four pieces?"
+          },
+          {
+            "type": "p",
+            "text": "(Summons 20 guests over 5 seconds.)"
+          }
+        ]
+      },
+      {
+        "name": "Land Sign \"Secret Skill - Headbutt\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Kamishirasawa Homing Headbutt! You will be stunned by Keine-sensei's headbutt for 20 seconds. Smash the movement keys to recover sooner."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Kasen Ibaraki": {
+    "page": "Kasen Ibaraki",
+    "quotes": [
+      {
+        "tag": "Cultural Heritage",
+        "text": "Hermits never merely pursue tastes. The culture behind each dish is also very important.",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "Japanese foods are frequently favored by hermits.",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "Not all hermits are pretentious... There's something unique and unmatched about home-cooked food, too.",
+        "variant": null
+      },
+      {
+        "tag": "Good with Alcohol",
+        "text": "You can't just have alcohol by itself! Some matching dishes have to go with it.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Artistic Expressions For Fierce Beasts\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Kasen has seen enough. She's satisfied. She asks her pet tiger to perform for her, but you are the one who gets the tips...! Every once in a while, all guests dining and waiting in line will tip you a random amount between 1-30 yen."
+          }
+        ]
+      },
+      {
+        "name": "\"Karma Meditation Training For Mortal Desires\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "All the guests will be forced to train like a hermit! They lose all mortal desires and will only order the cheapest food and green tea for the next 30 seconds."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Reimu Hakurei": {
+    "page": "Reimu Hakurei",
+    "quotes": [
+      {
+        "tag": "Sweet",
+        "text": "Sugar used to be a rare commodity. It's great that it's plentiful nowadays~",
+        "variant": null
+      },
+      {
+        "tag": "Filling",
+        "text": "I don't plan on going home with a half-empty stomach...",
+        "variant": null
+      },
+      {
+        "tag": "Economical",
+        "text": "I can't afford anything expensive!",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "Is there any dish worthy of my title?",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "I want something premium! Ah, but I have to be able to afford it first...",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Dream Sign \"Duplex Barrier\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Create a protective barrier, which can completely negate the next special guest's Punishment Spell Card."
+          }
+        ]
+      },
+      {
+        "name": "Spirit Sign \"Fantasy Seal\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Attacks you with three explosive seals, which will disable three random dishes on your menu. You cannot make those three dishes for the next 30 seconds."
+          },
+          {
+            "type": "p",
+            "text": "(Actual length is 20 seconds.)"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Suika Ibuki": {
+    "page": "Suika Ibuki",
+    "quotes": [
+      {
+        "tag": "Meat",
+        "text": "It's an oni's style to go all out! Havin' a mouthful of meat and wine is the way to go!",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "When ya mention oni, don't Japanese folktales come to mind~?",
+        "variant": null
+      },
+      {
+        "tag": "Good with Alcohol",
+        "text": "*hic*~ It would be great if I had somethin' to go along with my alcohol~",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "The power of us oni are off the scale~",
+        "variant": null
+      },
+      {
+        "tag": "Small Portion",
+        "text": "I can divide myself into many mini-Suika. Is there anythin' suitable for my ability~",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Shuten Ultimate \"Oni's Drinking Invitation\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "A lovely mini-Suika will give you a bottle of alcohol. Occasionally will give you something ultra rare! Why does Suika give you her favourite liquor? Liquor's better when everyone's together!"
+          }
+        ]
+      },
+      {
+        "name": "\"Night Parade of a Million Demons\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Three lovely mini-Suika will appear and steal three bottles of your most expensive alcohol. How could something so cute commit something so horrific?"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Tenshi Hinanawi": {
+    "page": "Tenshi Hinanawi",
+    "quotes": [
+      {
+        "tag": "Vegetarian",
+        "text": "Eww. . . Get anything smelly as far away from me as possible!",
+        "variant": null
+      },
+      {
+        "tag": "Mild",
+        "text": "Only a peasant would like something with a strong flavor!",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "It's physically impossible for anyone to dislike sweet food~",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "Don't even bother serving me ugly-looking peasant dishes!",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "Legendary cuisines. Never mind, I don't think your small run-down izakaya has them.",
+        "variant": null
+      },
+      {
+        "tag": "Expensive",
+        "text": "Give me the most expensive thing you got! Shut up and take my money!",
+        "variant": null
+      },
+      {
+        "tag": "Fruity",
+        "text": "Fresh fruits. Does your small izakaya even carry them?",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Sky of Scarlet Perception of All Humankind\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Releases celestial power from Heaven! Will skyrocket every dining guests satisfaction level to 85%."
+          }
+        ]
+      },
+      {
+        "name": "\"Pillars of Divine Punishment\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Summon a danmaku keystone from the sky and destroy a dining table, scaring off whoever is eating there. This dining table must be repaired, and you can't host new guests at that damaged table for the next 60 seconds."
+          },
+          {
+            "type": "p",
+            "text": "(Actually seals two tables. This is true for all izakaya tiers.)"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Hong Meiling": {
+    "page": "Hong Meiling",
+    "quotes": [
+      {
+        "tag": "Chinese",
+        "text": "I can't forget my country's flavors even in a foreign land.",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "Is there a dish that boosts power just like in manga?",
+        "variant": null
+      },
+      {
+        "tag": "Meat",
+        "text": "Nothing is more substantial than meat!",
+        "variant": null
+      },
+      {
+        "tag": "Filling",
+        "text": "I have to be full to do my best.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Flower Sign \"Gorgeous Sweet Flower\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Meiling couldn't wait to express her excitement anymore! She will perform circus tricks for the next 60 seconds, increasing the atmosphere by 1 point every 2 seconds."
+          }
+        ]
+      },
+      {
+        "name": "\"NOver say no to pOnda\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Summon an angry panda and destroy a dining table. If there is anyone dining at that table, they won't be anymore. Decrease atmosphere points by 10, and make the table unusuable for the next 90 seconds. Call an emergency repair!"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Cirno": {
+    "page": "Cirno",
+    "quotes": [
+      {
+        "tag": "Refreshing",
+        "text": "Of course an ice fairy needs to eat ice!",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Sweet things puts [sic] everyone in a happy mood~",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "I don't wanna eat anything ugly!",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "A true warrior is always brave enough to try out unusual and weird things!",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Sweet Ice Fairy\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Randomly obtain three common drinks with \"chillable\" tag and 2-5 ice cubes."
+          }
+        ]
+      },
+      {
+        "name": "Freeze Sign \"Perfect Freeze\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Randomly Freezes 3 kitchenwares. If you have unfinished dishes in those kitchenwares, they will be frozen and shattered. Lasts 30 seconds."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Patchouli Knowledge": {
+    "page": "Patchouli Knowledge",
+    "quotes": [
+      {
+        "tag": "Western",
+        "text": "Can your bird-brain even comprehend the cultural differences between different culinary styles?",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Sweetness is a feeling that can seep through one's heart.",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "A delicately crafted cuisine can make people drool even as a picture in the book.",
+        "variant": null
+      },
+      {
+        "tag": "Dreamy",
+        "text": "Hmm. I really want to witness the reality-like dream induced through nothing more than a dish.",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "Practice makes perfect, and premium products require great skill. This is true for both chefs and magicians.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Knowledge Bizzare Adventure \"Cultural Atmosphere\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 30 seconds, all dishes with the \"Cultural Background\" tag will receive the highest rating."
+          },
+          {
+            "type": "p",
+            "text": "(This overrides every other rating system. Common Customers will give orange ratings even if the dish is not what they ordered, and Rare Customers always give pink ratings regardless of requested tags. Drinks are ignored for rating entirely.)"
+          }
+        ]
+      },
+      {
+        "name": "Metal & Water Sign \"Mercury Poison\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 30 seconds, all dishes have a 50% chance of becoming Dark Matter."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Fujiwara no Mokou": {
+    "page": "Fujiwara no Mokou",
+    "quotes": [
+      {
+        "tag": "Hot",
+        "text": "The immortal smoke floating atop the Youkai Mountain, even without a flame, one can feel its heat.",
+        "variant": null
+      },
+      {
+        "tag": "Aura-Bursting",
+        "text": "The rebirthing phoenix always has a bursting aura that can never be extinguished!",
+        "variant": null
+      },
+      {
+        "tag": "Spicy",
+        "text": "Spiciness is one of the only things that can make me feel alive.",
+        "variant": null
+      },
+      {
+        "tag": "Fruity",
+        "text": "Fruits offer both liquid and food. They are truly gifts from the heavens.",
+        "variant": null
+      },
+      {
+        "tag": "Grilled",
+        "text": "I'm pretty good at grilling meat myself, actually.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Undying \"Fire Bird -Feng Wing Ascension-\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Mokou releases flames that increase the temperatures of all kitchenware, enhancing their efficiency. (Don't ask me how that works on the cutting board. It just works, OK?) For the next 20 seconds, dishes can be completed 50% faster."
+          },
+          {
+            "type": "p",
+            "text": "(Recipes are actually completed twice as fast as they normally would be: the cooking time is 50% as such.)"
+          }
+        ]
+      },
+      {
+        "name": "Fujiwara \"Wounds of Metsuzai Temple\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 30 seconds, it doesn't matter how good the dishes are, guests will only give at most a \"fair\" rating."
+          },
+          {
+            "type": "p",
+            "text": "(All [https://touhou-mystias-izakaya.fandom.com/wiki/Customers?so=search#The_Rating_System ratings] are capped at green while this effect is active.)"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Kaguya Houraisan": {
+    "page": "Kaguya Houraisan",
+    "quotes": [
+      {
+        "tag": "Japanese",
+        "text": "I'm actually very interested in the Japanese concept of an \"Ideal Woman\".",
+        "variant": null
+      },
+      {
+        "tag": "Cultural Heritage",
+        "text": "Even when history and culture never last for me, they are still part of the undeniable past.",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "Actually, most legends and folklore on Earth were created and spread by residents of the Moon.",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "I find it hard to believe that this corrupted yet free land never ceases to amaze me.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"End of Imperishable Night -Rising World-\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Turn back time and increase operation hours by 30 seconds."
+          },
+          {
+            "type": "p",
+            "text": "(Does not reopen the Izakaya past closing hours.)"
+          }
+        ]
+      },
+      {
+        "name": "Divine Treasure \"Jeweled Branch of Hourai -Dreamlike Paradise-\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Fast forward time and decrease operation hours by 30 seconds. Will forcibly end operations if it reaches midnight."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Tewi Inaba": {
+    "page": "Tewi Inaba",
+    "quotes": [
+      {
+        "tag": "Dreamy",
+        "text": "Heh~ reality is actually harder to reach than a dream-like fantasy~",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "All the Inaba love to sing about the legendary man while making rice cakes.",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Doesn't sweetness come to mind when you discuss rabbits? Ah, I'm not referring to the taste.",
+        "variant": null
+      },
+      {
+        "tag": "Refreshing",
+        "text": "We rabbits have thick fur, so we actually lose our appetite if we overheat.",
+        "variant": null
+      },
+      {
+        "tag": "Small Portion",
+        "text": "For rabbits, even a tiny bit is enough to completely stuff us full!",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Vitality \"Luck From The Forty-Leaves Clover\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "All ingredient collection points' cooldown are instantly refreshed, and give you 1-2 extra ingredients when you collect them the next day."
+          }
+        ]
+      },
+      {
+        "name": "Memory \"Remember That Year's Rabbit Horror\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "You \"were\" a good kid, but it seems necessary to mark fear in your DNA once more. Activates forced sale again. If you refuse, she will activate another punishment spell card."
+          },
+          {
+            "type": "li",
+            "text": "Tewi randomly offers three bundles of items for sale; these are typically rare ingredients, such as Udumbara or Lunar Herb. The price is significantly higher than usual, though it is then lowered based on her satisfaction. If nothing were bought, the follow-up punishment card will be triggered."
+          },
+          {
+            "type": "li",
+            "text": "Rarely, Reisen will be one of the options instead, an \"ingredient\" at a static price of 530,000円. Buying Reisen does not grant access to the actual Reisen as a partner early, but instead sets the Partner Salary of every character to 0%. This effect is permanent and takes place from that night onwards."
+          },
+          {
+            "type": "li",
+            "text": "In addition to the typical triggerings of a punishment spellcard, at the end of each of Tewi's uninvited visits before 3/14, this effect is triggered via dialogue (instead of a spellcard) regardless of the quality of service."
+          },
+          {
+            "type": "h",
+            "text": "Trick \"Combo Disappearance Jutsu\" (Follow-up)"
+          },
+          {
+            "type": "p",
+            "text": "Reset your Combo, and prevents you from accumulating new Combo for the next 30 seconds."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Marisa Kirisame": {
+    "page": "Marisa Kirisame",
+    "quotes": [
+      {
+        "tag": "Japanese",
+        "text": "Japanese food is like bread to me. I can remember every single time I've eaten it!",
+        "variant": null
+      },
+      {
+        "tag": "Hot",
+        "text": "The heat from my mini-hakkero pumps me up every time when I'm about to launch a spell card!",
+        "variant": null
+      },
+      {
+        "tag": "Greasy",
+        "text": "Bland is never an option! You've gotta add some oil!",
+        "variant": null
+      },
+      {
+        "tag": "Fungus",
+        "text": "It's impossible to be tired of mushrooms!",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "The older an item gets, the more legendary it becomes~",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Shooting Star \"Super Perseid\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Randomly obtain three mushroom ingredients. Occasionally will give you something rare! Wondering why stars create mushrooms, and why the mushroom-loving Marisa is willing them to you?... You'll be unhappy."
+          },
+          {
+            "type": "p",
+            "text": "(Currently, the only mushroom ingredients are Mushroom and Truffle. Odds are roughly 50-50 between the two, slightly skewed towards Mushrooms.)"
+          }
+        ]
+      },
+      {
+        "name": "Magic Spell \"I'll Take That!\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Randomly steal two items. These could be completed dishes, ingredients, or beverages. You don't even have time to cry before Marisa took off with something valuable. Oh, did I mention she doesn't pay the bill when she leaves this way? She denies this as stealing, saying she'll give them back when she dies!"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Alice": {
+    "page": "Alice",
+    "quotes": [
+      {
+        "tag": "Homecooking",
+        "text": "Even when the path of a magician is lonely, I still occasionally miss the taste of home.",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "I really can't stand low-class food.",
+        "variant": null
+      },
+      {
+        "tag": "Western",
+        "text": "Of course magicians prefer Western style cuisines.",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "I occasionally dream of sleeping in a house made of chocolate and candy.",
+        "variant": null
+      },
+      {
+        "tag": "Cultural Heritage",
+        "text": "The history behind food and magic are equally mysterious.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Waltz Between Children & Dolls\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Alice's dolls will transform into guests and fill all remaining empty seats."
+          },
+          {
+            "type": "p",
+            "text": "(Guests are freely chosen from all common guest types: this is also the only way to gain the Common Customer album entry for Goblins, who are otherwise unused and do not spawn naturally. As guests spawn directly into the seats, this effect works even after closing hours.)"
+          }
+        ]
+      },
+      {
+        "name": "Magic Sign \"Artful Sacrifice\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Throw a magical vial at the kitchen and blow up a random kitchenware. It takes 60 seconds to repair it."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Narumi Yatadera": {
+    "page": "Narumi Yatadera",
+    "quotes": [
+      {
+        "tag": "Mild",
+        "text": "I'm still a Jizo, so I should probably have something mild once in a while.",
+        "variant": null
+      },
+      {
+        "tag": "Mountain Delicacy",
+        "text": "I don't need to save the beasts wandering in the mountain, you know?",
+        "variant": null
+      },
+      {
+        "tag": "Cultural Heritage",
+        "text": "The culture behind each dish may be as complex as Buddhist scriptures.",
+        "variant": null
+      },
+      {
+        "tag": "Specialty",
+        "text": "I want to try specialty dishes from everywhere, but I'm too lazy to go find them.",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "When I was still a Jizo statue, the Japanese style was the only one around.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Magic Sign \"Instand Bodhi\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 60 seconds, guests will pay 50% more tips at checkout."
+          }
+        ]
+      },
+      {
+        "name": "Jizo \"Hellfire Salvation\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Summon Karmic fires that burn three random buffs, removing them and ending their effects."
+          },
+          {
+            "type": "p",
+            "text": "(Can erase any buff, including Izakaya Items and Sparrow Tune rewards. Izakaya Item buffs are lost until the end of the night.)"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Nitori Kawashiro": {
+    "page": "Nitori Kawashiro",
+    "quotes": [
+      {
+        "tag": "Peculiar",
+        "text": "Humans definitely can't understand the tastes of us kappa. . . well, maybe a few can.",
+        "variant": null
+      },
+      {
+        "tag": "Aquatic",
+        "text": "Kappas are the masters of water amongst the youkai, so it's natural we get our food from the water.",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "Come on! Entertain us kappa! Show me your most premium dishes!",
+        "variant": null
+      },
+      {
+        "tag": "Good with Alcohol",
+        "text": "Drinking alcohol without something to go with it is just—",
+        "variant": null
+      },
+      {
+        "tag": "Salty",
+        "text": "Kappa need more salty food to regain our strength.",
+        "variant": null
+      },
+      {
+        "tag": "Signature",
+        "text": "Only the most famous dishes can be called a \"Signature Dish\"!",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Kappa \"Exteeeending Aaaaarm\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 120 seconds, partners can serve food and drinks remotely using kappa tech \"Extending Arm.\""
+          },
+          {
+            "type": "li",
+            "text": "Waitresses and Drink Servers now throw food and drink respectively. This effect works similarly to Mystia's own throwing buff."
+          }
+        ]
+      },
+      {
+        "name": "Water Sign \"Kappa's Flash Flood\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Summons a flood, washing away 3-5 random guests dining at the izakaya."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Momiji Inubashiri": {
+    "page": "Momiji Inubashiri",
+    "quotes": [
+      {
+        "tag": "Meat",
+        "text": "Wolves, even when they are youkai, will never stop loving meat.",
+        "variant": null
+      },
+      {
+        "tag": "Mountain Delicacy",
+        "text": "As the saying goes, if you live on the mountain, then you rely on the mountain.",
+        "variant": null
+      },
+      {
+        "tag": "Greasy",
+        "text": "I really don't like mild food. An unhealthy diet is just right for me.",
+        "variant": null
+      },
+      {
+        "tag": "Large Portion",
+        "text": "I need to eat a lot to make up for calories lost patrolling the mountain today.",
+        "variant": null
+      },
+      {
+        "tag": "Good w/ Alcohol",
+        "text": "Alcohol is the main protagonist. Everything else is only a foil for it.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Tengu Routine Sips",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "A lot of white wolf tengus will come and dine for a short period of time."
+          },
+          {
+            "type": "p",
+            "text": "(Summoned tengu are ordinary White Wolf Tengu customers, sharing the exact same preferences. If the restaurant is past closing hours, they will not spawn."
+          }
+        ]
+      },
+      {
+        "name": "Marital Law",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Blocks the path to the izakaya and forbids any new guests from coming in for the next 30 seconds."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Sanae Kochiya": {
+    "page": "Sanae Kochiya",
+    "quotes": [
+      {
+        "tag": "Japanese",
+        "text": "When it comes to Japanese traditions, the Yamato-style has to be the most iconic!",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "If you've never tasted delicious sweets, then you are missing out~",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "Oh, it seems cellphones aren't completely useless in Gensokyo~",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "I will call a place home as long as my two gods are there with me.",
+        "variant": null
+      },
+      {
+        "tag": "Dreamy",
+        "text": "Girls can never resist things that are as beautiful as a dream~",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Divine Virtue \"Bumper Crop Rice Shower\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Invoke the power of miracles and generate three drinks and three ingredients."
+          }
+        ]
+      },
+      {
+        "name": "Miracle \"Daytime Guest Stars\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Sanae releases a pentagram, putting you in a sealed state that blocks all buffs for the next 30 seconds."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Yamame Kurodani": {
+    "page": "Yamame Kurodani",
+    "quotes": [
+      {
+        "tag": "Sweet",
+        "text": "Life is full of sweetness and delights.",
+        "variant": null
+      },
+      {
+        "tag": "Fresh",
+        "text": "Of course savory dishes taste the best!",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "Do ordinary people think the food we prefer is weird?",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "I'm snapping photos of nice-looking food to share with the other spiders back home~",
+        "variant": null
+      },
+      {
+        "tag": "Raw",
+        "text": "I can't get used to food that's been cooked for too long.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Underground Idol's Party Night\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 30 seconds, queuing guests will be attracted by the idol, they won't leave even if business ends."
+          }
+        ]
+      },
+      {
+        "name": "Small Thread \"Kandata's Rope\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "You're tangled in Yamame's web! Movement speed decreased by 80%, lasts for 30 seconds."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Parsee Mizuhashi": {
+    "page": "Parsee Mizuhashi",
+    "quotes": [
+      {
+        "tag": "Sour",
+        "text": "The taste of jealousy is sour.",
+        "variant": null
+      },
+      {
+        "tag": "Salty",
+        "text": "The taste of tears is salty.",
+        "variant": null
+      },
+      {
+        "tag": "Spicy",
+        "text": "The taste of rage is spicy.",
+        "variant": null
+      },
+      {
+        "tag": "Fresh",
+        "text": "I can't stand other customers having food more savory than mine!",
+        "variant": null
+      },
+      {
+        "tag": "Fruity",
+        "text": "A dejected heart can be soothed with fruits.",
+        "variant": null
+      },
+      {
+        "tag": "Meat",
+        "text": "I'll place a curse on you if you don't give me meat.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Jealousy and Overdraft\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Parsee stokes the jealousy of all current guests, increasing their budgets to the same as the richest customer present."
+          },
+          {
+            "type": "p",
+            "text": "(Applies to every guest in the area, whether seated or in line. Does not decay.)"
+          }
+        ]
+      },
+      {
+        "name": "Malice Sign \"Shrine Visit in the Dead of Night\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Upon the Spell Card's declaration, your partners become extremely jealous of profits not being shared with them, causing their salaries for the day to be doubled."
+          },
+          {
+            "type": "p",
+            "text": "(If the player has salaries entirely removed due to owning a certain item, they will pay the original salary which would have been given.)"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Yuugi Hoshiguma": {
+    "page": "Yuugi Hoshiguma",
+    "quotes": [
+      {
+        "tag": "Good with Alcohol",
+        "text": "Just gimme a dish that'll go well with sake!",
+        "variant": null
+      },
+      {
+        "tag": "Signature",
+        "text": "Lemme try your signature dish, birdie~",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "How are people spreadin' legends about us oni these days?",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "Don'tcha think the Japanese style really suits this street~",
+        "variant": null
+      },
+      {
+        "tag": "Large Portion",
+        "text": "I’m ready to eat till I pop!",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "Oni with no strength will just be chewed and spit out.",
+        "variant": null
+      },
+      {
+        "tag": "Aura-Bursting",
+        "text": "Let my blood boil!",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"From Song to Dance\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Uses the Hoshiguma Dish to level up a set amount of beverages."
+          },
+          {
+            "type": "li",
+            "text": "Max chance to level up 3 Lv1 beverages."
+          },
+          {
+            "type": "li",
+            "text": "75% chance to level up 2 Lv2 beverages."
+          },
+          {
+            "type": "li",
+            "text": "50% chance to level up 1 Lv3 beverage."
+          }
+        ]
+      },
+      {
+        "name": "Big Four Arcanum \"Knock Out in Three Steps\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yuugi creates three zones, limiting your movement. Lasts for 60 seconds."
+          },
+          {
+            "type": "li",
+            "text": "First Step: Safe zone"
+          },
+          {
+            "type": "li",
+            "text": "Second Step - Sinner's Shackles: Movement speed decreased by 50% when inside the zone"
+          },
+          {
+            "type": "li",
+            "text": "Third Step - Spirits and Anomalies: Entering this zone will immediately stun you for 30 seconds"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Satori Komeiji": {
+    "page": "Satori Komeiji",
+    "quotes": [
+      {
+        "tag": "Homecooking",
+        "text": "Home-cooked dishes are also one of the many flavors in life.",
+        "variant": null
+      },
+      {
+        "tag": "Small Portion",
+        "text": "Eating too much will hinder my train of thought.",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Life needs to be a little more sweet.",
+        "variant": null
+      },
+      {
+        "tag": "Dreamy",
+        "text": "The finest cuisine is akin to a waking dream.",
+        "variant": null
+      },
+      {
+        "tag": "Specialty",
+        "text": "Food can shorten the gap between people of different homelands.",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "I hope this meal can give me the strength to continue working.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Recollection \"Happy Memory\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Activates a random Reward Spell Card from a rare customer that has already been unlocked (excluding Satori herself)."
+          }
+        ]
+      },
+      {
+        "name": "Recollection \"Unhappy Memory\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Activates a random Punishment Spell Card from a rare customer that has already been unlocked (excluding Satori herself)."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Rin Kaenbyou": {
+    "page": "Rin Kaenbyou",
+    "quotes": [
+      {
+        "tag": "Fresh",
+        "text": "Bacteria grows on rotten food, so fresh food is better.",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Sweet food is the simplest way to get a gourmet experience~",
+        "variant": null
+      },
+      {
+        "tag": "Aquatic",
+        "text": "I'm so clever because I love eating fish.",
+        "variant": null
+      },
+      {
+        "tag": "Sea Delicacy",
+        "text": "The Underworld and the seabed are actually connected right? [sic]",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "Sometimes cats find strange things even more exciting!",
+        "variant": null
+      },
+      {
+        "tag": "Dreamy",
+        "text": "How I wish to return to the garden of my dreams.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Cat Sign \"Cat's Walk\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 30 seconds, serving beverages tagged with \"Mid Alcohol\" will result in the best rating."
+          },
+          {
+            "type": "p",
+            "text": "(This overrides every other rating system. Common Customers will give orange ratings even if the drink is not what they ordered, and Rare Customers always give pink ratings regardless of requested tags. Cuisines are ignored for rating entirely.)"
+          }
+        ]
+      },
+      {
+        "name": "\"Rekindling of Dead Ashes\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "When Orin leaves, a vengeful spirit will be left at her table which will continue to place orders based on Orin's preferences. Vengeful spirits cannot be kicked out, nor will they pay. They will only disappear once satisfied like a normal guest."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Utsuho Reiuji": {
+    "page": "Utsuho Reiuji",
+    "quotes": [
+      {
+        "tag": "Meat",
+        "text": "Meat is the source of strength, life would dwindle without it.",
+        "variant": null
+      },
+      {
+        "tag": "Spicy",
+        "text": "Doesn't spiciness just make your heart pound?",
+        "variant": null
+      },
+      {
+        "tag": "Salty",
+        "text": "Okuu salt replenishment program——activate!",
+        "variant": null
+      },
+      {
+        "tag": "Greasy",
+        "text": "How much oil you add is how hot the fire gets!",
+        "variant": null
+      },
+      {
+        "tag": "Hot",
+        "text": "I'm not afraid to try something even hotter than fire!",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "I've been feeling the power of my strength rising.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Hell's Tokamak\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 60 seconds, nuclear power overloads the boiling pot and steamer, allowing them to cook dishes instantly."
+          }
+        ]
+      },
+      {
+        "name": "Hell's Light \"Diffuse Hellfire\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "A nuclear explosion will occur the next time you fail to sing a perfect Sparrow Tune, disabling the kitchenware for the night. The explosion will also cause a portion of queuing customers to run for their lives."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Kogasa Tatara": {
+    "page": "Kogasa Tatara",
+    "quotes": [
+      {
+        "tag": "Homecooking",
+        "text": "Eating together as a family feels very cozy.",
+        "variant": null
+      },
+      {
+        "tag": "Filling",
+        "text": "I can't scare anyone so my stomach always feels empty...",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Sweet foods can bring people closer!",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "Good-looking food should taste good too, right?",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "I need more strength to scare humans!",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "Food that surprises you is pretty interesting, isn't it?",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "Wonder is also a feeling of surprise.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Rain Sign \"A Rainy Night's Ghost Story\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 30 seconds, dishes with the \"Peculiar\" tag cook 30% faster and provide an additional 30% chance for customers to order again."
+          },
+          {
+            "type": "p",
+            "text": "(Cooking time is actually reduced by 30%, meaning the true speed increase is approximately +43%. Cuisines already having the Peculiar tag, and Cuisines which gain it by adding extra ingredients both count.)"
+          }
+        ]
+      },
+      {
+        "name": "\"Jumbo Phantom Umbrella\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "An enlarged version of Kogasa's umbrella appears in the waiting area, scaring away every normal queueing customer."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Minamitsu Murasa": {
+    "page": "Minamitsu Murasa",
+    "quotes": [
+      {
+        "tag": "Meat",
+        "text": "I can eat meat if it follows the threefold rule.",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "Since I'm captain now, no one will bat an eye if I have a private kitchen with all the premium food, right?",
+        "variant": null
+      },
+      {
+        "tag": "Filling",
+        "text": "If I'm not full I can't even turn the rudders.",
+        "variant": null
+      },
+      {
+        "tag": "Salty",
+        "text": "Seawater and tears both taste salty.",
+        "variant": null
+      },
+      {
+        "tag": "Fresh",
+        "text": "The shelf life of food can't exceed an hour.",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "The feeling of strength as a geyser erupts is way too satisfying.",
+        "variant": null
+      },
+      {
+        "tag": "Specialty",
+        "text": "The journeys of mankind are how food comes across food.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Lingering Phantom of the Ship\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Gain the Ship Phantom Possession for 15 seconds. Reward spell cards gained while this buff is active (excluding this spell card) have their duration increased. The length of this extension is equal to this spell card's remaining duration when a new spell card is gained."
+          }
+        ]
+      },
+      {
+        "name": "Drowning Sign \"Deep Vortex\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "A vortex spins beneath you, causing you to faint. Unable to move for 5 seconds (speed up by moving). Then movement is reversed for the next 20 seconds."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Nue Houjuu": {
+    "page": "Nue Houjuu",
+    "quotes": [
+      {
+        "tag": "Meat",
+        "text": "Sutras can wait but not meat.",
+        "variant": null
+      },
+      {
+        "tag": "Fresh",
+        "text": "I've had enough rotten meat in the past, thank you very much.",
+        "variant": null
+      },
+      {
+        "tag": "Raw",
+        "text": "Eating raw might be primitive but it's really convenient.",
+        "variant": null
+      },
+      {
+        "tag": "Signature",
+        "text": "Even your best signature dish needs some change to be good.",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "When humans see me they can't stop snapping photos.",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "Actually humans are the animals that love hunting the most.",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "Being unidentified is wonderful.",
+        "variant": null
+      },
+      {
+        "tag": "Specialty",
+        "text": "Every place has its own unique dishes.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Delight \"Touhou RGB\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Spin the UFO wheel with a guaranteed prize, the result will be one of the following:"
+          },
+          {
+            "type": "p",
+            "text": "RRR: for the next 15 seconds, the highest rating will be given regardless of dish served;"
+          },
+          {
+            "type": "p",
+            "text": "GGG: for the next 15 seconds, ingredients and beverages will not be expended;"
+          },
+          {
+            "type": "p",
+            "text": "BBB: for the next 15 seconds, income is increased by 100%;"
+          },
+          {
+            "type": "p",
+            "text": "RGB: gain all three buffs at once"
+          }
+        ]
+      },
+      {
+        "name": "Disgust \"Touhou RRB\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Spin the wheel with a guaranteed miss, the result will be one of the following:"
+          },
+          {
+            "type": "p",
+            "text": "RRG: for the next 15 seconds, the lowest rating will be given regardless of dish served;"
+          },
+          {
+            "type": "p",
+            "text": "GGX: for the next 15 seconds, 3x the amount of ingredients and beverages will be expended;"
+          },
+          {
+            "type": "p",
+            "text": "BBX: for the next 15 seconds, income is decreased by 66%;"
+          },
+          {
+            "type": "p",
+            "text": "RRB: gain all three debuffs at once"
+          },
+          {
+            "type": "p",
+            "text": "(X refers to any color not part of of the two colors; for GGX, X is R or B; for BBX, X is R or G)"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Mononobe no Futo": {
+    "page": "Mononobe no Futo",
+    "quotes": [
+      {
+        "tag": "Premium",
+        "text": "Prefering premium items may be a habit from mine aristocrat days...",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "The crown prince I worship is a saint of legend.",
+        "variant": null
+      },
+      {
+        "tag": "Mild",
+        "text": "Nobles of mine times prefer milder foods.",
+        "variant": null
+      },
+      {
+        "tag": "Mountain Delicacy",
+        "text": "Taoist foods mostly consist of mountain delicacies with herbs as seasoning.",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "I am glad that the style of mine times still exist in current times.",
+        "variant": null
+      },
+      {
+        "tag": "Aura-Bursting",
+        "text": "Couldst dishes make one burst into flames?",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Saint Girl \"Sun Goddess's Sacrifice\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For 10 seconds after the spell card is declared, gain a beverage depending on the customer's rating. \"Regular\" ratings give level 1 beverages, \"satisfied\" ratings give level 2 beverages, \"perfect\" ratings give level 3 beverages."
+          },
+          {
+            "type": "p",
+            "text": "(The three ratings are green, orange and pink, respectively.)"
+          }
+        ]
+      },
+      {
+        "name": "Torch Passing \"Tray Basked in Flames\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For 30 seconds after the spell card is declared, only one tray may be used to serve customers. Items remaining in the disabled tray will be burned."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Seiga Kaku": {
+    "page": "Seiga Kaku",
+    "quotes": [
+      {
+        "tag": "Vegetarian",
+        "text": "Eating meat all the time is too unbecoming of a hermit.",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "My story is among human legends too.",
+        "variant": null
+      },
+      {
+        "tag": "Chinese",
+        "text": "My hometown is a place with Taoist hermits everywhere.",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Every sweet has its story~",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "I love meeting wonderful people~",
+        "variant": null
+      },
+      {
+        "tag": "Small Portion",
+        "text": "Midnight snacks should have small rather than large portions.",
+        "variant": null
+      },
+      {
+        "tag": "Specialty",
+        "text": "A small shop serving food from all around the world, how convenient.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Wicked Arts \"No Walls Beneath Heaven\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For 30 seconds, partners can move through customers or obstacles within the izakaya."
+          }
+        ]
+      },
+      {
+        "name": "Demonify \"Zouhuo Rumo\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 30 seconds, rare customers are demonified. Every payment they make, regardless of rating, has a 30% chance to unleash a punishment spell card. If they were originally going to unleash one, they unleash it an additional time."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Soga no Tojiko": {
+    "page": "Soga no Tojiko",
+    "quotes": [
+      {
+        "tag": "Homecooking",
+        "text": "In all my years standing guard, home-cooking is what I miss most.",
+        "variant": null
+      },
+      {
+        "tag": "Greasy",
+        "text": "I can eat all the unhealthy and greasy foods I want now that I'm a ghost~",
+        "variant": null
+      },
+      {
+        "tag": "Filling",
+        "text": "If you can't store it in your head, store it in your stomach.",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "I guess having what I had before every once in a while is fine.",
+        "variant": null
+      },
+      {
+        "tag": "Signature",
+        "text": "You can tell apart shops by their signature dish.",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "Summoning thunder gives me a boost of strength.",
+        "variant": null
+      },
+      {
+        "tag": "Grilled",
+        "text": "I want food that looks like it was struck by thunder.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Thunder's Shadow \"Lighting Speed\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Boosted by lightning, you and all your partners' movement speeds are increased by 30%!"
+          }
+        ]
+      },
+      {
+        "name": "Retribution \"Heavenly Thunder Strike\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "The next time you fail to sing perfectly, heavenly thunder will strike and stun a partner for 30 seconds."
+          },
+          {
+            "type": "p",
+            "text": "(Easter Egg: If this thunder strikes Aunn, she will not be stun by it, instead showing the text \"Not Effective\")"
+          },
+          {
+            "type": "p",
+            "text": "(Easter Egg 2: If this thunder strikes Hina, the strike will be deflected by her misfortune and stunning another partner instead if possible.\")"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Aya Shameimaru": {
+    "page": "Aya Shameimaru",
+    "quotes": [
+      {
+        "tag": "Meat",
+        "text": "A tengu always eats meat first and foremost.",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "People flock to this place",
+        "variant": null
+      },
+      {
+        "tag": "Good with Alcohol",
+        "text": "Having nothing to go with alcohol can feel lacking sometimes.~",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "Did you know that tengu are some of the most fearsome youkai in Japanese folklore?",
+        "variant": null
+      },
+      {
+        "tag": "Signature",
+        "text": "Signature dishes are simply tried-and-true advertisements",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "I wonder if anything here's worthy of my camera~",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Crossroads of Trends Taking Gensokyo by Storm\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Word of the shop spreads through the news. The izakaya will become a famous shop tomorrow. Returns to normal in 3 days."
+          },
+          {
+            "type": "p",
+            "text": "Famous Shop: increase guest budget by 10% and guest traffic by 5%, \"signature [sic]\" will become a trending tag."
+          },
+          {
+            "type": "p",
+            "text": "If the izakaya is already a famous shop, or word had already spread that night, this spell card turns into..."
+          }
+        ]
+      },
+      {
+        "name": "\"Peerless Chef of the Izakaya\" (Reward Alt.)",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "All dishes with the \"signature [sic]\" tag on today's menu will become famous (Trend - Popular) dishes."
+          },
+          {
+            "type": "p",
+            "text": "When cooking a famous dish, finish it instantly if cook time is less than 5 seconds;"
+          },
+          {
+            "type": "p",
+            "text": "Guests who like the tag have an additional have an additional 30% chance to make follow-up orders when consuming a famous dish, regain budget equivalent to the drink in their order, and have a 100% chance to increase their follow-up order limit by 1. Lasts 30 seconds."
+          }
+        ]
+      },
+      {
+        "name": "\"Forbidden Technique of the Pen\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Kick off a tornado which attacks the izakaya. Toss-serving is disabled for the next 30 seconds."
+          },
+          {
+            "type": "p",
+            "text": "Also criticize the izakaya on the Bunbunmaru Newspaper, causing the famous shop bonus to disappear tomorrow."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Medicine Melancholy": {
+    "page": "Medicine Melancholy",
+    "quotes": [
+      {
+        "tag": "Sweet",
+        "text": "The basic taste of poison is sweetness.",
+        "variant": null
+      },
+      {
+        "tag": "Signature",
+        "text": "I'm not sure... can you recommend me some signature dishes?",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "Lily says beautiful dishes are very photogenic, like me.",
+        "variant": null
+      },
+      {
+        "tag": "Refreshing",
+        "text": "Dolls and heat do not go well.",
+        "variant": null
+      },
+      {
+        "tag": "Fungus",
+        "text": "Most people think of those things that grow rapidly in the forest when you mention poison.",
+        "variant": null
+      },
+      {
+        "tag": "Small Portion",
+        "text": "Small things like Lily are cute, right?",
+        "variant": null
+      },
+      {
+        "tag": "Dreamy",
+        "text": "Humans intentionally poison themselves to seek enthralling experiences.",
+        "variant": null
+      },
+      {
+        "tag": "Poison",
+        "text": "Poisons are the best seasoning.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Analysis \"Toxin Neutralization\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Removes the Withering garden [sic] status effect (see punishment card for details);"
+          },
+          {
+            "type": "p",
+            "text": "Medicine manipulates all the possibly harmful substances in a dish, making tags not conflict with each other while cooking. Lasts for 30 seconds and immediately gives a drink with the \"mid alcohol [sic]\" tag [sic]"
+          }
+        ]
+      },
+      {
+        "name": "Convalla \"Withering garden [sic]\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Removes the Toxin Neutralization status effect (see reward card for details);"
+          },
+          {
+            "type": "p",
+            "text": "The melancholic poison [sic] tag is added when cooking dishes. Guests who consume this tag will not make follow-up orders. Lasts 30 seconds."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Yuuka Kazami": {
+    "page": "Yuuka Kazami",
+    "quotes": [
+      {
+        "tag": "Premium",
+        "text": "The language of flowers is much more allusive than that of humans, and much more refined.",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "Behind every flower lies a meaning passed down by our forebears",
+        "variant": null
+      },
+      {
+        "tag": "Mild",
+        "text": "Do not touch flowers with greasy hands.",
+        "variant": null
+      },
+      {
+        "tag": "Western",
+        "text": "I'm rather fond of society's pursuit of gentlemanly poise.",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "In the language of flowers, the violet hoary stock symbolizes...",
+        "variant": null
+      },
+      {
+        "tag": "Dreamy",
+        "text": "In the language of flowers, the blue baby's breath symbolizes...",
+        "variant": null
+      },
+      {
+        "tag": "Specialty",
+        "text": "Flowers unable to leave their place of birth eventually become a local specialty.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Fragrant Beauties of Nature",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yuuka plants a flower on the field and uses her ability to make it grow. Plant an additional flower when her mood reaches maximum. Each flower produces 25 in tips in 24 seconds."
+          },
+          {
+            "type": "p",
+            "text": "When a rare guest aside from Yuuka activates a reward spell card, a random flower will absorb the power of this spell card and bloom, attracting rare guests that appear in the area to pay the izakaya a visit. Rare guests attracted by the flower will pick the flower. While a flower is in bloom, guests gain an additional 15 mood after eating. The flower will wither after 15 seconds and be converted into 1 Cloth of Fallen Petals : Able to nullify combo-ending mistakes."
+          },
+          {
+            "type": "p",
+            "text": "(After a flower enters a \"blooming\" state, a rare customer that can naturally spawn in the area will appear, taking the flower and activating the Road of Flowers effect. Once this expires, the player gains 1 stack of Cloth of Fallen Petals.)"
+          }
+        ]
+      },
+      {
+        "name": "\"FINAL SPARK!!!\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "With a gentle smile, Yuuka walks to the topmost position of where she was seated and blows up every table in this column with a magical blast. These tables cannot be repaired for that night. All guests seated at the tables will be scared away."
+          },
+          {
+            "type": "p",
+            "text": "(Due to how tables are organised, Yuuka will destroy every table in the front half of the table list if she is seated in the right column, or every table in the latter half if she is seated on the left.)"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Seija Kijin": {
+    "page": "Seija Kijin",
+    "quotes": [
+      {
+        "tag": "Greasy",
+        "text": "The fall of our oppressors shall oil the chains of our revolution.",
+        "variant": null
+      },
+      {
+        "tag": "Good w/ Alcohol",
+        "text": "Every great story starts with alcohol, but you need something to go with it.",
+        "variant": null
+      },
+      {
+        "tag": "Hot",
+        "text": "Nothing improves my mood like seeing something emit smoke.",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "In order to reach my goals, I require more power!",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "I love bizarre items despised by others!",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "How do you describe something that is utterly impossible?",
+        "variant": null
+      },
+      {
+        "tag": "Aura-Bursting",
+        "text": "Just the thought of a future where the weak overthrow the strong already has me excited!",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Deception Sign \"Reverse Psychology\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Using her ability to reverse everything, Seija inverts the preferences of all guests. The disliked tags of all guests (excluding Seija) become tags that they like. Lasts 30 seconds."
+          },
+          {
+            "type": "p",
+            "text": "If the total amount of normal (not rare or special) customers is not less than 7, this becomes..."
+          }
+        ]
+      },
+      {
+        "name": "Reverse Bow \"Decree of the Dream Bow of Heaven and Earth\" (Reward Alt.)",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "All normal guests, including those in the queue, have their follow-up order limit increased by 1 and their budget increased by 25%. Each normal guest can only receive this effect up to 3 times."
+          }
+        ]
+      },
+      {
+        "name": "Turnabout \"Reverse Ideology\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Vive la revolution! Seija and the guest with the highest budget present have their budgets reversed, and for the next 15 seconds the budget of all guests (including Seija) are lowered to the budget of the guest with the lowest budget present."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Shinmyoumaru Sukuna": {
+    "page": "Shinmyoumaru Sukuna",
+    "quotes": [
+      {
+        "tag": "Legendary",
+        "text": "I love stories about bravery and resilience.",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "Our ancestor is a descendant of Sukuna-bikona from Japanese mythology.",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Desserts can heal a soul.",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "I want an absolutely stunning dish I can share with others!",
+        "variant": null
+      },
+      {
+        "tag": "Cultural Heritage",
+        "text": "This castle is brimming with culture, yet no one knows about it...",
+        "variant": null
+      },
+      {
+        "tag": "Small Portion",
+        "text": "Look at me, you know I can't take much food.",
+        "variant": null
+      },
+      {
+        "tag": "Aura-Bursting",
+        "text": "Heroes really get my blood boiling!",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Precious Mallet \"Inflation Crisis\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Whack the cash register with the Miraclet Mallet, adding 1 Miracle Mallet's Power to the stack."
+          },
+          {
+            "type": "p",
+            "text": "The charged power of the Miraclet Mallet will inflate revenue when the business ends. The 1st stack of Miracle Mallet's Power increases revenue by 7%. Subsequent stacks increase revenue by 2%."
+          }
+        ]
+      },
+      {
+        "name": "Mini-Mallet \"You Grow Big!\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Under the effects of the Miracle Mallet, your body is enlarged to three times its original size. Lasts 30 seconds"
+          },
+          {
+            "type": "p",
+            "text": "(Most importantly, Mystia can no longer fit inside the cooking area if this effect activates.)"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Kagerou Imaizumi": {
+    "page": "Kagerou Imaizumi",
+    "quotes": [
+      {
+        "tag": "Meat",
+        "text": "I am still a wolf...",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "I love snacks that give you the feeling of family.",
+        "variant": null
+      },
+      {
+        "tag": "Mountain Delicacy",
+        "text": "I prefer what walks compared to what swims.",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "Needless to say, a Honshu wolf loves Honshu-style dishes.",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "The camera gets dibs on good-looking food!",
+        "variant": null
+      },
+      {
+        "tag": "Refreshing",
+        "text": "When hair starts to grow, it's best to cool off starting with the stomach...",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Wolf Soul \"Wild Awakening\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Awaken the wild nature of guests, making them love the \"meat\" and \"mountain delicacy\" tag for the next 30 seconds. They will use their own preferences when giving ratings. Guests that had already liked these tags will give the highest rating."
+          }
+        ]
+      },
+      {
+        "name": "Hungry Wolf \"Grand Moonlit Feast\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 30 seconds, if the \"filling\" tag isn't added to a dish, the lowest rating will be given. Guests that had already disliked this tag will give the lowest rating regardless."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Ellen": {
+    "page": "Ellen",
+    "quotes": [
+      {
+        "tag": "Western",
+        "text": "Makai is where demons gather in western myth?",
+        "variant": null
+      },
+      {
+        "tag": "Dreamy",
+        "text": "What's dreamy if not fairy tales?",
+        "variant": null
+      },
+      {
+        "tag": "Filling",
+        "text": "Please prepare enough for both Sokrates and I to eat!",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "Your shop is warm and fuzzy, like home.",
+        "variant": null
+      },
+      {
+        "tag": "Refreshing",
+        "text": "Sokrates doesn't like hot food. He has a cat's tongue, after all.",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Sweets can make you feel powerful!",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Candy House of Love\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 30 seconds, after completing a guest's order with at least a normal rating, a Fuwa Fuwa Candy drops near the seat for pickup."
+          }
+        ]
+      },
+      {
+        "name": "\"The Cat of Ulthar\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Sokrates intimidates the izakaya's partners, decreasing their movement speed by 30% and working speed by 50%. Lasts 30 seconds."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Mima": {
+    "page": "Mima",
+    "quotes": [
+      {
+        "tag": "Fresh",
+        "text": "That which is rotten is not for consumption, of course.",
+        "variant": null
+      },
+      {
+        "tag": "Fungus",
+        "text": "Mushrooms are indeed interesting, for they are diverse yet intricate creatures.",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "I feel a bit tired. Do you have anything which revitalizes the body and mind?",
+        "variant": null
+      },
+      {
+        "tag": "Aquatic",
+        "text": "Fish are nutritious and low in fat. A most healthy meal.",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "The peculiar have knowledge worth gleaning.",
+        "variant": null
+      },
+      {
+        "tag": "Raw",
+        "text": "The primordial flavor is the best flavor.",
+        "variant": null
+      },
+      {
+        "tag": "Mountain Delicacy",
+        "text": "Mountains have the treasure that is nature's delicacies.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Reincarnation of the Underworld\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "If no \"Mystic Evil-Sealing Circle\" exists in the izakaya, the circle is summoned. If the circle exists, the circle will receive 2 charges of energy."
+          },
+          {
+            "type": "p",
+            "text": "\"Mystic Evil-Sealing Circle\": Whenever rare guests (excluding Mima) invoke any spell cards, the circle receives 1 charge of energy. When the amount of energy reaches 7, it is consumed, triggering"
+          },
+          {
+            "type": "h",
+            "text": "Dream Sign \"Planck of Time\""
+          },
+          {
+            "type": "p",
+            "text": "All seated guests regain all of their budget, and for the next 20 seconds, cooking dishes will not use ingredients and will be completed instantly. Guests are guaranteed to give the best rating."
+          }
+        ]
+      },
+      {
+        "name": "The Price of Blasphemy",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Sustain Evil Spirit's Grudge: Sparrow Tune effects cannot be obtained and effects from special stations cannot be activated for the next 30 seconds."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Louise": {
+    "page": "Louise",
+    "quotes": [
+      {
+        "tag": "Sweet",
+        "text": "When you're down, sweets and music are the best medicine.",
+        "variant": null
+      },
+      {
+        "tag": "Aquatic",
+        "text": "Aquatic foods are an important source of protein.",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "I'd like something I can post about on my blog.",
+        "variant": null
+      },
+      {
+        "tag": "Small Portion",
+        "text": "It's not good to eat too much at night.",
+        "variant": null
+      },
+      {
+        "tag": "Specialty",
+        "text": "One of the joys of traveling is being able to eat a variety of cuisines.",
+        "variant": null
+      },
+      {
+        "tag": "Western",
+        "text": "Next time, I'll travel to the west.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "“The Legendary Gulliver“",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Louise summons a magical camera in the stall. If the rare guest's original self left the store unfulfilled and still have budget remaining, the camera takes a photograph of the rare guest and converts it into a copy of \"Travel Blog\"."
+          },
+          {
+            "type": "p",
+            "text": "When the day ends, the \"Travel Blog\" is released (if the day had already ended when the photograph was taken, it will be released immediately), projecting the guest from the photograph to visit the izakaya again. Projected rare guests can use spell cards and have the same preferences as the original rare guest, but its budget and order limit starts from where the original rare guest left off at."
+          }
+        ]
+      },
+      {
+        "name": "\"Abandoned Glass Slipper\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "The shop will close, and guests in the shop will be forcefully kicked out 60 seconds after the day ends."
+          },
+          {
+            "type": "p",
+            "text": "(Actually only caps post-closing overtime. After operation hours ends, any remaining guests are forced to leave after 60 seconds.)"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Reisen": {
+    "page": "Reisen",
+    "quotes": [
+      {
+        "tag": "Small Portion",
+        "text": "A rabbit's stomach is very small.",
+        "variant": null
+      },
+      {
+        "tag": "Sea Delicacy",
+        "text": "Would it be nice if the Sea of Tranquility weren't as lifeless as it is?",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Sugar is my one salvation.",
+        "variant": null
+      },
+      {
+        "tag": "Specialty",
+        "text": "I want to try delicacies from those places where I can't reach…",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "The taste of home can cure a day's tiredness.",
+        "variant": null
+      },
+      {
+        "tag": "Chinese",
+        "text": "Where did the myth that moon rabbits are also hermits come from?",
+        "variant": null
+      },
+      {
+        "tag": "Mountain Delicacy",
+        "text": "If the Lunar Capital had mountains, would it have animals of some kind?",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Moon Rabbits' Bonfire Feast\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Call together a grand bonfire feast. Every existing rabbit will generate 1 random ingredient or 1 random drink. New rabbits that appear for the next 30 seconds will also generate an ingredient or drink. The chance for an ingredients is 80%; the chance for a drink is 20%."
+          }
+        ]
+      },
+      {
+        "name": "\"Drunken Stupor\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Reisen shoots a bullet of lunacy, continuously affecting guests present for the next 30 seconds. Guests affected by lunacy will give the worst rating if they're served with drinks without the \"High Alcohol\" tag."
+          },
+          {
+            "type": "p",
+            "text": "Note: Lunacy will interfere with lunacy. . . What does that mean?"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Watatsuki no Toyohime": {
+    "page": "Watatsuki no Toyohime",
+    "quotes": [
+      {
+        "tag": "Fruity",
+        "text": "Peaches are the best!",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "I've been big on Japanese poems lately.",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Even all the sugar in the world can't rot my teeth.",
+        "variant": null
+      },
+      {
+        "tag": "Vegetarian",
+        "text": "I heard that eating grass helps with digestion?",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "Food that feels premium and well-made will turn heads more easily.",
+        "variant": null
+      },
+      {
+        "tag": "Refreshing",
+        "text": "It's so hot... Too bad I can't cool off with this fan...",
+        "variant": null
+      },
+      {
+        "tag": "Cultural Heritage",
+        "text": "I like to hear the stories behind a dish.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Radius \"Intertwining Mountain and Sea\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Toyohime links the sea and mountains, connecting with a location in Gensokyo, allowing the location's normal guests and rare guests to visit by going across the \"plane\"."
+          },
+          {
+            "type": "p",
+            "text": "Guest traffic of the location connected by Toyohime's ability will be 33% of original guest traffic."
+          }
+        ]
+      },
+      {
+        "name": "New Moon \"Unshaped Universe\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Toyohime randomly chooses 3 local and invited rare guests who have yet to show up to be \"spirited away\", disallowing them from visiting the izakaya tonight."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Watatsuki no Yorihime": {
+    "page": "Watatsuki no Yorihime",
+    "quotes": [
+      {
+        "tag": "Legendary",
+        "text": "I want to leave behind results that will be praised for generations to come.",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "Lunarians don't eat chaff.",
+        "variant": null
+      },
+      {
+        "tag": "Chinese",
+        "text": "I have some interest in Chinese martial arts.",
+        "variant": null
+      },
+      {
+        "tag": "Cultural Heritage",
+        "text": "Every skill and technique is culture being passed down.",
+        "variant": null
+      },
+      {
+        "tag": "Hot",
+        "text": "My blood shall boil for as long as I live.",
+        "variant": null
+      },
+      {
+        "tag": "Mild",
+        "text": "Eating mild is important for preserving one's health.",
+        "variant": null
+      },
+      {
+        "tag": "Small Portion",
+        "text": "Eating too much is not ideal for training.",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "I need more and more strength.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Divine Edict \"Oracle of the Gods\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yorihime summons divine spirits, applying one Divine Laurel; if the dish provided has the \"legendary\" tag, an additional stack is given."
+          },
+          {
+            "type": "p",
+            "text": "If a rare guest gives a non-perfect rating, consume a stack of \"Divine Laurel\" to invoke a miracle, raising the rating to perfect."
+          }
+        ]
+      },
+      {
+        "name": "Commandment \"Judgement of the Gods\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Yorihime invokes a miracle to seal a portion of legends. For the next 30 seconds, dishes with the \"legendary\" tag or dishes with ingredients that have the \"legendary\" tag cannot be made."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Rinnosuke Morichika": {
+    "page": "Rinnosuke Morichika",
+    "quotes": [
+      {
+        "tag": "Homecooking",
+        "text": "Those simple-looking home-cooked dishes actually have deeper complexity. Isn't it kinda similar to me?",
+        "variant": null
+      },
+      {
+        "tag": "Filling",
+        "text": "A true man can't move on with a half empty stomach——",
+        "variant": null
+      },
+      {
+        "tag": "Fresh",
+        "text": "My taste buds have high standards. I know what's savory as soon as I taste it!",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Kourindou Black Friday\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Obtain one Kourindou's 30% off coupon. Expires the next day!"
+          }
+        ]
+      },
+      {
+        "name": "\"Fictitious Intelligence Report\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "One of your special guest's known secrets will be hidden..."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Remilia Scarlet": {
+    "page": "Remilia Scarlet",
+    "quotes": [
+      {
+        "tag": "Sweet",
+        "text": "In the past, sugar was actually an exclusive commodity held by the nobles~",
+        "variant": "Base Game"
+      },
+      {
+        "tag": "Western",
+        "text": "For some small fry who never even left Gensokyo, do you really have what it takes to create something exotic?",
+        "variant": "Base Game"
+      },
+      {
+        "tag": "Raw",
+        "text": "Vampires. . . of course will eat meat raawww~",
+        "variant": "Base Game"
+      },
+      {
+        "tag": "Premium",
+        "text": "Only premium cuisines can match my royal status~",
+        "variant": "Base Game"
+      },
+      {
+        "tag": "Western",
+        "text": "Are you able to cook cuisines from other countries here as well?",
+        "variant": "DLC 4"
+      },
+      {
+        "tag": "Premium",
+        "text": "Only premium dishes suit my status.",
+        "variant": "DLC 4"
+      },
+      {
+        "tag": "Sweet",
+        "text": "In the past, sugar was a commodity exclusive to the aristocracy.",
+        "variant": "DLC 4"
+      },
+      {
+        "tag": "Raw",
+        "text": "Of course. . . a vampire eats raw.",
+        "variant": "DLC 4"
+      },
+      {
+        "tag": "Legendary",
+        "text": "None dares to forget the legends of vampires even hundreds of years later.",
+        "variant": "DLC 4"
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Scarlet Sign \"Red, the Nightless Castle\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Remilia uses her reputation as the mistress of the Scarlet Devil Mansion to hold a midnight feast. When the day ends, the izakaya enters \"Red, the Nightless Castle\" status (immediately takes effect if day has already ended) and business continues."
+          },
+          {
+            "type": "p",
+            "text": "\"Red, the Nightless Castle\":"
+          },
+          {
+            "type": "li",
+            "text": "Budget of normal guests will not be less than 500;"
+          },
+          {
+            "type": "li",
+            "text": "Working speed of partners increased by 100%. If Sakuya is on-duty, her speed is raised to the max;"
+          },
+          {
+            "type": "li",
+            "text": "Chance of follow-up orders increased by 100%;"
+          },
+          {
+            "type": "p",
+            "text": "If Remilia herself is present at the time of activation, the shop will not close for the next 60 seconds. Instead, normal guests will continue to appear at 300% speed. Otherwise, when the last rare guest leaves, summon fairy maids equivalent to amount of reward spell cards activated that night."
+          }
+        ]
+      },
+      {
+        "name": "Night Sign \"Advent of Second Scarlet Mist\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Remilia puts her might on display, releasing bloody mist which covers the orders panel on the bottom-left. Lasts for 60 seconds."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Youmu Konpaku": {
+    "page": "Youmu Konpaku",
+    "quotes": [
+      {
+        "tag": "Legendary",
+        "text": "Generally speaking, a dish that can save the world has to be legendary, right?",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "Lady Yuyuko has been called a Japanese beauty before. . .",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Hell Realm Sword \"Two Hundred Yojana in One Slash\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Demonstrates to you an advanced sword technique. You are inspired by this move, and can complete any dishes made on the cutting board instantly."
+          }
+        ]
+      },
+      {
+        "name": "Heaven Sword \"Five Signs of the Dying Deva\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "All guests lose patience twice as fast, and reduce 1 atmosphere point every 2 seconds. Last 60 seconds."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Yuyuko Saigyouji": {
+    "page": "Yuyuko Saigyouji",
+    "quotes": [],
+    "spellCards": [
+      {
+        "name": "\"Food Vanishment Jutsu\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "From now until the izakaya closes, every guest will instantly finish the dishes."
+          }
+        ]
+      },
+      {
+        "name": "\"Metamorphosis of Ink-Black Cherry Petals\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "From the second spell-card onward, she will give this reward. She will eat 1-4 food items from the refrigerator going from the last items in order, including them without affect on budget on her tab. This can produce a lot of money by cooking a few expensive items after her first order and putting them in there so they are in back."
+          }
+        ]
+      },
+      {
+        "name": "\"Extra Large for the Same Price\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "From now until the izakaya closes, every dish without all 5 ingredients will receive a bad rating."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Meng Chengguo": {
+    "page": "Meng Chengguo",
+    "quotes": [],
+    "spellCards": [],
+    "spellCardNote": "This guest does not have spell cards."
+  },
+  "Three Fairies": {
+    "page": "Three Fairies",
+    "quotes": [],
+    "spellCards": [],
+    "spellCardNote": "This guest does not have spell cards."
+  },
+  "Rin Satsuki": {
+    "page": "Rin Satsuki",
+    "quotes": [],
+    "spellCards": [
+      {
+        "name": "\"Help Me Up! I Can Still Eat\"!",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Under Satsuki Rin's special treatment, the negative effects of ingredients such as high cholesterol, high sodium, and high calories have been removed or mitigated. Guests can enjoy delicious food with maximum nutrition. All guests, including those waiting in line, independently have a 30% chance of ordering once more regardless of their budget."
+          },
+          {
+            "type": "p",
+            "text": "(The 30% is rolled separately for all guests - Rin herself can also gained bonus orders this way. The amount of extra orders a guest has this way is marked by a heart symbol alongside a counter, located beneath their table number.)"
+          },
+          {
+            "type": "p",
+            "text": "File:Satsuki Heart.png|The heart sprite used for this Spell Card."
+          },
+          {
+            "type": "p",
+            "text": ""
+          }
+        ]
+      },
+      {
+        "name": "\"Slow and Savor for Health and Vigor\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Eating too quick will harm you! You could get indigestion! All guests, including those waiting in line, will take twice as long to finish their meal. However, other buffs like Toutetsu Feast still take precedence over this skill."
+          },
+          {
+            "type": "p",
+            "text": "(Actually lasts for 60 seconds, and is independent on guests.)"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Shio Tachisora": {
+    "page": "Shio Tachisora",
+    "quotes": [],
+    "spellCards": [
+      {
+        "name": "\"It's Party Time!\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Uses the ability of space to confine all diners. As long as they still have cash and have room to finish the next dish, they must order! They will continue to order and cannot leave their seat until the guest has spent over 70% of their budget."
+          }
+        ]
+      },
+      {
+        "name": "Torture \"Arbuda\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 120 seconds, making any dish with the \"mild\" or \"vegetarian\" tags will become Dark Matter."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Jien Yuu": {
+    "page": "Jien Yuu",
+    "quotes": [],
+    "spellCards": [
+      {
+        "name": "Causation \"Eyes Of Deduction And Judgement\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Through the power of logic and deduction, you can now see guests' remaining budget and how many more times they will order."
+          }
+        ]
+      },
+      {
+        "name": "Rhythm \"Upside Downtown\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 60 seconds, all guests will give a random rating regardless of what they receive."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Yuuma Toutetsu": {
+    "page": "Yuuma Toutetsu",
+    "quotes": [
+      {
+        "tag": "Filling",
+        "text": "My boundless stomach is already starving!",
+        "variant": null
+      },
+      {
+        "tag": "Large Portion",
+        "text": "Don't even bother giving me things that can't fill the gap between my teeth!",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "The legends on the surface seem interesting... Show me...",
+        "variant": null
+      },
+      {
+        "tag": "Meat",
+        "text": "While tearing the flesh apart, the beast also displays its fangs... Haha.",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "Give me your most premium dishes and make my trip to the surface worth it!",
+        "variant": null
+      },
+      {
+        "tag": "Raw",
+        "text": "A beast's enticement towards raw bloody flesh... A human will never understand that",
+        "variant": null
+      },
+      {
+        "tag": "Fresh",
+        "text": "Don't embarrass yourself by presenting me a dish that looks rotten or spoiled.",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "I can convert anything I absorb with my own power!",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "The fact that I'm sitting here without causing trouble... That's a miracle in and of itself.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Toutetsu's Gluttonous Feast\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "All other guests other than Yuuma will only order the most expensive food and drinks. These orders will ignore their budgets. Lasts 30 seconds."
+          },
+          {
+            "type": "p",
+            "text": "(Overrides the ordering mechanics of Rare Customers - everyone but Yuuma will always order the most expensive food and drink on the menu, without fail.)"
+          }
+        ]
+      },
+      {
+        "name": "\"Dinner of Toutetsu, the Avaricious Beast God\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "The frenzied Yuuma will devour 3-5 random ingredients, 1-3 drinks and 1 kitchenware, making it unusable for the rest of the night."
+          },
+          {
+            "type": "p",
+            "text": "During the Hell of Blood Pools challenge, Yuuma will also recover an additional 5% HP."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Koishi Komeiji": {
+    "page": "Koishi Komeiji",
+    "quotes": [
+      {
+        "tag": "Dreamy",
+        "text": "Does fantasy mean eternity?",
+        "variant": null
+      },
+      {
+        "tag": "Raw",
+        "text": "Is there anything else I have to know about eating things raw?",
+        "variant": null
+      },
+      {
+        "tag": "Salty",
+        "text": "There's a substance which tastes salty! I think it's called sweat.",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "The world becomes more interesting if you treat everything as strange~",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "I have two tummies, one for food and one for dessert!",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "You'll never guess what I want~",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Carefree Extreme Unconsciousness\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 60 seconds, ordering, eating, partner actions, and everything else with a cooldown will have no cooldown. Everything happens unconsciously, achieving the maximum speed possible."
+          }
+        ]
+      },
+      {
+        "name": "\"Selfish Extreme Unconsciousness\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 60 seconds, Koishi will hide all normal customer orders. Orders will have to be completed via checking the notebook."
+          },
+          {
+            "type": "p",
+            "text": "(As normal customers order the cuisines and drinks from the menu that satisfy the most liked tags, the player must figure out what this is for each normal customer type.)"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Okina Matara": {
+    "page": "Okina Matara",
+    "quotes": [],
+    "spellCards": [],
+    "spellCardNote": null
+  },
+  "Mamizou Futatsuiwa": {
+    "page": "Mamizou Futatsuiwa",
+    "quotes": [
+      {
+        "tag": "Aquatic",
+        "text": "Tanukis ain't cats, but we still like fish.",
+        "variant": null
+      },
+      {
+        "tag": "Fruity",
+        "text": "Humans love the sight of tanukis eatin' fruits.",
+        "variant": null
+      },
+      {
+        "tag": "Good with Alcohol",
+        "text": "Where's the dishes that go with alcohol?",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "I still prefer the flavors of good ol' Sado.",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "I do miss the days of livin' with humans back in Sado.",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "Legends about tanuki are as numerous as the stars, no?",
+        "variant": null
+      },
+      {
+        "tag": "Meat",
+        "text": "Can't be strong without meat, yeah?",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Cardcaptor Tanuki of Ten Transformations\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Summons tanukis to shapeshift into all currently seated customers (excluding Mamizou) and rejoin the queue. Shapeshifted customers have the same preferences and budget as the person they resemble, but rare shapeshifted customers can only unleash their respective spell cards once."
+          }
+        ]
+      },
+      {
+        "name": "\"Best Way to Punish an Immoral Shopkeeper\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For the next 30 seconds, all the money you receive becomes leaves. You'll only discover them when totaling the day's earnings. All money earned within this period of time does not count as income. Paying with leaves is outrageous!"
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Flandre Scarlet": {
+    "page": "Flandre Scarlet",
+    "quotes": [],
+    "spellCards": [],
+    "spellCardNote": null
+  },
+  "Wakasagihime": {
+    "page": "Wakasagihime",
+    "quotes": [],
+    "spellCards": [],
+    "spellCardNote": null
+  },
+  "Eirin Yagokoro": {
+    "page": "Eirin Yagokoro",
+    "quotes": [],
+    "spellCards": [],
+    "spellCardNote": null
+  },
+  "Sagume Kishin": {
+    "page": "Sagume Kishin",
+    "quotes": [],
+    "spellCards": [],
+    "spellCardNote": null
+  },
+  "Yukari Yakumo": {
+    "page": "Yukari Yakumo",
+    "quotes": [
+      {
+        "tag": "Premium",
+        "text": "Premium dishes allow one to experience a sense of luxury.",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "Home is where one gets a good rest.",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "With \"legends\" come youkai.",
+        "variant": null
+      },
+      {
+        "tag": "Soup",
+        "text": "Did you know that soup nourishes people?",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "My gaps are peculiar? I haven't the slightest idea what you're talking about.",
+        "variant": null
+      },
+      {
+        "tag": "Refreshing",
+        "text": "It's very cool under the umbrella.",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "The appearance of food is also very important.",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "\"Dream World of Humans and Youkai\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "When triggered before the end of the day, the duration of all buffs with more than 44 seconds will be frozen and will not decrease until the end of the day."
+          },
+          {
+            "type": "p",
+            "text": "When triggered for the second time or after day ends, the duration of all buffs with more than 44 seconds will be increased by 10% of its current duration (Each type of buff can have their duration increased by this spell card for a maximum of 17 seconds.)"
+          }
+        ]
+      },
+      {
+        "name": "\"Boundary of Presence and Absence\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Open several gaps that change their location. Approaching a gap will suck you in and teleport you to another gap, while making drinks on your tray disappear. The gaps last for 30 seconds."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  },
+  "Shiki Eiki": {
+    "page": "Shiki Eiki",
+    "quotes": [],
+    "spellCards": [],
+    "spellCardNote": null
+  },
+  "Mizuchi Miyadeguchi": {
+    "page": "Mizuchi Miyadeguchi",
+    "quotes": [],
+    "spellCards": [],
+    "spellCardNote": null
+  },
+  "Shinki": {
+    "page": "Shinki",
+    "quotes": [],
+    "spellCards": [],
+    "spellCardNote": null
+  },
+  "Hata no Kokoro": {
+    "page": "Hata no Kokoro",
+    "quotes": [
+      {
+        "tag": "Japanese",
+        "text": "Noh is the oldest of classical Japanese theater.",
+        "variant": null
+      },
+      {
+        "tag": "Signature",
+        "text": "Will I understand everyone's emotions if I order the same thing as them?",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "The scripts of Noh are itself a large collection of legends.",
+        "variant": null
+      },
+      {
+        "tag": "Dreamy",
+        "text": "The remnants of illusions still lingers in the very soul of Noh—elevating it into the realm of dreams and mystery.",
+        "variant": null
+      },
+      {
+        "tag": "Refreshing",
+        "text": "There's no better accompaniment to Noh than the chilling breeze and the flickering campfire.",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "Had my dance left a deep impression within everyone?",
+        "variant": null
+      }
+    ],
+    "spellCards": [
+      {
+        "name": "Blooming Soul \"Shifting Four Emotions\"",
+        "kind": "reward",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "When there is no mask of emotion present, summon the corresponding mask of emotion for that day. Lasts for 30 seconds."
+          },
+          {
+            "type": "p",
+            "text": "If there is already a mask present, increase the duration of its buff by 30 seconds."
+          }
+        ]
+      },
+      {
+        "name": "Dispirited Soul \"Relief of Worldly Desires\"",
+        "kind": "punishment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Kokoro performs the Noh of Darkness, affecting the mood of everyone present. Tip rate decreased to 0. Lasts for 66 seconds."
+          }
+        ]
+      }
+    ],
+    "spellCardNote": null
+  }
+}

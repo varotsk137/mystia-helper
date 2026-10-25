@@ -317,6 +317,109 @@ input {
   color: #fff;
 }
 
+/* Spell cards: the guest's reward (pink rating) and punishment (black rating). */
+.spell-cards {
+  margin-top: 18px;
+}
+.spell-cards > summary {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  cursor: pointer;
+  list-style: none;
+}
+.spell-cards > summary::-webkit-details-marker {
+  display: none;
+}
+.spell-cards > summary::before {
+  content: "▸";
+  color: var(--sake);
+}
+.spell-cards[open] > summary::before {
+  content: "▾";
+}
+.spell-cards > summary h2 {
+  margin: 0;
+}
+.spell-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.spell-card {
+  background: var(--counter);
+  border: 1px solid var(--counter-edge);
+  border-left: 4px solid var(--counter-edge);
+  border-radius: var(--radius-m);
+  padding: 10px 14px;
+  font-size: 0.9rem;
+}
+.spell-card p {
+  margin: 4px 0;
+}
+.spell-reward {
+  border-left-color: var(--rate-pink);
+}
+.spell-punishment {
+  border-left-color: var(--disliked);
+}
+.spell-follow-up {
+  border-left-color: var(--rate-orange);
+}
+.spell-kind {
+  font-size: 0.75rem;
+  color: var(--paper-dim);
+}
+.spell-reward .spell-kind {
+  color: var(--rate-pink);
+}
+.spell-punishment .spell-kind {
+  color: var(--disliked);
+}
+.spell-name {
+  margin: 2px 0 6px;
+  font-size: 1rem;
+}
+.spell-sub {
+  margin: 8px 0 2px;
+  font-size: 0.85rem;
+  color: var(--sake);
+  font-weight: 600;
+}
+.spell-li {
+  padding-left: 14px;
+  position: relative;
+}
+.spell-li::before {
+  content: "•";
+  position: absolute;
+  left: 2px;
+  color: var(--paper-dim);
+}
+
+/* Language switch at the foot of the side rail. */
+.rail-lang {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+.rail-lang button {
+  background: none;
+  border: 1px solid var(--counter-edge);
+  color: var(--paper-dim);
+  border-radius: var(--radius-s);
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.rail-lang button[aria-pressed="true"] {
+  background: var(--counter);
+  color: var(--paper);
+  border-color: var(--sake);
+}
+
 /* Food requests: one card per tag with the customer's order line under it. */
 .request-food {
   align-items: flex-start;

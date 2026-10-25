@@ -13,7 +13,7 @@
     "test": "vitest run",
     "data:images": "node scripts/wiki/fetch-images.mjs",
     "images": "node scripts/wiki/download-images.mjs",
-    "data:quotes": "node scripts/wiki/fetch-quotes.mjs"
+    "data:pages": "node scripts/wiki/fetch-customer-pages.mjs"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans-thai": "^5.2.8",

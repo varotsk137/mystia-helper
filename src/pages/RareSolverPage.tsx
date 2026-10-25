@@ -4,6 +4,7 @@ import { useAvailablePool, useGameData, useStore } from "../store";
 import { TrendPicker } from "../components/TrendPicker";
 import { CookwarePicker } from "../components/CookwarePicker";
 import { FoodRequestPicker, QuoteSearch } from "../components/QuoteParts";
+import { SpellCards } from "../components/SpellCards";
 import {
   evaluateCombo,
   ingredientEffects,
@@ -17,37 +18,27 @@ import {
 } from "../solver/rare";
 import { MAX_INGREDIENTS, TREND_POPULAR, TREND_UNPOPULAR } from "../solver/tags";
 import { ItemImage } from "../components/ItemImage";
+import { useT, type MessageKey, type Translate } from "../i18n";
 
-const RATING_LABEL: Record<Rating, string> = {
-  [Rating.Pink]: "ชมพู",
-  [Rating.Orange]: "ส้ม",
-  [Rating.Green]: "เขียว",
-  [Rating.Purple]: "ม่วง",
-  [Rating.Black]: "ดำ",
-};
-const RATING_CLASS: Record<Rating, string> = {
+const RATING_CLASS: Record<Rating, "pink" | "orange" | "green" | "purple" | "black"> = {
   [Rating.Pink]: "pink",
   [Rating.Orange]: "orange",
   [Rating.Green]: "green",
   [Rating.Purple]: "purple",
   [Rating.Black]: "black",
 };
-const BUDGET_LABEL: Record<BudgetStatus, string> = {
-  safe: "ในงบ",
-  risky: "อาจเกินงบ",
-  over: "เกินงบ",
-  unknown: "ไม่ทราบงบ",
-};
+const ratingLabel = (r: Rating, t: Translate) => t(`rating.${RATING_CLASS[r]}`);
+const budgetLabel = (b: BudgetStatus, t: Translate) => t(`budget.${b}`);
 
 type SortKey = "best" | "price" | "score" | "extras" | "level" | "cookTime" | "name";
-const SORTS: { key: SortKey; label: string; value: (s: Suggestion) => number | string }[] = [
-  { key: "best", label: "แนะนำ (เรตติ้ง, งบ, วัตถุดิบน้อย)", value: () => 0 },
-  { key: "price", label: "ราคารวม", value: (s) => s.totalPrice },
-  { key: "score", label: "แต้ม", value: (s) => s.score },
-  { key: "extras", label: "จำนวนวัตถุดิบที่เติม", value: (s) => s.dish.extras.length },
-  { key: "level", label: "เลเวลสูตร", value: (s) => s.dish.recipe.level },
-  { key: "cookTime", label: "เวลาทำ", value: (s) => s.dish.recipe.cookTime },
-  { key: "name", label: "ชื่ออาหาร", value: (s) => s.dish.recipe.name },
+const SORTS: { key: SortKey; value: (s: Suggestion) => number | string }[] = [
+  { key: "best", value: () => 0 },
+  { key: "price", value: (s) => s.totalPrice },
+  { key: "score", value: (s) => s.score },
+  { key: "extras", value: (s) => s.dish.extras.length },
+  { key: "level", value: (s) => s.dish.recipe.level },
+  { key: "cookTime", value: (s) => s.dish.recipe.cookTime },
+  { key: "name", value: (s) => s.dish.recipe.name },
 ];
 
 interface Draft {
@@ -56,16 +47,26 @@ interface Draft {
   beverage: string;
 }
 
-function groupCustomers(customers: RareCustomer[]): [string, RareCustomer[]][] {
+function groupCustomers(customers: RareCustomer[], t: Translate): [string, RareCustomer[]][] {
   const groups = new Map<string, RareCustomer[]>();
   for (const c of customers) {
-    const key = c.kind === "special" ? "แขกพิเศษ" : (c.homeLocation ?? "อื่น ๆ");
+    const key = c.kind === "special" ? t("rare.groupSpecial") : (c.homeLocation ?? t("rare.groupOther"));
     groups.set(key, [...(groups.get(key) ?? []), c]);
   }
   return [...groups];
 }
 
+/** Why a set falls short of the requests, or the character-specific reaction that decides its rating. */
+function warningFor(s: Suggestion, t: Translate): string | null {
+  if (s.note) return t(`note.${s.note}`);
+  if (s.dish.dish.conflicts.length) return t("builder.darkMatter", { tags: s.dish.dish.conflicts.join(", ") });
+  if (s.requestsMet === 1) return t("rare.oneRequest");
+  if (s.requestsMet === 0) return t("rare.noRequest");
+  return null;
+}
+
 export function RareSolverPage() {
+  const t = useT();
   const pool = useAvailablePool();
   const [customerName, setCustomerName] = useState(pool.rareCustomers[0]?.name ?? "");
   const [foodRequest, setFoodRequest] = useState<string | null>(null);
@@ -77,7 +78,7 @@ export function RareSolverPage() {
   const [draft, setDraft] = useState<Draft | null>(null);
 
   const customer = pool.rareCustomers.find((c) => c.name === customerName) ?? pool.rareCustomers[0];
-  const groups = useMemo(() => groupCustomers(pool.rareCustomers), [pool.rareCustomers]);
+  const groups = useMemo(() => groupCustomers(pool.rareCustomers, t), [pool.rareCustomers, t]);
 
   const order = useMemo<RareOrder | null>(
     () => (customer ? { customer, foodRequest, drinkRequest, trend } : null),
@@ -115,27 +116,26 @@ export function RareSolverPage() {
   if (!customer || !order) {
     return (
       <div className="page">
-        <p className="hint">ยังไม่มีลูกค้าแรร์ที่พบได้ ตรวจ DLC ที่เลือกไว้ในหน้าตั้งค่า หรือโซนที่ปลดล็อกในหน้าความคืบหน้า</p>
+        <p className="hint">{t("rare.noCustomers")}</p>
       </div>
     );
   }
-  const trendNote = describeTrendTaste(customer);
 
   return (
     <div className="page solver">
-      <section className="order" aria-label="ออเดอร์">
+      <section className="order" aria-label={t("rare.order")}>
         <ItemImage src={customer.image} name={customer.shortName} size={76} variant="portrait" />
         <div className="order-body">
           <div className="order-row">
             <label className="field customer-field">
-              <span>ลูกค้า</span>
+              <span>{t("rare.customer")}</span>
               <select value={customer.name} onChange={(e) => selectCustomer(e.target.value)}>
                 {groups.map(([group, list]) => (
                   <optgroup key={group} label={group}>
                     {list.map((c) => (
                       <option key={c.name} value={c.name}>
                         {c.shortName}
-                        {c.undocumented ? " (ยังไม่มีข้อมูล)" : ""}
+                        {c.undocumented ? t("rare.noDataSuffix") : ""}
                       </option>
                     ))}
                   </optgroup>
@@ -143,7 +143,7 @@ export function RareSolverPage() {
               </select>
             </label>
             <div className="budget">
-              <span>งบ</span>
+              <span>{t("rare.budget")}</span>
               <strong>{customer.budget ? `${customer.budget.min}–${customer.budget.max}` : "?"}</strong>
             </div>
           </div>
@@ -158,55 +158,60 @@ export function RareSolverPage() {
           />
 
           {customer.undocumented ? (
-            <p className="hint">Wiki ยังไม่มีข้อมูลรสนิยมของ {customer.shortName} ใส่ข้อมูลเองได้ที่หน้าข้อมูลเกม</p>
+            <p className="hint">{t("rare.undocumented", { name: customer.shortName })}</p>
           ) : (
             <>
               <FoodRequestPicker customer={customer} value={foodRequest} onChange={setFoodRequest} />
-              <RequestPicker label="ขอเครื่องดื่ม" tags={customer.likedDrinkTags} value={drinkRequest} onChange={setDrinkRequest} />
+              <RequestPicker
+                label={t("rare.drinkRequest")}
+                tags={customer.likedDrinkTags}
+                value={drinkRequest}
+                onChange={setDrinkRequest}
+              />
               <div className="dislikes">
-                <span>ไม่ชอบ</span>
+                <span>{t("rare.dislikes")}</span>
                 {customer.dislikedFoodTags.length ? (
-                  customer.dislikedFoodTags.map((t) => (
-                    <span key={t} className="tag tag-disliked">
-                      {t}
+                  customer.dislikedFoodTags.map((tag) => (
+                    <span key={tag} className="tag tag-disliked">
+                      {tag}
                     </span>
                   ))
                 ) : (
-                  <span className="hint">ไม่มี</span>
+                  <span className="hint">{t("rare.none")}</span>
                 )}
               </div>
-              <TrendPicker trend={trend} onChange={setTrend} customerNote={trendNote} />
+              <TrendPicker trend={trend} onChange={setTrend} customerNote={describeTrendTaste(customer, t)} />
               <CookwarePicker value={state.cookware} onChange={setCookware} recipeCount={pool.recipes.length} />
             </>
           )}
         </div>
       </section>
 
+      <SpellCards customer={customer} />
+
       {solution && (
         <div className={`results ${stale ? "is-stale" : ""}`}>
-          <section className="suggestions" aria-label="ชุดที่แนะนำ">
+          <section className="suggestions" aria-label={t("rare.suggestions")}>
             <div className="results-head">
-              <h2>ชุดที่แนะนำ</h2>
+              <h2>{t("rare.suggestions")}</h2>
               <label className="sort">
-                <span>เรียงตาม</span>
+                <span>{t("rare.sortBy")}</span>
                 <select value={sortKey} onChange={(e) => setSortKey(e.target.value as SortKey)}>
                   {SORTS.map((s) => (
                     <option key={s.key} value={s.key}>
-                      {s.label}
+                      {t(`sort.${s.key}`)}
                     </option>
                   ))}
                 </select>
                 {sortKey !== "best" && (
                   <button className="btn btn-quiet" onClick={() => setDescending(!descending)}>
-                    {descending ? "มากไปน้อย" : "น้อยไปมาก"}
+                    {descending ? t("rare.descending") : t("rare.ascending")}
                   </button>
                 )}
               </label>
             </div>
-            {foodRequest === null && drinkRequest === null && (
-              <p className="hint">เลือก tag ที่ลูกค้าขอด้านบน ผลลัพธ์จะเรียงให้ตรงกับออเดอร์</p>
-            )}
-            {sorted.length === 0 && <p className="hint">ไม่มีสูตรที่ทำได้ ลองเลือกอุปกรณ์เพิ่มด้านบน หรือปลดล็อกสูตรเพิ่มในหน้าความคืบหน้า</p>}
+            {foodRequest === null && drinkRequest === null && <p className="hint">{t("rare.pickRequest")}</p>}
+            {sorted.length === 0 && <p className="hint">{t("rare.noRecipes")}</p>}
             <ol className="suggestion-list">
               {sorted.map((s) => (
                 <SuggestionRow
@@ -235,59 +240,62 @@ function RequestPicker(props: { label: string; tags: string[]; value: string | n
   return (
     <div className="request" role="radiogroup" aria-label={props.label}>
       <span className="request-label">{props.label}</span>
-      {props.tags.map((t) => (
+      {props.tags.map((tag) => (
         <button
-          key={t}
+          key={tag}
           role="radio"
-          aria-checked={props.value === t}
+          aria-checked={props.value === tag}
           className="request-chip"
-          onClick={() => props.onChange(props.value === t ? null : t)}
+          onClick={() => props.onChange(props.value === tag ? null : tag)}
         >
-          {t}
+          {tag}
         </button>
       ))}
     </div>
   );
 }
 
-/** How this customer reacts to trends, or null when trends don't affect their score. */
-function describeTrendTaste(c: RareCustomer): string | null {
-  const parts: string[] = [];
-  if (c.likedFoodTags.includes(TREND_POPULAR)) parts.push("ชอบของที่ฮิต");
-  if (c.dislikedFoodTags.includes(TREND_POPULAR)) parts.push("ไม่ชอบของที่ฮิต");
-  if (c.likedFoodTags.includes(TREND_UNPOPULAR)) parts.push("ชอบของที่ไม่ฮิต");
-  if (c.dislikedFoodTags.includes(TREND_UNPOPULAR)) parts.push("ไม่ชอบของที่ไม่ฮิต");
-  return parts.length ? `${c.shortName} ${parts.join(" และ")}` : `Trend ไม่มีผลกับแต้มของ ${c.shortName}`;
+/** How this customer reacts to trends. */
+function describeTrendTaste(c: RareCustomer, t: Translate): string {
+  const parts: MessageKey[] = [];
+  if (c.likedFoodTags.includes(TREND_POPULAR)) parts.push("trend.likesPopular");
+  if (c.dislikedFoodTags.includes(TREND_POPULAR)) parts.push("trend.dislikesPopular");
+  if (c.likedFoodTags.includes(TREND_UNPOPULAR)) parts.push("trend.likesUnpopular");
+  if (c.dislikedFoodTags.includes(TREND_UNPOPULAR)) parts.push("trend.dislikesUnpopular");
+  if (parts.length === 0) return t("trend.noEffect", { name: c.shortName });
+  return t("trend.taste", { name: c.shortName, parts: parts.map((p) => t(p)).join(t("trend.and")) });
 }
 
-function RatingBadge({ s, compact = false }: { s: Suggestion; compact?: boolean }) {
+function RatingBadge({ s }: { s: Suggestion }) {
+  const t = useT();
   return (
-    <div className={`rating rating-${RATING_CLASS[s.rating]} ${compact ? "rating-compact" : ""}`}>
-      <span className="rating-name">{RATING_LABEL[s.rating]}</span>
-      <span className="rating-score">{s.score} แต้ม</span>
+    <div className={`rating rating-${RATING_CLASS[s.rating]}`}>
+      <span className="rating-name">{ratingLabel(s.rating, t)}</span>
+      <span className="rating-score">{t("rare.points", { n: s.score })}</span>
     </div>
   );
 }
 
 function DishTagLine({ s }: { s: Suggestion }) {
+  const t = useT();
   const { dish, drink } = s;
   const added = new Set(dish.dish.added);
   return (
     <div className="tag-line">
-      {dish.dish.tags.map((t) => (
-        <span key={t} className={tagClass(t, dish.liked, dish.disliked, added.has(t))}>
-          {t}
+      {dish.dish.tags.map((tag) => (
+        <span key={tag} className={tagClass(tag, dish.liked, dish.disliked, added.has(tag))}>
+          {tag}
         </span>
       ))}
-      {dish.dish.removed.map((t) => (
-        <s key={t} className="tag tag-removed" title="ถูก tag อื่นทับ">
-          {t}
+      {dish.dish.removed.map((tag) => (
+        <s key={tag} className="tag tag-removed" title={t("rare.overridden")}>
+          {tag}
         </s>
       ))}
       <span className="tag-sep" aria-hidden />
-      {drink.beverage.tags.map((t) => (
-        <span key={t} className={tagClass(t, drink.liked, [], false)}>
-          {t}
+      {drink.beverage.tags.map((tag) => (
+        <span key={tag} className={tagClass(tag, drink.liked, [], false)}>
+          {tag}
         </span>
       ))}
     </div>
@@ -295,7 +303,9 @@ function DishTagLine({ s }: { s: Suggestion }) {
 }
 
 function SuggestionRow({ s, selected, onPick }: { s: Suggestion; selected: boolean; onPick: () => void }) {
+  const t = useT();
   const { dish, drink } = s;
+  const warning = warningFor(s, t);
   return (
     <li className={`suggestion ${selected ? "is-selected" : ""}`}>
       <RatingBadge s={s} />
@@ -304,32 +314,26 @@ function SuggestionRow({ s, selected, onPick }: { s: Suggestion; selected: boole
           <ItemImage src={dish.recipe.image} name={dish.recipe.name} size={32} />
           <strong className="dish-name">{dish.recipe.name}</strong>
           <Extras dish={dish} />
-          <span className="with">กับ</span>
+          <span className="with">{t("rare.with")}</span>
           <ItemImage src={drink.beverage.image} name={drink.beverage.name} size={28} />
           <strong className="drink-name">{drink.beverage.name}</strong>
-          {s.altDrinks.length > 0 && <span className="or">(หรือ {s.altDrinks.map((d) => d.beverage.name).join(", ")})</span>}
+          {s.altDrinks.length > 0 && (
+            <span className="or">{t("rare.orList", { list: s.altDrinks.map((d) => d.beverage.name).join(", ") })}</span>
+          )}
         </div>
         <IngredientStrip dish={dish} />
         <DishTagLine s={s} />
-        {(s.note || s.requestsMet < 2) && (
-          <div className="warn">
-            {s.note ?? (s.requestsMet === 1 ? "ทำได้แค่ 1 ใน 2 อย่างที่ลูกค้าขอ" : "ไม่ตรงกับที่ลูกค้าขอเลย")}
-          </div>
-        )}
+        {warning && <div className="warn">{warning}</div>}
         {s.alternatives.length > 0 && (
           <details className="alternatives">
-            <summary>
-              เติมแบบอื่นที่ได้{RATING_LABEL[s.rating]}เหมือนกัน ({s.alternatives.length})
-            </summary>
+            <summary>{t("rare.alternatives", { rating: ratingLabel(s.rating, t), n: s.alternatives.length })}</summary>
             <ul>
               {s.alternatives.map((alt, i) => (
                 <li key={i}>
-                  {alt.dish.extras.length === 0 ? <span className="with">ไม่ต้องเติม</span> : <Extras dish={alt.dish} />}
-                  <span className="with">กับ</span>
+                  {alt.dish.extras.length === 0 ? <span className="with">{t("rare.noExtras")}</span> : <Extras dish={alt.dish} />}
+                  <span className="with">{t("rare.with")}</span>
                   <span>{alt.drink.beverage.name}</span>
-                  <span className="alt-meta">
-                    {alt.score} แต้ม, {alt.totalPrice}
-                  </span>
+                  <span className="alt-meta">{t("rare.altMeta", { n: alt.score, price: alt.totalPrice })}</span>
                 </li>
               ))}
             </ul>
@@ -338,12 +342,12 @@ function SuggestionRow({ s, selected, onPick }: { s: Suggestion; selected: boole
       </div>
       <div className={`price price-${s.budget}`}>
         <strong>{s.totalPrice}</strong>
-        <span>{BUDGET_LABEL[s.budget]}</span>
+        <span>{budgetLabel(s.budget, t)}</span>
         <span className="cookware">
           {dish.recipe.cookware}, {dish.recipe.cookTime}s
         </span>
         <button className="btn btn-small" aria-pressed={selected} onClick={onPick}>
-          {selected ? "กำลังปรับ" : "ปรับเอง"}
+          {selected ? t("rare.adjusting") : t("rare.adjust")}
         </button>
       </div>
     </li>
@@ -352,18 +356,19 @@ function SuggestionRow({ s, selected, onPick }: { s: Suggestion; selected: boole
 
 /** Everything that goes into the pot: the recipe's base ingredients, then the extras. */
 function IngredientStrip({ dish }: { dish: Suggestion["dish"] }) {
+  const t = useT();
   const data = useGameData();
   const image = (name: string) => data.ingredients.find((i) => i.name === name)?.image;
   return (
-    <div className="ingredient-strip" aria-label="วัตถุดิบที่ใช้">
-      <span className="strip-label">วัตถุดิบ</span>
+    <div className="ingredient-strip" aria-label={t("rare.ingredientsUsed")}>
+      <span className="strip-label">{t("rare.ingredients")}</span>
       {dish.recipe.ingredients.map((n, i) => (
-        <span key={`base-${i}`} className="ing-chip ing-chip-base" title="วัตถุดิบตั้งต้นของสูตร">
+        <span key={`base-${i}`} className="ing-chip ing-chip-base" title={t("rare.baseIngredient")}>
           <ItemImage src={image(n)} name={n} size={20} /> {n}
         </span>
       ))}
       {dish.extras.map((e, i) => (
-        <span key={`extra-${i}`} className="ing-chip ing-chip-extra" title="วัตถุดิบที่เติม">
+        <span key={`extra-${i}`} className="ing-chip ing-chip-extra" title={t("rare.extraIngredient")}>
           <ItemImage src={e.image} name={e.name} size={20} /> {e.name}
         </span>
       ))}
@@ -371,8 +376,9 @@ function IngredientStrip({ dish }: { dish: Suggestion["dish"] }) {
   );
 }
 
-/** "+ Honey (หรือ Peach)" for each extra ingredient, collapsing repeated fillers into "×n". */
+/** "+ Honey (or Peach)" for each extra ingredient, collapsing repeated fillers into "×n". */
 function Extras({ dish }: { dish: Suggestion["dish"] }) {
+  const t = useT();
   const items: { ing: Ingredient; count: number; subs: string[] }[] = [];
   dish.extras.forEach((e, i) => {
     const last = items[items.length - 1];
@@ -385,7 +391,7 @@ function Extras({ dish }: { dish: Suggestion["dish"] }) {
         <span key={i} className="extra">
           + <ItemImage src={it.ing.image} name={it.ing.name} size={22} /> {it.ing.name}
           {it.count > 1 && ` ×${it.count}`}
-          {it.subs.length > 0 && <span className="or"> (หรือ {it.subs.join(", ")})</span>}
+          {it.subs.length > 0 && <span className="or"> {t("rare.orList", { list: it.subs.join(", ") })}</span>}
         </span>
       ))}
     </>
@@ -393,10 +399,11 @@ function Extras({ dish }: { dish: Suggestion["dish"] }) {
 }
 
 function DrinkRanking({ drinks }: { drinks: DrinkOption[] }) {
+  const t = useT();
   return (
-    <section aria-label="เครื่องดื่ม">
-      <h2>เครื่องดื่ม</h2>
-      <p className="hint">กด "ปรับเอง" ที่ชุดใดชุดหนึ่ง เพื่อเปลี่ยนวัตถุดิบหรือเครื่องดื่มเอง</p>
+    <section aria-label={t("rare.drinks")}>
+      <h2>{t("rare.drinks")}</h2>
+      <p className="hint">{t("rare.drinksHint")}</p>
       <ol className="drink-list">
         {drinks.slice(0, 14).map((d) => (
           <li key={d.beverage.name} className={`drink ${d.requestMet ? "" : "is-off"}`}>
@@ -423,6 +430,7 @@ function DishBuilder({
   onChange: (d: Draft) => void;
   onClose: () => void;
 }) {
+  const t = useT();
   const pool = useAvailablePool();
   const data = useGameData();
   const [helpfulOnly, setHelpfulOnly] = useState(true);
@@ -437,6 +445,7 @@ function DishBuilder({
   if (!recipe || !beverage) return null;
 
   const result = evaluateCombo(order, recipe, extras, beverage);
+  const warning = warningFor(result, t);
   const slotsLeft = MAX_INGREDIENTS - recipe.ingredients.length - extras.length;
   const effects = ingredientEffects(order, recipe, extras, beverage, pool.ingredients);
   const shownEffects = helpfulOnly
@@ -444,11 +453,11 @@ function DishBuilder({
     : effects;
 
   return (
-    <section className="builder" aria-label="จัดชุดเอง">
+    <section className="builder" aria-label={t("builder.title")}>
       <div className="builder-head">
-        <h2>จัดชุดเอง</h2>
+        <h2>{t("builder.title")}</h2>
         <button className="btn btn-quiet btn-small" onClick={onClose}>
-          ปิด
+          {t("builder.close")}
         </button>
       </div>
 
@@ -460,28 +469,19 @@ function DishBuilder({
             <strong>{recipe.name}</strong>
           </div>
           <div className={`price-inline price-${result.budget}`}>
-            ราคารวม {result.totalPrice} ({BUDGET_LABEL[result.budget]})
+            {t("builder.total", { price: result.totalPrice, budget: budgetLabel(result.budget, t) })}
           </div>
         </div>
       </div>
-      {(result.note || result.requestsMet < 2) && (
-        <div className="warn">
-          {result.note ??
-            (result.dish.dish.conflicts.length
-              ? `กลายเป็น Dark Matter เพราะเติม ${result.dish.dish.conflicts.join(", ")}`
-              : result.requestsMet === 1
-                ? "ทำได้แค่ 1 ใน 2 อย่างที่ลูกค้าขอ"
-                : "ไม่ตรงกับที่ลูกค้าขอเลย")}
-        </div>
-      )}
+      {warning && <div className="warn">{warning}</div>}
       <DishTagLine s={result} />
 
-      <h3>วัตถุดิบ</h3>
+      <h3>{t("rare.ingredients")}</h3>
       <div className="builder-ingredients">
         {recipe.ingredients.map((n, i) => {
           const ing = byName(data.ingredients, n);
           return (
-            <span key={`base-${i}`} className="ing-chip ing-chip-base" title="วัตถุดิบตั้งต้นของสูตร">
+            <span key={`base-${i}`} className="ing-chip ing-chip-base" title={t("rare.baseIngredient")}>
               <ItemImage src={ing?.image} name={n} size={22} /> {n}
             </span>
           );
@@ -490,25 +490,23 @@ function DishBuilder({
           <span key={`extra-${i}`} className="ing-chip ing-chip-extra">
             <ItemImage src={e.image} name={e.name} size={22} /> {e.name}
             <button
-              aria-label={`เอา ${e.name} ออก`}
+              aria-label={t("builder.remove", { name: e.name })}
               onClick={() => onChange({ ...draft, extras: draft.extras.filter((_, j) => j !== i) })}
             >
               ×
             </button>
           </span>
         ))}
-        <span className="hint">
-          {slotsLeft > 0 ? `เติมได้อีก ${slotsLeft}` : "ครบ 5 อย่างแล้ว"}
-        </span>
+        <span className="hint">{slotsLeft > 0 ? t("builder.slotsLeft", { n: slotsLeft }) : t("builder.full")}</span>
       </div>
 
       <label className="field">
-        <span>เครื่องดื่ม</span>
+        <span>{t("builder.drink")}</span>
         <select value={beverage.name} onChange={(e) => onChange({ ...draft, beverage: e.target.value })}>
           {drinks.map((d) => (
             <option key={d.beverage.name} value={d.beverage.name}>
               {d.beverage.name} (+{d.score}
-              {d.requestMet ? "" : ", ไม่ตรงที่ขอ"}, {d.beverage.price})
+              {d.requestMet ? "" : t("builder.notRequested")}, {d.beverage.price})
             </option>
           ))}
         </select>
@@ -517,15 +515,13 @@ function DishBuilder({
       {slotsLeft > 0 && (
         <>
           <div className="builder-effects-head">
-            <h3>เติมวัตถุดิบ</h3>
+            <h3>{t("builder.addIngredient")}</h3>
             <label className="check">
               <input type="checkbox" checked={helpfulOnly} onChange={(e) => setHelpfulOnly(e.target.checked)} />
-              เฉพาะที่ช่วยได้
+              {t("builder.helpfulOnly")}
             </label>
           </div>
-          {shownEffects.length === 0 && (
-            <p className="hint">ไม่มีวัตถุดิบที่ช่วยเพิ่มแต้มได้แล้ว เอาติ๊ก "เฉพาะที่ช่วยได้" ออกเพื่อดูทั้งหมด</p>
-          )}
+          {shownEffects.length === 0 && <p className="hint">{t("builder.noneHelpful")}</p>}
           <ul className="effect-list">
             {shownEffects.map((e) => (
               <li key={e.ingredient.name}>
@@ -543,17 +539,19 @@ function DishBuilder({
                         <span className="tag tag-disliked">Dark Matter</span>
                       ) : (
                         <>
-                          {e.gainedTags.map((t) => (
-                            <span key={t} className={tagClass(t, e.result.dish.liked, e.result.dish.disliked, true)}>
-                              +{t}
+                          {e.gainedTags.map((tag) => (
+                            <span key={tag} className={tagClass(tag, e.result.dish.liked, e.result.dish.disliked, true)}>
+                              +{tag}
                             </span>
                           ))}
-                          {e.lostTags.map((t) => (
-                            <s key={t} className="tag tag-removed">
-                              {t}
+                          {e.lostTags.map((tag) => (
+                            <s key={tag} className="tag tag-removed">
+                              {tag}
                             </s>
                           ))}
-                          {e.gainedTags.length === 0 && e.lostTags.length === 0 && <span className="alt-meta">ไม่เพิ่ม tag ใหม่</span>}
+                          {e.gainedTags.length === 0 && e.lostTags.length === 0 && (
+                            <span className="alt-meta">{t("builder.noNewTags")}</span>
+                          )}
                         </>
                       )}
                     </span>
@@ -561,7 +559,7 @@ function DishBuilder({
                   <span className={`effect-delta ${e.delta > 0 ? "up" : e.delta < 0 ? "down" : ""}`}>
                     {e.delta > 0 ? `+${e.delta}` : e.delta}
                   </span>
-                  <span className={`rating-dot rating-${RATING_CLASS[e.result.rating]}`} title={RATING_LABEL[e.result.rating]} />
+                  <span className={`rating-dot rating-${RATING_CLASS[e.result.rating]}`} title={ratingLabel(e.result.rating, t)} />
                 </button>
               </li>
             ))}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { RareCustomer } from "../data";
 import { quoteWords, requestableFoodTags, searchQuotes } from "../quotes";
 import { ItemImage } from "./ItemImage";
+import { useT } from "../i18n";
 
 /** Food tag buttons, each showing what the customer says when ordering that tag. */
 export function FoodRequestPicker({
@@ -13,22 +14,23 @@ export function FoodRequestPicker({
   value: string | null;
   onChange: (tag: string | null) => void;
 }) {
+  const t = useT();
   const tags = requestableFoodTags(customer);
   return (
-    <div className="request request-food" role="radiogroup" aria-label="ขออาหาร">
-      <span className="request-label">ขออาหาร</span>
+    <div className="request request-food" role="radiogroup" aria-label={t("rare.foodRequest")}>
+      <span className="request-label">{t("rare.foodRequest")}</span>
       <div className="request-cards">
-        {tags.map((t) => {
-          const quotes = customer.foodQuotes.filter((q) => q.tag === t);
+        {tags.map((tag) => {
+          const quotes = customer.foodQuotes.filter((q) => q.tag === tag);
           return (
             <button
-              key={t}
+              key={tag}
               role="radio"
-              aria-checked={value === t}
+              aria-checked={value === tag}
               className="request-card"
-              onClick={() => onChange(value === t ? null : t)}
+              onClick={() => onChange(value === tag ? null : tag)}
             >
-              <span className="request-card-tag">{t}</span>
+              <span className="request-card-tag">{tag}</span>
               {quotes.map((q, i) => (
                 <span key={i} className="request-card-quote" title={q.text}>
                   {q.variant && <span className="quote-variant">{q.variant}: </span>}“{q.text}”
@@ -52,23 +54,24 @@ export function QuoteSearch({
   currentName: string;
   onPick: (customer: RareCustomer, tag: string) => void;
 }) {
+  const t = useT();
   const [query, setQuery] = useState("");
   const results = searchQuotes(customers, query, currentName);
   const terms = quoteWords(query);
   return (
     <div className="quote-search">
       <label className="quote-search-field">
-        <span className="request-label">ค้นจากคำพูด</span>
+        <span className="request-label">{t("quote.search")}</span>
         <input
           type="search"
           value={query}
-          placeholder="พิมพ์คำที่ลูกค้าพูดในเกม เช่น carnivores"
+          placeholder={t("quote.placeholder")}
           onChange={(e) => setQuery(e.target.value)}
         />
       </label>
       {terms.length > 0 && (
         <ul className="quote-results">
-          {results.length === 0 && <li className="hint">ไม่พบคำพูดที่มีคำเหล่านี้ ลองพิมพ์คำอื่นจากประโยค</li>}
+          {results.length === 0 && <li className="hint">{t("quote.noResults")}</li>}
           {results.map(({ customer, quote }, i) => (
             <li key={i}>
               <button

@@ -316,12 +316,17 @@ const mapped = new Set(collaborations.flatMap((c) => [...c.customers, ...c.recip
 for (const page of collabMembers)
   if (!mapped.has(page)) warn(`Wiki page "${page}" is in Category:Collaboration but not in data/collaborations.json`);
 
-// ---------- Tag request quotes (from fetch-quotes.mjs, optional) ----------
-const quotes = await readFile(join(rawDir, "quotes.json"), "utf8").then(JSON.parse, () => ({}));
+// ---------- Order lines and spell cards (from fetch-customer-pages.mjs, optional) ----------
+const customerPages = await readFile(join(rawDir, "customer-pages.json"), "utf8").then(JSON.parse, () => ({}));
 for (const c of rareCustomers) {
-  c.foodQuotes = (quotes[c.name]?.quotes ?? []).map((q) => ({ ...q, tag: fixTag(q.tag, `${c.name} quote`) }));
+  const page = customerPages[c.name];
+  c.foodQuotes = (page?.quotes ?? []).map((q) => ({ ...q, tag: fixTag(q.tag, `${c.name} quote`) }));
   for (const q of c.foodQuotes)
     if (!c.likedFoodTags.includes(q.tag)) warn(`Quote for "${q.tag}" but ${c.name} does not list it as liked`);
+  c.spellCards = page?.spellCards ?? [];
+  c.spellCardNote = page?.spellCardNote ?? null;
+  if (page && c.spellCards.length === 0 && !c.spellCardNote && !c.undocumented)
+    warn(`No spell cards found on the wiki page of ${c.name}`);
 }
 
 // ---------- Images (from fetch-images.mjs, optional) ----------

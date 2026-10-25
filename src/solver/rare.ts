@@ -59,7 +59,8 @@ export interface Suggestion {
   requestsMet: number;
   totalPrice: number;
   budget: BudgetStatus;
-  note: string | null;
+  /** Character-specific reaction that overrides the usual rating; the UI translates it. */
+  note: SpecialNote | null;
   /** Other extra-ingredient choices for the same recipe with the same rating and budget status. */
   alternatives: Suggestion[];
   /** Other drinks that give the same rating and budget status with this dish. */
@@ -91,16 +92,18 @@ export function budgetStatus(total: number, customer: RareCustomer): BudgetStatu
 }
 
 /** Character-specific reactions listed on the wiki's Customers page. */
-function specialRule(customer: RareCustomer, dish: DishOption): { rating: Rating; note: string; mode: "min" | "force" } | null {
+export type SpecialNote = "nitori-cucumber" | "remilia-cake" | "koishi-mousse" | "medicine-dark-matter";
+
+function specialRule(customer: RareCustomer, dish: DishOption): { rating: Rating; note: SpecialNote; mode: "min" | "force" } | null {
   const usesIngredient = (name: string) => dish.recipe.ingredients.includes(name) || dish.extras.some((e) => e.name === name);
   if (customer.name === "Nitori Kawashiro" && usesIngredient("Cucumber"))
-    return { rating: Rating.Orange, note: "Nitori ได้แตงกวา: อย่างน้อยส้ม", mode: "min" };
+    return { rating: Rating.Orange, note: "nitori-cucumber", mode: "min" };
   if (customer.name === "Remilia Scarlet" && dish.recipe.name === "Scarlet Devil Cake")
-    return { rating: Rating.Pink, note: "Remilia ได้เค้กทรงหมวกตัวเอง: ชมพูเสมอ", mode: "force" };
+    return { rating: Rating.Pink, note: "remilia-cake", mode: "force" };
   if (customer.name === "Koishi Komeiji" && dish.recipe.name === "Unconscious Youkai Mousse")
-    return { rating: Rating.Black, note: "Koishi ได้มูสทรงหมวกตัวเอง: ดำเสมอ", mode: "force" };
+    return { rating: Rating.Black, note: "koishi-mousse", mode: "force" };
   if (customer.name === "Medicine Melancholy" && dish.dish.conflicts.length > 0)
-    return { rating: Rating.Orange, note: "Medicine ได้ Dark Matter: อย่างน้อยส้ม", mode: "min" };
+    return { rating: Rating.Orange, note: "medicine-dark-matter", mode: "min" };
   return null;
 }
 

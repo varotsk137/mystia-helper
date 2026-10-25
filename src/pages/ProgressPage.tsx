@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
-import { DLC_LABELS, type Dlc } from "../data";
+import type { Dlc } from "../data";
 import { useGameData, useStore, type ProgressKind } from "../store";
 import { ItemImage } from "../components/ItemImage";
+import { dlcLabel, useT, type MessageKey } from "../i18n";
 
 interface ProgressItem {
   name: string;
@@ -12,14 +13,15 @@ interface ProgressItem {
   collab: string | null;
 }
 
-const TABS: { kind: ProgressKind; label: string }[] = [
-  { kind: "recipes", label: "สูตรอาหาร" },
-  { kind: "beverages", label: "เครื่องดื่ม" },
-  { kind: "ingredients", label: "วัตถุดิบ" },
-  { kind: "locations", label: "โซน" },
+const TABS: { kind: ProgressKind; label: MessageKey }[] = [
+  { kind: "recipes", label: "progress.tab.recipes" },
+  { kind: "beverages", label: "progress.tab.beverages" },
+  { kind: "ingredients", label: "progress.tab.ingredients" },
+  { kind: "locations", label: "progress.tab.locations" },
 ];
 
 export function ProgressPage() {
+  const t = useT();
   const data = useGameData();
   const { state, setProgressEnabled, setUnlocked } = useStore();
   const [kind, setKind] = useState<ProgressKind>("recipes");
@@ -62,25 +64,23 @@ export function ProgressPage() {
   return (
     <div className="page">
       <header className="page-head">
-        <h1>ความคืบหน้า</h1>
+        <h1>{t("progress.title")}</h1>
         <label className="switch">
           <input type="checkbox" checked={state.progress.enabled} onChange={(e) => setProgressEnabled(e.target.checked)} />
-          <span>ใช้ความคืบหน้าในการคำนวณ</span>
+          <span>{t("progress.use")}</span>
         </label>
         <p className="hint">
-          {state.progress.enabled
-            ? "ตัวช่วยจะแนะนำเฉพาะสูตร เครื่องดื่ม และวัตถุดิบที่ปลดล็อกแล้ว และแสดงเฉพาะลูกค้าในโซนที่เปิดแล้ว"
-            : "ตอนนี้ตัวช่วยใช้ทุกอย่างจาก DLC ที่มี เปิดสวิตช์นี้เมื่อต้องการให้คำนวณตามสิ่งที่ปลดล็อกในเกมแล้วเท่านั้น"}
+          {state.progress.enabled ? t("progress.onHint") : t("progress.offHint")}
         </p>
       </header>
 
       <div className="tabs" role="tablist">
-        {TABS.map((t) => {
-          const total = itemsByKind[t.kind].filter(owned);
-          const done = total.filter((i) => state.progress.unlocked[t.kind].includes(i.name)).length;
+        {TABS.map((tab) => {
+          const total = itemsByKind[tab.kind].filter(owned);
+          const done = total.filter((i) => state.progress.unlocked[tab.kind].includes(i.name)).length;
           return (
-            <button key={t.kind} role="tab" aria-selected={kind === t.kind} className="tab" onClick={() => setKind(t.kind)}>
-              {t.label}
+            <button key={tab.kind} role="tab" aria-selected={kind === tab.kind} className="tab" onClick={() => setKind(tab.kind)}>
+              {t(tab.label)}
               <span className="tab-count">
                 {done}/{total.length}
               </span>
@@ -90,36 +90,36 @@ export function ProgressPage() {
       </div>
 
       <div className="toolbar">
-        <input className="search" placeholder="ค้นหาชื่อ" value={query} onChange={(e) => setQuery(e.target.value)} />
+        <input className="search" placeholder={t("db.search")} value={query} onChange={(e) => setQuery(e.target.value)} />
         <select value={dlc} onChange={(e) => setDlc(e.target.value as Dlc | "")}>
-          <option value="">ทุก DLC</option>
+          <option value="">{t("progress.allDlc")}</option>
           {state.ownedDlcs.map((d) => (
             <option key={d} value={d}>
-              {DLC_LABELS[d]}
+              {dlcLabel(d, t)}
             </option>
           ))}
         </select>
         {levels.length > 0 && (
           <select value={maxLevel} onChange={(e) => setMaxLevel(e.target.value === "" ? "" : Number(e.target.value))}>
-            <option value="">ทุกเลเวล</option>
+            <option value="">{t("progress.allLevels")}</option>
             {levels.map((l) => (
               <option key={l} value={l}>
-                ไม่เกิน Lv {l}
+                {t("progress.maxLevel", { n: l })}
               </option>
             ))}
           </select>
         )}
         <span className="toolbar-spacer" />
         <button className="btn" onClick={() => setUnlocked(kind, shown.map((i) => i.name), true)}>
-          ปลดล็อกที่แสดงอยู่ ({shown.length})
+          {t("progress.unlockShown", { n: shown.length })}
         </button>
         <button className="btn btn-quiet" onClick={() => setUnlocked(kind, shown.map((i) => i.name), false)}>
-          ล็อกที่แสดงอยู่
+          {t("progress.lockShown")}
         </button>
       </div>
 
       <p className="hint">
-        ปลดล็อกแล้ว {unlockedCount} จาก {all.length} คลิกที่รายการเพื่อสลับสถานะ
+        {t("progress.summary", { n: unlockedCount, total: all.length })}
       </p>
 
       <ul className={`unlock-grid ${kind === "locations" ? "unlock-grid-wide" : ""}`}>
@@ -148,7 +148,7 @@ export function ProgressPage() {
           );
         })}
       </ul>
-      {shown.length === 0 && <p className="hint">ไม่มีรายการที่ตรงกับตัวกรอง ลองล้างคำค้นหาหรือเปลี่ยน DLC</p>}
+      {shown.length === 0 && <p className="hint">{t("progress.empty")}</p>}
     </div>
   );
 }

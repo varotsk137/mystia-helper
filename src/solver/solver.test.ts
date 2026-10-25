@@ -176,7 +176,7 @@ describe("solveRareOrder", () => {
 
   it("applies Nitori's cucumber rule", () => {
     const { suggestions } = solveRareOrder(order("Nitori Kawashiro", "Salty", "Sake"), pool, 1000);
-    const cucumber = suggestions.filter((s) => s.note?.includes("Nitori"));
+    const cucumber = suggestions.filter((s) => s.note === "nitori-cucumber");
     expect(cucumber.length).toBeGreaterThan(0);
     for (const s of cucumber) expect(s.rating).toBeGreaterThanOrEqual(Rating.Orange);
   });

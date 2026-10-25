@@ -1,5 +1,6 @@
 import { gameData } from "../data";
 import { ItemImage } from "./ItemImage";
+import { useT } from "../i18n";
 
 /** Toggle which cookware the izakaya has tonight. */
 export function CookwarePicker({
@@ -11,10 +12,11 @@ export function CookwarePicker({
   onChange: (next: string[]) => void;
   recipeCount: number;
 }) {
+  const t = useT();
   const toggle = (name: string) => onChange(value.includes(name) ? value.filter((c) => c !== name) : [...value, name]);
   return (
-    <div className="cookware-picker" role="group" aria-label="อุปกรณ์คืนนี้">
-      <span className="request-label">อุปกรณ์คืนนี้</span>
+    <div className="cookware-picker" role="group" aria-label={t("cookware.label")}>
+      <span className="request-label">{t("cookware.label")}</span>
       {gameData.cookware.map((c) => (
         <button key={c.name} className="cookware-chip" aria-pressed={value.includes(c.name)} onClick={() => toggle(c.name)}>
           <ItemImage src={c.image} name={c.name} size={22} />
@@ -22,7 +24,7 @@ export function CookwarePicker({
         </button>
       ))}
       <span className="hint">
-        {value.length === 0 ? "ยังไม่ได้เลือกอุปกรณ์ เลือกอย่างน้อย 1 อย่าง" : `ทำได้ ${recipeCount} สูตร`}
+        {value.length === 0 ? t("cookware.none") : t("cookware.count", { n: recipeCount })}
       </span>
     </div>
   );

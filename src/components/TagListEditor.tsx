@@ -1,4 +1,5 @@
 import { useId, useState } from "react";
+import { useT } from "../i18n";
 
 /** Editable list of tags (or names): remove with ×, add by typing or picking from suggestions. */
 export function TagListEditor({
@@ -14,20 +15,21 @@ export function TagListEditor({
   allowDuplicates?: boolean;
   tone?: "neutral" | "liked" | "disliked";
 }) {
+  const t = useT();
   const [draft, setDraft] = useState("");
   const listId = useId();
   const add = () => {
-    const t = draft.trim();
-    if (!t || (!allowDuplicates && value.includes(t))) return;
-    onChange([...value, t]);
+    const tag = draft.trim();
+    if (!tag || (!allowDuplicates && value.includes(tag))) return;
+    onChange([...value, tag]);
     setDraft("");
   };
   return (
     <div className="tag-editor">
-      {value.map((t, i) => (
-        <span key={`${t}-${i}`} className={`tag tag-${tone} tag-editable`}>
-          {t}
-          <button aria-label={`ลบ ${t}`} onClick={() => onChange(value.filter((_, j) => j !== i))}>
+      {value.map((tag, i) => (
+        <span key={`${tag}-${i}`} className={`tag tag-${tone} tag-editable`}>
+          {tag}
+          <button aria-label={t("tagEditor.remove", { tag })} onClick={() => onChange(value.filter((_, j) => j !== i))}>
             ×
           </button>
         </span>
@@ -36,7 +38,7 @@ export function TagListEditor({
         className="tag-input"
         list={listId}
         value={draft}
-        placeholder="+ เพิ่ม"
+        placeholder={t("tagEditor.add")}
         onChange={(e) => setDraft(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") add();

@@ -70,10 +70,22 @@ export interface TagQuote {
   variant: string | null;
 }
 
+/** A rare customer's spell card, from the wiki's Spell Card section (English). */
+export interface SpellCard {
+  name: string;
+  /** reward: triggered by a pink rating; punishment: by a black rating. */
+  kind: "reward" | "punishment" | "follow-up";
+  /** Description paragraphs, bullet points and sub-effect headings, in order. */
+  blocks: { type: "p" | "li" | "h"; text: string }[];
+}
+
 export interface RareCustomer {
   name: string;
   collab: string | null;
   foodQuotes: TagQuote[];
+  spellCards: SpellCard[];
+  /** The wiki's note when a guest has no spell cards; null otherwise. */
+  spellCardNote: string | null;
   image: string | null;
   shortName: string;
   kind: "rare" | "special";

@@ -1,11 +1,14 @@
-// Downloads each rare customer's / special guest's wiki page and extracts the lines they say when
-// requesting a food tag, into data/wiki-raw/quotes.json ({ customerName: { page, quotes } }).
+// Downloads each rare customer's / special guest's wiki page and extracts:
+//  - the lines they say when requesting a food tag ("Tag Requests" section)
+//  - their spell cards ("Spell Card" section)
+// into data/wiki-raw/customer-pages.json ({ customerName: { page, quotes, spellCards, spellCardNote } }).
 // Run after build.mjs (it reads the customer list from gamedata.json), then run build.mjs again.
-// Usage: node scripts/wiki/fetch-quotes.mjs
+// Usage: node scripts/wiki/fetch-customer-pages.mjs
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseTagRequests, tagRequestsSection } from "./quotes.mjs";
+import { level2Section, parseSpellCards, plainText } from "./spellcards.mjs";
 
 const API = "https://touhou-mystias-izakaya.fandom.com/api.php";
 const UA = { "User-Agent": "MystiaHelper/0.1 (data import script)" };
@@ -22,6 +25,7 @@ async function wikitext(title) {
 
 const out = {};
 let withQuotes = 0;
+let withCards = 0;
 for (const c of gamedata.rareCustomers) {
   // Page titles use the full name; a few use the other name order or the short name.
   const candidates = [c.name, c.name.split(" ").reverse().join(" "), c.shortName];
@@ -30,10 +34,16 @@ for (const c of gamedata.rareCustomers) {
     page = await wikitext(t);
     if (page) break;
   }
-  const section = page ? tagRequestsSection(page.text) : null;
-  const quotes = section ? parseTagRequests(section) : [];
+  const tagSection = page ? tagRequestsSection(page.text) : null;
+  const cardSection = page ? level2Section(page.text, /^spell ?cards?$/i) : null;
+  const quotes = tagSection ? parseTagRequests(tagSection) : [];
+  const spellCards = cardSection ? parseSpellCards(cardSection) : [];
   if (quotes.length) withQuotes++;
-  out[c.name] = { page: page?.title ?? null, quotes };
+  if (spellCards.length) withCards++;
+  // A section without cards holds a note such as "This guest does not have spell cards."
+  const spellCardNote = cardSection && spellCards.length === 0 ? plainText(cardSection.trim()) || null : null;
+  out[c.name] = { page: page?.title ?? null, quotes, spellCards, spellCardNote };
 }
-await writeFile(join(root, "data", "wiki-raw", "quotes.json"), JSON.stringify(out, null, 2) + "\n", "utf8");
-console.log(`${withQuotes}/${gamedata.rareCustomers.length} customers have tag request quotes`);
+await writeFile(join(root, "data", "wiki-raw", "customer-pages.json"), JSON.stringify(out, null, 2) + "\n", "utf8");
+const total = gamedata.rareCustomers.length;
+console.log(`${withQuotes}/${total} customers have tag request quotes, ${withCards}/${total} have spell cards`);

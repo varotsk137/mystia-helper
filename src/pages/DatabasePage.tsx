@@ -1,52 +1,48 @@
 import { useMemo, useState } from "react";
-import { DLC_LABELS, gameData, type Dlc } from "../data";
+import { gameData, type Dlc } from "../data";
 import { useGameData, useStore, type EditableKind } from "../store";
 import { ItemImage } from "../components/ItemImage";
 import { TagListEditor } from "../components/TagListEditor";
+import { dlcLabel, useT, type MessageKey } from "../i18n";
 
 type FieldType = "number" | "foodTags" | "drinkTags" | "ingredients" | "cookware" | "alcohol" | "budget";
 interface Field {
+  /** Also names the label: "field.<key>". */
   key: string;
-  label: string;
   type: FieldType;
   tone?: "liked" | "disliked";
 }
 
 const FIELDS: Record<EditableKind, Field[]> = {
   recipes: [
-    { key: "price", label: "ราคา", type: "number" },
-    { key: "level", label: "เลเวล", type: "number" },
-    { key: "cookTime", label: "เวลาทำ (วินาที)", type: "number" },
-    { key: "cookware", label: "เครื่องครัว", type: "cookware" },
-    { key: "ingredients", label: "วัตถุดิบตั้งต้น", type: "ingredients" },
-    { key: "tags", label: "Tag", type: "foodTags" },
-    { key: "bannedTags", label: "Tag ต้องห้าม (เติมแล้วเป็น Dark Matter)", type: "foodTags", tone: "disliked" },
+    { key: "price", type: "number" },
+    { key: "level", type: "number" },
+    { key: "cookTime", type: "number" },
+    { key: "cookware", type: "cookware" },
+    { key: "ingredients", type: "ingredients" },
+    { key: "tags", type: "foodTags" },
+    { key: "bannedTags", type: "foodTags", tone: "disliked" },
   ],
   ingredients: [
-    { key: "price", label: "ราคา", type: "number" },
-    { key: "level", label: "เลเวล", type: "number" },
-    { key: "tags", label: "Tag", type: "foodTags" },
+    { key: "price", type: "number" },
+    { key: "level", type: "number" },
+    { key: "tags", type: "foodTags" },
   ],
   beverages: [
-    { key: "price", label: "ราคา", type: "number" },
-    { key: "level", label: "เลเวล", type: "number" },
-    { key: "alcohol", label: "ระดับแอลกอฮอล์", type: "alcohol" },
-    { key: "tags", label: "Tag", type: "drinkTags" },
+    { key: "price", type: "number" },
+    { key: "level", type: "number" },
+    { key: "alcohol", type: "alcohol" },
+    { key: "tags", type: "drinkTags" },
   ],
   rareCustomers: [
-    { key: "budget", label: "งบ", type: "budget" },
-    { key: "likedFoodTags", label: "Tag อาหารที่ชอบ", type: "foodTags", tone: "liked" },
-    { key: "dislikedFoodTags", label: "Tag อาหารที่ไม่ชอบ", type: "foodTags", tone: "disliked" },
-    { key: "likedDrinkTags", label: "Tag เครื่องดื่มที่ชอบ", type: "drinkTags", tone: "liked" },
+    { key: "budget", type: "budget" },
+    { key: "likedFoodTags", type: "foodTags", tone: "liked" },
+    { key: "dislikedFoodTags", type: "foodTags", tone: "disliked" },
+    { key: "likedDrinkTags", type: "drinkTags", tone: "liked" },
   ],
 };
 
-const TABS: { kind: EditableKind; label: string }[] = [
-  { kind: "recipes", label: "อาหาร" },
-  { kind: "beverages", label: "เครื่องดื่ม" },
-  { kind: "ingredients", label: "วัตถุดิบ" },
-  { kind: "rareCustomers", label: "ลูกค้าแรร์" },
-];
+const TABS: EditableKind[] = ["recipes", "beverages", "ingredients", "rareCustomers"];
 
 const COOKWARE = ["Boiling Pot", "Cutting Board", "Frying Pan", "Grill", "Steamer"];
 const ALCOHOL = ["No Alcohol", "Low Alcohol", "Mid Alcohol", "High Alcohol"];
@@ -54,6 +50,7 @@ const ALCOHOL = ["No Alcohol", "Low Alcohol", "Mid Alcohol", "High Alcohol"];
 type AnyItem = { name: string; image: string | null; dlc: Dlc | null; [key: string]: unknown };
 
 export function DatabasePage() {
+  const t = useT();
   const data = useGameData();
   const { state, setOverride } = useStore();
   const [kind, setKind] = useState<EditableKind>("recipes");
@@ -87,7 +84,7 @@ export function DatabasePage() {
     const patch: Record<string, unknown> = { ...overrides[current.name], [key]: value };
     // A beverage's alcohol level is also one of its tags; keep them in sync.
     if (kind === "beverages" && key === "alcohol") {
-      const tags = (current.tags as string[]).filter((t) => !ALCOHOL.includes(t));
+      const tags = (current.tags as string[]).filter((x) => !ALCOHOL.includes(x));
       patch.tags = [value as string, ...tags];
     }
     for (const k of Object.keys(patch)) if (JSON.stringify(patch[k]) === JSON.stringify(base[k])) delete patch[k];
@@ -97,42 +94,42 @@ export function DatabasePage() {
   return (
     <div className="page">
       <header className="page-head">
-        <h1>ข้อมูลเกม</h1>
-        <p className="hint">ถ้าข้อมูลจาก wiki ไม่ตรงกับในเกม เลือกรายการแล้วแก้ได้เลย ตัวช่วยจะใช้ค่าที่แก้แทนค่าจาก wiki</p>
+        <h1>{t("db.title")}</h1>
+        <p className="hint">{t("db.hint")}</p>
       </header>
 
       <div className="tabs" role="tablist">
-        {TABS.map((t) => (
+        {TABS.map((tab) => (
           <button
-            key={t.kind}
+            key={tab}
             role="tab"
-            aria-selected={kind === t.kind}
+            aria-selected={kind === tab}
             className="tab"
             onClick={() => {
-              setKind(t.kind);
+              setKind(tab);
               setSelected(null);
               setTag("");
             }}
           >
-            {t.label}
-            {Object.keys(state.overrides[t.kind]).length > 0 && (
-              <span className="tab-count">แก้ {Object.keys(state.overrides[t.kind]).length}</span>
+            {t(`db.tab.${tab}`)}
+            {Object.keys(state.overrides[tab]).length > 0 && (
+              <span className="tab-count">{t("db.editedCount", { n: Object.keys(state.overrides[tab]).length })}</span>
             )}
           </button>
         ))}
       </div>
 
       <div className="toolbar">
-        <input className="search" placeholder="ค้นหาชื่อ" value={query} onChange={(e) => setQuery(e.target.value)} />
+        <input className="search" placeholder={t("db.search")} value={query} onChange={(e) => setQuery(e.target.value)} />
         <select value={tag} onChange={(e) => setTag(e.target.value)}>
-          <option value="">ทุก tag</option>
-          {allTags.map((t) => (
-            <option key={t} value={t}>
-              {t}
+          <option value="">{t("db.allTags")}</option>
+          {allTags.map((x) => (
+            <option key={x} value={x}>
+              {x}
             </option>
           ))}
         </select>
-        <span className="hint">{shown.length} รายการ</span>
+        <span className="hint">{t("db.count", { n: shown.length })}</span>
       </div>
 
       <div className="db-layout">
@@ -152,7 +149,7 @@ export function DatabasePage() {
                 <span className="db-row-text">
                   <span className="db-row-name">
                     {item.name}
-                    {overrides[item.name] && <span className="edited-dot" title="แก้ไขแล้ว" />}
+                    {overrides[item.name] && <span className="edited-dot" title={t("db.edited")} />}
                   </span>
                   <span className="db-row-tags">{tagsOf(item).join(", ")}</span>
                 </span>
@@ -169,7 +166,7 @@ export function DatabasePage() {
         </ul>
 
         {current ? (
-          <section className="panel db-editor" aria-label={`แก้ไข ${current.name}`}>
+          <section className="panel db-editor" aria-label={t("db.editing", { name: current.name })}>
             <div className="db-editor-head">
               <ItemImage
                 src={current.image}
@@ -179,7 +176,7 @@ export function DatabasePage() {
               />
               <div>
                 <h2>{current.name}</h2>
-                <p className="hint">{current.dlc ? DLC_LABELS[current.dlc] : "แขกพิเศษ"}</p>
+                <p className="hint">{current.dlc ? dlcLabel(current.dlc, t) : t("db.special")}</p>
               </div>
             </div>
             {FIELDS[kind].map((f) => (
@@ -194,13 +191,13 @@ export function DatabasePage() {
             ))}
             {overrides[current.name] && (
               <button className="btn btn-quiet" onClick={() => setOverride(kind, current.name, null)}>
-                คืนค่าทั้งหมดเป็นข้อมูลจาก wiki
+                {t("db.reset")}
               </button>
             )}
           </section>
         ) : (
           <section className="panel db-editor db-empty">
-            <p className="hint">เลือกรายการทางซ้ายเพื่อดูรายละเอียดและแก้ไข</p>
+            <p className="hint">{t("db.pick")}</p>
           </section>
         )}
       </div>
@@ -221,6 +218,7 @@ function FieldEditor({
   onChange: (v: unknown) => void;
   ingredientNames: string[];
 }) {
+  const t = useT();
   let input;
   switch (field.type) {
     case "number":
@@ -264,7 +262,7 @@ function FieldEditor({
       input = (
         <span className="budget-input">
           <input type="number" className="num-input" value={b.min} onChange={(e) => onChange({ ...b, min: Number(e.target.value) })} />
-          <span>ถึง</span>
+          <span>{t("db.to")}</span>
           <input type="number" className="num-input" value={b.max} onChange={(e) => onChange({ ...b, max: Number(e.target.value) })} />
         </span>
       );
@@ -274,8 +272,8 @@ function FieldEditor({
   return (
     <div className="field-row">
       <span className="field-label">
-        {field.label}
-        {edited && <span className="edited-dot" title="แก้ไขแล้ว" />}
+        {t(`field.${field.key}` as MessageKey)}
+        {edited && <span className="edited-dot" title={t("db.edited")} />}
       </span>
       {input}
     </div>
