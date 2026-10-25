@@ -5,6 +5,8 @@ import { TrendPicker } from "../components/TrendPicker";
 import { CookwarePicker } from "../components/CookwarePicker";
 import { FoodRequestPicker, QuoteSearch } from "../components/QuoteParts";
 import { SpellCards } from "../components/SpellCards";
+import { GuestTabs, type SeatedGuest } from "../components/GuestTabs";
+import { addGuest, removeGuest, setActiveGuest, setGuestOrder } from "../guests";
 import {
   evaluateCombo,
   ingredientEffects,
@@ -47,15 +49,6 @@ interface Draft {
   beverage: string;
 }
 
-function groupCustomers(customers: RareCustomer[], t: Translate): [string, RareCustomer[]][] {
-  const groups = new Map<string, RareCustomer[]>();
-  for (const c of customers) {
-    const key = c.kind === "special" ? t("rare.groupSpecial") : (c.homeLocation ?? t("rare.groupOther"));
-    groups.set(key, [...(groups.get(key) ?? []), c]);
-  }
-  return [...groups];
-}
-
 /** Why a set falls short of the requests, or the character-specific reaction that decides its rating. */
 function warningFor(s: Suggestion, t: Translate): string | null {
   if (s.note) return t(`note.${s.note}`);
@@ -68,17 +61,42 @@ function warningFor(s: Suggestion, t: Translate): string | null {
 export function RareSolverPage() {
   const t = useT();
   const pool = useAvailablePool();
-  const [customerName, setCustomerName] = useState(pool.rareCustomers[0]?.name ?? "");
-  const [foodRequest, setFoodRequest] = useState<string | null>(null);
-  const [drinkRequest, setDrinkRequest] = useState<string | null>(null);
-  const { state, setTrend, setCookware } = useStore();
-  const trend = state.trend;
+  const data = useGameData();
+  const { state, setTrend, setCookware, updateGuests } = useStore();
+  const { trend, guests } = state;
   const [sortKey, setSortKey] = useState<SortKey>("best");
   const [descending, setDescending] = useState(false);
-  const [draft, setDraft] = useState<Draft | null>(null);
+  // Hand-tuned sets, kept per guest so switching tabs doesn't lose them.
+  const [drafts, setDrafts] = useState<Record<string, Draft | undefined>>({});
 
-  const customer = pool.rareCustomers.find((c) => c.name === customerName) ?? pool.rareCustomers[0];
-  const groups = useMemo(() => groupCustomers(pool.rareCustomers, t), [pool.rareCustomers, t]);
+  // Seated guests stay listed even if a settings change hides them from the picker.
+  const seated = useMemo(
+    () =>
+      guests.list.flatMap((order) => {
+        const customer = data.rareCustomers.find((c) => c.name === order.name);
+        return customer ? [{ order, customer }] : [];
+      }),
+    [guests.list, data.rareCustomers],
+  );
+  // Best rating per guest for the tab dots; only for guests whose order has a tag picked.
+  const seatedWithBest = useMemo<SeatedGuest[]>(
+    () =>
+      seated.map(({ order, customer }) => {
+        if (customer.undocumented || (!order.food && !order.drink)) return { order, customer, best: null };
+        const top = solveRareOrder({ customer, foodRequest: order.food, drinkRequest: order.drink, trend }, pool, 1).suggestions[0];
+        return { order, customer, best: top?.rating ?? null };
+      }),
+    [seated, trend, pool],
+  );
+
+  const current = seated.find((s) => s.order.name === guests.active) ?? null;
+  const customer = current?.customer ?? null;
+  const foodRequest = current?.order.food ?? null;
+  const drinkRequest = current?.order.drink ?? null;
+  const draft = customer ? (drafts[customer.name] ?? null) : null;
+  const setDraft = (d: Draft | null) => customer && setDrafts((all) => ({ ...all, [customer.name]: d ?? undefined }));
+  const setFoodRequest = (food: string | null) => customer && updateGuests((g) => setGuestOrder(g, customer.name, { food }));
+  const setDrinkRequest = (drink: string | null) => customer && updateGuests((g) => setGuestOrder(g, customer.name, { drink }));
 
   const order = useMemo<RareOrder | null>(
     () => (customer ? { customer, foodRequest, drinkRequest, trend } : null),
@@ -104,16 +122,10 @@ export function RareSolverPage() {
     return indexed.map((x) => x.s);
   }, [solution, sortKey, descending]);
 
-  const selectCustomer = (name: string) => {
-    setCustomerName(name);
-    setFoodRequest(null);
-    setDrinkRequest(null);
-    setDraft(null);
-  };
   const pick = (s: Suggestion) =>
     setDraft({ recipe: s.dish.recipe.name, extras: s.dish.extras.map((e) => e.name), beverage: s.drink.beverage.name });
 
-  if (!customer || !order) {
+  if (pool.rareCustomers.length === 0 && seated.length === 0) {
     return (
       <div className="page">
         <p className="hint">{t("rare.noCustomers")}</p>
@@ -123,73 +135,71 @@ export function RareSolverPage() {
 
   return (
     <div className="page solver">
-      <section className="order" aria-label={t("rare.order")}>
-        <ItemImage src={customer.image} name={customer.shortName} size={76} variant="portrait" />
-        <div className="order-body">
-          <div className="order-row">
-            <label className="field customer-field">
-              <span>{t("rare.customer")}</span>
-              <select value={customer.name} onChange={(e) => selectCustomer(e.target.value)}>
-                {groups.map(([group, list]) => (
-                  <optgroup key={group} label={group}>
-                    {list.map((c) => (
-                      <option key={c.name} value={c.name}>
-                        {c.shortName}
-                        {c.undocumented ? t("rare.noDataSuffix") : ""}
-                      </option>
-                    ))}
-                  </optgroup>
-                ))}
-              </select>
-            </label>
-            <div className="budget">
-              <span>{t("rare.budget")}</span>
-              <strong>{customer.budget ? `${customer.budget.min}–${customer.budget.max}` : "?"}</strong>
-            </div>
-          </div>
+      <GuestTabs
+        seated={seatedWithBest}
+        active={guests.active}
+        customers={pool.rareCustomers}
+        onSelect={(name) => updateGuests((g) => setActiveGuest(g, name))}
+        onRemove={(name) => {
+          updateGuests((g) => removeGuest(g, name));
+          setDrafts((all) => ({ ...all, [name]: undefined }));
+        }}
+        onAdd={(name) => updateGuests((g) => addGuest(g, name))}
+      />
+      <QuoteSearch
+        customers={pool.rareCustomers}
+        currentName={customer?.name ?? null}
+        onPick={(c, tag) => updateGuests((g) => addGuest(g, c.name, tag))}
+      />
 
-          <QuoteSearch
-            customers={pool.rareCustomers}
-            currentName={customer.name}
-            onPick={(c, tag) => {
-              selectCustomer(c.name);
-              setFoodRequest(tag);
-            }}
-          />
-
-          {customer.undocumented ? (
-            <p className="hint">{t("rare.undocumented", { name: customer.shortName })}</p>
-          ) : (
-            <>
-              <FoodRequestPicker customer={customer} value={foodRequest} onChange={setFoodRequest} />
-              <RequestPicker
-                label={t("rare.drinkRequest")}
-                tags={customer.likedDrinkTags}
-                value={drinkRequest}
-                onChange={setDrinkRequest}
-              />
-              <div className="dislikes">
-                <span>{t("rare.dislikes")}</span>
-                {customer.dislikedFoodTags.length ? (
-                  customer.dislikedFoodTags.map((tag) => (
-                    <span key={tag} className="tag tag-disliked">
-                      {tag}
-                    </span>
-                  ))
-                ) : (
-                  <span className="hint">{t("rare.none")}</span>
-                )}
+      {customer && order && (
+        <>
+          <section className="order" aria-label={t("rare.order")}>
+            <ItemImage src={customer.image} name={customer.shortName} size={76} variant="portrait" />
+            <div className="order-body">
+              <div className="order-row">
+                <h2 className="order-name">{customer.name}</h2>
+                <div className="budget">
+                  <span>{t("rare.budget")}</span>
+                  <strong>{customer.budget ? `${customer.budget.min}–${customer.budget.max}` : "?"}</strong>
+                </div>
               </div>
-              <TrendPicker trend={trend} onChange={setTrend} customerNote={describeTrendTaste(customer, t)} />
-              <CookwarePicker value={state.cookware} onChange={setCookware} recipeCount={pool.recipes.length} />
-            </>
-          )}
-        </div>
-      </section>
 
-      <SpellCards customer={customer} />
+              {customer.undocumented ? (
+                <p className="hint">{t("rare.undocumented", { name: customer.shortName })}</p>
+              ) : (
+                <>
+                  <FoodRequestPicker customer={customer} value={foodRequest} onChange={setFoodRequest} />
+                  <RequestPicker
+                    label={t("rare.drinkRequest")}
+                    tags={customer.likedDrinkTags}
+                    value={drinkRequest}
+                    onChange={setDrinkRequest}
+                  />
+                  <div className="dislikes">
+                    <span>{t("rare.dislikes")}</span>
+                    {customer.dislikedFoodTags.length ? (
+                      customer.dislikedFoodTags.map((tag) => (
+                        <span key={tag} className="tag tag-disliked">
+                          {tag}
+                        </span>
+                      ))
+                    ) : (
+                      <span className="hint">{t("rare.none")}</span>
+                    )}
+                  </div>
+                  <TrendPicker trend={trend} onChange={setTrend} customerNote={describeTrendTaste(customer, t)} />
+                  <CookwarePicker value={state.cookware} onChange={setCookware} recipeCount={pool.recipes.length} />
+                </>
+              )}
+            </div>
+          </section>
 
-      {solution && (
+          <SpellCards customer={customer} />
+        </>
+      )}
+
+      {order && solution && (
         <div className={`results ${stale ? "is-stale" : ""}`}>
           <section className="suggestions" aria-label={t("rare.suggestions")}>
             <div className="results-head">

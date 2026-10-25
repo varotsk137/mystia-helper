@@ -4,6 +4,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 import { gameData, type Beverage, type Dlc, type GameData, type Ingredient, type RareCustomer, type Recipe } from "./data";
 import { NO_TREND, type Trend } from "./solver/tags";
 import { defaultLang, type Lang } from "./lang";
+import { NO_GUESTS, normalizeGuests, type Guests } from "./guests";
 
 /** Data kinds the player can edit. Keys match GameData. */
 export type EditableKind = "recipes" | "ingredients" | "beverages" | "rareCustomers";
@@ -37,6 +38,8 @@ export interface StoreState {
   /** Enabled collaboration ids; their guests, recipes and drinks are hidden otherwise. */
   collabs: string[];
   lang: Lang;
+  /** Rare guests seated in the izakaya right now, with their orders. */
+  guests: Guests;
 }
 
 const STORAGE_KEY = "mystia-helper.settings";
@@ -49,6 +52,7 @@ const DEFAULTS: StoreState = {
   cookware: gameData.cookware.map((c) => c.name),
   collabs: gameData.collaborations.map((c) => c.id),
   lang: defaultLang(),
+  guests: NO_GUESTS,
 };
 
 /** Fills in fields missing from older or hand-edited saves. */
@@ -68,6 +72,7 @@ export function normalizeState(raw: unknown): StoreState {
     cookware: Array.isArray(s.cookware) ? s.cookware : DEFAULTS.cookware,
     collabs: Array.isArray(s.collabs) ? s.collabs : DEFAULTS.collabs,
     lang: s.lang === "th" || s.lang === "en" ? s.lang : DEFAULTS.lang,
+    guests: normalizeGuests(s.guests),
   };
 }
 
@@ -93,6 +98,8 @@ interface StoreContextValue {
   setCookware: (cookware: string[]) => void;
   setCollabs: (collabs: string[]) => void;
   setLang: (lang: Lang) => void;
+  /** Applies one of the guest operations from guests.ts. */
+  updateGuests: (fn: (g: Guests) => Guests) => void;
   replaceState: (next: StoreState) => void;
 }
 
@@ -138,11 +145,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const setCookware = useCallback((cookware: string[]) => setState((s) => ({ ...s, cookware })), []);
   const setCollabs = useCallback((collabs: string[]) => setState((s) => ({ ...s, collabs })), []);
   const setLang = useCallback((lang: Lang) => setState((s) => ({ ...s, lang })), []);
+  const updateGuests = useCallback((fn: (g: Guests) => Guests) => setState((s) => ({ ...s, guests: fn(s.guests) })), []);
   const replaceState = useCallback((next: StoreState) => setState(normalizeState(next)), []);
 
   const value = useMemo(
-    () => ({ state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, setLang, replaceState }),
-    [state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, setLang, replaceState],
+    () => ({ state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, setLang, updateGuests, replaceState }),
+    [state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, setLang, updateGuests, replaceState],
   );
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
 }

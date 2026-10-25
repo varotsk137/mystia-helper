@@ -317,6 +317,151 @@ input {
   color: #fff;
 }
 
+/* Guests in the izakaya: one tab per seated guest, and a picker to seat more. */
+.guests {
+  margin-bottom: 10px;
+}
+.guest-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: stretch;
+}
+.guest-tab {
+  display: flex;
+  align-items: stretch;
+  background: var(--night-deep);
+  border: 1px solid var(--counter-edge);
+  border-radius: var(--radius-m);
+}
+.guest-tab.is-active {
+  background: var(--counter);
+  border-color: var(--lantern);
+  box-shadow: inset 0 -3px 0 var(--lantern);
+}
+.guest-tab-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 0;
+  padding: 4px 4px 4px 8px;
+  cursor: pointer;
+  text-align: left;
+}
+.guest-tab-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+.guest-tab-name {
+  font-family: var(--font-display);
+}
+.guest-tab-order {
+  font-size: 0.75rem;
+  color: var(--paper-dim);
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.guest-tab-close {
+  background: none;
+  border: 0;
+  border-left: 1px solid var(--counter-edge);
+  color: var(--paper-dim);
+  padding: 0 9px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.guest-tab-close:hover {
+  color: var(--disliked);
+}
+.guest-add {
+  background: none;
+  border: 1px dashed var(--counter-edge);
+  border-radius: var(--radius-m);
+  color: var(--sake);
+  padding: 4px 14px;
+  cursor: pointer;
+}
+.guest-add:hover {
+  border-color: var(--sake);
+}
+.guest-picker {
+  margin-top: 8px;
+  background: var(--counter);
+  border: 1px solid var(--counter-edge);
+  border-radius: var(--radius-m);
+  padding: 10px 14px 12px;
+  max-height: 60vh;
+  overflow: auto;
+}
+.guest-picker-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.guest-picker-group {
+  margin-top: 8px;
+}
+.guest-picker-area {
+  font-size: 0.8rem;
+  color: var(--paper-dim);
+}
+.guest-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+  gap: 6px;
+  margin-top: 4px;
+}
+.guest-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: var(--night-deep);
+  border: 1px solid var(--counter-edge);
+  border-radius: var(--radius-m);
+  padding: 6px 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+.guest-choice:hover {
+  border-color: var(--sake);
+}
+.guest-choice.is-here {
+  border-color: var(--lantern);
+  background: color-mix(in srgb, var(--lantern) 14%, var(--night-deep));
+}
+.guest-choice-note {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--paper-dim);
+}
+.solver > .quote-search {
+  margin-bottom: 12px;
+}
+.solver > .quote-search .quote-search-field input {
+  background: var(--night-deep);
+  border-color: var(--counter-edge);
+  color: var(--paper);
+}
+.solver > .quote-search .request-label {
+  color: var(--paper-dim);
+}
+.solver > .quote-search .quote-results {
+  margin-left: 102px;
+}
+.order-name {
+  font-size: 1.35rem;
+  color: #2b2433;
+  margin: 0;
+}
+
 /* Spell cards: the guest's reward (pink rating) and punishment (black rating). */
 .spell-cards {
   margin-top: 18px;

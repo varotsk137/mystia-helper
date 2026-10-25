@@ -51,7 +51,7 @@ export function QuoteSearch({
   onPick,
 }: {
   customers: readonly RareCustomer[];
-  currentName: string;
+  currentName: string | null;
   onPick: (customer: RareCustomer, tag: string) => void;
 }) {
   const t = useT();

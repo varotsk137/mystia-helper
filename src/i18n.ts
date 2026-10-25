@@ -38,7 +38,6 @@ export const messages = {
     en: "No rare guests can appear yet. Check the DLCs in Settings, or the unlocked areas on the Progress page.",
   },
   "rare.order": { th: "ออเดอร์", en: "Order" },
-  "rare.customer": { th: "ลูกค้า", en: "Guest" },
   "rare.noDataSuffix": { th: " (ยังไม่มีข้อมูล)", en: " (no data yet)" },
   "rare.budget": { th: "งบ", en: "Budget" },
   "rare.undocumented": {
@@ -88,6 +87,16 @@ export const messages = {
   "trend.and": { th: " และ", en: " and " },
   "trend.taste": { th: "{name} {parts}", en: "{name} {parts}" },
   "trend.noEffect": { th: "Trend ไม่มีผลกับแต้มของ {name}", en: "Trends don't change {name}'s points" },
+
+  // Guests in the izakaya
+  "guests.title": { th: "ลูกค้าในร้าน", en: "Guests in the izakaya" },
+  "guests.add": { th: "+ เพิ่มลูกค้า", en: "+ Add guest" },
+  "guests.remove": { th: "เอา {name} ออก (กลับไปแล้ว)", en: "Remove {name} (left)" },
+  "guests.noOrder": { th: "ยังไม่ได้เลือกออเดอร์", en: "No order yet" },
+  "guests.empty": { th: "ยังไม่มีลูกค้าในร้าน เลือกลูกค้าที่เข้ามา", en: "No guests yet. Pick a guest who came in." },
+  "guests.pick": { th: "เลือกลูกค้าที่เข้ามา", en: "Pick a guest who came in" },
+  "guests.here": { th: "อยู่ในร้านแล้ว", en: "Already here" },
+  "guests.noMatch": { th: "ไม่พบลูกค้าชื่อนี้", en: "No guest by that name" },
 
   // Dish builder
   "builder.title": { th: "จัดชุดเอง", en: "Build your own" },
