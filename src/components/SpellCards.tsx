@@ -6,7 +6,7 @@ export function SpellCards({ customer }: { customer: RareCustomer }) {
   const t = useT();
   const cards = customer.spellCards;
   return (
-    <details className="spell-cards" open>
+    <details className="spell-cards">
       <summary>
         <h2>{t("spell.title")}</h2>
         {cards.length > 0 && <span className="hint">{t("spell.source")}</span>}
