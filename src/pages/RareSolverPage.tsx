@@ -51,7 +51,7 @@ const SORTS: { key: SortKey; value: (s: Suggestion) => number | string }[] = [
   { key: "score", value: (s) => s.score },
   { key: "extras", value: (s) => s.dish.extras.length },
   { key: "level", value: (s) => s.dish.recipe.level },
-  { key: "cookTime", value: (s) => s.dish.recipe.cookTime },
+  { key: "cookTime", value: (s) => s.dish.cookTime },
   { key: "name", value: (s) => s.dish.recipe.name },
 ];
 
@@ -78,6 +78,8 @@ export function RareSolverPage() {
   const { trend, guests, ranking } = state;
   const [sortKey, setSortKey] = useState<SortKey>("best");
   const [descending, setDescending] = useState(false);
+  // Night Sparrow cookware in Hyper mode / after a perfect Sparrow Tune. Not saved: it only lasts a moment.
+  const [ignoreRequests, setIgnoreRequests] = useState(false);
   // Hand-tuned sets, kept per guest so switching tabs doesn't lose them.
   const [drafts, setDrafts] = useState<Record<string, Draft | undefined>>({});
 
@@ -97,12 +99,15 @@ export function RareSolverPage() {
   const seatedWithBest = useMemo<SeatedGuest[]>(
     () =>
       seated.map(({ order, customer }) => {
-        if (customer.undocumented || (!order.food && !order.drink)) return { order, customer, best: null };
-        const top = solveRareOrder({ customer, foodRequest: order.food, drinkRequest: order.drink, trend }, solverPool, 1)
-          .suggestions[0];
+        if (customer.undocumented || (!ignoreRequests && !order.food && !order.drink)) return { order, customer, best: null };
+        const top = solveRareOrder(
+          { customer, foodRequest: order.food, drinkRequest: order.drink, trend, ignoreRequests },
+          solverPool,
+          1,
+        ).suggestions[0];
         return { order, customer, best: top?.rating ?? null };
       }),
-    [seated, trend, solverPool],
+    [seated, trend, solverPool, ignoreRequests],
   );
 
   const current = seated.find((s) => s.order.name === guests.active) ?? null;
@@ -115,8 +120,8 @@ export function RareSolverPage() {
   const setDrinkRequest = (drink: string | null) => customer && updateGuests((g) => setGuestOrder(g, customer.name, { drink }));
 
   const order = useMemo<RareOrder | null>(
-    () => (customer ? { customer, foodRequest, drinkRequest, trend } : null),
-    [customer, foodRequest, drinkRequest, trend],
+    () => (customer ? { customer, foodRequest, drinkRequest, trend, ignoreRequests } : null),
+    [customer, foodRequest, drinkRequest, trend, ignoreRequests],
   );
   const deferredOrder = useDeferredValue(order);
   const solution = useMemo(
@@ -189,13 +194,16 @@ export function RareSolverPage() {
                 <p className="hint">{t("rare.undocumented", { name: customer.shortName })}</p>
               ) : (
                 <>
-                  <FoodRequestPicker customer={customer} value={foodRequest} onChange={setFoodRequest} />
-                  <RequestPicker
-                    label={t("rare.drinkRequest")}
-                    tags={customer.likedDrinkTags}
-                    value={drinkRequest}
-                    onChange={setDrinkRequest}
-                  />
+                  <div className={`requests ${ignoreRequests ? "is-ignored" : ""}`}>
+                    {ignoreRequests && <p className="ignore-note">{t("ignore.active")}</p>}
+                    <FoodRequestPicker customer={customer} value={foodRequest} onChange={setFoodRequest} />
+                    <RequestPicker
+                      label={t("rare.drinkRequest")}
+                      tags={customer.likedDrinkTags}
+                      value={drinkRequest}
+                      onChange={setDrinkRequest}
+                    />
+                  </div>
                   <div className="dislikes">
                     <span>{t("rare.dislikes")}</span>
                     {customer.dislikedFoodTags.length ? (
@@ -210,6 +218,11 @@ export function RareSolverPage() {
                   </div>
                   <TrendPicker trend={trend} onChange={setTrend} customerNote={describeTrendTaste(customer, t)} />
                   <CookwarePicker value={state.cookware} onChange={setCookware} recipeCount={pool.recipes.length} />
+                  <label className="ignore-switch">
+                    <input type="checkbox" checked={ignoreRequests} onChange={(e) => setIgnoreRequests(e.target.checked)} />
+                    <span className="ignore-switch-label">{t("ignore.label")}</span>
+                    <span className="hint">{t("ignore.hint")}</span>
+                  </label>
                 </>
               )}
             </div>
@@ -260,7 +273,7 @@ export function RareSolverPage() {
               </span>
               <span className="hint">{t("goal.common")}</span>
             </div>
-            {foodRequest === null && drinkRequest === null && <p className="hint">{t("rare.pickRequest")}</p>}
+            {!ignoreRequests && foodRequest === null && drinkRequest === null && <p className="hint">{t("rare.pickRequest")}</p>}
             {sorted.length === 0 && (
               <p className="hint">{ranking.pinkOnly && solution.suggestions.length > 0 ? t("rank.noPink") : t("rare.noRecipes")}</p>
             )}
@@ -438,7 +451,7 @@ function Metrics({ s, preset }: { s: Suggestion; preset?: Preset }) {
       <span title={t("metric.note")}>{t("metric.cost", { n: setCost(s) })}</span>
       <span title={t("metric.note")}>{t("metric.profit", { n: dishProfit(s) })}</span>
       <span>{t("metric.level", { n: setTopLevel(s) })}</span>
-      <span>{t("metric.time", { n: s.dish.recipe.cookTime })}</span>
+      <span>{t("metric.time", { n: s.dish.cookTime })}</span>
     </div>
   );
 }

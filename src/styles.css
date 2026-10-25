@@ -737,6 +737,45 @@ input {
 .trend-option:hover {
   border-color: var(--lantern);
 }
+.requests {
+  display: grid;
+  gap: 12px;
+}
+.requests.is-ignored .request,
+.requests.is-ignored .request-food {
+  opacity: 0.45;
+}
+.ignore-note {
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: var(--radius-s);
+  background: #fdf0d4;
+  border: 1px solid var(--sake);
+  color: #2b2433;
+  font-size: 0.85rem;
+}
+.ignore-switch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  cursor: pointer;
+}
+.ignore-switch input {
+  accent-color: var(--lantern);
+  width: 16px;
+  height: 16px;
+}
+.ignore-switch-label {
+  font-weight: 600;
+  color: #2b2433;
+}
+.ignore-switch .hint {
+  flex-basis: 100%;
+  margin: 0 0 0 26px;
+  font-size: 0.8rem;
+}
+
 .cookware-picker {
   display: flex;
   flex-wrap: wrap;

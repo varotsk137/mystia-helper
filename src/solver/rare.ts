@@ -20,6 +20,25 @@ export interface RareOrder {
   foodRequest: string | null;
   drinkRequest: string | null;
   trend: Trend;
+  /**
+   * True when Mystia cooks the dish on Night Sparrow cookware during Hyper mode or after a perfect Sparrow Tune:
+   * the guest's requested tags are then ignored and the rating comes from points alone. Night Sparrow
+   * cookware also cooks 25% slower.
+   */
+  ignoreRequests?: boolean;
+}
+
+/** Night Sparrow cookware takes 25% longer to cook (wiki: Stations#Night_Sparrow_Series). */
+const NIGHT_SPARROW_SLOWDOWN = 1.25;
+
+/** Cooking time for this order, in seconds: slower when it relies on Night Sparrow cookware. */
+function cookTimeFor(order: RareOrder, recipe: Recipe): number {
+  return order.ignoreRequests ? Math.round(recipe.cookTime * NIGHT_SPARROW_SLOWDOWN * 10) / 10 : recipe.cookTime;
+}
+
+/** The order as the game scores it: with requests ignored it behaves like an order with no requested tags. */
+export function effectiveOrder(order: RareOrder): RareOrder {
+  return order.ignoreRequests ? { ...order, foodRequest: null, drinkRequest: null } : order;
 }
 
 /**
@@ -81,6 +100,8 @@ export interface DishOption {
   ingredientCost: number;
   /** Highest ingredient level in the pot, as a measure of how rare the ingredients are. */
   topLevel: number;
+  /** Seconds to cook, including the Night Sparrow slowdown when requests are ignored. */
+  cookTime: number;
   /** Per extra: other ingredients that add exactly the same tags (same dish result). */
   substitutes: Ingredient[][];
 }
@@ -190,6 +211,7 @@ function scoreAnyDish(order: RareOrder, recipe: Recipe, extras: Ingredient[], ca
     score: -2,
     requestMet: false,
     ...costFields(recipe, extras, catalog),
+    cookTime: cookTimeFor(order, recipe),
     substitutes: [],
   };
 }
@@ -212,6 +234,7 @@ export function evaluateCombo(
   beverage: Beverage,
   catalog: Catalog = makeCatalog(extras),
 ): Suggestion {
+  order = effectiveOrder(order);
   return combine(order, scoreAnyDish(order, recipe, extras, catalog), drinkOption(order, beverage));
 }
 
@@ -235,6 +258,7 @@ export function ingredientEffects(
   catalog: Catalog = makeCatalog(ingredients),
 ): IngredientEffect[] {
   if (recipe.ingredients.length + extras.length >= MAX_INGREDIENTS) return [];
+  order = effectiveOrder(order);
   const current = evaluateCombo(order, recipe, extras, beverage, catalog);
   const before = new Set(current.dish.dish.tags);
   return ingredients
@@ -274,11 +298,13 @@ function scoreDish(order: RareOrder, recipe: Recipe, extras: Ingredient[], catal
     score: liked.length - disliked.length,
     requestMet: order.foodRequest === null || dish.tags.includes(order.foodRequest),
     ...costFields(recipe, extras, catalog),
+    cookTime: cookTimeFor(order, recipe),
     substitutes: [],
   };
 }
 
 export function rankDrinks(order: RareOrder, beverages: readonly Beverage[]): DrinkOption[] {
+  order = effectiveOrder(order);
   return beverages
     .map((beverage) => drinkOption(order, beverage))
     .sort((a, b) => Number(b.requestMet) - Number(a.requestMet) || b.score - a.score || a.beverage.price - b.beverage.price);
@@ -457,7 +483,7 @@ function scoreFactors(all: Suggestion[]): void {
     profit: dishProfit,
     cost: setCost,
     rarity: setTopLevel,
-    speed: (s) => s.dish.recipe.cookTime,
+    speed: (s) => s.dish.cookTime,
     cheap: (s) => s.totalPrice,
     revenue: (s) => s.totalPrice,
     extras: (s) => s.dish.extras.length,
@@ -535,6 +561,7 @@ export function solveRareOrder(
   limit = 50,
   weights: Weights = PRESETS[DEFAULT_PRESET],
 ): RareSolution {
+  order = effectiveOrder(order);
   const drinks = rankDrinks(order, pool.beverages);
   const wanted = wantedTags(order);
   const catalog = pool.catalog ?? makeCatalog(pool.ingredients);

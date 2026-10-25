@@ -246,7 +246,7 @@ describe("solveRareOrder", () => {
     for (const p of PRESET_IDS) {
       expect(setTopLevel(picks.save)).toBeLessThanOrEqual(setTopLevel(picks[p]));
       expect(dishProfit(picks.profit)).toBeGreaterThanOrEqual(dishProfit(picks[p]));
-      expect(picks.fast.dish.recipe.cookTime).toBeLessThanOrEqual(picks[p].dish.recipe.cookTime);
+      expect(picks.fast.dish.cookTime).toBeLessThanOrEqual(picks[p].dish.cookTime);
     }
     expect(picks.stay.totalPrice).toBeLessThan(picks.profit.totalPrice);
   });
@@ -258,6 +258,26 @@ describe("solveRareOrder", () => {
       expect(s.dish.ingredientCost).toBe(parts.reduce((sum, p) => sum + p.price, 0));
       expect(s.dish.topLevel).toBe(Math.max(...parts.map((p) => p.level)));
     }
+  });
+
+  it("rates by points alone when requests are ignored (Night Sparrow cookware)", () => {
+    const normal = order("Hieda no Akyuu", "Soup", "Sake");
+    const ignored = { ...normal, ignoreRequests: true };
+    const pinkWithoutSoup = (o: RareOrder) =>
+      solveRareOrder(o, pool, 1000).suggestions.filter((s) => s.rating === Rating.Pink && !s.dish.dish.tags.includes("Soup"));
+    // Normally a set without Soup is capped below pink; with requests ignored it can be pink.
+    expect(pinkWithoutSoup(normal)).toEqual([]);
+    expect(pinkWithoutSoup(ignored).length).toBeGreaterThan(0);
+    // Nothing is reported as missing a request, and drinks no longer need the requested tag.
+    const { suggestions, drinks } = solveRareOrder(ignored, pool, 1000);
+    expect(suggestions.every((s) => s.requestsMet === 2)).toBe(true);
+    expect(drinks.every((d) => d.requestMet)).toBe(true);
+    const drink = gameData.beverages.find((b) => !b.tags.includes("Sake"))!;
+    expect(evaluateCombo(ignored, recipe("Boiled Tofu"), [], drink).requestsMet).toBe(2);
+    // Night Sparrow cookware cooks 25% slower.
+    expect(recipe("Boiled Tofu").cookTime).toBe(4.2);
+    expect(evaluateCombo(ignored, recipe("Boiled Tofu"), [], drink).dish.cookTime).toBe(5.3);
+    expect(evaluateCombo(normal, recipe("Boiled Tofu"), [], drink).dish.cookTime).toBe(4.2);
   });
 
   it("applies Nitori's cucumber rule", () => {

@@ -146,6 +146,17 @@ export const messages = {
   "trend.taste": { th: "{name} {parts}", en: "{name} {parts}" },
   "trend.noEffect": { th: "Trend ไม่มีผลกับแต้มของ {name}", en: "Trends don't change {name}'s points" },
 
+  // Night Sparrow cookware ignoring requests
+  "ignore.label": { th: "ไม่เช็คคำขอ", en: "Ignore requests" },
+  "ignore.hint": {
+    th: "ใช้เมื่อ Mystia ทำจานเองด้วยอุปกรณ์ชุด Night Sparrow ตอนเปิด Hyper mode หรือหลังเป่า Sparrow Tune ได้สมบูรณ์ (ผู้ช่วยทำแทนไม่ได้ผล) เกมจะไม่เช็ค tag ที่ลูกค้าขอ เรตติ้งคิดจากแต้มอย่างเดียว อุปกรณ์ชุดนี้ทำอาหารช้าลง 25% เวลาทำที่แสดงจึงรวมส่วนนี้แล้ว",
+    en: "For dishes Mystia herself cooks on Night Sparrow cookware in Hyper mode or after a perfect Sparrow Tune (a partner chef doesn't trigger it): the game ignores the requested tags and rates by points alone. This cookware cooks 25% slower, which the cooking times shown include.",
+  },
+  "ignore.active": {
+    th: "กำลังไม่เช็คคำขอ: tag ที่ลูกค้าขอไม่มีผล แนะนำชุดที่ได้แต้มพอสำหรับชมพูโดยไม่ต้องตรงคำขอ",
+    en: "Requests ignored: the requested tags have no effect, so sets only need enough points for pink.",
+  },
+
   // Guests in the izakaya
   "guests.title": { th: "ลูกค้าในร้าน", en: "Guests in the izakaya" },
   "guests.add": { th: "+ เพิ่มลูกค้า", en: "+ Add guest" },
