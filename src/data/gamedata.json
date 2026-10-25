@@ -1,8 +1,8 @@
 {
  "meta": {
   "source": "https://touhou-mystias-izakaya.fandom.com",
-  "fetchedAt": "2026-10-19T08:22:10.042Z",
-  "builtAt": "2026-10-25T03:30:15.775Z",
+  "fetchedAt": "2026-10-25T07:42:34.188Z",
+  "builtAt": "2026-10-25T07:43:06.988Z",
   "dlcs": [
    "BaseGame",
    "DLC1",
@@ -10574,6 +10574,79 @@
    "likedDrinkTags": [],
    "foodQuotes": [],
    "image": "images/customers/SpecialGuestDefaultPortraitShinki.png"
+  },
+  {
+   "name": "Hata no Kokoro",
+   "shortName": "Kokoro",
+   "kind": "special",
+   "dlc": null,
+   "homeLocation": null,
+   "budget": {
+    "min": 514,
+    "max": 805
+   },
+   "locations": [
+    "Human Village",
+    "Hakurei Shrine",
+    "Youkai Mountain",
+    "Myouren Temple",
+    "Divine Spirit Mausoleum"
+   ],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Legendary",
+    "Japanese",
+    "Signature",
+    "Photogenic",
+    "Refreshing",
+    "Dreamy",
+    "Trend - Popular"
+   ],
+   "dislikedFoodTags": [
+    "Greasy",
+    "Salty",
+    "Hot",
+    "Trend - Unpopular"
+   ],
+   "likedDrinkTags": [
+    "Mid Alcohol",
+    "Shochu",
+    "Sweet",
+    "Vintage"
+   ],
+   "foodQuotes": [
+    {
+     "tag": "Japanese",
+     "text": "Noh is the oldest of classical Japanese theater.",
+     "variant": null
+    },
+    {
+     "tag": "Signature",
+     "text": "Will I understand everyone's emotions if I order the same thing as them?",
+     "variant": null
+    },
+    {
+     "tag": "Legendary",
+     "text": "The scripts of Noh are itself a large collection of legends.",
+     "variant": null
+    },
+    {
+     "tag": "Dreamy",
+     "text": "The remnants of illusions still lingers in the very soul of Noh—elevating it into the realm of dreams and mystery.",
+     "variant": null
+    },
+    {
+     "tag": "Refreshing",
+     "text": "There's no better accompaniment to Noh than the chilling breeze and the flickering campfire.",
+     "variant": null
+    },
+    {
+     "tag": "Photogenic",
+     "text": "Had my dance left a deep impression within everyone?",
+     "variant": null
+    }
+   ],
+   "image": "images/customers/SpecialGuestDefaultPortraitHataNoKokoro.png"
   }
  ],
  "merchants": [

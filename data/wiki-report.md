@@ -1,6 +1,6 @@
 # Wiki data report
 
-Fetched: 2026-10-19T08:22:10.042Z
+Fetched: 2026-10-25T07:42:34.188Z
 
 | Dataset | Count |
 |---|---|
@@ -10,7 +10,7 @@ Fetched: 2026-10-19T08:22:10.042Z
 | beverages | 46 |
 | recipes | 163 |
 | normalCustomers | 47 |
-| rareCustomers | 66 |
+| rareCustomers | 67 |
 | merchants | 24 |
 | partners | 16 |
 
@@ -23,7 +23,7 @@ These are tags the game adds dynamically (price, trend, etc.) or wiki inconsiste
 ## Drink tags customers use that no beverage carries
 
 
-## Issues (26)
+## Issues (27)
 
 - Tag "Good with Alcohol" -> "Good w/ Alcohol" (Radish)
 - Tag "Fungi" -> "Fungus" (Mushroom)
@@ -35,6 +35,7 @@ These are tags the game adds dynamically (price, trend, etc.) or wiki inconsiste
 - Location "Myouren Temple}" -> "Myouren Temple" (Youkai Mouse)
 - Location "Youkai Trial" -> "Youkai Trail" (Reimu Hakurei)
 - Tag "Trend-Popular" -> "Trend - Popular" (Ellen)
+- Special guest "Hata no Kokoro" has data but is missing from the wiki's order list; added at the end
 - Customer "Okina Matara" preferences not documented on wiki
 - Customer "Flandre Scarlet" preferences not documented on wiki
 - Customer "Wakasagihime" preferences not documented on wiki

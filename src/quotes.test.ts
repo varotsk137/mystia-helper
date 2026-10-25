@@ -10,6 +10,13 @@ describe("quote data", () => {
     expect(withQuotes.length).toBeGreaterThan(45);
     expect(customer("Wriggle Nightbug").foodQuotes.map((q) => q.tag).sort()).toEqual(["Meat", "Peculiar", "Raw", "Sweet"]);
   });
+
+  it("includes special guests the wiki left out of its order list", () => {
+    const kokoro = customer("Hata no Kokoro");
+    expect(kokoro.kind).toBe("special");
+    expect(kokoro.budget).toEqual({ min: 514, max: 805 });
+    expect(kokoro.foodQuotes.length).toBe(6);
+  });
 });
 
 describe("searchQuotes", () => {

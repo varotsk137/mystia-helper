@@ -1854,5 +1854,40 @@
   "Shinki": {
     "page": "Shinki",
     "quotes": []
+  },
+  "Hata no Kokoro": {
+    "page": "Hata no Kokoro",
+    "quotes": [
+      {
+        "tag": "Japanese",
+        "text": "Noh is the oldest of classical Japanese theater.",
+        "variant": null
+      },
+      {
+        "tag": "Signature",
+        "text": "Will I understand everyone's emotions if I order the same thing as them?",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "The scripts of Noh are itself a large collection of legends.",
+        "variant": null
+      },
+      {
+        "tag": "Dreamy",
+        "text": "The remnants of illusions still lingers in the very soul of Noh—elevating it into the realm of dreams and mystery.",
+        "variant": null
+      },
+      {
+        "tag": "Refreshing",
+        "text": "There's no better accompaniment to Noh than the chilling breeze and the flickering campfire.",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "Had my dance left a deep impression within everyone?",
+        "variant": null
+      }
+    ]
   }
 }

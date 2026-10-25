@@ -179,7 +179,15 @@ for (const [key, value] of Object.entries(rareRaw)) {
 }
 
 const specialRaw = custRaw["Special Guests"];
-for (const name of specialRaw.order ?? []) {
+// "order" sets the display order, but the wiki sometimes adds a guest without listing it there
+// (e.g. Hata no Kokoro); those go at the end.
+const specialNames = [...(specialRaw.order ?? [])];
+for (const key of Object.keys(specialRaw)) {
+  if (key === "order" || specialNames.includes(key)) continue;
+  warn(`Special guest "${key}" has data but is missing from the wiki's order list; added at the end`);
+  specialNames.push(key);
+}
+for (const name of specialNames) {
   const d = specialRaw[name];
   if (!d) {
     warn(`Special guest "${name}" listed in order but has no data`);
