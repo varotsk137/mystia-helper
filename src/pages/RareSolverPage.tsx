@@ -3,6 +3,7 @@ import type { Ingredient, RareCustomer } from "../data";
 import { useAvailablePool, useGameData, useStore } from "../store";
 import { TrendPicker } from "../components/TrendPicker";
 import { CookwarePicker } from "../components/CookwarePicker";
+import { FoodRequestPicker, QuoteSearch } from "../components/QuoteParts";
 import {
   evaluateCombo,
   ingredientEffects,
@@ -147,11 +148,20 @@ export function RareSolverPage() {
             </div>
           </div>
 
+          <QuoteSearch
+            customers={pool.rareCustomers}
+            currentName={customer.name}
+            onPick={(c, tag) => {
+              selectCustomer(c.name);
+              setFoodRequest(tag);
+            }}
+          />
+
           {customer.undocumented ? (
             <p className="hint">Wiki ยังไม่มีข้อมูลรสนิยมของ {customer.shortName} ใส่ข้อมูลเองได้ที่หน้าข้อมูลเกม</p>
           ) : (
             <>
-              <RequestPicker label="ขออาหาร" tags={customer.likedFoodTags} value={foodRequest} onChange={setFoodRequest} />
+              <FoodRequestPicker customer={customer} value={foodRequest} onChange={setFoodRequest} />
               <RequestPicker label="ขอเครื่องดื่ม" tags={customer.likedDrinkTags} value={drinkRequest} onChange={setDrinkRequest} />
               <div className="dislikes">
                 <span>ไม่ชอบ</span>

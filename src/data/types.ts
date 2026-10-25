@@ -59,8 +59,17 @@ export interface NormalCustomer {
   description: string;
 }
 
+/** What a rare customer says in-game when requesting a food tag (from the wiki's Tag Requests section). */
+export interface TagQuote {
+  tag: string;
+  text: string;
+  /** e.g. "DLC 4" when the wiki lists different lines per game version; null otherwise. */
+  variant: string | null;
+}
+
 export interface RareCustomer {
   name: string;
+  foodQuotes: TagQuote[];
   image: string | null;
   shortName: string;
   kind: "rare" | "special";

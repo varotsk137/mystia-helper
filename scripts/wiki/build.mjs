@@ -282,6 +282,14 @@ const requestedDrink = new Set([
 const foodTagsOnlyOnCustomers = [...requestedFood].filter((t) => !foodTagsOnItems.has(t)).sort();
 const drinkTagsOnlyOnCustomers = [...requestedDrink].filter((t) => !drinkTagsOnItems.has(t)).sort();
 
+// ---------- Tag request quotes (from fetch-quotes.mjs, optional) ----------
+const quotes = await readFile(join(rawDir, "quotes.json"), "utf8").then(JSON.parse, () => ({}));
+for (const c of rareCustomers) {
+  c.foodQuotes = (quotes[c.name]?.quotes ?? []).map((q) => ({ ...q, tag: fixTag(q.tag, `${c.name} quote`) }));
+  for (const q of c.foodQuotes)
+    if (!c.likedFoodTags.includes(q.tag)) warn(`Quote for "${q.tag}" but ${c.name} does not list it as liked`);
+}
+
 // ---------- Images (from fetch-images.mjs, optional) ----------
 const images = await readFile(join(rawDir, "images.json"), "utf8").then(JSON.parse, () => ({}));
 const attachImages = (list, kind) => {

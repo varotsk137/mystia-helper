@@ -1,0 +1,1858 @@
+{
+  "Wriggle Nightbug": {
+    "page": "Wriggle Nightbug",
+    "quotes": [
+      {
+        "tag": "Sweet",
+        "text": "It would be great if all dishes tasted sweet~",
+        "variant": null
+      },
+      {
+        "tag": "Raw",
+        "text": "Raw meat obviously tastes better than cooked meat!Are you the kind of weirdo that orders well-done steaks?",
+        "variant": null
+      },
+      {
+        "tag": "Meat",
+        "text": "Actually, insects can be carnivores, too!",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "As an insect, I never say no to abnormal food~",
+        "variant": null
+      }
+    ]
+  },
+  "Chen": {
+    "page": "Chen",
+    "quotes": [
+      {
+        "tag": "Grilled",
+        "text": "I want roast meat skewered on a stick!",
+        "variant": null
+      },
+      {
+        "tag": "Aquatic",
+        "text": "Of course cats eat fish~",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "I also like sweets~",
+        "variant": null
+      },
+      {
+        "tag": "Greasy",
+        "text": "Eww… how could it taste good without oil?",
+        "variant": null
+      },
+      {
+        "tag": "Meat",
+        "text": "I'm still growing. You can't grow without eating meat!",
+        "variant": null
+      }
+    ]
+  },
+  "Rumia": {
+    "page": "Rumia",
+    "quotes": [
+      {
+        "tag": "Signature",
+        "text": "Do you have any specialty dishes?",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "Those dishes that humans think are strange sound tasty to me~",
+        "variant": null
+      },
+      {
+        "tag": "Meat",
+        "text": "FLESH FLESH FLESH~ I desire flesh~",
+        "variant": null
+      },
+      {
+        "tag": "Raw",
+        "text": "Isn't the freshest way to eat something just to eat it raw?",
+        "variant": null
+      },
+      {
+        "tag": "Filling",
+        "text": "I can't go on without a full stomach~",
+        "variant": null
+      }
+    ]
+  },
+  "Hieda no Akyuu": {
+    "page": "Hieda no Akyuu",
+    "quotes": [
+      {
+        "tag": "Soup",
+        "text": "*cough* *cough* I'm not feeling too well today. Do you have any easily digestible soups?",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "As the head of the Hieda family, I have to constantly monitor my behavior and maintain my status. The food I eat has to match my noble status.",
+        "variant": null
+      },
+      {
+        "tag": "Cultural Heritage",
+        "text": "There are cultures buried in cuisines too. It's actually not that different from what I do.",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "The Hieda family is a traditional Japanese family.",
+        "variant": null
+      },
+      {
+        "tag": "Mild",
+        "text": "The key to a long and healthy life is to eat mild food…",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Eating too many sweets is not good for your health *cough* but it shouldn't be too bad if have [sic] them once in a while...",
+        "variant": null
+      }
+    ]
+  },
+  "Keine Kamishirasawa": {
+    "page": "Keine Kamishirasawa",
+    "quotes": [
+      {
+        "tag": "Chinese",
+        "text": "I wonder what kind of history Chinese cuisines carry?",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "What history lies beneath Japanese cuisines?",
+        "variant": null
+      },
+      {
+        "tag": "Vegetarian",
+        "text": "Your body will feel great when you eat some vegetables.",
+        "variant": null
+      },
+      {
+        "tag": "Mild",
+        "text": "I've been acquiring a taste for mild foods recently...",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "You don't need to be fancy, just some day-to-day home-cooked dishes are fine.",
+        "variant": null
+      },
+      {
+        "tag": "Cultural Heritage",
+        "text": "History and culture go hand in hand.",
+        "variant": null
+      }
+    ]
+  },
+  "Kasen Ibaraki": {
+    "page": "Kasen Ibaraki",
+    "quotes": [
+      {
+        "tag": "Cultural Heritage",
+        "text": "Hermits never merely pursue tastes. The culture behind each dish is also very important.",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "Japanese foods are frequently favored by hermits.",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "Not all hermits are pretentious... There's something unique and unmatched about home-cooked food, too.",
+        "variant": null
+      },
+      {
+        "tag": "Good with Alcohol",
+        "text": "You can't just have alcohol by itself! Some matching dishes have to go with it.",
+        "variant": null
+      }
+    ]
+  },
+  "Reimu Hakurei": {
+    "page": "Reimu Hakurei",
+    "quotes": [
+      {
+        "tag": "Sweet",
+        "text": "Sugar used to be a rare commodity. It's great that it's plentiful nowadays~",
+        "variant": null
+      },
+      {
+        "tag": "Filling",
+        "text": "I don't plan on going home with a half-empty stomach...",
+        "variant": null
+      },
+      {
+        "tag": "Economical",
+        "text": "I can't afford anything expensive!",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "Is there any dish worthy of my title?",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "I want something premium! Ah, but I have to be able to afford it first...",
+        "variant": null
+      }
+    ]
+  },
+  "Suika Ibuki": {
+    "page": "Suika Ibuki",
+    "quotes": [
+      {
+        "tag": "Meat",
+        "text": "It's an oni's style to go all out! Havin' a mouthful of meat and wine is the way to go!",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "When ya mention oni, don't Japanese folktales come to mind~?",
+        "variant": null
+      },
+      {
+        "tag": "Good with Alcohol",
+        "text": "*hic*~ It would be great if I had somethin' to go along with my alcohol~",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "The power of us oni are off the scale~",
+        "variant": null
+      },
+      {
+        "tag": "Small Portion",
+        "text": "I can divide myself into many mini-Suika. Is there anythin' suitable for my ability~",
+        "variant": null
+      }
+    ]
+  },
+  "Tenshi Hinanawi": {
+    "page": "Tenshi Hinanawi",
+    "quotes": [
+      {
+        "tag": "Vegetarian",
+        "text": "Eww. . . Get anything smelly as far away from me as possible!",
+        "variant": null
+      },
+      {
+        "tag": "Mild",
+        "text": "Only a peasant would like something with a strong flavor!",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "It's physically impossible for anyone to dislike sweet food~",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "Don't even bother serving me ugly-looking peasant dishes!",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "Legendary cuisines. Never mind, I don't think your small run-down izakaya has them.",
+        "variant": null
+      },
+      {
+        "tag": "Expensive",
+        "text": "Give me the most expensive thing you got! Shut up and take my money!",
+        "variant": null
+      },
+      {
+        "tag": "Fruity",
+        "text": "Fresh fruits. Does your small izakaya even carry them?",
+        "variant": null
+      }
+    ]
+  },
+  "Hong Meiling": {
+    "page": "Hong Meiling",
+    "quotes": [
+      {
+        "tag": "Chinese",
+        "text": "I can't forget my country's flavors even in a foreign land.",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "Is there a dish that boosts power just like in manga?",
+        "variant": null
+      },
+      {
+        "tag": "Meat",
+        "text": "Nothing is more substantial than meat!",
+        "variant": null
+      },
+      {
+        "tag": "Filling",
+        "text": "I have to be full to do my best.",
+        "variant": null
+      }
+    ]
+  },
+  "Cirno": {
+    "page": "Cirno",
+    "quotes": [
+      {
+        "tag": "Refreshing",
+        "text": "Of course an ice fairy needs to eat ice!",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Sweet things puts [sic] everyone in a happy mood~",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "I don't wanna eat anything ugly!",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "A true warrior is always brave enough to try out unusual and weird things!",
+        "variant": null
+      }
+    ]
+  },
+  "Patchouli Knowledge": {
+    "page": "Patchouli Knowledge",
+    "quotes": [
+      {
+        "tag": "Western",
+        "text": "Can your bird-brain even comprehend the cultural differences between different culinary styles?",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Sweetness is a feeling that can seep through one's heart.",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "A delicately crafted cuisine can make people drool even as a picture in the book.",
+        "variant": null
+      },
+      {
+        "tag": "Dreamy",
+        "text": "Hmm. I really want to witness the reality-like dream induced through nothing more than a dish.",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "Practice makes perfect, and premium products require great skill. This is true for both chefs and magicians.",
+        "variant": null
+      }
+    ]
+  },
+  "Fujiwara no Mokou": {
+    "page": "Fujiwara no Mokou",
+    "quotes": [
+      {
+        "tag": "Hot",
+        "text": "The immortal smoke floating atop the Youkai Mountain, even without a flame, one can feel its heat.",
+        "variant": null
+      },
+      {
+        "tag": "Aura-Bursting",
+        "text": "The rebirthing phoenix always has a bursting aura that can never be extinguished!",
+        "variant": null
+      },
+      {
+        "tag": "Spicy",
+        "text": "Spiciness is one of the only things that can make me feel alive.",
+        "variant": null
+      },
+      {
+        "tag": "Fruity",
+        "text": "Fruits offer both liquid and food. They are truly gifts from the heavens.",
+        "variant": null
+      },
+      {
+        "tag": "Grilled",
+        "text": "I'm pretty good at grilling meat myself, actually.",
+        "variant": null
+      }
+    ]
+  },
+  "Kaguya Houraisan": {
+    "page": "Kaguya Houraisan",
+    "quotes": [
+      {
+        "tag": "Japanese",
+        "text": "I'm actually very interested in the Japanese concept of an \"Ideal Woman\".",
+        "variant": null
+      },
+      {
+        "tag": "Cultural Heritage",
+        "text": "Even when history and culture never last for me, they are still part of the undeniable past.",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "Actually, most legends and folklore on Earth were created and spread by residents of the Moon.",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "I find it hard to believe that this corrupted yet free land never ceases to amaze me.",
+        "variant": null
+      }
+    ]
+  },
+  "Tewi Inaba": {
+    "page": "Tewi Inaba",
+    "quotes": [
+      {
+        "tag": "Dreamy",
+        "text": "Heh~ reality is actually harder to reach than a dream-like fantasy~",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "All the Inaba love to sing about the legendary man while making rice cakes.",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Doesn't sweetness come to mind when you discuss rabbits? Ah, I'm not referring to the taste.",
+        "variant": null
+      },
+      {
+        "tag": "Refreshing",
+        "text": "We rabbits have thick fur, so we actually lose our appetite if we overheat.",
+        "variant": null
+      },
+      {
+        "tag": "Small Portion",
+        "text": "For rabbits, even a tiny bit is enough to completely stuff us full!",
+        "variant": null
+      }
+    ]
+  },
+  "Marisa Kirisame": {
+    "page": "Marisa Kirisame",
+    "quotes": [
+      {
+        "tag": "Japanese",
+        "text": "Japanese food is like bread to me. I can remember every single time I've eaten it!",
+        "variant": null
+      },
+      {
+        "tag": "Hot",
+        "text": "The heat from my mini-hakkero pumps me up every time when I'm about to launch a spell card!",
+        "variant": null
+      },
+      {
+        "tag": "Greasy",
+        "text": "Bland is never an option! You've gotta add some oil!",
+        "variant": null
+      },
+      {
+        "tag": "Fungus",
+        "text": "It's impossible to be tired of mushrooms!",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "The older an item gets, the more legendary it becomes~",
+        "variant": null
+      }
+    ]
+  },
+  "Alice": {
+    "page": "Alice",
+    "quotes": [
+      {
+        "tag": "Homecooking",
+        "text": "Even when the path of a magician is lonely, I still occasionally miss the taste of home.",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "I really can't stand low-class food.",
+        "variant": null
+      },
+      {
+        "tag": "Western",
+        "text": "Of course magicians prefer Western style cuisines.",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "I occasionally dream of sleeping in a house made of chocolate and candy.",
+        "variant": null
+      },
+      {
+        "tag": "Cultural Heritage",
+        "text": "The history behind food and magic are equally mysterious.",
+        "variant": null
+      }
+    ]
+  },
+  "Narumi Yatadera": {
+    "page": "Narumi Yatadera",
+    "quotes": [
+      {
+        "tag": "Mild",
+        "text": "I'm still a Jizo, so I should probably have something mild once in a while.",
+        "variant": null
+      },
+      {
+        "tag": "Mountain Delicacy",
+        "text": "I don't need to save the beasts wandering in the mountain, you know?",
+        "variant": null
+      },
+      {
+        "tag": "Cultural Heritage",
+        "text": "The culture behind each dish may be as complex as Buddhist scriptures.",
+        "variant": null
+      },
+      {
+        "tag": "Specialty",
+        "text": "I want to try specialty dishes from everywhere, but I'm too lazy to go find them.",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "When I was still a Jizo statue, the Japanese style was the only one around.",
+        "variant": null
+      }
+    ]
+  },
+  "Nitori Kawashiro": {
+    "page": "Nitori Kawashiro",
+    "quotes": [
+      {
+        "tag": "Peculiar",
+        "text": "Humans definitely can't understand the tastes of us kappa. . . well, maybe a few can.",
+        "variant": null
+      },
+      {
+        "tag": "Aquatic",
+        "text": "Kappas are the masters of water amongst the youkai, so it's natural we get our food from the water.",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "Come on! Entertain us kappa! Show me your most premium dishes!",
+        "variant": null
+      },
+      {
+        "tag": "Good with Alcohol",
+        "text": "Drinking alcohol without something to go with it is just—",
+        "variant": null
+      },
+      {
+        "tag": "Salty",
+        "text": "Kappa need more salty food to regain our strength.",
+        "variant": null
+      },
+      {
+        "tag": "Signature",
+        "text": "Only the most famous dishes can be called a \"Signature Dish\"!",
+        "variant": null
+      }
+    ]
+  },
+  "Momiji Inubashiri": {
+    "page": "Momiji Inubashiri",
+    "quotes": [
+      {
+        "tag": "Meat",
+        "text": "Wolves, even when they are youkai, will never stop loving meat.",
+        "variant": null
+      },
+      {
+        "tag": "Mountain Delicacy",
+        "text": "As the saying goes, if you live on the mountain, then you rely on the mountain.",
+        "variant": null
+      },
+      {
+        "tag": "Greasy",
+        "text": "I really don't like mild food. An unhealthy diet is just right for me.",
+        "variant": null
+      },
+      {
+        "tag": "Large Portion",
+        "text": "I need to eat a lot to make up for calories lost patrolling the mountain today.",
+        "variant": null
+      },
+      {
+        "tag": "Good w/ Alcohol",
+        "text": "Alcohol is the main protagonist. Everything else is only a foil for it.",
+        "variant": null
+      }
+    ]
+  },
+  "Sanae Kochiya": {
+    "page": "Sanae Kochiya",
+    "quotes": [
+      {
+        "tag": "Japanese",
+        "text": "When it comes to Japanese traditions, the Yamato-style has to be the most iconic!",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "If you've never tasted delicious sweets, then you are missing out~",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "Oh, it seems cellphones aren't completely useless in Gensokyo~",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "I will call a place home as long as my two gods are there with me.",
+        "variant": null
+      },
+      {
+        "tag": "Dreamy",
+        "text": "Girls can never resist things that are as beautiful as a dream~",
+        "variant": null
+      }
+    ]
+  },
+  "Yamame Kurodani": {
+    "page": "Yamame Kurodani",
+    "quotes": [
+      {
+        "tag": "Sweet",
+        "text": "Life is full of sweetness and delights.",
+        "variant": null
+      },
+      {
+        "tag": "Fresh",
+        "text": "Of course savory dishes taste the best!",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "Do ordinary people think the food we prefer is weird?",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "I'm snapping photos of nice-looking food to share with the other spiders back home~",
+        "variant": null
+      },
+      {
+        "tag": "Raw",
+        "text": "I can't get used to food that's been cooked for too long.",
+        "variant": null
+      }
+    ]
+  },
+  "Parsee Mizuhashi": {
+    "page": "Parsee Mizuhashi",
+    "quotes": [
+      {
+        "tag": "Sour",
+        "text": "The taste of jealousy is sour.",
+        "variant": null
+      },
+      {
+        "tag": "Salty",
+        "text": "The taste of tears is salty.",
+        "variant": null
+      },
+      {
+        "tag": "Spicy",
+        "text": "The taste of rage is spicy.",
+        "variant": null
+      },
+      {
+        "tag": "Fresh",
+        "text": "I can't stand other customers having food more savory than mine!",
+        "variant": null
+      },
+      {
+        "tag": "Fruity",
+        "text": "A dejected heart can be soothed with fruits.",
+        "variant": null
+      },
+      {
+        "tag": "Meat",
+        "text": "I'll place a curse on you if you don't give me meat.",
+        "variant": null
+      }
+    ]
+  },
+  "Yuugi Hoshiguma": {
+    "page": "Yuugi Hoshiguma",
+    "quotes": [
+      {
+        "tag": "Good with Alcohol",
+        "text": "Just gimme a dish that'll go well with sake!",
+        "variant": null
+      },
+      {
+        "tag": "Signature",
+        "text": "Lemme try your signature dish, birdie~",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "How are people spreadin' legends about us oni these days?",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "Don'tcha think the Japanese style really suits this street~",
+        "variant": null
+      },
+      {
+        "tag": "Large Portion",
+        "text": "I’m ready to eat till I pop!",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "Oni with no strength will just be chewed and spit out.",
+        "variant": null
+      },
+      {
+        "tag": "Aura-Bursting",
+        "text": "Let my blood boil!",
+        "variant": null
+      }
+    ]
+  },
+  "Satori Komeiji": {
+    "page": "Satori Komeiji",
+    "quotes": [
+      {
+        "tag": "Homecooking",
+        "text": "Home-cooked dishes are also one of the many flavors in life.",
+        "variant": null
+      },
+      {
+        "tag": "Small Portion",
+        "text": "Eating too much will hinder my train of thought.",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Life needs to be a little more sweet.",
+        "variant": null
+      },
+      {
+        "tag": "Dreamy",
+        "text": "The finest cuisine is akin to a waking dream.",
+        "variant": null
+      },
+      {
+        "tag": "Specialty",
+        "text": "Food can shorten the gap between people of different homelands.",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "I hope this meal can give me the strength to continue working.",
+        "variant": null
+      }
+    ]
+  },
+  "Rin Kaenbyou": {
+    "page": "Rin Kaenbyou",
+    "quotes": [
+      {
+        "tag": "Fresh",
+        "text": "Bacteria grows on rotten food, so fresh food is better.",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Sweet food is the simplest way to get a gourmet experience~",
+        "variant": null
+      },
+      {
+        "tag": "Aquatic",
+        "text": "I'm so clever because I love eating fish.",
+        "variant": null
+      },
+      {
+        "tag": "Sea Delicacy",
+        "text": "The Underworld and the seabed are actually connected right? [sic]",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "Sometimes cats find strange things even more exciting!",
+        "variant": null
+      },
+      {
+        "tag": "Dreamy",
+        "text": "How I wish to return to the garden of my dreams.",
+        "variant": null
+      }
+    ]
+  },
+  "Utsuho Reiuji": {
+    "page": "Utsuho Reiuji",
+    "quotes": [
+      {
+        "tag": "Meat",
+        "text": "Meat is the source of strength, life would dwindle without it.",
+        "variant": null
+      },
+      {
+        "tag": "Spicy",
+        "text": "Doesn't spiciness just make your heart pound?",
+        "variant": null
+      },
+      {
+        "tag": "Salty",
+        "text": "Okuu salt replenishment program——activate!",
+        "variant": null
+      },
+      {
+        "tag": "Greasy",
+        "text": "How much oil you add is how hot the fire gets!",
+        "variant": null
+      },
+      {
+        "tag": "Hot",
+        "text": "I'm not afraid to try something even hotter than fire!",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "I've been feeling the power of my strength rising.",
+        "variant": null
+      }
+    ]
+  },
+  "Kogasa Tatara": {
+    "page": "Kogasa Tatara",
+    "quotes": [
+      {
+        "tag": "Homecooking",
+        "text": "Eating together as a family feels very cozy.",
+        "variant": null
+      },
+      {
+        "tag": "Filling",
+        "text": "I can't scare anyone so my stomach always feels empty...",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Sweet foods can bring people closer!",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "Good-looking food should taste good too, right?",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "I need more strength to scare humans!",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "Food that surprises you is pretty interesting, isn't it?",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "Wonder is also a feeling of surprise.",
+        "variant": null
+      }
+    ]
+  },
+  "Minamitsu Murasa": {
+    "page": "Minamitsu Murasa",
+    "quotes": [
+      {
+        "tag": "Meat",
+        "text": "I can eat meat if it follows the threefold rule.",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "Since I'm captain now, no one will bat an eye if I have a private kitchen with all the premium food, right?",
+        "variant": null
+      },
+      {
+        "tag": "Filling",
+        "text": "If I'm not full I can't even turn the rudders.",
+        "variant": null
+      },
+      {
+        "tag": "Salty",
+        "text": "Seawater and tears both taste salty.",
+        "variant": null
+      },
+      {
+        "tag": "Fresh",
+        "text": "The shelf life of food can't exceed an hour.",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "The feeling of strength as a geyser erupts is way too satisfying.",
+        "variant": null
+      },
+      {
+        "tag": "Specialty",
+        "text": "The journeys of mankind are how food comes across food.",
+        "variant": null
+      }
+    ]
+  },
+  "Nue Houjuu": {
+    "page": "Nue Houjuu",
+    "quotes": [
+      {
+        "tag": "Meat",
+        "text": "Sutras can wait but not meat.",
+        "variant": null
+      },
+      {
+        "tag": "Fresh",
+        "text": "I've had enough rotten meat in the past, thank you very much.",
+        "variant": null
+      },
+      {
+        "tag": "Raw",
+        "text": "Eating raw might be primitive but it's really convenient.",
+        "variant": null
+      },
+      {
+        "tag": "Signature",
+        "text": "Even your best signature dish needs some change to be good.",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "When humans see me they can't stop snapping photos.",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "Actually humans are the animals that love hunting the most.",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "Being unidentified is wonderful.",
+        "variant": null
+      },
+      {
+        "tag": "Specialty",
+        "text": "Every place has its own unique dishes.",
+        "variant": null
+      }
+    ]
+  },
+  "Mononobe no Futo": {
+    "page": "Mononobe no Futo",
+    "quotes": [
+      {
+        "tag": "Premium",
+        "text": "Prefering premium items may be a habit from mine aristocrat days...",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "The crown prince I worship is a saint of legend.",
+        "variant": null
+      },
+      {
+        "tag": "Mild",
+        "text": "Nobles of mine times prefer milder foods.",
+        "variant": null
+      },
+      {
+        "tag": "Mountain Delicacy",
+        "text": "Taoist foods mostly consist of mountain delicacies with herbs as seasoning.",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "I am glad that the style of mine times still exist in current times.",
+        "variant": null
+      },
+      {
+        "tag": "Aura-Bursting",
+        "text": "Couldst dishes make one burst into flames?",
+        "variant": null
+      }
+    ]
+  },
+  "Seiga Kaku": {
+    "page": "Seiga Kaku",
+    "quotes": [
+      {
+        "tag": "Vegetarian",
+        "text": "Eating meat all the time is too unbecoming of a hermit.",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "My story is among human legends too.",
+        "variant": null
+      },
+      {
+        "tag": "Chinese",
+        "text": "My hometown is a place with Taoist hermits everywhere.",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Every sweet has its story~",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "I love meeting wonderful people~",
+        "variant": null
+      },
+      {
+        "tag": "Small Portion",
+        "text": "Midnight snacks should have small rather than large portions.",
+        "variant": null
+      },
+      {
+        "tag": "Specialty",
+        "text": "A small shop serving food from all around the world, how convenient.",
+        "variant": null
+      }
+    ]
+  },
+  "Soga no Tojiko": {
+    "page": "Soga no Tojiko",
+    "quotes": [
+      {
+        "tag": "Homecooking",
+        "text": "In all my years standing guard, home-cooking is what I miss most.",
+        "variant": null
+      },
+      {
+        "tag": "Greasy",
+        "text": "I can eat all the unhealthy and greasy foods I want now that I'm a ghost~",
+        "variant": null
+      },
+      {
+        "tag": "Filling",
+        "text": "If you can't store it in your head, store it in your stomach.",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "I guess having what I had before every once in a while is fine.",
+        "variant": null
+      },
+      {
+        "tag": "Signature",
+        "text": "You can tell apart shops by their signature dish.",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "Summoning thunder gives me a boost of strength.",
+        "variant": null
+      },
+      {
+        "tag": "Grilled",
+        "text": "I want food that looks like it was struck by thunder.",
+        "variant": null
+      }
+    ]
+  },
+  "Aya Shameimaru": {
+    "page": "Aya Shameimaru",
+    "quotes": [
+      {
+        "tag": "Meat",
+        "text": "A tengu always eats meat first and foremost.",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "People flock to this place",
+        "variant": null
+      },
+      {
+        "tag": "Good with Alcohol",
+        "text": "Having nothing to go with alcohol can feel lacking sometimes.~",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "Did you know that tengu are some of the most fearsome youkai in Japanese folklore?",
+        "variant": null
+      },
+      {
+        "tag": "Signature",
+        "text": "Signature dishes are simply tried-and-true advertisements",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "I wonder if anything here's worthy of my camera~",
+        "variant": null
+      }
+    ]
+  },
+  "Medicine Melancholy": {
+    "page": "Medicine Melancholy",
+    "quotes": [
+      {
+        "tag": "Sweet",
+        "text": "The basic taste of poison is sweetness.",
+        "variant": null
+      },
+      {
+        "tag": "Signature",
+        "text": "I'm not sure... can you recommend me some signature dishes?",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "Lily says beautiful dishes are very photogenic, like me.",
+        "variant": null
+      },
+      {
+        "tag": "Refreshing",
+        "text": "Dolls and heat do not go well.",
+        "variant": null
+      },
+      {
+        "tag": "Fungus",
+        "text": "Most people think of those things that grow rapidly in the forest when you mention poison.",
+        "variant": null
+      },
+      {
+        "tag": "Small Portion",
+        "text": "Small things like Lily are cute, right?",
+        "variant": null
+      },
+      {
+        "tag": "Dreamy",
+        "text": "Humans intentionally poison themselves to seek enthralling experiences.",
+        "variant": null
+      },
+      {
+        "tag": "Poison",
+        "text": "Poisons are the best seasoning.",
+        "variant": null
+      }
+    ]
+  },
+  "Yuuka Kazami": {
+    "page": "Yuuka Kazami",
+    "quotes": [
+      {
+        "tag": "Premium",
+        "text": "The language of flowers is much more allusive than that of humans, and much more refined.",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "Behind every flower lies a meaning passed down by our forebears",
+        "variant": null
+      },
+      {
+        "tag": "Mild",
+        "text": "Do not touch flowers with greasy hands.",
+        "variant": null
+      },
+      {
+        "tag": "Western",
+        "text": "I'm rather fond of society's pursuit of gentlemanly poise.",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "In the language of flowers, the violet hoary stock symbolizes...",
+        "variant": null
+      },
+      {
+        "tag": "Dreamy",
+        "text": "In the language of flowers, the blue baby's breath symbolizes...",
+        "variant": null
+      },
+      {
+        "tag": "Specialty",
+        "text": "Flowers unable to leave their place of birth eventually become a local specialty.",
+        "variant": null
+      }
+    ]
+  },
+  "Seija Kijin": {
+    "page": "Seija Kijin",
+    "quotes": [
+      {
+        "tag": "Greasy",
+        "text": "The fall of our oppressors shall oil the chains of our revolution.",
+        "variant": null
+      },
+      {
+        "tag": "Good w/ Alcohol",
+        "text": "Every great story starts with alcohol, but you need something to go with it.",
+        "variant": null
+      },
+      {
+        "tag": "Hot",
+        "text": "Nothing improves my mood like seeing something emit smoke.",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "In order to reach my goals, I require more power!",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "I love bizarre items despised by others!",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "How do you describe something that is utterly impossible?",
+        "variant": null
+      },
+      {
+        "tag": "Aura-Bursting",
+        "text": "Just the thought of a future where the weak overthrow the strong already has me excited!",
+        "variant": null
+      }
+    ]
+  },
+  "Shinmyoumaru Sukuna": {
+    "page": "Shinmyoumaru Sukuna",
+    "quotes": [
+      {
+        "tag": "Legendary",
+        "text": "I love stories about bravery and resilience.",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "Our ancestor is a descendant of Sukuna-bikona from Japanese mythology.",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Desserts can heal a soul.",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "I want an absolutely stunning dish I can share with others!",
+        "variant": null
+      },
+      {
+        "tag": "Cultural Heritage",
+        "text": "This castle is brimming with culture, yet no one knows about it...",
+        "variant": null
+      },
+      {
+        "tag": "Small Portion",
+        "text": "Look at me, you know I can't take much food.",
+        "variant": null
+      },
+      {
+        "tag": "Aura-Bursting",
+        "text": "Heroes really get my blood boiling!",
+        "variant": null
+      }
+    ]
+  },
+  "Kagerou Imaizumi": {
+    "page": "Kagerou Imaizumi",
+    "quotes": [
+      {
+        "tag": "Meat",
+        "text": "I am still a wolf...",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "I love snacks that give you the feeling of family.",
+        "variant": null
+      },
+      {
+        "tag": "Mountain Delicacy",
+        "text": "I prefer what walks compared to what swims.",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "Needless to say, a Honshu wolf loves Honshu-style dishes.",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "The camera gets dibs on good-looking food!",
+        "variant": null
+      },
+      {
+        "tag": "Refreshing",
+        "text": "When hair starts to grow, it's best to cool off starting with the stomach...",
+        "variant": null
+      }
+    ]
+  },
+  "Ellen": {
+    "page": "Ellen",
+    "quotes": [
+      {
+        "tag": "Western",
+        "text": "Makai is where demons gather in western myth?",
+        "variant": null
+      },
+      {
+        "tag": "Dreamy",
+        "text": "What's dreamy if not fairy tales?",
+        "variant": null
+      },
+      {
+        "tag": "Filling",
+        "text": "Please prepare enough for both Sokrates and I to eat!",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "Your shop is warm and fuzzy, like home.",
+        "variant": null
+      },
+      {
+        "tag": "Refreshing",
+        "text": "Sokrates doesn't like hot food. He has a cat's tongue, after all.",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Sweets can make you feel powerful!",
+        "variant": null
+      }
+    ]
+  },
+  "Mima": {
+    "page": "Mima",
+    "quotes": [
+      {
+        "tag": "Fresh",
+        "text": "That which is rotten is not for consumption, of course.",
+        "variant": null
+      },
+      {
+        "tag": "Fungus",
+        "text": "Mushrooms are indeed interesting, for they are diverse yet intricate creatures.",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "I feel a bit tired. Do you have anything which revitalizes the body and mind?",
+        "variant": null
+      },
+      {
+        "tag": "Aquatic",
+        "text": "Fish are nutritious and low in fat. A most healthy meal.",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "The peculiar have knowledge worth gleaning.",
+        "variant": null
+      },
+      {
+        "tag": "Raw",
+        "text": "The primordial flavor is the best flavor.",
+        "variant": null
+      },
+      {
+        "tag": "Mountain Delicacy",
+        "text": "Mountains have the treasure that is nature's delicacies.",
+        "variant": null
+      }
+    ]
+  },
+  "Louise": {
+    "page": "Louise",
+    "quotes": [
+      {
+        "tag": "Sweet",
+        "text": "When you're down, sweets and music are the best medicine.",
+        "variant": null
+      },
+      {
+        "tag": "Aquatic",
+        "text": "Aquatic foods are an important source of protein.",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "I'd like something I can post about on my blog.",
+        "variant": null
+      },
+      {
+        "tag": "Small Portion",
+        "text": "It's not good to eat too much at night.",
+        "variant": null
+      },
+      {
+        "tag": "Specialty",
+        "text": "One of the joys of traveling is being able to eat a variety of cuisines.",
+        "variant": null
+      },
+      {
+        "tag": "Western",
+        "text": "Next time, I'll travel to the west.",
+        "variant": null
+      }
+    ]
+  },
+  "Reisen": {
+    "page": "Reisen",
+    "quotes": [
+      {
+        "tag": "Small Portion",
+        "text": "A rabbit's stomach is very small.",
+        "variant": null
+      },
+      {
+        "tag": "Sea Delicacy",
+        "text": "Would it be nice if the Sea of Tranquility weren't as lifeless as it is?",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Sugar is my one salvation.",
+        "variant": null
+      },
+      {
+        "tag": "Specialty",
+        "text": "I want to try delicacies from those places where I can't reach…",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "The taste of home can cure a day's tiredness.",
+        "variant": null
+      },
+      {
+        "tag": "Chinese",
+        "text": "Where did the myth that moon rabbits are also hermits come from?",
+        "variant": null
+      },
+      {
+        "tag": "Mountain Delicacy",
+        "text": "If the Lunar Capital had mountains, would it have animals of some kind?",
+        "variant": null
+      }
+    ]
+  },
+  "Watatsuki no Toyohime": {
+    "page": "Watatsuki no Toyohime",
+    "quotes": [
+      {
+        "tag": "Fruity",
+        "text": "Peaches are the best!",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "I've been big on Japanese poems lately.",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "Even all the sugar in the world can't rot my teeth.",
+        "variant": null
+      },
+      {
+        "tag": "Vegetarian",
+        "text": "I heard that eating grass helps with digestion?",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "Food that feels premium and well-made will turn heads more easily.",
+        "variant": null
+      },
+      {
+        "tag": "Refreshing",
+        "text": "It's so hot... Too bad I can't cool off with this fan...",
+        "variant": null
+      },
+      {
+        "tag": "Cultural Heritage",
+        "text": "I like to hear the stories behind a dish.",
+        "variant": null
+      }
+    ]
+  },
+  "Watatsuki no Yorihime": {
+    "page": "Watatsuki no Yorihime",
+    "quotes": [
+      {
+        "tag": "Legendary",
+        "text": "I want to leave behind results that will be praised for generations to come.",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "Lunarians don't eat chaff.",
+        "variant": null
+      },
+      {
+        "tag": "Chinese",
+        "text": "I have some interest in Chinese martial arts.",
+        "variant": null
+      },
+      {
+        "tag": "Cultural Heritage",
+        "text": "Every skill and technique is culture being passed down.",
+        "variant": null
+      },
+      {
+        "tag": "Hot",
+        "text": "My blood shall boil for as long as I live.",
+        "variant": null
+      },
+      {
+        "tag": "Mild",
+        "text": "Eating mild is important for preserving one's health.",
+        "variant": null
+      },
+      {
+        "tag": "Small Portion",
+        "text": "Eating too much is not ideal for training.",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "I need more and more strength.",
+        "variant": null
+      }
+    ]
+  },
+  "Rinnosuke Morichika": {
+    "page": "Rinnosuke Morichika",
+    "quotes": [
+      {
+        "tag": "Homecooking",
+        "text": "Those simple-looking home-cooked dishes actually have deeper complexity. Isn't it kinda similar to me?",
+        "variant": null
+      },
+      {
+        "tag": "Filling",
+        "text": "A true man can't move on with a half empty stomach——",
+        "variant": null
+      },
+      {
+        "tag": "Fresh",
+        "text": "My taste buds have high standards. I know what's savory as soon as I taste it!",
+        "variant": null
+      }
+    ]
+  },
+  "Remilia Scarlet": {
+    "page": "Remilia Scarlet",
+    "quotes": [
+      {
+        "tag": "Sweet",
+        "text": "In the past, sugar was actually an exclusive commodity held by the nobles~",
+        "variant": "Base Game"
+      },
+      {
+        "tag": "Western",
+        "text": "For some small fry who never even left Gensokyo, do you really have what it takes to create something exotic?",
+        "variant": "Base Game"
+      },
+      {
+        "tag": "Raw",
+        "text": "Vampires. . . of course will eat meat raawww~",
+        "variant": "Base Game"
+      },
+      {
+        "tag": "Premium",
+        "text": "Only premium cuisines can match my royal status~",
+        "variant": "Base Game"
+      },
+      {
+        "tag": "Western",
+        "text": "Are you able to cook cuisines from other countries here as well?",
+        "variant": "DLC 4"
+      },
+      {
+        "tag": "Premium",
+        "text": "Only premium dishes suit my status.",
+        "variant": "DLC 4"
+      },
+      {
+        "tag": "Sweet",
+        "text": "In the past, sugar was a commodity exclusive to the aristocracy.",
+        "variant": "DLC 4"
+      },
+      {
+        "tag": "Raw",
+        "text": "Of course. . . a vampire eats raw.",
+        "variant": "DLC 4"
+      },
+      {
+        "tag": "Legendary",
+        "text": "None dares to forget the legends of vampires even hundreds of years later.",
+        "variant": "DLC 4"
+      }
+    ]
+  },
+  "Youmu Konpaku": {
+    "page": "Youmu Konpaku",
+    "quotes": [
+      {
+        "tag": "Legendary",
+        "text": "Generally speaking, a dish that can save the world has to be legendary, right?",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "Lady Yuyuko has been called a Japanese beauty before. . .",
+        "variant": null
+      }
+    ]
+  },
+  "Yuyuko Saigyouji": {
+    "page": "Yuyuko Saigyouji",
+    "quotes": []
+  },
+  "Meng Chengguo": {
+    "page": "Meng Chengguo",
+    "quotes": []
+  },
+  "Three Fairies": {
+    "page": "Three Fairies",
+    "quotes": []
+  },
+  "Rin Satsuki": {
+    "page": "Rin Satsuki",
+    "quotes": []
+  },
+  "Shio Tachisora": {
+    "page": "Shio Tachisora",
+    "quotes": []
+  },
+  "Jien Yuu": {
+    "page": "Jien Yuu",
+    "quotes": []
+  },
+  "Yuuma Toutetsu": {
+    "page": "Yuuma Toutetsu",
+    "quotes": [
+      {
+        "tag": "Filling",
+        "text": "My boundless stomach is already starving!",
+        "variant": null
+      },
+      {
+        "tag": "Large Portion",
+        "text": "Don't even bother giving me things that can't fill the gap between my teeth!",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "The legends on the surface seem interesting... Show me...",
+        "variant": null
+      },
+      {
+        "tag": "Meat",
+        "text": "While tearing the flesh apart, the beast also displays its fangs... Haha.",
+        "variant": null
+      },
+      {
+        "tag": "Premium",
+        "text": "Give me your most premium dishes and make my trip to the surface worth it!",
+        "variant": null
+      },
+      {
+        "tag": "Raw",
+        "text": "A beast's enticement towards raw bloody flesh... A human will never understand that",
+        "variant": null
+      },
+      {
+        "tag": "Fresh",
+        "text": "Don't embarrass yourself by presenting me a dish that looks rotten or spoiled.",
+        "variant": null
+      },
+      {
+        "tag": "Strength-Boosting",
+        "text": "I can convert anything I absorb with my own power!",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "The fact that I'm sitting here without causing trouble... That's a miracle in and of itself.",
+        "variant": null
+      }
+    ]
+  },
+  "Koishi Komeiji": {
+    "page": "Koishi Komeiji",
+    "quotes": [
+      {
+        "tag": "Dreamy",
+        "text": "Does fantasy mean eternity?",
+        "variant": null
+      },
+      {
+        "tag": "Raw",
+        "text": "Is there anything else I have to know about eating things raw?",
+        "variant": null
+      },
+      {
+        "tag": "Salty",
+        "text": "There's a substance which tastes salty! I think it's called sweat.",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "The world becomes more interesting if you treat everything as strange~",
+        "variant": null
+      },
+      {
+        "tag": "Sweet",
+        "text": "I have two tummies, one for food and one for dessert!",
+        "variant": null
+      },
+      {
+        "tag": "Wonderful",
+        "text": "You'll never guess what I want~",
+        "variant": null
+      }
+    ]
+  },
+  "Okina Matara": {
+    "page": "Okina Matara",
+    "quotes": []
+  },
+  "Mamizou Futatsuiwa": {
+    "page": "Mamizou Futatsuiwa",
+    "quotes": [
+      {
+        "tag": "Aquatic",
+        "text": "Tanukis ain't cats, but we still like fish.",
+        "variant": null
+      },
+      {
+        "tag": "Fruity",
+        "text": "Humans love the sight of tanukis eatin' fruits.",
+        "variant": null
+      },
+      {
+        "tag": "Good with Alcohol",
+        "text": "Where's the dishes that go with alcohol?",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "I still prefer the flavors of good ol' Sado.",
+        "variant": null
+      },
+      {
+        "tag": "Japanese",
+        "text": "I do miss the days of livin' with humans back in Sado.",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "Legends about tanuki are as numerous as the stars, no?",
+        "variant": null
+      },
+      {
+        "tag": "Meat",
+        "text": "Can't be strong without meat, yeah?",
+        "variant": null
+      }
+    ]
+  },
+  "Flandre Scarlet": {
+    "page": "Flandre Scarlet",
+    "quotes": []
+  },
+  "Wakasagihime": {
+    "page": "Wakasagihime",
+    "quotes": []
+  },
+  "Eirin Yagokoro": {
+    "page": "Eirin Yagokoro",
+    "quotes": []
+  },
+  "Sagume Kishin": {
+    "page": "Sagume Kishin",
+    "quotes": []
+  },
+  "Yukari Yakumo": {
+    "page": "Yukari Yakumo",
+    "quotes": [
+      {
+        "tag": "Premium",
+        "text": "Premium dishes allow one to experience a sense of luxury.",
+        "variant": null
+      },
+      {
+        "tag": "Homecooking",
+        "text": "Home is where one gets a good rest.",
+        "variant": null
+      },
+      {
+        "tag": "Legendary",
+        "text": "With \"legends\" come youkai.",
+        "variant": null
+      },
+      {
+        "tag": "Soup",
+        "text": "Did you know that soup nourishes people?",
+        "variant": null
+      },
+      {
+        "tag": "Peculiar",
+        "text": "My gaps are peculiar? I haven't the slightest idea what you're talking about.",
+        "variant": null
+      },
+      {
+        "tag": "Refreshing",
+        "text": "It's very cool under the umbrella.",
+        "variant": null
+      },
+      {
+        "tag": "Photogenic",
+        "text": "The appearance of food is also very important.",
+        "variant": null
+      }
+    ]
+  },
+  "Shiki Eiki": {
+    "page": "Shiki Eiki",
+    "quotes": []
+  },
+  "Mizuchi Miyadeguchi": {
+    "page": "Mizuchi Miyadeguchi",
+    "quotes": []
+  },
+  "Shinki": {
+    "page": "Shinki",
+    "quotes": []
+  }
+}

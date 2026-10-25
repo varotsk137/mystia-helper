@@ -23,7 +23,7 @@ These are tags the game adds dynamically (price, trend, etc.) or wiki inconsiste
 ## Drink tags customers use that no beverage carries
 
 
-## Issues (18)
+## Issues (26)
 
 - Tag "Good with Alcohol" -> "Good w/ Alcohol" (Radish)
 - Tag "Fungi" -> "Fungus" (Mushroom)
@@ -43,3 +43,11 @@ These are tags the game adds dynamically (price, trend, etc.) or wiki inconsiste
 - Customer "Shiki Eiki" preferences not documented on wiki
 - Customer "Mizuchi Miyadeguchi" preferences not documented on wiki
 - Customer "Shinki" preferences not documented on wiki
+- Tag "Good with Alcohol" -> "Good w/ Alcohol" (Kasen Ibaraki quote)
+- Tag "Good with Alcohol" -> "Good w/ Alcohol" (Suika Ibuki quote)
+- Tag "Good with Alcohol" -> "Good w/ Alcohol" (Nitori Kawashiro quote)
+- Tag "Good with Alcohol" -> "Good w/ Alcohol" (Yuugi Hoshiguma quote)
+- Tag "Good with Alcohol" -> "Good w/ Alcohol" (Aya Shameimaru quote)
+- Quote for "Legendary" but Youmu Konpaku does not list it as liked
+- Quote for "Japanese" but Youmu Konpaku does not list it as liked
+- Tag "Good with Alcohol" -> "Good w/ Alcohol" (Mamizou Futatsuiwa quote)
