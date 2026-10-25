@@ -33,6 +33,8 @@ export interface StoreState {
   trend: Trend;
   /** Cookware types available tonight; recipes needing anything else are skipped. */
   cookware: string[];
+  /** Enabled collaboration ids; their guests, recipes and drinks are hidden otherwise. */
+  collabs: string[];
 }
 
 const STORAGE_KEY = "mystia-helper.settings";
@@ -43,6 +45,7 @@ const DEFAULTS: StoreState = {
   overrides: EMPTY_OVERRIDES,
   trend: NO_TREND,
   cookware: gameData.cookware.map((c) => c.name),
+  collabs: gameData.collaborations.map((c) => c.id),
 };
 
 /** Fills in fields missing from older or hand-edited saves. */
@@ -60,6 +63,7 @@ export function normalizeState(raw: unknown): StoreState {
       unpopular: Array.isArray(s.trend?.unpopular) ? s.trend.unpopular : [],
     },
     cookware: Array.isArray(s.cookware) ? s.cookware : DEFAULTS.cookware,
+    collabs: Array.isArray(s.collabs) ? s.collabs : DEFAULTS.collabs,
   };
 }
 
@@ -82,6 +86,7 @@ interface StoreContextValue {
   setOverride: <K extends EditableKind>(kind: K, name: string, patch: Partial<ItemOf<K>> | null) => void;
   setTrend: (trend: Trend) => void;
   setCookware: (cookware: string[]) => void;
+  setCollabs: (collabs: string[]) => void;
   replaceState: (next: StoreState) => void;
 }
 
@@ -122,11 +127,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   }, []);
   const setTrend = useCallback((trend: Trend) => setState((s) => ({ ...s, trend })), []);
   const setCookware = useCallback((cookware: string[]) => setState((s) => ({ ...s, cookware })), []);
+  const setCollabs = useCallback((collabs: string[]) => setState((s) => ({ ...s, collabs })), []);
   const replaceState = useCallback((next: StoreState) => setState(normalizeState(next)), []);
 
   const value = useMemo(
-    () => ({ state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, replaceState }),
-    [state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, replaceState],
+    () => ({ state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, replaceState }),
+    [state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, replaceState],
   );
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
 }
@@ -168,9 +174,11 @@ export interface AvailablePool {
  * Game data limited to owned DLCs and tonight's cookware, and, when progress tracking is on,
  * to what the player has unlocked.
  */
-export function availablePool(data: GameData, state: Pick<StoreState, "ownedDlcs" | "progress" | "cookware">): AvailablePool {
+export function availablePool(data: GameData, state: Pick<StoreState, "ownedDlcs" | "progress" | "cookware" | "collabs">): AvailablePool {
   const { ownedDlcs, progress } = state;
-  const owned = (dlc: Dlc | null) => dlc === null || ownedDlcs.includes(dlc);
+  const enabledCollabs = new Set(state.collabs);
+  const owned = (dlc: Dlc | null, collab: string | null = null) =>
+    (dlc === null || ownedDlcs.includes(dlc)) && (collab === null || enabledCollabs.has(collab));
   const unlocked = (kind: ProgressKind) => {
     if (!progress.enabled) return () => true;
     const set = new Set(progress.unlocked[kind]);
@@ -184,18 +192,21 @@ export function availablePool(data: GameData, state: Pick<StoreState, "ownedDlcs
   const locations = data.locations.filter((l) => owned(l.dlc) && locationOk(l.name));
   const openLocations = new Set(locations.map((l) => l.name));
   return {
-    recipes: data.recipes.filter((r) => owned(r.dlc) && recipeOk(r.name) && cookware.has(r.cookware)),
+    recipes: data.recipes.filter((r) => owned(r.dlc, r.collab) && recipeOk(r.name) && cookware.has(r.cookware)),
     ingredients: data.ingredients.filter((i) => owned(i.dlc) && ingredientOk(i.name)),
-    beverages: data.beverages.filter((b) => owned(b.dlc) && beverageOk(b.name)),
+    beverages: data.beverages.filter((b) => owned(b.dlc, b.collab) && beverageOk(b.name)),
     locations,
     rareCustomers: data.rareCustomers.filter(
-      (c) => owned(c.dlc) && (!progress.enabled || c.locations.some((l) => openLocations.has(l))),
+      (c) => owned(c.dlc, c.collab) && (!progress.enabled || c.locations.some((l) => openLocations.has(l))),
     ),
   };
 }
 
 export function useAvailablePool(): AvailablePool {
   const data = useGameData();
-  const { ownedDlcs, progress, cookware } = useStore().state;
-  return useMemo(() => availablePool(data, { ownedDlcs, progress, cookware }), [data, ownedDlcs, progress, cookware]);
+  const { ownedDlcs, progress, cookware, collabs } = useStore().state;
+  return useMemo(
+    () => availablePool(data, { ownedDlcs, progress, cookware, collabs }),
+    [data, ownedDlcs, progress, cookware, collabs],
+  );
 }

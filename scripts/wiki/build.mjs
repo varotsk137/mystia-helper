@@ -290,6 +290,32 @@ const requestedDrink = new Set([
 const foodTagsOnlyOnCustomers = [...requestedFood].filter((t) => !foodTagsOnItems.has(t)).sort();
 const drinkTagsOnlyOnCustomers = [...requestedDrink].filter((t) => !drinkTagsOnItems.has(t)).sort();
 
+// ---------- Collaborations (data/collaborations.json, hand-maintained) ----------
+// Each collaboration lists its guests and merchants; its recipes and drinks are whatever those merchants sell.
+const collabConfig = JSON.parse(await readFile(join(root, "data", "collaborations.json"), "utf8"));
+for (const list of [recipes, beverages, rareCustomers]) for (const item of list) item.collab = null;
+const collaborations = collabConfig.map((cfg) => {
+  const wares = merchants.filter((m) => cfg.merchants.includes(m.name)).flatMap((m) => m.items);
+  const tag = (list, names, kind) =>
+    names.map((name) => {
+      const item = list.find((x) => x.name === name);
+      if (!item) warn(`Collaboration "${cfg.name}" lists unknown ${kind} "${name}"`);
+      else item.collab = cfg.id;
+      return name;
+    });
+  return {
+    id: cfg.id,
+    name: cfg.name,
+    customers: tag(rareCustomers, cfg.customers, "customer"),
+    recipes: tag(recipes, wares.filter((w) => w.type === "Recipe").map((w) => w.name), "recipe"),
+    beverages: tag(beverages, wares.filter((w) => w.type === "Beverage").map((w) => w.name), "beverage"),
+  };
+});
+const collabMembers = await readFile(join(rawDir, "collaboration-members.json"), "utf8").then(JSON.parse, () => []);
+const mapped = new Set(collaborations.flatMap((c) => [...c.customers, ...c.recipes, ...c.beverages]));
+for (const page of collabMembers)
+  if (!mapped.has(page)) warn(`Wiki page "${page}" is in Category:Collaboration but not in data/collaborations.json`);
+
 // ---------- Tag request quotes (from fetch-quotes.mjs, optional) ----------
 const quotes = await readFile(join(rawDir, "quotes.json"), "utf8").then(JSON.parse, () => ({}));
 for (const c of rareCustomers) {
@@ -324,6 +350,7 @@ const gamedata = {
   },
   locations,
   cookware,
+  collaborations,
   ingredients,
   beverages,
   recipes,

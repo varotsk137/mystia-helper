@@ -9,6 +9,7 @@ interface ProgressItem {
   level: number | null;
   image: string | null;
   detail: string;
+  collab: string | null;
 }
 
 const TABS: { kind: ProgressKind; label: string }[] = [
@@ -30,22 +31,24 @@ export function ProgressPage() {
     () => ({
       recipes: data.recipes
         .filter((r) => r.name !== "Dark Matter")
-        .map((r) => ({ name: r.name, dlc: r.dlc, level: r.level, image: r.image, detail: r.cookware })),
-      beverages: data.beverages.map((b) => ({ name: b.name, dlc: b.dlc, level: b.level, image: b.image, detail: b.alcohol ?? "" })),
-      ingredients: data.ingredients.map((i) => ({ name: i.name, dlc: i.dlc, level: i.level, image: i.image, detail: i.category })),
+        .map((r) => ({ name: r.name, dlc: r.dlc, level: r.level, image: r.image, detail: r.cookware, collab: r.collab })),
+      beverages: data.beverages.map((b) => ({ name: b.name, dlc: b.dlc, level: b.level, image: b.image, detail: b.alcohol ?? "", collab: b.collab })),
+      ingredients: data.ingredients.map((i) => ({ name: i.name, dlc: i.dlc, level: i.level, image: i.image, detail: i.category, collab: null })),
       locations: data.locations.map((l) => ({
         name: l.name,
         dlc: l.dlc,
         level: null,
         image: null,
         detail: l.rareCustomers.join(", "),
+        collab: null,
       })),
     }),
     [data],
   );
 
-  const owned = (d: Dlc) => state.ownedDlcs.includes(d);
-  const all = itemsByKind[kind].filter((i) => owned(i.dlc));
+  // Items from DLCs the player doesn't own, or from disabled collaborations, aren't listed.
+  const owned = (i: ProgressItem) => state.ownedDlcs.includes(i.dlc) && (i.collab === null || state.collabs.includes(i.collab));
+  const all = itemsByKind[kind].filter(owned);
   const shown = all.filter(
     (i) =>
       (!query || i.name.toLowerCase().includes(query.toLowerCase())) &&
@@ -73,7 +76,7 @@ export function ProgressPage() {
 
       <div className="tabs" role="tablist">
         {TABS.map((t) => {
-          const total = itemsByKind[t.kind].filter((i) => owned(i.dlc));
+          const total = itemsByKind[t.kind].filter(owned);
           const done = total.filter((i) => state.progress.unlocked[t.kind].includes(i.name)).length;
           return (
             <button key={t.kind} role="tab" aria-selected={kind === t.kind} className="tab" onClick={() => setKind(t.kind)}>

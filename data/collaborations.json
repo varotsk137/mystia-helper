@@ -1,0 +1,26 @@
+[
+  {
+    "id": "mcgensokyo",
+    "name": "MCGensokyo",
+    "customers": ["Meng Chengguo"],
+    "merchants": ["Meng Chengguo"]
+  },
+  {
+    "id": "three-fairies",
+    "name": "Three Fairies' Hoppin' Flappin' Great Journey!",
+    "customers": ["Three Fairies"],
+    "merchants": ["Three Fairies"]
+  },
+  {
+    "id": "blooming-chaos-2",
+    "name": "Touhou Blooming Chaos 2",
+    "customers": ["Jien Yuu", "Rin Satsuki", "Shio Tachisora"],
+    "merchants": []
+  },
+  {
+    "id": "blooming-soul",
+    "name": "Touhou Blooming Soul",
+    "customers": ["Hata no Kokoro"],
+    "merchants": []
+  }
+]

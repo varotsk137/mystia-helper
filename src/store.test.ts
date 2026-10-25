@@ -31,6 +31,20 @@ describe("availablePool", () => {
     expect(availablePool(gameData, { ...base, cookware: [] }).recipes).toEqual([]);
   });
 
+  it("hides guests, recipes and drinks of disabled collaborations", () => {
+    const all = availablePool(gameData, base);
+    expect(all.rareCustomers.some((c) => c.name === "Hata no Kokoro")).toBe(true);
+    expect(all.recipes.some((r) => r.name === "Scarlet Devil Cake")).toBe(true);
+
+    const pool = availablePool(gameData, { ...base, collabs: ["blooming-soul"] });
+    expect(pool.rareCustomers.some((c) => c.name === "Hata no Kokoro")).toBe(true);
+    for (const name of ["Three Fairies", "Meng Chengguo", "Jien Yuu"])
+      expect(pool.rareCustomers.some((c) => c.name === name)).toBe(false);
+    expect(pool.recipes.some((r) => r.name === "Scarlet Devil Cake" || r.name === "Cubic Kedama Ice Cream")).toBe(false);
+    expect(pool.beverages.some((b) => b.name === "GIANT Popsicle!" || b.name === "Iceberg Kedama Lemonade")).toBe(false);
+    expect(pool.recipes.length).toBe(all.recipes.length - 4);
+  });
+
   it("limits to unlocked items when progress tracking is on", () => {
     const progress = { enabled: true, unlocked: { recipes: ["Grilled Lamprey", "Rice Ball"], ingredients: [], beverages: [], locations: ["Youkai Trail"] } };
     const pool = availablePool(gameData, { ...base, cookware: ["Grill"], progress });
@@ -48,6 +62,7 @@ describe("normalizeState", () => {
     expect(s.overrides.rareCustomers).toEqual({});
     expect(s.trend).toEqual({ popular: [], unpopular: [] });
     expect(s.cookware).toEqual(gameData.cookware.map((c) => c.name));
+    expect(s.collabs).toEqual(["mcgensokyo", "three-fairies", "blooming-chaos-2", "blooming-soul"]);
   });
 
   it("keeps saved trends and drops malformed ones", () => {

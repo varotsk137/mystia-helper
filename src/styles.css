@@ -176,6 +176,21 @@ input {
   max-width: 720px;
 }
 
+.collab-list {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.collab-contents {
+  display: flex;
+  flex-direction: column;
+  margin: 2px 0 0 24px;
+  font-size: 0.82rem;
+  color: var(--paper-dim);
+}
+
 .dlc-list {
   display: flex;
   flex-wrap: wrap;

@@ -4,7 +4,7 @@ import { normalizeState, useStore } from "../store";
 import { ExternalLink } from "../components/ExternalLink";
 
 export function SettingsPage() {
-  const { state, setOwnedDlcs, replaceState } = useStore();
+  const { state, setOwnedDlcs, setCollabs, replaceState } = useStore();
   const toggle = (dlc: Dlc) => {
     const owned = state.ownedDlcs.includes(dlc);
     setOwnedDlcs(owned ? state.ownedDlcs.filter((d) => d !== dlc) : [...state.ownedDlcs, dlc]);
@@ -32,6 +32,35 @@ export function SettingsPage() {
             </label>
           ))}
         </div>
+      </section>
+
+      <section className="panel">
+        <h2>คอลแลบ</h2>
+        <p className="hint">
+          เปิดใช้คอลแลบได้ที่ collaboration terminal ข้างบ้าน Mystia ในเกม ปิดคอลแลบไหน แขก สูตร และเครื่องดื่มของคอลแลบนั้นจะไม่ถูกแนะนำ
+        </p>
+        <ul className="collab-list">
+          {gameData.collaborations.map((c) => {
+            const on = state.collabs.includes(c.id);
+            return (
+              <li key={c.id}>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={on}
+                    onChange={() => setCollabs(on ? state.collabs.filter((id) => id !== c.id) : [...state.collabs, c.id])}
+                  />
+                  {c.name}
+                </label>
+                <div className="collab-contents">
+                  <span>แขก: {c.customers.join(", ")}</span>
+                  {c.recipes.length > 0 && <span>สูตร: {c.recipes.join(", ")}</span>}
+                  {c.beverages.length > 0 && <span>เครื่องดื่ม: {c.beverages.join(", ")}</span>}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
       </section>
 
       <BackupPanel json={JSON.stringify(state)} onImport={(raw) => replaceState(normalizeState(raw))} />

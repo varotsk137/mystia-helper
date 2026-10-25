@@ -27,6 +27,8 @@ export interface Ingredient {
 export interface Beverage {
   name: string;
   image: string | null;
+  /** Collaboration id when only that collaboration provides it; null otherwise. */
+  collab: string | null;
   dlc: Dlc;
   level: number;
   price: number;
@@ -37,6 +39,7 @@ export interface Beverage {
 export interface Recipe {
   name: string;
   image: string | null;
+  collab: string | null;
   dlc: Dlc;
   level: number;
   price: number;
@@ -69,6 +72,7 @@ export interface TagQuote {
 
 export interface RareCustomer {
   name: string;
+  collab: string | null;
   foodQuotes: TagQuote[];
   image: string | null;
   shortName: string;
@@ -107,10 +111,20 @@ export interface Partner {
   revenueShare: number;
 }
 
+/** Crossover content enabled at the collaboration terminal next to Mystia's house. */
+export interface Collaboration {
+  id: string;
+  name: string;
+  customers: string[];
+  recipes: string[];
+  beverages: string[];
+}
+
 export interface GameData {
   meta: { source: string; fetchedAt: string; builtAt: string; dlcs: Dlc[] };
   locations: Location[];
   cookware: { name: string; image: string | null }[];
+  collaborations: Collaboration[];
   ingredients: Ingredient[];
   beverages: Beverage[];
   recipes: Recipe[];

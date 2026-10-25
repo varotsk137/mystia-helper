@@ -1,11 +1,12 @@
 # Wiki data report
 
-Fetched: 2026-10-25T07:42:34.188Z
+Fetched: 2026-10-25T08:40:53.706Z
 
 | Dataset | Count |
 |---|---|
 | locations | 15 |
 | cookware | 5 |
+| collaborations | 4 |
 | ingredients | 62 |
 | beverages | 46 |
 | recipes | 163 |

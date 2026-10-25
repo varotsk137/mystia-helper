@@ -47,3 +47,18 @@ for (const name of MODULES) {
   console.log(`Module:${name} -> ${file} (rev ${timestamp})`);
 }
 await writeFile(join(outDir, "manifest.json"), JSON.stringify(manifest, null, 2) + "\n", "utf8");
+
+// Pages in Category:Collaboration, so build.mjs can check data/collaborations.json covers them all.
+const catParams = new URLSearchParams({
+  action: "query",
+  list: "categorymembers",
+  cmtitle: "Category:Collaboration",
+  cmlimit: "500",
+  format: "json",
+  formatversion: "2",
+});
+const catRes = await fetch(`${API}?${catParams}`, { headers: { "User-Agent": "MystiaHelper/0.1 (data import script)" } });
+if (!catRes.ok) throw new Error(`Category:Collaboration -> HTTP ${catRes.status}`);
+const members = (await catRes.json()).query.categorymembers.map((m) => m.title).sort();
+await writeFile(join(outDir, "collaboration-members.json"), JSON.stringify(members, null, 2) + "\n", "utf8");
+console.log(`Category:Collaboration -> ${members.length} pages`);
