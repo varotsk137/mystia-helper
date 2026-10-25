@@ -15,6 +15,7 @@ import {
   Rating,
   type BudgetStatus,
   type DrinkOption,
+  type RankingPrefs,
   type RareOrder,
   type Suggestion,
 } from "../solver/rare";
@@ -62,8 +63,8 @@ export function RareSolverPage() {
   const t = useT();
   const pool = useAvailablePool();
   const data = useGameData();
-  const { state, setTrend, setCookware, updateGuests } = useStore();
-  const { trend, guests } = state;
+  const { state, setTrend, setCookware, updateGuests, setRanking } = useStore();
+  const { trend, guests, ranking } = state;
   const [sortKey, setSortKey] = useState<SortKey>("best");
   const [descending, setDescending] = useState(false);
   // Hand-tuned sets, kept per guest so switching tabs doesn't lose them.
@@ -103,9 +104,10 @@ export function RareSolverPage() {
     [customer, foodRequest, drinkRequest, trend],
   );
   const deferredOrder = useDeferredValue(order);
+  const prefs = useMemo(() => ({ budget: ranking.budget, extras: ranking.extras }), [ranking.budget, ranking.extras]);
   const solution = useMemo(
-    () => (deferredOrder && !deferredOrder.customer.undocumented ? solveRareOrder(deferredOrder, pool, 1000) : null),
-    [deferredOrder, pool],
+    () => (deferredOrder && !deferredOrder.customer.undocumented ? solveRareOrder(deferredOrder, pool, 1000, prefs) : null),
+    [deferredOrder, pool, prefs],
   );
   const stale = deferredOrder !== order;
 
@@ -119,8 +121,9 @@ export function RareSolverPage() {
       const cmp = typeof va === "string" ? va.localeCompare(vb as string) : va - (vb as number);
       return (descending ? -cmp : cmp) || a.i - b.i;
     });
-    return indexed.map((x) => x.s);
-  }, [solution, sortKey, descending]);
+    const list = indexed.map((x) => x.s);
+    return ranking.pinkOnly ? list.filter((s) => s.rating === Rating.Pink) : list;
+  }, [solution, sortKey, descending, ranking.pinkOnly]);
 
   const pick = (s: Suggestion) =>
     setDraft({ recipe: s.dish.recipe.name, extras: s.dish.extras.map((e) => e.name), beverage: s.drink.beverage.name });
@@ -204,6 +207,10 @@ export function RareSolverPage() {
           <section className="suggestions" aria-label={t("rare.suggestions")}>
             <div className="results-head">
               <h2>{t("rare.suggestions")}</h2>
+              <label className="check">
+                <input type="checkbox" checked={ranking.pinkOnly} onChange={(e) => setRanking({ pinkOnly: e.target.checked })} />
+                {t("rank.pinkOnly")}
+              </label>
               <label className="sort">
                 <span>{t("rare.sortBy")}</span>
                 <select value={sortKey} onChange={(e) => setSortKey(e.target.value as SortKey)}>
@@ -220,8 +227,42 @@ export function RareSolverPage() {
                 )}
               </label>
             </div>
+            {sortKey === "best" && (
+              <div className="ranking">
+                <span>{t("rank.ratingFirst")}</span>
+                <label>
+                  <span className="sr-label">{t("rank.budget")}</span>
+                  <select
+                    value={ranking.budget}
+                    onChange={(e) => setRanking({ budget: e.target.value as RankingPrefs["budget"] })}
+                    aria-label={t("rank.budget")}
+                  >
+                    {(["revenue", "cheap", "ignore"] as const).map((b) => (
+                      <option key={b} value={b}>
+                        {t(`rank.budget.${b}`)}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <span>{t("rank.extras")}</span>
+                <select
+                  value={ranking.extras}
+                  onChange={(e) => setRanking({ extras: e.target.value as RankingPrefs["extras"] })}
+                  aria-label={t("rank.extras")}
+                >
+                  {(["count", "cost"] as const).map((x) => (
+                    <option key={x} value={x}>
+                      {t(`rank.extras.${x}`)}
+                    </option>
+                  ))}
+                </select>
+                <span className="hint">{t("rank.pointsNote")}</span>
+              </div>
+            )}
             {foodRequest === null && drinkRequest === null && <p className="hint">{t("rare.pickRequest")}</p>}
-            {sorted.length === 0 && <p className="hint">{t("rare.noRecipes")}</p>}
+            {sorted.length === 0 && (
+              <p className="hint">{ranking.pinkOnly && solution.suggestions.length > 0 ? t("rank.noPink") : t("rare.noRecipes")}</p>
+            )}
             <ol className="suggestion-list">
               {sorted.map((s) => (
                 <SuggestionRow

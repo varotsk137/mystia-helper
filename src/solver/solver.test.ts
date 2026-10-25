@@ -1,7 +1,19 @@
 import { describe, expect, it } from "vitest";
 import { gameData } from "../data";
 import { computeDishTags, NO_TREND } from "./tags";
-import { budgetStatus, evaluateCombo, ingredientEffects, Rating, ratingCap, ratingFromScore, solveRareOrder, type RareOrder } from "./rare";
+import {
+  budgetStatus,
+  evaluateCombo,
+  ingredientEffects,
+  Rating,
+  ratingCap,
+  ratingFromScore,
+  solveRareOrder,
+  suggestionComparator,
+  type RankingPrefs,
+  type RareOrder,
+  type Suggestion,
+} from "./rare";
 
 const recipe = (name: string) => gameData.recipes.find((r) => r.name === name)!;
 const ing = (name: string) => gameData.ingredients.find((i) => i.name === name)!;
@@ -172,6 +184,40 @@ describe("solveRareOrder", () => {
     expect(top.dish.disliked).not.toContain("Trend - Unpopular");
     const aquatic = suggestions.find((s) => s.dish.dish.tags.includes("Aquatic"));
     expect(aquatic?.dish.disliked).toContain("Trend - Unpopular");
+  });
+
+  it("ranks by rating, then budget, then extras, ignoring points above the rating", () => {
+    const fake = (rating: Rating, score: number, totalPrice: number, extras: number, extraCost: number, name: string) =>
+      ({
+        rating,
+        score,
+        totalPrice,
+        budget: totalPrice <= 200 ? "safe" : "risky",
+        dish: { extras: Array(extras).fill({}), extraCost, recipe: { name } },
+      }) as unknown as Suggestion;
+    const a = fake(Rating.Pink, 4, 150, 2, 30, "A"); // cheap, fewer points
+    const b = fake(Rating.Pink, 7, 190, 1, 40, "B"); // pricier, more points, fewer but costlier extras
+    const c = fake(Rating.Orange, 9, 199, 0, 0, "C");
+    const sortBy = (prefs: RankingPrefs) => [c, b, a].sort(suggestionComparator(prefs)).map((s) => s.dish.recipe.name);
+    expect(sortBy({ budget: "revenue", extras: "count" })).toEqual(["B", "A", "C"]);
+    expect(sortBy({ budget: "cheap", extras: "count" })).toEqual(["A", "B", "C"]);
+    expect(sortBy({ budget: "ignore", extras: "count" })).toEqual(["B", "A", "C"]);
+    expect(sortBy({ budget: "ignore", extras: "cost" })).toEqual(["A", "B", "C"]);
+  });
+
+  it("picks cheaper extras per recipe when ranking by extra cost", () => {
+    // Akyuu: one Bingdi Lotus (36) vs Grapes + Lotus Seed (27) for the same rating.
+    const o = order("Hieda no Akyuu", "Cultural Heritage", "Heatable");
+    const byCount = solveRareOrder(o, pool, 1000, { budget: "revenue", extras: "count" }).suggestions;
+    const byCost = solveRareOrder(o, pool, 1000, { budget: "revenue", extras: "cost" }).suggestions;
+    let cheaper = 0;
+    for (const s of byCost) {
+      const same = byCount.find((x) => x.dish.recipe.name === s.dish.recipe.name);
+      if (!same || same.rating !== s.rating) continue;
+      expect(s.dish.extraCost).toBeLessThanOrEqual(same.dish.extraCost);
+      if (s.dish.extraCost < same.dish.extraCost) cheaper++;
+    }
+    expect(cheaper).toBeGreaterThan(0);
   });
 
   it("applies Nitori's cucumber rule", () => {

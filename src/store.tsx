@@ -5,6 +5,7 @@ import { gameData, type Beverage, type Dlc, type GameData, type Ingredient, type
 import { NO_TREND, type Trend } from "./solver/tags";
 import { defaultLang, type Lang } from "./lang";
 import { NO_GUESTS, normalizeGuests, type Guests } from "./guests";
+import { DEFAULT_RANKING, type RankingPrefs } from "./solver/rare";
 
 /** Data kinds the player can edit. Keys match GameData. */
 export type EditableKind = "recipes" | "ingredients" | "beverages" | "rareCustomers";
@@ -40,6 +41,8 @@ export interface StoreState {
   lang: Lang;
   /** Rare guests seated in the izakaya right now, with their orders. */
   guests: Guests;
+  /** How the recommended order ranks sets, and whether to list only pink-rated ones. */
+  ranking: RankingPrefs & { pinkOnly: boolean };
 }
 
 const STORAGE_KEY = "mystia-helper.settings";
@@ -53,6 +56,7 @@ const DEFAULTS: StoreState = {
   collabs: gameData.collaborations.map((c) => c.id),
   lang: defaultLang(),
   guests: NO_GUESTS,
+  ranking: { ...DEFAULT_RANKING, pinkOnly: false },
 };
 
 /** Fills in fields missing from older or hand-edited saves. */
@@ -73,6 +77,11 @@ export function normalizeState(raw: unknown): StoreState {
     collabs: Array.isArray(s.collabs) ? s.collabs : DEFAULTS.collabs,
     lang: s.lang === "th" || s.lang === "en" ? s.lang : DEFAULTS.lang,
     guests: normalizeGuests(s.guests),
+    ranking: {
+      budget: s.ranking?.budget === "cheap" || s.ranking?.budget === "ignore" ? s.ranking.budget : "revenue",
+      extras: s.ranking?.extras === "cost" ? "cost" : "count",
+      pinkOnly: s.ranking?.pinkOnly === true,
+    },
   };
 }
 
@@ -100,6 +109,7 @@ interface StoreContextValue {
   setLang: (lang: Lang) => void;
   /** Applies one of the guest operations from guests.ts. */
   updateGuests: (fn: (g: Guests) => Guests) => void;
+  setRanking: (patch: Partial<StoreState["ranking"]>) => void;
   replaceState: (next: StoreState) => void;
 }
 
@@ -146,11 +156,28 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const setCollabs = useCallback((collabs: string[]) => setState((s) => ({ ...s, collabs })), []);
   const setLang = useCallback((lang: Lang) => setState((s) => ({ ...s, lang })), []);
   const updateGuests = useCallback((fn: (g: Guests) => Guests) => setState((s) => ({ ...s, guests: fn(s.guests) })), []);
+  const setRanking = useCallback(
+    (patch: Partial<StoreState["ranking"]>) => setState((s) => ({ ...s, ranking: { ...s.ranking, ...patch } })),
+    [],
+  );
   const replaceState = useCallback((next: StoreState) => setState(normalizeState(next)), []);
 
   const value = useMemo(
-    () => ({ state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, setLang, updateGuests, replaceState }),
-    [state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, setLang, updateGuests, replaceState],
+    () => ({ state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, setLang, updateGuests, setRanking, replaceState }),
+    [
+      state,
+      setOwnedDlcs,
+      setProgressEnabled,
+      setUnlocked,
+      setOverride,
+      setTrend,
+      setCookware,
+      setCollabs,
+      setLang,
+      updateGuests,
+      setRanking,
+      replaceState,
+    ],
   );
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
 }

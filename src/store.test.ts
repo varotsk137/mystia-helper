@@ -65,6 +65,20 @@ describe("normalizeState", () => {
     expect(s.collabs).toEqual(["mcgensokyo", "three-fairies", "blooming-chaos-2", "blooming-soul"]);
   });
 
+  it("defaults the ranking for older saves and keeps valid choices", () => {
+    expect(normalizeState({}).ranking).toEqual({ budget: "revenue", extras: "count", pinkOnly: false });
+    expect(normalizeState({ ranking: { budget: "cheap", extras: "cost", pinkOnly: true } }).ranking).toEqual({
+      budget: "cheap",
+      extras: "cost",
+      pinkOnly: true,
+    });
+    expect(normalizeState({ ranking: { budget: "bogus", extras: 1 } }).ranking).toEqual({
+      budget: "revenue",
+      extras: "count",
+      pinkOnly: false,
+    });
+  });
+
   it("keeps saved trends and drops malformed ones", () => {
     expect(normalizeState({ trend: { popular: ["Sweet"], unpopular: ["Spicy"] } }).trend).toEqual({
       popular: ["Sweet"],

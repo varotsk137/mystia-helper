@@ -24,7 +24,24 @@ export const messages = {
   "budget.unknown": { th: "ไม่ทราบงบ", en: "Budget unknown" },
 
   // Rare guest page
-  "sort.best": { th: "แนะนำ (เรตติ้ง, งบ, วัตถุดิบน้อย)", en: "Recommended (rating, budget, fewest extras)" },
+  "sort.best": { th: "แนะนำ", en: "Recommended" },
+  "rank.pinkOnly": { th: "เฉพาะชุดที่ได้ชมพู", en: "Pink sets only" },
+  "rank.ratingFirst": { th: "เรตติ้งก่อน แล้วตาม", en: "Rating first, then" },
+  "rank.budget": { th: "งบ", en: "Budget" },
+  "rank.budget.revenue": { th: "ในงบก่อน แล้วราคาสูงก่อน (ได้เงินมาก)", en: "In budget first, then priciest (most money)" },
+  "rank.budget.cheap": { th: "ในงบก่อน แล้วราคาต่ำก่อน", en: "In budget first, then cheapest" },
+  "rank.budget.ignore": { th: "ไม่ใช้งบในการเรียง", en: "Don't sort by budget" },
+  "rank.extras": { th: "แล้วตามวัตถุดิบเติม", en: "then extra ingredients" },
+  "rank.extras.count": { th: "จำนวนน้อยก่อน", en: "Fewest first" },
+  "rank.extras.cost": { th: "ราคารวมต่ำก่อน", en: "Cheapest in total first" },
+  "rank.pointsNote": {
+    th: "แต้มที่เกินเรตติ้งไม่นำมาคิด ชุดที่ได้ชมพูถือว่าดีเท่ากัน",
+    en: "Points above a rating don't count: every pink set is equally good.",
+  },
+  "rank.noPink": {
+    th: "ไม่มีชุดที่ได้ชมพูสำหรับออเดอร์นี้ เอาติ๊ก \"เฉพาะชุดที่ได้ชมพู\" ออกเพื่อดูชุดอื่น",
+    en: "No set reaches pink for this order. Untick \"Pink sets only\" to see the others.",
+  },
   "sort.price": { th: "ราคารวม", en: "Total price" },
   "sort.score": { th: "แต้ม", en: "Points" },
   "sort.extras": { th: "จำนวนวัตถุดิบที่เติม", en: "Extra ingredients" },

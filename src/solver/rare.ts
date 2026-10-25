@@ -23,6 +23,19 @@ export interface RareOrder {
   trend: Trend;
 }
 
+/**
+ * How to order suggestions after rating. Points above what a rating needs never count:
+ * a pink set is as good as any other pink set.
+ */
+export interface RankingPrefs {
+  /** revenue: in budget first, then the priciest (most money); cheap: in budget first, then the cheapest; ignore: no budget step. */
+  budget: "revenue" | "cheap" | "ignore";
+  /** count: fewest extra ingredients first; cost: cheapest extra ingredients first. */
+  extras: "count" | "cost";
+}
+
+export const DEFAULT_RANKING: RankingPrefs = { budget: "revenue", extras: "count" };
+
 export interface SolverPool {
   recipes: readonly Recipe[];
   ingredients: readonly Ingredient[];
@@ -271,23 +284,34 @@ function* combinations<T>(items: readonly T[], size: number, start = 0, current:
 const VARIANTS_PER_SIZE = 6;
 
 /** The best few dish variants per number of extras, for one recipe. */
-function dishVariants(order: RareOrder, recipe: Recipe, ingredients: readonly Ingredient[], wanted: Set<string>): DishOption[] {
+function dishVariants(
+  order: RareOrder,
+  recipe: Recipe,
+  ingredients: readonly Ingredient[],
+  wanted: Set<string>,
+  prefs: RankingPrefs,
+): DishOption[] {
   const slots = Math.max(0, MAX_INGREDIENTS - recipe.ingredients.length);
   const { useful, substitutes, filler } = candidateExtras(order, recipe, ingredients, wanted);
   const padForLargePortion = wantsLargePortion(order);
+  // Any drink meeting the drink request scores at least 1, because requests come from liked tags.
+  const pinkDishScore = Rating.Pink - (order.drinkRequest ? 1 : 0);
+  const compare = (a: DishOption, b: DishOption) => compareDish(a, b, pinkDishScore);
   const bySize = new Map<number, DishOption[]>();
+  let cheapestPink = Infinity;
   const consider = (extras: Ingredient[]) => {
     const opt = scoreDish(order, recipe, extras);
     if (!opt) return;
+    if (opt.requestMet && opt.score >= pinkDishScore) cheapestPink = Math.min(cheapestPink, opt.extraCost);
     const kept = bySize.get(extras.length) ?? [];
-    if (kept.length === VARIANTS_PER_SIZE && compareDish(opt, kept[kept.length - 1]) >= 0) return;
+    if (kept.length === VARIANTS_PER_SIZE && compare(opt, kept[kept.length - 1]) >= 0) return;
     kept.push(opt);
-    kept.sort(compareDish);
+    kept.sort(compare);
     if (kept.length > VARIANTS_PER_SIZE) kept.pop();
     bySize.set(extras.length, kept);
   };
-  // Any drink meeting the drink request scores at least 1, because requests come from liked tags.
-  const pinkDishScore = Rating.Pink - (order.drinkRequest ? 1 : 0);
+  // Lower bound on what `n` extras can cost, used to stop searching when cost decides the ranking.
+  const cheapestExtra = Math.min(...[...useful, ...(filler ? [filler] : [])].map((i) => i.price));
   for (let size = 0; size <= slots; size++) {
     for (const combo of combinations(useful, size)) {
       consider([...combo]);
@@ -297,9 +321,14 @@ function dishVariants(order: RareOrder, recipe: Recipe, ingredients: readonly In
         if (pad) consider([...combo, ...Array<Ingredient>(slots - combo.length).fill(pad)]);
       }
     }
-    // Fewer extras rank higher at equal rating, so once this size guarantees pink, larger sizes can't win.
-    const best = bySize.get(size)?.[0];
-    if (best && best.requestMet && best.score >= pinkDishScore) break;
+    if (prefs.extras === "count") {
+      // Fewer extras rank higher at equal rating, so once this size guarantees pink, larger sizes can't win.
+      const best = bySize.get(size)?.[0];
+      if (best && best.requestMet && best.score >= pinkDishScore) break;
+    } else if ((size + 1) * cheapestExtra >= cheapestPink) {
+      // Cheaper extras rank higher at equal rating; no larger set can cost less than a pink set already found.
+      break;
+    }
   }
   const variants = [...bySize.values()].flat();
   for (const v of variants) v.substitutes = v.extras.map((e) => substitutes.get(e.name) ?? []);
@@ -311,19 +340,32 @@ function wantsLargePortion(order: RareOrder): boolean {
   return c.likedFoodTags.includes(LARGE_PORTION) || c.dislikedFoodTags.includes("Small Portion") || order.foodRequest === LARGE_PORTION;
 }
 
-function compareDish(a: DishOption, b: DishOption): number {
-  return Number(b.requestMet) - Number(a.requestMet) || b.score - a.score || a.extraCost - b.extraCost;
+/** Points beyond `enough` (what pink needs) don't make a dish better, so they're capped before comparing. */
+function compareDish(a: DishOption, b: DishOption, enough: number): number {
+  return (
+    Number(b.requestMet) - Number(a.requestMet) ||
+    Math.min(b.score, enough) - Math.min(a.score, enough) ||
+    a.extraCost - b.extraCost
+  );
 }
 
-function compareSuggestion(a: Suggestion, b: Suggestion): number {
-  return (
+/** Orders suggestions: rating, then budget, then extras, as set in `prefs`. Points above the rating don't count. */
+export function suggestionComparator(prefs: RankingPrefs): (a: Suggestion, b: Suggestion) => number {
+  const budget = (a: Suggestion, b: Suggestion) =>
+    prefs.budget === "ignore"
+      ? 0
+      : BUDGET_ORDER[a.budget] - BUDGET_ORDER[b.budget] ||
+        (prefs.budget === "revenue" ? b.totalPrice - a.totalPrice : a.totalPrice - b.totalPrice);
+  const extras = (a: Suggestion, b: Suggestion) =>
+    prefs.extras === "count"
+      ? a.dish.extras.length - b.dish.extras.length || a.dish.extraCost - b.dish.extraCost
+      : a.dish.extraCost - b.dish.extraCost || a.dish.extras.length - b.dish.extras.length;
+  return (a, b) =>
     b.rating - a.rating ||
-    BUDGET_ORDER[a.budget] - BUDGET_ORDER[b.budget] ||
-    a.dish.extras.length - b.dish.extras.length ||
-    b.score - a.score ||
+    budget(a, b) ||
+    extras(a, b) ||
     b.totalPrice - a.totalPrice ||
-    a.dish.extraCost - b.dish.extraCost
-  );
+    a.dish.recipe.name.localeCompare(b.dish.recipe.name);
 }
 
 function combine(order: RareOrder, dish: DishOption, drink: DrinkOption): Suggestion {
@@ -353,15 +395,21 @@ const MAX_ALTERNATIVES = 4;
 const MAX_ALT_DRINKS = 4;
 
 /** Returns the best suggestion per recipe, best first, each with equally rated alternatives. */
-export function solveRareOrder(order: RareOrder, pool: SolverPool, limit = 50): RareSolution {
+export function solveRareOrder(
+  order: RareOrder,
+  pool: SolverPool,
+  limit = 50,
+  prefs: RankingPrefs = DEFAULT_RANKING,
+): RareSolution {
   const drinks = rankDrinks(order, pool.beverages);
   const wanted = wantedTags(order);
+  const compareSuggestion = suggestionComparator(prefs);
 
   const suggestions: Suggestion[] = [];
   for (const recipe of pool.recipes) {
     if (recipe.name === "Dark Matter") continue;
     const perVariant: Suggestion[] = [];
-    for (const dish of dishVariants(order, recipe, pool.ingredients, wanted)) {
+    for (const dish of dishVariants(order, recipe, pool.ingredients, wanted, prefs)) {
       const combos = drinks.map((drink) => combine(order, dish, drink)).sort(compareSuggestion);
       const [best, ...others] = combos;
       if (!best) continue;

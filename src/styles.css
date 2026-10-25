@@ -1356,6 +1356,35 @@ h3 {
   padding: 4px 8px;
   color: var(--paper);
 }
+.ranking {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin: 4px 0 8px;
+  font-size: 0.85rem;
+  color: var(--paper-dim);
+}
+.ranking select {
+  background: var(--night-deep);
+  border: 1px solid var(--counter-edge);
+  border-radius: var(--radius-s);
+  padding: 4px 8px;
+  color: var(--paper);
+}
+.ranking .hint {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 0.8rem;
+}
+.sr-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
 .suggestion.is-selected {
   background: color-mix(in srgb, var(--sake) 8%, transparent);
   box-shadow: inset 3px 0 0 var(--sake);
