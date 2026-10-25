@@ -65,18 +65,14 @@ describe("normalizeState", () => {
     expect(s.collabs).toEqual(["mcgensokyo", "three-fairies", "blooming-chaos-2", "blooming-soul"]);
   });
 
-  it("defaults the ranking for older saves and keeps valid choices", () => {
-    expect(normalizeState({}).ranking).toEqual({ budget: "revenue", extras: "count", pinkOnly: false });
-    expect(normalizeState({ ranking: { budget: "cheap", extras: "cost", pinkOnly: true } }).ranking).toEqual({
-      budget: "cheap",
-      extras: "cost",
-      pinkOnly: true,
-    });
-    expect(normalizeState({ ranking: { budget: "bogus", extras: 1 } }).ranking).toEqual({
-      budget: "revenue",
-      extras: "count",
-      pinkOnly: false,
-    });
+  it("defaults the ranking preset and carries over older choices", () => {
+    expect(normalizeState({}).ranking).toEqual({ preset: "balanced", pinkOnly: false });
+    expect(normalizeState({ ranking: { preset: "fast", pinkOnly: true } }).ranking).toEqual({ preset: "fast", pinkOnly: true });
+    // The goal version's choice maps to the preset of the same name.
+    expect(normalizeState({ ranking: { goal: "profit", pinkOnly: true } }).ranking).toEqual({ preset: "profit", pinkOnly: true });
+    // Saves from the budget/extras version, or with a bad value, fall back to the default.
+    expect(normalizeState({ ranking: { budget: "cheap", extras: "cost" } }).ranking).toEqual({ preset: "balanced", pinkOnly: false });
+    expect(normalizeState({ ranking: { preset: "bogus" } }).ranking).toEqual({ preset: "balanced", pinkOnly: false });
   });
 
   it("keeps saved trends and drops malformed ones", () => {

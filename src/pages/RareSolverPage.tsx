@@ -15,7 +15,15 @@ import {
   Rating,
   type BudgetStatus,
   type DrinkOption,
-  type RankingPrefs,
+  FACTORS,
+  PRESETS,
+  PRESET_IDS,
+  dishProfit,
+  makeCatalog,
+  setCost,
+  setTopLevel,
+  valueOf,
+  type Preset,
   type RareOrder,
   type Suggestion,
 } from "../solver/rare";
@@ -33,10 +41,13 @@ const RATING_CLASS: Record<Rating, "pink" | "orange" | "green" | "purple" | "bla
 const ratingLabel = (r: Rating, t: Translate) => t(`rating.${RATING_CLASS[r]}`);
 const budgetLabel = (b: BudgetStatus, t: Translate) => t(`budget.${b}`);
 
-type SortKey = "best" | "price" | "score" | "extras" | "level" | "cookTime" | "name";
+type SortKey = "best" | "price" | "profit" | "cost" | "topLevel" | "score" | "extras" | "level" | "cookTime" | "name";
 const SORTS: { key: SortKey; value: (s: Suggestion) => number | string }[] = [
   { key: "best", value: () => 0 },
   { key: "price", value: (s) => s.totalPrice },
+  { key: "profit", value: dishProfit },
+  { key: "cost", value: setCost },
+  { key: "topLevel", value: setTopLevel },
   { key: "score", value: (s) => s.score },
   { key: "extras", value: (s) => s.dish.extras.length },
   { key: "level", value: (s) => s.dish.recipe.level },
@@ -70,6 +81,9 @@ export function RareSolverPage() {
   // Hand-tuned sets, kept per guest so switching tabs doesn't lose them.
   const [drafts, setDrafts] = useState<Record<string, Draft | undefined>>({});
 
+  // The recipe's own ingredients are priced from the full list, even ones not unlocked or owned.
+  const solverPool = useMemo(() => ({ ...pool, catalog: makeCatalog(data.ingredients) }), [pool, data.ingredients]);
+
   // Seated guests stay listed even if a settings change hides them from the picker.
   const seated = useMemo(
     () =>
@@ -84,10 +98,11 @@ export function RareSolverPage() {
     () =>
       seated.map(({ order, customer }) => {
         if (customer.undocumented || (!order.food && !order.drink)) return { order, customer, best: null };
-        const top = solveRareOrder({ customer, foodRequest: order.food, drinkRequest: order.drink, trend }, pool, 1).suggestions[0];
+        const top = solveRareOrder({ customer, foodRequest: order.food, drinkRequest: order.drink, trend }, solverPool, 1)
+          .suggestions[0];
         return { order, customer, best: top?.rating ?? null };
       }),
-    [seated, trend, pool],
+    [seated, trend, solverPool],
   );
 
   const current = seated.find((s) => s.order.name === guests.active) ?? null;
@@ -104,10 +119,12 @@ export function RareSolverPage() {
     [customer, foodRequest, drinkRequest, trend],
   );
   const deferredOrder = useDeferredValue(order);
-  const prefs = useMemo(() => ({ budget: ranking.budget, extras: ranking.extras }), [ranking.budget, ranking.extras]);
   const solution = useMemo(
-    () => (deferredOrder && !deferredOrder.customer.undocumented ? solveRareOrder(deferredOrder, pool, 1000, prefs) : null),
-    [deferredOrder, pool, prefs],
+    () =>
+      deferredOrder && !deferredOrder.customer.undocumented
+        ? solveRareOrder(deferredOrder, solverPool, 1000, PRESETS[ranking.preset])
+        : null,
+    [deferredOrder, solverPool, ranking.preset],
   );
   const stale = deferredOrder !== order;
 
@@ -227,38 +244,22 @@ export function RareSolverPage() {
                 )}
               </label>
             </div>
-            {sortKey === "best" && (
-              <div className="ranking">
-                <span>{t("rank.ratingFirst")}</span>
-                <label>
-                  <span className="sr-label">{t("rank.budget")}</span>
-                  <select
-                    value={ranking.budget}
-                    onChange={(e) => setRanking({ budget: e.target.value as RankingPrefs["budget"] })}
-                    aria-label={t("rank.budget")}
-                  >
-                    {(["revenue", "cheap", "ignore"] as const).map((b) => (
-                      <option key={b} value={b}>
-                        {t(`rank.budget.${b}`)}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <span>{t("rank.extras")}</span>
-                <select
-                  value={ranking.extras}
-                  onChange={(e) => setRanking({ extras: e.target.value as RankingPrefs["extras"] })}
-                  aria-label={t("rank.extras")}
-                >
-                  {(["count", "cost"] as const).map((x) => (
-                    <option key={x} value={x}>
-                      {t(`rank.extras.${x}`)}
+            <div className="ranking">
+              <label>
+                <span>{t("goal.label")}</span>
+                <select value={ranking.preset} onChange={(e) => setRanking({ preset: e.target.value as Preset })}>
+                  {PRESET_IDS.map((p) => (
+                    <option key={p} value={p}>
+                      {t(`goal.${p}`)}
                     </option>
                   ))}
                 </select>
-                <span className="hint">{t("rank.pointsNote")}</span>
-              </div>
-            )}
+              </label>
+              <span className="hint">
+                {t(`goal.${ranking.preset}.hint`)} {t("goal.weights", { list: weightList(ranking.preset, t) })}
+              </span>
+              <span className="hint">{t("goal.common")}</span>
+            </div>
             {foodRequest === null && drinkRequest === null && <p className="hint">{t("rare.pickRequest")}</p>}
             {sorted.length === 0 && (
               <p className="hint">{ranking.pinkOnly && solution.suggestions.length > 0 ? t("rank.noPink") : t("rare.noRecipes")}</p>
@@ -268,6 +269,7 @@ export function RareSolverPage() {
                 <SuggestionRow
                   key={s.dish.recipe.name}
                   s={s}
+                  preset={ranking.preset}
                   selected={draft?.recipe === s.dish.recipe.name}
                   onPick={() => pick(s)}
                 />
@@ -353,7 +355,17 @@ function DishTagLine({ s }: { s: Suggestion }) {
   );
 }
 
-function SuggestionRow({ s, selected, onPick }: { s: Suggestion; selected: boolean; onPick: () => void }) {
+function SuggestionRow({
+  s,
+  preset,
+  selected,
+  onPick,
+}: {
+  s: Suggestion;
+  preset: Preset;
+  selected: boolean;
+  onPick: () => void;
+}) {
   const t = useT();
   const { dish, drink } = s;
   const warning = warningFor(s, t);
@@ -373,6 +385,7 @@ function SuggestionRow({ s, selected, onPick }: { s: Suggestion; selected: boole
           )}
         </div>
         <IngredientStrip dish={dish} />
+        <Metrics s={s} preset={preset} />
         <DishTagLine s={s} />
         {warning && <div className="warn">{warning}</div>}
         {s.alternatives.length > 0 && (
@@ -394,14 +407,75 @@ function SuggestionRow({ s, selected, onPick }: { s: Suggestion; selected: boole
       <div className={`price price-${s.budget}`}>
         <strong>{s.totalPrice}</strong>
         <span>{budgetLabel(s.budget, t)}</span>
-        <span className="cookware">
-          {dish.recipe.cookware}, {dish.recipe.cookTime}s
-        </span>
+        <span className="cookware">{dish.recipe.cookware}</span>
         <button className="btn btn-small" aria-pressed={selected} onClick={onPick}>
           {selected ? t("rare.adjusting") : t("rare.adjust")}
         </button>
       </div>
     </li>
+  );
+}
+
+const pct = (x: number) => Math.round(x * 100);
+
+/** "Dish profit ×2, Spares rare stock ×2, ..." for a preset, heaviest first. */
+function weightList(preset: Preset, t: Translate): string {
+  return Object.entries(PRESETS[preset])
+    .sort((a, b) => b[1] - a[1])
+    .map(([f, w]) => `${t(`factor.${f}` as MessageKey)} ×${w}`)
+    .join(", ");
+}
+
+/**
+ * Value under the chosen goal, plus estimated cost and profit, rarest stock and cooking time. The value
+ * opens to show each factor's score and what the set would score under the other goals.
+ */
+function Metrics({ s, preset }: { s: Suggestion; preset?: Preset }) {
+  const t = useT();
+  return (
+    <div className="metrics">
+      {preset && <ValueBreakdown s={s} preset={preset} />}
+      <span title={t("metric.note")}>{t("metric.cost", { n: setCost(s) })}</span>
+      <span title={t("metric.note")}>{t("metric.profit", { n: dishProfit(s) })}</span>
+      <span>{t("metric.level", { n: setTopLevel(s) })}</span>
+      <span>{t("metric.time", { n: s.dish.recipe.cookTime })}</span>
+    </div>
+  );
+}
+
+function ValueBreakdown({ s, preset }: { s: Suggestion; preset: Preset }) {
+  const t = useT();
+  const weights = PRESETS[preset];
+  const factors = FACTORS.filter((f) => (weights[f] ?? 0) > 0).sort((a, b) => (weights[b] ?? 0) - (weights[a] ?? 0));
+  return (
+    <details className="value">
+      <summary>{t("value.label", { n: pct(s.value) })}</summary>
+      <div className="value-body">
+        <p className="hint">{t("value.factors")}</p>
+        <ul className="value-factors">
+          {factors.map((f) => (
+            <li key={f}>
+              <span className="value-factor-name">
+                {t(`factor.${f}`)} ×{weights[f]}
+              </span>
+              <span className="value-bar" aria-hidden>
+                <span style={{ width: `${pct(s.factors[f])}%` }} />
+              </span>
+              <span className="value-num">{pct(s.factors[f])}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="hint">{t("value.presets")}</p>
+        <ul className="value-presets">
+          {PRESET_IDS.map((p) => (
+            <li key={p} className={p === preset ? "is-current" : ""}>
+              <span>{t(`goal.${p}`)}</span>
+              <span className="value-num">{pct(valueOf(s.factors, PRESETS[p]))}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </details>
   );
 }
 
@@ -493,12 +567,13 @@ function DishBuilder({
     .map((n) => byName(pool.ingredients, n) ?? byName(data.ingredients, n))
     .filter((x): x is Ingredient => !!x);
   const drinks = useMemo(() => rankDrinks(order, pool.beverages), [order, pool.beverages]);
+  const catalog = useMemo(() => makeCatalog(data.ingredients), [data.ingredients]);
   if (!recipe || !beverage) return null;
 
-  const result = evaluateCombo(order, recipe, extras, beverage);
+  const result = evaluateCombo(order, recipe, extras, beverage, catalog);
   const warning = warningFor(result, t);
   const slotsLeft = MAX_INGREDIENTS - recipe.ingredients.length - extras.length;
-  const effects = ingredientEffects(order, recipe, extras, beverage, pool.ingredients);
+  const effects = ingredientEffects(order, recipe, extras, beverage, pool.ingredients, catalog);
   const shownEffects = helpfulOnly
     ? effects.filter((e) => !e.darkMatter && (e.delta > 0 || e.result.requestsMet > result.requestsMet || e.result.rating > result.rating))
     : effects;
@@ -524,6 +599,7 @@ function DishBuilder({
           </div>
         </div>
       </div>
+      <Metrics s={result} />
       {warning && <div className="warn">{warning}</div>}
       <DishTagLine s={result} />
 

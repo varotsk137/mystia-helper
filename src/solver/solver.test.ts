@@ -10,7 +10,14 @@ import {
   ratingFromScore,
   solveRareOrder,
   suggestionComparator,
-  type RankingPrefs,
+  valueOf,
+  setCost,
+  setTopLevel,
+  dishProfit,
+  FACTORS,
+  PRESETS,
+  PRESET_IDS,
+  type Preset,
   type RareOrder,
   type Suggestion,
 } from "./rare";
@@ -19,6 +26,7 @@ const recipe = (name: string) => gameData.recipes.find((r) => r.name === name)!;
 const ing = (name: string) => gameData.ingredients.find((i) => i.name === name)!;
 const customer = (name: string) => gameData.rareCustomers.find((c) => c.name === name)!;
 const pool = { recipes: gameData.recipes, ingredients: gameData.ingredients, beverages: gameData.beverages };
+const zeroFactors = Object.fromEntries(FACTORS.map((f) => [f, 0])) as Suggestion["factors"];
 
 describe("computeDishTags", () => {
   it("adds extra ingredient tags and marks them as added", () => {
@@ -179,45 +187,77 @@ describe("solveRareOrder", () => {
     const chen = customer("Chen");
     const trend = { popular: ["Grilled", "Sweet"], unpopular: ["Aquatic"] };
     const { suggestions } = solveRareOrder({ customer: chen, foodRequest: "Meat", drinkRequest: "Dry", trend }, pool, 1000);
-    const top = suggestions[0];
-    expect(top.dish.liked).toContain("Trend - Popular");
-    expect(top.dish.disliked).not.toContain("Trend - Unpopular");
+    // A popular tag on the dish counts as liked, an unpopular one as disliked.
+    const grilled = suggestions.find((s) => s.dish.dish.tags.includes("Grilled"));
+    expect(grilled?.dish.liked).toContain("Trend - Popular");
     const aquatic = suggestions.find((s) => s.dish.dish.tags.includes("Aquatic"));
     expect(aquatic?.dish.disliked).toContain("Trend - Unpopular");
+    expect(suggestions[0].rating).toBe(Rating.Pink);
   });
 
-  it("ranks by rating, then budget, then extras, ignoring points above the rating", () => {
-    const fake = (rating: Rating, score: number, totalPrice: number, extras: number, extraCost: number, name: string) =>
+  it("ranks by rating, puts over-budget sets last, then by value, then by the stock used", () => {
+    const fake = (name: string, rating: Rating, budget: string, value: number, cost: number) =>
       ({
         rating,
-        score,
-        totalPrice,
-        budget: totalPrice <= 200 ? "safe" : "risky",
-        dish: { extras: Array(extras).fill({}), extraCost, recipe: { name } },
+        budget,
+        value,
+        totalPrice: 100,
+        drink: { beverage: { price: 0, level: 1 } },
+        dish: { extras: [], ingredientCost: cost, topLevel: 1, recipe: { name } },
       }) as unknown as Suggestion;
-    const a = fake(Rating.Pink, 4, 150, 2, 30, "A"); // cheap, fewer points
-    const b = fake(Rating.Pink, 7, 190, 1, 40, "B"); // pricier, more points, fewer but costlier extras
-    const c = fake(Rating.Orange, 9, 199, 0, 0, "C");
-    const sortBy = (prefs: RankingPrefs) => [c, b, a].sort(suggestionComparator(prefs)).map((s) => s.dish.recipe.name);
-    expect(sortBy({ budget: "revenue", extras: "count" })).toEqual(["B", "A", "C"]);
-    expect(sortBy({ budget: "cheap", extras: "count" })).toEqual(["A", "B", "C"]);
-    expect(sortBy({ budget: "ignore", extras: "count" })).toEqual(["B", "A", "C"]);
-    expect(sortBy({ budget: "ignore", extras: "cost" })).toEqual(["A", "B", "C"]);
+    const list = [
+      fake("orange-best-value", Rating.Orange, "safe", 1, 0),
+      fake("pink-over", Rating.Pink, "over", 1, 0),
+      fake("pink-low", Rating.Pink, "safe", 0.4, 0),
+      fake("pink-high-costly", Rating.Pink, "risky", 0.9, 50),
+      fake("pink-high-cheap", Rating.Pink, "safe", 0.9, 10),
+    ];
+    expect(list.sort(suggestionComparator()).map((s) => s.dish.recipe.name)).toEqual([
+      "pink-high-cheap",
+      "pink-high-costly",
+      "pink-low",
+      "pink-over",
+      "orange-best-value",
+    ]);
   });
 
-  it("picks cheaper extras per recipe when ranking by extra cost", () => {
-    // Akyuu: one Bingdi Lotus (36) vs Grapes + Lotus Seed (27) for the same rating.
-    const o = order("Hieda no Akyuu", "Cultural Heritage", "Heatable");
-    const byCount = solveRareOrder(o, pool, 1000, { budget: "revenue", extras: "count" }).suggestions;
-    const byCost = solveRareOrder(o, pool, 1000, { budget: "revenue", extras: "cost" }).suggestions;
-    let cheaper = 0;
-    for (const s of byCost) {
-      const same = byCount.find((x) => x.dish.recipe.name === s.dish.recipe.name);
-      if (!same || same.rating !== s.rating) continue;
-      expect(s.dish.extraCost).toBeLessThanOrEqual(same.dish.extraCost);
-      if (s.dish.extraCost < same.dish.extraCost) cheaper++;
+  it("scores factors 0-1 against the other sets and averages them by weight", () => {
+    expect(valueOf({ ...zeroFactors, profit: 1, rarity: 0.5 }, { profit: 3, rarity: 1 })).toBeCloseTo(0.875);
+    expect(valueOf({ ...zeroFactors, profit: 1 }, {})).toBe(0);
+    const { suggestions } = solveRareOrder(order("Hieda no Akyuu", "Cultural Heritage", "Heatable"), pool, 1000);
+    for (const s of suggestions) {
+      for (const f of FACTORS) {
+        expect(s.factors[f]).toBeGreaterThanOrEqual(0);
+        expect(s.factors[f]).toBeLessThanOrEqual(1);
+      }
+      expect(s.value).toBeCloseTo(valueOf(s.factors, PRESETS.balanced));
     }
-    expect(cheaper).toBeGreaterThan(0);
+    // Factors are relative to every candidate set, so check the ordering: cheaper never scores lower on cost.
+    const inBudget = suggestions.filter((s) => s.budget !== "over");
+    for (const a of inBudget)
+      for (const b of inBudget) if (setCost(a) < setCost(b)) expect(a.factors.cost).toBeGreaterThanOrEqual(b.factors.cost);
+  });
+
+  it("makes each preset's top pick lean the way the preset says", () => {
+    const o = order("Hieda no Akyuu", "Cultural Heritage", "Heatable");
+    const top = (p: Preset) => solveRareOrder(o, pool, 1, PRESETS[p]).suggestions[0];
+    const picks = Object.fromEntries(PRESET_IDS.map((p) => [p, top(p)])) as Record<Preset, Suggestion>;
+    for (const p of PRESET_IDS) expect(picks[p].rating).toBe(Rating.Pink);
+    for (const p of PRESET_IDS) {
+      expect(setTopLevel(picks.save)).toBeLessThanOrEqual(setTopLevel(picks[p]));
+      expect(dishProfit(picks.profit)).toBeGreaterThanOrEqual(dishProfit(picks[p]));
+      expect(picks.fast.dish.recipe.cookTime).toBeLessThanOrEqual(picks[p].dish.recipe.cookTime);
+    }
+    expect(picks.stay.totalPrice).toBeLessThan(picks.profit.totalPrice);
+  });
+
+  it("counts the recipe's own ingredients in the cost and level", () => {
+    const { suggestions } = solveRareOrder(order("Hieda no Akyuu", "Cultural Heritage", "Heatable"), pool, 1000);
+    for (const s of suggestions.slice(0, 20)) {
+      const parts = [...s.dish.recipe.ingredients.map(ing), ...s.dish.extras];
+      expect(s.dish.ingredientCost).toBe(parts.reduce((sum, p) => sum + p.price, 0));
+      expect(s.dish.topLevel).toBe(Math.max(...parts.map((p) => p.level)));
+    }
   });
 
   it("applies Nitori's cucumber rule", () => {
@@ -234,5 +274,6 @@ describe("solveRareOrder", () => {
     }
     const perCustomer = (performance.now() - start) / gameData.rareCustomers.length;
     expect(perCustomer).toBeLessThan(500);
-  });
+    // Solving all ~60 guests in a row takes several seconds; the per-guest average is what matters.
+  }, 30_000);
 });

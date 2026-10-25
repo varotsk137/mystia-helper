@@ -13,7 +13,6 @@ export enum Rating {
 
 /** safe: total <= budget.min, risky: <= budget.max, over: > budget.max */
 export type BudgetStatus = "safe" | "risky" | "over" | "unknown";
-const BUDGET_ORDER: Record<BudgetStatus, number> = { safe: 0, unknown: 1, risky: 2, over: 3 };
 
 export interface RareOrder {
   customer: RareCustomer;
@@ -24,22 +23,46 @@ export interface RareOrder {
 }
 
 /**
- * How to order suggestions after rating. Points above what a rating needs never count:
- * a pink set is as good as any other pink set.
+ * What makes a set worth serving. Each factor is scored 0-1 against the other sets for the same order
+ * (1 = best of them); a set's value is the weighted average of its factor scores.
+ *  - profit: dish price minus ingredient cost (higher is better)
+ *  - cost: value of everything used, ingredients and drink (lower is better)
+ *  - rarity: highest level among the ingredients and the drink (lower is better, keeps rare stock)
+ *  - speed: cooking time (shorter is better)
+ *  - cheap: total price (lower is better, so the guest's budget lasts for more orders)
+ *  - revenue: total price (higher is better, more money per order)
+ *  - extras: number of extra ingredients (fewer is better)
+ *  - budget: 1 within the guest's lower budget, 0.5 if unknown, 0 if it may go over
  */
-export interface RankingPrefs {
-  /** revenue: in budget first, then the priciest (most money); cheap: in budget first, then the cheapest; ignore: no budget step. */
-  budget: "revenue" | "cheap" | "ignore";
-  /** count: fewest extra ingredients first; cost: cheapest extra ingredients first. */
-  extras: "count" | "cost";
-}
+export type Factor = "profit" | "cost" | "rarity" | "speed" | "cheap" | "revenue" | "extras" | "budget";
+export const FACTORS: Factor[] = ["profit", "cost", "rarity", "speed", "cheap", "revenue", "extras", "budget"];
+export type Weights = Partial<Record<Factor, number>>;
 
-export const DEFAULT_RANKING: RankingPrefs = { budget: "revenue", extras: "count" };
+/**
+ * Ready-made weightings. Rating always comes first, sets over the guest's budget last, and points above
+ * what a rating needs never count (every pink set is equally good); the weights order the rest.
+ */
+export type Preset = "balanced" | "save" | "profit" | "fast" | "stay";
+export const PRESET_IDS: Preset[] = ["balanced", "save", "profit", "fast", "stay"];
+export const PRESETS: Record<Preset, Weights> = {
+  balanced: { profit: 2, rarity: 2, cost: 1, speed: 1, extras: 1, budget: 1 },
+  save: { rarity: 3, cost: 2, extras: 1 },
+  profit: { profit: 3, revenue: 1, rarity: 1, budget: 1 },
+  fast: { speed: 4, profit: 1, cost: 1 },
+  stay: { cheap: 3, profit: 2, budget: 1 },
+};
+export const DEFAULT_PRESET: Preset = "balanced";
+
+/** Every ingredient by name, used to price and level the recipe's own ingredients. */
+export type Catalog = ReadonlyMap<string, Ingredient>;
+export const makeCatalog = (list: readonly Ingredient[]): Catalog => new Map(list.map((i) => [i.name, i]));
 
 export interface SolverPool {
   recipes: readonly Recipe[];
   ingredients: readonly Ingredient[];
   beverages: readonly Beverage[];
+  /** All ingredients, for recipes whose own ingredients aren't in `ingredients`; defaults to `ingredients`. */
+  catalog?: Catalog;
 }
 
 export interface DishOption {
@@ -51,6 +74,13 @@ export interface DishOption {
   score: number;
   requestMet: boolean;
   extraCost: number;
+  /**
+   * Value of every ingredient in the pot (the recipe's own plus the extras), from the wiki. Merchants charge
+   * 30-150% of this and gathered ingredients are free, so it is for comparing sets, not an exact cost.
+   */
+  ingredientCost: number;
+  /** Highest ingredient level in the pot, as a measure of how rare the ingredients are. */
+  topLevel: number;
   /** Per extra: other ingredients that add exactly the same tags (same dish result). */
   substitutes: Ingredient[][];
 }
@@ -74,6 +104,10 @@ export interface Suggestion {
   budget: BudgetStatus;
   /** Character-specific reaction that overrides the usual rating; the UI translates it. */
   note: SpecialNote | null;
+  /** Score 0-1 per factor, relative to the other sets for the same order (0 outside solveRareOrder). */
+  factors: Record<Factor, number>;
+  /** Weighted average of `factors` under the weights the order was solved with, 0-1. */
+  value: number;
   /** Other extra-ingredient choices for the same recipe with the same rating and budget status. */
   alternatives: Suggestion[];
   /** Other drinks that give the same rating and budget status with this dish. */
@@ -120,9 +154,31 @@ function specialRule(customer: RareCustomer, dish: DishOption): { rating: Rating
   return null;
 }
 
+/** Cost and top level of the recipe's own ingredients. */
+function baseMetrics(recipe: Recipe, catalog: Catalog): { cost: number; topLevel: number } {
+  let cost = 0;
+  let topLevel = 0;
+  for (const name of recipe.ingredients) {
+    const ing = catalog.get(name);
+    cost += ing?.price ?? 0;
+    topLevel = Math.max(topLevel, ing?.level ?? 0);
+  }
+  return { cost, topLevel };
+}
+
+function costFields(recipe: Recipe, extras: Ingredient[], catalog: Catalog) {
+  const base = baseMetrics(recipe, catalog);
+  const extraCost = extras.reduce((sum, e) => sum + e.price, 0);
+  return {
+    extraCost,
+    ingredientCost: base.cost + extraCost,
+    topLevel: Math.max(base.topLevel, ...extras.map((e) => e.level)),
+  };
+}
+
 /** Like scoreDish, but a dish with a banned tag is scored as Dark Matter (−2, request not met). */
-function scoreAnyDish(order: RareOrder, recipe: Recipe, extras: Ingredient[]): DishOption {
-  const opt = scoreDish(order, recipe, extras);
+function scoreAnyDish(order: RareOrder, recipe: Recipe, extras: Ingredient[], catalog: Catalog): DishOption {
+  const opt = scoreDish(order, recipe, extras, catalog);
   if (opt) return opt;
   const dish = computeDishTags(recipe, extras, order.trend);
   return {
@@ -133,7 +189,7 @@ function scoreAnyDish(order: RareOrder, recipe: Recipe, extras: Ingredient[]): D
     disliked: [],
     score: -2,
     requestMet: false,
-    extraCost: extras.reduce((sum, e) => sum + e.price, 0),
+    ...costFields(recipe, extras, catalog),
     substitutes: [],
   };
 }
@@ -149,8 +205,14 @@ function drinkOption(order: RareOrder, beverage: Beverage): DrinkOption {
 }
 
 /** Rates one specific dish (recipe + extras) and drink for the order. */
-export function evaluateCombo(order: RareOrder, recipe: Recipe, extras: Ingredient[], beverage: Beverage): Suggestion {
-  return combine(order, scoreAnyDish(order, recipe, extras), drinkOption(order, beverage));
+export function evaluateCombo(
+  order: RareOrder,
+  recipe: Recipe,
+  extras: Ingredient[],
+  beverage: Beverage,
+  catalog: Catalog = makeCatalog(extras),
+): Suggestion {
+  return combine(order, scoreAnyDish(order, recipe, extras, catalog), drinkOption(order, beverage));
 }
 
 export interface IngredientEffect {
@@ -170,13 +232,14 @@ export function ingredientEffects(
   extras: Ingredient[],
   beverage: Beverage,
   ingredients: readonly Ingredient[],
+  catalog: Catalog = makeCatalog(ingredients),
 ): IngredientEffect[] {
   if (recipe.ingredients.length + extras.length >= MAX_INGREDIENTS) return [];
-  const current = evaluateCombo(order, recipe, extras, beverage);
+  const current = evaluateCombo(order, recipe, extras, beverage, catalog);
   const before = new Set(current.dish.dish.tags);
   return ingredients
     .map((ingredient) => {
-      const result = evaluateCombo(order, recipe, [...extras, ingredient], beverage);
+      const result = evaluateCombo(order, recipe, [...extras, ingredient], beverage, catalog);
       const after = new Set(result.dish.dish.tags);
       return {
         ingredient,
@@ -196,7 +259,7 @@ export function ingredientEffects(
     );
 }
 
-function scoreDish(order: RareOrder, recipe: Recipe, extras: Ingredient[]): DishOption | null {
+function scoreDish(order: RareOrder, recipe: Recipe, extras: Ingredient[], catalog: Catalog): DishOption | null {
   const dish = computeDishTags(recipe, extras, order.trend);
   if (dish.conflicts.length > 0) return null;
   const { likedFoodTags, dislikedFoodTags } = order.customer;
@@ -210,7 +273,7 @@ function scoreDish(order: RareOrder, recipe: Recipe, extras: Ingredient[]): Dish
     disliked,
     score: liked.length - disliked.length,
     requestMet: order.foodRequest === null || dish.tags.includes(order.foodRequest),
-    extraCost: extras.reduce((sum, e) => sum + e.price, 0),
+    ...costFields(recipe, extras, catalog),
     substitutes: [],
   };
 }
@@ -280,38 +343,57 @@ function* combinations<T>(items: readonly T[], size: number, start = 0, current:
   }
 }
 
-/** How many dish variants to keep per number of extras, so equally good alternatives can be shown. */
-const VARIANTS_PER_SIZE = 6;
+/** How many dish variants to keep per number of extras, for each of the two orderings (cheapest, rarest-free). */
+const VARIANTS_PER_SIZE = 3;
 
-/** The best few dish variants per number of extras, for one recipe. */
+/**
+ * Candidate extra-ingredient choices for one recipe: per number of extras, the cheapest few and the few with the
+ * lowest top ingredient level. Any weighting of the factors prefers one of these, since a set's other factors
+ * (price, cooking time, budget) don't depend on which extras it uses.
+ */
 function dishVariants(
   order: RareOrder,
   recipe: Recipe,
   ingredients: readonly Ingredient[],
   wanted: Set<string>,
-  prefs: RankingPrefs,
+  catalog: Catalog,
 ): DishOption[] {
   const slots = Math.max(0, MAX_INGREDIENTS - recipe.ingredients.length);
   const { useful, substitutes, filler } = candidateExtras(order, recipe, ingredients, wanted);
   const padForLargePortion = wantsLargePortion(order);
   // Any drink meeting the drink request scores at least 1, because requests come from liked tags.
   const pinkDishScore = Rating.Pink - (order.drinkRequest ? 1 : 0);
-  const compare = (a: DishOption, b: DishOption) => compareDish(a, b, pinkDishScore);
-  const bySize = new Map<number, DishOption[]>();
-  let cheapestPink = Infinity;
-  const consider = (extras: Ingredient[]) => {
-    const opt = scoreDish(order, recipe, extras);
-    if (!opt) return;
-    if (opt.requestMet && opt.score >= pinkDishScore) cheapestPink = Math.min(cheapestPink, opt.extraCost);
-    const kept = bySize.get(extras.length) ?? [];
-    if (kept.length === VARIANTS_PER_SIZE && compare(opt, kept[kept.length - 1]) >= 0) return;
+  const byCost = (a: DishOption, b: DishOption) =>
+    compareDish(a, b, pinkDishScore) || a.ingredientCost - b.ingredientCost || a.topLevel - b.topLevel;
+  const byLevel = (a: DishOption, b: DishOption) =>
+    compareDish(a, b, pinkDishScore) || a.topLevel - b.topLevel || a.ingredientCost - b.ingredientCost;
+  const cheapest = new Map<number, DishOption[]>();
+  const lowest = new Map<number, DishOption[]>();
+  const keep = (store: Map<number, DishOption[]>, opt: DishOption, cmp: (a: DishOption, b: DishOption) => number) => {
+    const kept = store.get(opt.extras.length) ?? [];
+    if (kept.length === VARIANTS_PER_SIZE && cmp(opt, kept[kept.length - 1]) >= 0) return;
     kept.push(opt);
-    kept.sort(compare);
+    kept.sort(cmp);
     if (kept.length > VARIANTS_PER_SIZE) kept.pop();
-    bySize.set(extras.length, kept);
+    store.set(opt.extras.length, kept);
   };
-  // Lower bound on what `n` extras can cost, used to stop searching when cost decides the ranking.
-  const cheapestExtra = Math.min(...[...useful, ...(filler ? [filler] : [])].map((i) => i.price));
+  const pink: { cost: number; level: number }[] = [];
+  const consider = (extras: Ingredient[]) => {
+    const opt = scoreDish(order, recipe, extras, catalog);
+    if (!opt) return;
+    if (opt.requestMet && opt.score >= pinkDishScore) pink.push({ cost: opt.ingredientCost, level: opt.topLevel });
+    keep(cheapest, opt, byCost);
+    keep(lowest, opt, byLevel);
+  };
+  // Lower bounds for any set of `n` extras. Sets are distinct useful ingredients, except Large Portion
+  // padding, which may repeat the filler.
+  const candidates = [...useful, ...(filler ? [filler] : [])];
+  const cheapestExtra = Math.min(...candidates.map((i) => i.price));
+  const lowestLevel = Math.min(...candidates.map((i) => i.level));
+  const prices = useful.map((i) => i.price).sort((a, b) => a - b);
+  const cheapestN = (n: number) =>
+    padForLargePortion ? n * cheapestExtra : n > prices.length ? Infinity : prices.slice(0, n).reduce((s, p) => s + p, 0);
+  const base = baseMetrics(recipe, catalog);
   for (let size = 0; size <= slots; size++) {
     for (const combo of combinations(useful, size)) {
       consider([...combo]);
@@ -321,16 +403,13 @@ function dishVariants(
         if (pad) consider([...combo, ...Array<Ingredient>(slots - combo.length).fill(pad)]);
       }
     }
-    if (prefs.extras === "count") {
-      // Fewer extras rank higher at equal rating, so once this size guarantees pink, larger sizes can't win.
-      const best = bySize.get(size)?.[0];
-      if (best && best.requestMet && best.score >= pinkDishScore) break;
-    } else if ((size + 1) * cheapestExtra >= cheapestPink) {
-      // Cheaper extras rank higher at equal rating; no larger set can cost less than a pink set already found.
-      break;
-    }
+    // A larger set has more extras, so it can only rank higher by costing less or using lower-level
+    // ingredients. Stop once a pink set already found is at least as cheap and as low-level as any larger set could be.
+    const costBound = base.cost + cheapestN(size + 1);
+    const levelBound = Math.max(base.topLevel, lowestLevel);
+    if (pink.some((p) => p.cost <= costBound && p.level <= levelBound)) break;
   }
-  const variants = [...bySize.values()].flat();
+  const variants = [...new Set([...cheapest.values(), ...lowest.values()].flat())];
   for (const v of variants) v.substitutes = v.extras.map((e) => substitutes.get(e.name) ?? []);
   return variants;
 }
@@ -342,31 +421,81 @@ function wantsLargePortion(order: RareOrder): boolean {
 
 /** Points beyond `enough` (what pink needs) don't make a dish better, so they're capped before comparing. */
 function compareDish(a: DishOption, b: DishOption, enough: number): number {
-  return (
-    Number(b.requestMet) - Number(a.requestMet) ||
-    Math.min(b.score, enough) - Math.min(a.score, enough) ||
-    a.extraCost - b.extraCost
-  );
+  return Number(b.requestMet) - Number(a.requestMet) || Math.min(b.score, enough) - Math.min(a.score, enough);
 }
 
-/** Orders suggestions: rating, then budget, then extras, as set in `prefs`. Points above the rating don't count. */
-export function suggestionComparator(prefs: RankingPrefs): (a: Suggestion, b: Suggestion) => number {
-  const budget = (a: Suggestion, b: Suggestion) =>
-    prefs.budget === "ignore"
-      ? 0
-      : BUDGET_ORDER[a.budget] - BUDGET_ORDER[b.budget] ||
-        (prefs.budget === "revenue" ? b.totalPrice - a.totalPrice : a.totalPrice - b.totalPrice);
-  const extras = (a: Suggestion, b: Suggestion) =>
-    prefs.extras === "count"
-      ? a.dish.extras.length - b.dish.extras.length || a.dish.extraCost - b.dish.extraCost
-      : a.dish.extraCost - b.dish.extraCost || a.dish.extras.length - b.dish.extras.length;
+/** Dish price minus the value of its ingredients (an estimate; see DishOption.ingredientCost). */
+export const dishProfit = (s: Suggestion) => s.dish.recipe.price - s.dish.ingredientCost;
+
+/**
+ * Value of everything a set uses up: the ingredients plus the drink. On this basis a drink's value equals its
+ * price, so serving it adds nothing to profit; what it costs is the drink itself.
+ */
+export const setCost = (s: Suggestion) => s.dish.ingredientCost + s.drink.beverage.price;
+
+/** Highest level among the set's ingredients and its drink. */
+export const setTopLevel = (s: Suggestion) => Math.max(s.dish.topLevel, s.drink.beverage.level);
+
+/** Weighted average of a set's factor scores, 0-1. */
+export function valueOf(factors: Record<Factor, number>, weights: Weights): number {
+  let sum = 0;
+  let total = 0;
+  for (const f of FACTORS) {
+    const w = weights[f] ?? 0;
+    sum += w * factors[f];
+    total += w;
+  }
+  return total > 0 ? sum / total : 0;
+}
+
+const BUDGET_FACTOR: Record<BudgetStatus, number> = { safe: 1, unknown: 0.5, risky: 0, over: 0 };
+
+/** Scores each candidate 0-1 on every factor, relative to the other candidates (1 = best of them). */
+function scoreFactors(all: Suggestion[]): void {
+  const pool = all.some((s) => s.budget !== "over") ? all.filter((s) => s.budget !== "over") : all;
+  const raw: Record<Exclude<Factor, "budget">, (s: Suggestion) => number> = {
+    profit: dishProfit,
+    cost: setCost,
+    rarity: setTopLevel,
+    speed: (s) => s.dish.recipe.cookTime,
+    cheap: (s) => s.totalPrice,
+    revenue: (s) => s.totalPrice,
+    extras: (s) => s.dish.extras.length,
+  };
+  const higherIsBetter = new Set<Factor>(["profit", "revenue"]);
+  const ranges = Object.fromEntries(
+    Object.entries(raw).map(([f, get]) => {
+      const values = pool.map(get);
+      return [f, { min: Math.min(...values), max: Math.max(...values) }];
+    }),
+  ) as Record<keyof typeof raw, { min: number; max: number }>;
+  for (const s of all) {
+    const factors = { budget: BUDGET_FACTOR[s.budget] } as Record<Factor, number>;
+    for (const [f, get] of Object.entries(raw) as [keyof typeof raw, (s: Suggestion) => number][]) {
+      const { min, max } = ranges[f];
+      const t = max === min ? 1 : Math.min(1, Math.max(0, (get(s) - min) / (max - min)));
+      factors[f] = higherIsBetter.has(f) ? t : 1 - t;
+    }
+    s.factors = factors;
+  }
+}
+
+/**
+ * Rating first, over-budget last, then value (as already set on each suggestion); at equal value, the set that
+ * uses up less stock. Points above the rating don't count.
+ */
+export function suggestionComparator(): (a: Suggestion, b: Suggestion) => number {
+  const over = (s: Suggestion) => Number(s.budget === "over");
   return (a, b) =>
     b.rating - a.rating ||
-    budget(a, b) ||
-    extras(a, b) ||
-    b.totalPrice - a.totalPrice ||
+    over(a) - over(b) ||
+    b.value - a.value ||
+    setCost(a) - setCost(b) ||
+    a.dish.extras.length - b.dish.extras.length ||
     a.dish.recipe.name.localeCompare(b.dish.recipe.name);
 }
+
+const NO_FACTORS = Object.fromEntries(FACTORS.map((f) => [f, 0])) as Record<Factor, number>;
 
 function combine(order: RareOrder, dish: DishOption, drink: DrinkOption): Suggestion {
   const score = dish.score + drink.score;
@@ -386,6 +515,8 @@ function combine(order: RareOrder, dish: DishOption, drink: DrinkOption): Sugges
     totalPrice,
     budget: budgetStatus(totalPrice, order.customer),
     note: special?.note ?? null,
+    factors: NO_FACTORS,
+    value: 0,
     alternatives: [],
     altDrinks: [],
   };
@@ -394,37 +525,56 @@ function combine(order: RareOrder, dish: DishOption, drink: DrinkOption): Sugges
 const MAX_ALTERNATIVES = 4;
 const MAX_ALT_DRINKS = 4;
 
-/** Returns the best suggestion per recipe, best first, each with equally rated alternatives. */
+/**
+ * Returns the best suggestion per recipe, best first, each with equally rated alternatives. Sets are ranked by
+ * rating, then over-budget last, then by value under `weights` (see PRESETS).
+ */
 export function solveRareOrder(
   order: RareOrder,
   pool: SolverPool,
   limit = 50,
-  prefs: RankingPrefs = DEFAULT_RANKING,
+  weights: Weights = PRESETS[DEFAULT_PRESET],
 ): RareSolution {
   const drinks = rankDrinks(order, pool.beverages);
   const wanted = wantedTags(order);
-  const compareSuggestion = suggestionComparator(prefs);
+  const catalog = pool.catalog ?? makeCatalog(pool.ingredients);
 
-  const suggestions: Suggestion[] = [];
+  // 1. Candidates: per recipe, per kept dish variant, each drink that gives the variant its best rating.
+  const groups: Suggestion[][][] = [];
   for (const recipe of pool.recipes) {
     if (recipe.name === "Dark Matter") continue;
-    const perVariant: Suggestion[] = [];
-    for (const dish of dishVariants(order, recipe, pool.ingredients, wanted, prefs)) {
-      const combos = drinks.map((drink) => combine(order, dish, drink)).sort(compareSuggestion);
-      const [best, ...others] = combos;
-      if (!best) continue;
-      best.altDrinks = others
-        .filter((s) => s.rating === best.rating && s.budget === best.budget)
-        .slice(0, MAX_ALT_DRINKS)
-        .map((s) => s.drink);
-      perVariant.push(best);
+    const perVariant: Suggestion[][] = [];
+    for (const dish of dishVariants(order, recipe, pool.ingredients, wanted, catalog)) {
+      const combos = drinks.map((drink) => combine(order, dish, drink));
+      const top = Math.max(...combos.map((c) => c.rating));
+      perVariant.push(combos.filter((c) => c.rating === top));
     }
-    if (perVariant.length === 0) continue;
-    perVariant.sort(compareSuggestion);
-    const [best, ...rest] = perVariant;
-    best.alternatives = rest.filter((s) => s.rating === best.rating && s.budget === best.budget).slice(0, MAX_ALTERNATIVES);
+    if (perVariant.length > 0) groups.push(perVariant);
+  }
+
+  // 2. Score every candidate against the others for this order.
+  const all = groups.flat(2);
+  scoreFactors(all);
+  for (const s of all) s.value = valueOf(s.factors, weights);
+  const compare = suggestionComparator();
+
+  // 3. Best set per recipe, with the recipe's other equally rated variants and drinks.
+  const suggestions: Suggestion[] = [];
+  for (const perVariant of groups) {
+    const bestPerVariant = perVariant.map((combos) => combos.sort(compare)[0]);
+    const ranked = bestPerVariant.map((s, i) => ({ s, i })).sort((a, b) => compare(a.s, b.s));
+    const { s: best, i: bestIndex } = ranked[0];
+    best.altDrinks = perVariant[bestIndex]
+      .filter((s) => s !== best && s.budget === best.budget)
+      .slice(0, MAX_ALT_DRINKS)
+      .map((s) => s.drink);
+    best.alternatives = ranked
+      .slice(1)
+      .map((x) => x.s)
+      .filter((s) => s.rating === best.rating && s.budget === best.budget)
+      .slice(0, MAX_ALTERNATIVES);
     suggestions.push(best);
   }
-  suggestions.sort(compareSuggestion);
+  suggestions.sort(compare);
   return { suggestions: suggestions.slice(0, limit), drinks };
 }
