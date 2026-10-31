@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { RareCustomer } from "../data";
 import type { GuestOrder } from "../guests";
 import { Rating } from "../solver/rare";
@@ -35,6 +35,7 @@ export function GuestTabs({
   onAdd,
   onToggleSticky,
   onClearNight,
+  children,
 }: {
   seated: SeatedGuest[];
   active: string | null;
@@ -48,8 +49,11 @@ export function GuestTabs({
   onAdd: (name: string) => void;
   onToggleSticky: () => void;
   onClearNight: () => void;
+  /** Shown under the tabs, inside the bar (so it stays on screen with it). */
+  children?: ReactNode;
 }) {
   const t = useT();
+  const bar = useRef<HTMLElement>(null);
   const [picking, setPicking] = useState(false);
   const [confirmingClear, setConfirmingClear] = useState(false);
   const pickerOpen = picking || seated.length === 0;
@@ -59,8 +63,17 @@ export function GuestTabs({
     const id = setTimeout(() => setConfirmingClear(false), 4000);
     return () => clearTimeout(id);
   }, [confirmingClear]);
+  // The bar's height, for the page to place things that stick below it (see .has-sticky-guests).
+  useEffect(() => {
+    const el = bar.current;
+    const page = el?.parentElement;
+    if (!el || !page) return;
+    const observer = new ResizeObserver(() => page.style.setProperty("--guests-height", `${el.offsetHeight}px`));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
   return (
-    <section className={`guests ${sticky ? "is-sticky" : ""}`} aria-label={t("guests.title")}>
+    <section ref={bar} className={`guests ${sticky ? "is-sticky" : ""}`} aria-label={t("guests.title")}>
       <div className="guest-tabs" role="tablist" aria-label={t("guests.title")}>
         {seated.map(({ order, customer, best }) => {
           const isActive = order.name === active;
@@ -116,6 +129,7 @@ export function GuestTabs({
           </button>
         )}
       </div>
+      {children}
       {pickerOpen && (
         <GuestPicker
           customers={customers}

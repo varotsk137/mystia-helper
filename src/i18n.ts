@@ -148,7 +148,13 @@ export const messages = {
   "trend.dislikesUnpopular": { th: "ไม่ชอบของที่ไม่ฮิต", en: "dislikes unpopular dishes" },
   "trend.and": { th: " และ", en: " and " },
   "trend.taste": { th: "{name} {parts}", en: "{name} {parts}" },
-  "trend.noEffect": { th: "Trend ไม่มีผลกับแต้มของ {name}", en: "Trends don't change {name}'s points" },
+  "trend.label": { th: "Trend", en: "Trends" },
+  "trend.unset": { th: "คืนนี้ยังไม่ได้เลือก Trend", en: "no trends picked for tonight" },
+  "tonight.label": { th: "คืนนี้", en: "Tonight" },
+  "tonight.edit": { th: "ตั้งค่า Trend / อุปกรณ์", en: "Set trends / cookware" },
+  "tonight.noCookware": { th: "ยังไม่ได้เลือกอุปกรณ์", en: "No cookware picked" },
+  "order.edit": { th: "แก้ออเดอร์", en: "Edit order" },
+  "order.collapse": { th: "ยุบใบออเดอร์", en: "Collapse" },
 
   // Night Sparrow cookware ignoring requests
   "ignore.label": { th: "ไม่เช็คคำขอ", en: "Ignore requests" },
@@ -236,7 +242,6 @@ export const messages = {
   "trend.popular": { th: "ฮิต: {tag}", en: "Popular: {tag}" },
   "trend.unpopular": { th: "ไม่ฮิต: {tag}", en: "Unpopular: {tag}" },
   "trend.done": { th: "เสร็จ", en: "Done" },
-  "trend.pick": { th: "เลือก Trend", en: "Pick trends" },
   "trend.clear": { th: "ล้าง", en: "Clear" },
   "trend.hint": {
     th: "ดู Trend จากหนังสือพิมพ์ในเกม แล้วคลิก tag: 1 ครั้ง = ฮิต, 2 ครั้ง = ไม่ฮิต, 3 ครั้ง = ยกเลิก",

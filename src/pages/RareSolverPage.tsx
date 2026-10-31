@@ -1,8 +1,7 @@
 import { useDeferredValue, useMemo, useState } from "react";
 import type { Ingredient, RareCustomer } from "../data";
 import { useAvailablePool, useGameData, useStore } from "../store";
-import { TrendPicker } from "../components/TrendPicker";
-import { CookwarePicker } from "../components/CookwarePicker";
+import { TonightBar } from "../components/TonightBar";
 import { FoodRequestPicker } from "../components/QuoteParts";
 import { NightPanel, type PinnedGuestView } from "../components/NightPanel";
 import { IngredientHints } from "../components/IngredientHints";
@@ -87,6 +86,8 @@ export function RareSolverPage() {
   const [ignoreRequests, setIgnoreRequests] = useState(false);
   // Hand-tuned sets, kept per guest so switching tabs doesn't lose them.
   const [drafts, setDrafts] = useState<Record<string, Draft | undefined>>({});
+  // Guests whose complete order slip was opened again to change it; complete slips are otherwise collapsed.
+  const [editing, setEditing] = useState<Record<string, boolean>>({});
   const [sideTab, setSideTab] = useState<"drinks" | "ingredients">("ingredients");
 
   // The recipe's own ingredients are priced from the full list, even ones not unlocked or owned.
@@ -122,8 +123,17 @@ export function RareSolverPage() {
   const drinkRequest = current?.order.drink ?? null;
   const draft = customer ? (drafts[customer.name] ?? null) : null;
   const setDraft = (d: Draft | null) => customer && setDrafts((all) => ({ ...all, [customer.name]: d ?? undefined }));
-  const setFoodRequest = (food: string | null) => customer && updateGuests((g) => setGuestOrder(g, customer.name, { food }));
-  const setDrinkRequest = (drink: string | null) => customer && updateGuests((g) => setGuestOrder(g, customer.name, { drink }));
+  const setRequests = (food: string | null, drink: string | null) => {
+    if (!customer) return;
+    // The slip folds away when this pick completes the order, not on every change while editing it.
+    if (!(foodRequest && drinkRequest) && food && drink) setEditing((all) => ({ ...all, [customer.name]: false }));
+    updateGuests((g) => setGuestOrder(g, customer.name, { food, drink }));
+  };
+  const setFoodRequest = (food: string | null) => setRequests(food, drinkRequest);
+  const setDrinkRequest = (drink: string | null) => setRequests(foodRequest, drink);
+  const slipCollapsed = !!(customer && foodRequest && drinkRequest && !editing[customer.name]);
+  const setSlipEditing = (on: boolean) => customer && setEditing((all) => ({ ...all, [customer.name]: on }));
+  const trendTaste = customer ? describeTrendTaste(customer, t) : null;
 
   const order = useMemo<RareOrder | null>(
     () => (customer ? { customer, foodRequest, drinkRequest, trend, ignoreRequests } : null),
@@ -210,10 +220,57 @@ export function RareSolverPage() {
         onClearNight={() => {
           clearNight();
           setDrafts({});
+          setEditing({});
         }}
-      />
+      >
+        <TonightBar
+          trend={trend}
+          onTrendChange={setTrend}
+          cookware={state.cookware}
+          onCookwareChange={setCookware}
+          recipeCount={pool.recipes.length}
+          ignoreRequests={ignoreRequests}
+          onIgnoreRequestsChange={setIgnoreRequests}
+        />
+      </GuestTabs>
 
-      {customer && order && (
+      {customer && order && slipCollapsed && (
+        <>
+          <section className="order order-compact" aria-label={t("rare.order")}>
+            <ItemImage src={customer.image} name={customer.shortName} size={40} variant="portrait" />
+            <div className="order-compact-body">
+              <h2 className="order-name">{customer.name}</h2>
+              <span className={`order-compact-requests ${ignoreRequests ? "is-ignored" : ""}`}>
+                <span className="request-chip is-picked">{foodRequest}</span>
+                <span className="request-chip is-picked">{drinkRequest}</span>
+                {ignoreRequests && <span className="hint">{t("ignore.label")}</span>}
+              </span>
+              {customer.dislikedFoodTags.length > 0 && (
+                <span className="dislikes">
+                  <span>{t("rare.dislikes")}</span>
+                  {customer.dislikedFoodTags.map((tag) => (
+                    <span key={tag} className="tag tag-disliked">
+                      {tag}
+                    </span>
+                  ))}
+                </span>
+              )}
+              <span className="order-compact-spacer" />
+              <div className="budget">
+                <span>{t("rare.budget")}</span>
+                <strong>{customer.budget ? `${customer.budget.min}–${customer.budget.max}` : "?"}</strong>
+              </div>
+              <button className="btn btn-small order-toggle" aria-expanded={false} onClick={() => setSlipEditing(true)}>
+                {t("order.edit")}
+              </button>
+            </div>
+          </section>
+
+          <SpellCards customer={customer} />
+        </>
+      )}
+
+      {customer && order && !slipCollapsed && (
         <>
           <section className="order" aria-label={t("rare.order")}>
             <ItemImage src={customer.image} name={customer.shortName} size={76} variant="portrait" />
@@ -224,6 +281,11 @@ export function RareSolverPage() {
                   <span>{t("rare.budget")}</span>
                   <strong>{customer.budget ? `${customer.budget.min}–${customer.budget.max}` : "?"}</strong>
                 </div>
+                {foodRequest && drinkRequest && (
+                  <button className="btn btn-small order-toggle" aria-expanded={true} onClick={() => setSlipEditing(false)}>
+                    {t("order.collapse")}
+                  </button>
+                )}
               </div>
 
               {customer.undocumented ? (
@@ -252,13 +314,15 @@ export function RareSolverPage() {
                       <span className="hint">{t("rare.none")}</span>
                     )}
                   </div>
-                  <TrendPicker trend={trend} onChange={setTrend} customerNote={describeTrendTaste(customer, t)} />
-                  <CookwarePicker value={state.cookware} onChange={setCookware} recipeCount={pool.recipes.length} />
-                  <label className="ignore-switch">
-                    <input type="checkbox" checked={ignoreRequests} onChange={(e) => setIgnoreRequests(e.target.checked)} />
-                    <span className="ignore-switch-label">{t("ignore.label")}</span>
-                    <span className="hint">{t("ignore.hint")}</span>
-                  </label>
+                  {trendTaste && (
+                    <div className="trend-taste">
+                      <span className="request-label">{t("trend.label")}</span>
+                      <span className="hint">
+                        {trendTaste}
+                        {trend.popular.length === 0 && trend.unpopular.length === 0 && ` · ${t("trend.unset")}`}
+                      </span>
+                    </div>
+                  )}
                 </>
               )}
             </div>
@@ -400,14 +464,14 @@ function RequestPicker(props: { label: string; tags: string[]; value: string | n
   );
 }
 
-/** How this customer reacts to trends. */
-function describeTrendTaste(c: RareCustomer, t: Translate): string {
+/** How this customer reacts to trends, or null when trends don't change their points. */
+function describeTrendTaste(c: RareCustomer, t: Translate): string | null {
   const parts: MessageKey[] = [];
   if (c.likedFoodTags.includes(TREND_POPULAR)) parts.push("trend.likesPopular");
   if (c.dislikedFoodTags.includes(TREND_POPULAR)) parts.push("trend.dislikesPopular");
   if (c.likedFoodTags.includes(TREND_UNPOPULAR)) parts.push("trend.likesUnpopular");
   if (c.dislikedFoodTags.includes(TREND_UNPOPULAR)) parts.push("trend.dislikesUnpopular");
-  if (parts.length === 0) return t("trend.noEffect", { name: c.shortName });
+  if (parts.length === 0) return null;
   return t("trend.taste", { name: c.shortName, parts: parts.map((p) => t(p)).join(t("trend.and")) });
 }
 
