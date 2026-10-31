@@ -69,8 +69,6 @@ function warningFor(s: Suggestion, t: Translate): string | null {
   if (s.dish.dish.conflicts.length) return t("builder.darkMatter", { tags: s.dish.dish.conflicts.join(", ") });
   if (s.requestsMet === 1) return t("rare.oneRequest");
   if (s.requestsMet === 0) return t("rare.noRequest");
-  if (s.dish.disliked.length && s.uncappedRating > s.rating)
-    return t("rare.dislikedCap", { tags: s.dish.disliked.join(", ") });
   return null;
 }
 

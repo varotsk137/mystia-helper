@@ -60,11 +60,9 @@ Rating from score, capped by how many of the two requested tags were fulfilled:
 
 If **both** requested tags are fulfilled, the rating is at least **Green**, however low the score.
 
-A dish carrying **any tag the guest dislikes** is capped at **Orange**, however high the score
-(*observed in-game*: a dish with a disliked tag stopped at Orange). Not settled: izakaya.cc has no such
-cap, and there each disliked tag only takes away 1 point, so such a dish can still reach Pink. To settle it, serve
-a dish that meets both requests and carries one disliked tag but still scores 5 or more; Pink means the
-cap is wrong.
+A disliked tag only takes away its point; a dish that carries one can still reach Pink. (An earlier version
+capped such dishes at Orange after one in-game test; izakaya.cc's maintainer pointed out that the game has
+no such cap.)
 
 Other rules:
 
