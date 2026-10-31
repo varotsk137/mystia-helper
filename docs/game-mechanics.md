@@ -52,6 +52,9 @@ Rating from score, capped by how many of the two requested tags were fulfilled:
 | 3 | Orange | max if only one request fulfilled |
 | ≥ 4 | Pink (reward spell card) | |
 
+A dish carrying **any tag the guest dislikes** is capped at **Orange**, however high the score
+(confirmed by the user in-game).
+
 Other rules:
 
 - Going over budget: the customer pays what they can and leaves; if it is far over, they may trigger the punishment card.

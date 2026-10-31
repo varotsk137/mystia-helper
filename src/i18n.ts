@@ -124,6 +124,10 @@ export const messages = {
   "rare.orList": { th: "(หรือ {list})", en: "(or {list})" },
   "rare.oneRequest": { th: "ทำได้แค่ 1 ใน 2 อย่างที่ลูกค้าขอ", en: "Meets only 1 of the 2 requests" },
   "rare.noRequest": { th: "ไม่ตรงกับที่ลูกค้าขอเลย", en: "Meets neither request" },
+  "rare.dislikedCap": {
+    th: "มี tag ที่ลูกค้าไม่ชอบ ({tags}) ได้สูงสุดแค่สีส้ม",
+    en: "Has a tag the guest dislikes ({tags}), so orange at best",
+  },
   "rare.alternatives": { th: "เติมแบบอื่นที่ได้{rating}เหมือนกัน ({n})", en: "Other extras that also get {rating} ({n})" },
   "rare.noExtras": { th: "ไม่ต้องเติม", en: "No extras" },
   "rare.altMeta": { th: "{n} แต้ม, {price}", en: "{n} pts, {price}" },

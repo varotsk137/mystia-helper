@@ -151,6 +151,9 @@ export function ratingCap(met: number): Rating {
   return met >= 2 ? Rating.Pink : met === 1 ? Rating.Orange : Rating.Purple;
 }
 
+/** A dish carrying any tag the guest dislikes can't be rated pink, whatever the score (confirmed in-game). */
+export const DISLIKED_TAG_CAP = Rating.Orange;
+
 export function budgetStatus(total: number, customer: RareCustomer): BudgetStatus {
   const b = customer.budget;
   if (!b) return "unknown";
@@ -407,7 +410,7 @@ function dishVariants(
   const consider = (extras: Ingredient[]) => {
     const opt = scoreDish(order, recipe, extras, catalog);
     if (!opt) return;
-    if (opt.requestMet && opt.score >= pinkDishScore) pink.push({ cost: opt.ingredientCost, level: opt.topLevel });
+    if (opt.requestMet && opt.disliked.length === 0 && opt.score >= pinkDishScore) pink.push({ cost: opt.ingredientCost, level: opt.topLevel });
     keep(cheapest, opt, byCost);
     keep(lowest, opt, byLevel);
   };
@@ -447,7 +450,9 @@ function wantsLargePortion(order: RareOrder): boolean {
 
 /** Points beyond `enough` (what pink needs) don't make a dish better, so they're capped before comparing. */
 function compareDish(a: DishOption, b: DishOption, enough: number): number {
-  return Number(b.requestMet) - Number(a.requestMet) || Math.min(b.score, enough) - Math.min(a.score, enough);
+  // A disliked tag rules out pink, so such a dish never counts as reaching `enough`.
+  const reach = (d: DishOption) => Math.min(d.score, d.disliked.length > 0 ? enough - 1 : enough);
+  return Number(b.requestMet) - Number(a.requestMet) || reach(b) - reach(a);
 }
 
 /** Dish price minus the value of its ingredients (an estimate; see DishOption.ingredientCost). */
@@ -528,6 +533,7 @@ function combine(order: RareOrder, dish: DishOption, drink: DrinkOption): Sugges
   const requestsMet = Number(dish.requestMet) + Number(drink.requestMet);
   const uncappedRating = ratingFromScore(score);
   let rating = Math.min(uncappedRating, ratingCap(requestsMet)) as Rating;
+  if (dish.disliked.length > 0) rating = Math.min(rating, DISLIKED_TAG_CAP) as Rating;
   const special = specialRule(order.customer, dish);
   if (special) rating = special.mode === "force" ? special.rating : (Math.max(rating, special.rating) as Rating);
   const totalPrice = dish.recipe.price + drink.beverage.price;

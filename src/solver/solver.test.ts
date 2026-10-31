@@ -154,6 +154,21 @@ describe("solveRareOrder", () => {
     }
   });
 
+  it("never rates a dish with a disliked tag pink, however high the score", () => {
+    const drink = gameData.beverages.find((b) => b.name === "Fruity Highball")!;
+    const paw = recipe("Imitation Bear Paw");
+    // A guest who likes every tag on the dish but one, so the score alone is well past pink.
+    const [hated, ...loved] = computeDishTags(paw, []).tags;
+    const fussy = { ...customer("Wriggle Nightbug"), likedFoodTags: loved, dislikedFoodTags: [hated] };
+    const o: RareOrder = { customer: fussy, foodRequest: null, drinkRequest: null, trend: NO_TREND };
+    const s = evaluateCombo(o, paw, [], drink);
+    expect(s.uncappedRating).toBe(Rating.Pink);
+    expect(s.rating).toBe(Rating.Orange);
+
+    for (const sug of solveRareOrder(order("Wriggle Nightbug", "Sweet", "Chillable"), pool).suggestions)
+      if (sug.dish.disliked.length > 0) expect(sug.rating).toBeLessThanOrEqual(Rating.Orange);
+  });
+
   it("evaluates a hand-built dish, including Dark Matter", () => {
     const o = order("Wriggle Nightbug", "Sweet", "Chillable");
     const drink = gameData.beverages.find((b) => b.name === "Fruity Highball")!;
