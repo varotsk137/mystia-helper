@@ -418,7 +418,7 @@ input {
 /* With the guest bar pinned, the right-hand panel sticks below it (GuestTabs measures its own height). */
 .has-sticky-guests .side-panel {
   top: calc(var(--guests-height, 64px) + 8px);
-  max-height: calc(100vh - var(--guests-height, 64px) - 20px);
+  height: calc(100vh - var(--guests-height, 64px) - 20px);
 }
 
 /* Tonight: trends, cookware and the ignore-requests switch, shared by every guest. */
@@ -483,11 +483,20 @@ input {
   color: #6d6478;
 }
 
-/* Right-hand panel: tonight's pinned sets, then tabs for ingredient and drink help. */
+/* Right-hand panel: tonight's pinned sets in a box of their own, then tabs for ingredient and drink help. */
 .night-panel {
-  margin-bottom: 14px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--counter-edge);
+  flex: 0 0 auto;
+  max-height: 65%;
+  overflow: auto;
+  background: var(--counter);
+  border: 1px solid var(--counter-edge);
+  border-top: 3px solid var(--sake);
+  border-radius: var(--radius-m);
+  padding: 8px 10px 4px;
+}
+.night-panel h2 {
+  font-size: 1rem;
+  margin: 0 0 6px;
 }
 .night-guests,
 .night-sets {
@@ -528,7 +537,7 @@ input {
 .night-set {
   display: flex;
   align-items: stretch;
-  margin: 3px 0 0 26px;
+  margin: 3px 0 0 6px;
 }
 .night-set-main {
   flex: 1;
@@ -538,10 +547,10 @@ input {
   background: var(--night-deep);
   border: 1px solid var(--counter-edge);
   border-radius: var(--radius-s) 0 0 var(--radius-s);
-  padding: 4px 8px;
+  padding: 6px 8px;
   cursor: pointer;
   text-align: left;
-  font-size: 0.82rem;
+  font-size: 0.9rem;
 }
 .night-set-main:hover {
   border-color: var(--sake);
@@ -562,12 +571,16 @@ input {
   gap: 3px;
 }
 .night-set-ings .ing-chip {
-  font-size: 0.72rem;
-  padding: 0 6px 0 2px;
+  font-size: 0.78rem;
+  padding: 1px 7px 1px 2px;
   gap: 3px;
 }
 .night-set-price {
   font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+.night-set .rating-dot {
+  flex: none;
 }
 .night-set-unpin {
   background: var(--night-deep);
@@ -1137,9 +1150,11 @@ input {
   grid-template-columns: minmax(0, 1fr) 380px;
   gap: 22px;
   margin-top: 22px;
+}
+.suggestions {
   transition: opacity 120ms;
 }
-.results.is-stale {
+.suggestions.is-stale {
   opacity: 0.55;
 }
 
@@ -1297,11 +1312,20 @@ input {
   color: var(--disliked);
 }
 
+/* Two parts that scroll on their own: the pinned sets stay in view while the help below them scrolls. */
 .side-panel {
   align-self: start;
   position: sticky;
   top: 12px;
-  max-height: calc(100vh - 24px);
+  height: calc(100vh - 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+/* The help takes whatever the pinned box leaves. */
+.side-help {
+  flex: 1 1 0;
+  min-height: 0;
   overflow: auto;
   padding-right: 4px;
 }
@@ -1329,14 +1353,22 @@ input {
   .results {
     grid-template-columns: 1fr;
   }
-  .side-panel {
+  .side-panel,
+  .has-sticky-guests .side-panel {
     position: static;
+    height: auto;
+  }
+  .side-help {
+    flex: none;
+    overflow: visible;
+  }
+  .night-panel {
     max-height: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .results {
+  .suggestions {
     transition: none;
   }
 }

@@ -148,6 +148,9 @@ export function RareSolverPage() {
     [deferredOrder, solverPool, ranking.preset],
   );
   const stale = deferredOrder !== order;
+  // Right after a guest switch the solution is still the previous guest's; showing it would let a set be
+  // pinned to the wrong guest, so the list waits for the new one.
+  const switching = stale && deferredOrder?.customer !== order?.customer;
 
   const sorted = useMemo(() => {
     if (!solution) return [];
@@ -333,8 +336,8 @@ export function RareSolverPage() {
       )}
 
       {order && solution && (
-        <div className={`results ${stale ? "is-stale" : ""}`}>
-          <section className="suggestions" aria-label={t("rare.suggestions")}>
+        <div className="results">
+          <section className={`suggestions ${stale ? "is-stale" : ""}`} aria-label={t("rare.suggestions")}>
             <div className="results-head">
               <h2>{t("rare.suggestions")}</h2>
               <label className="check">
@@ -380,11 +383,12 @@ export function RareSolverPage() {
               </details>
             </div>
             {!ignoreRequests && foodRequest === null && drinkRequest === null && <p className="hint">{t("rare.pickRequest")}</p>}
-            {sorted.length === 0 && (
+            {switching && <p className="hint">{t("rare.solving")}</p>}
+            {!switching && sorted.length === 0 && (
               <p className="hint">{ranking.pinkOnly && solution.suggestions.length > 0 ? t("rank.noPink") : t("rare.noRecipes")}</p>
             )}
             <ol className="suggestion-list">
-              {sorted.map((s) => (
+              {!switching && sorted.map((s) => (
                 <SuggestionRow
                   key={s.dish.recipe.name}
                   s={s}
@@ -410,36 +414,42 @@ export function RareSolverPage() {
               }}
               onUnpinSet={(set) => updatePins((p) => togglePinnedSet(p, set))}
             />
-            {draft ? (
-              <DishBuilder
-                order={order}
-                draft={draft}
-                onChange={setDraft}
-                onClose={() => setDraft(null)}
-                pinned={isSetPinned(pins, pinOf(order.customer.name, draft))}
-                onTogglePin={() => updatePins((p) => togglePinnedSet(p, pinOf(order.customer.name, draft)))}
-              />
-            ) : (
-              <section aria-label={t("side.title")}>
-                <div className="side-tabs" role="tablist">
-                  <button role="tab" aria-selected={sideTab === "ingredients"} onClick={() => setSideTab("ingredients")}>
-                    {t("hints.title")}
-                  </button>
-                  <button role="tab" aria-selected={sideTab === "drinks"} onClick={() => setSideTab("drinks")}>
-                    {t("rare.drinks")}
-                  </button>
-                </div>
-                {sideTab === "drinks" ? (
-                  <DrinkRanking drinks={solution.drinks} />
-                ) : (
-                  <IngredientHints
-                    customer={order.customer}
-                    foodRequest={ignoreRequests ? null : foodRequest}
-                    ingredients={pool.ingredients}
-                  />
-                )}
-              </section>
-            )}
+            <div className="side-help">
+              {draft ? (
+                <DishBuilder
+                  order={order}
+                  draft={draft}
+                  onChange={setDraft}
+                  onClose={() => setDraft(null)}
+                  pinned={isSetPinned(pins, pinOf(order.customer.name, draft))}
+                  onTogglePin={() => updatePins((p) => togglePinnedSet(p, pinOf(order.customer.name, draft)))}
+                />
+              ) : (
+                <section aria-label={t("side.title")}>
+                  <div className="side-tabs" role="tablist">
+                    <button role="tab" aria-selected={sideTab === "ingredients"} onClick={() => setSideTab("ingredients")}>
+                      {t("hints.title")}
+                    </button>
+                    <button role="tab" aria-selected={sideTab === "drinks"} onClick={() => setSideTab("drinks")}>
+                      {t("rare.drinks")}
+                    </button>
+                  </div>
+                  {sideTab === "drinks" ? (
+                    switching ? (
+                      <p className="hint">{t("rare.solving")}</p>
+                    ) : (
+                      <DrinkRanking drinks={solution.drinks} />
+                    )
+                  ) : (
+                    <IngredientHints
+                      customer={order.customer}
+                      foodRequest={ignoreRequests ? null : foodRequest}
+                      ingredients={pool.ingredients}
+                    />
+                  )}
+                </section>
+              )}
+            </div>
           </aside>
         </div>
       )}
