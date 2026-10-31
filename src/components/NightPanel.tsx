@@ -3,6 +3,7 @@ import type { GuestOrder } from "../guests";
 import type { PinnedSet } from "../pins";
 import { Rating, type Suggestion } from "../solver/rare";
 import { useT, type Translate } from "../i18n";
+import { useGameData } from "../store";
 import { ItemImage } from "./ItemImage";
 
 const RATING_CLASS: Record<Rating, "pink" | "orange" | "green" | "purple" | "black"> = {
@@ -36,7 +37,11 @@ export function NightPanel({
   onUnpinSet: (set: PinnedSet) => void;
 }) {
   const t = useT();
+  const data = useGameData();
   if (guests.length === 0) return null;
+  const image = (name: string) => data.ingredients.find((i) => i.name === name)?.image;
+  const baseOf = (recipe: string) => data.recipes.find((r) => r.name === recipe)?.ingredients ?? [];
+  const drinkImage = (name: string) => data.beverages.find((b) => b.name === name)?.image;
   return (
     <section className="night-panel" aria-label={t("pins.title")}>
       <h2>{t("pins.title")}</h2>
@@ -62,10 +67,24 @@ export function NightPanel({
                         />
                       )}
                       <span className="night-set-text">
-                        <strong>{set.recipe}</strong>
-                        {set.extras.length > 0 && <span className="extra"> + {set.extras.join(" + ")}</span>}
-                        <span className="with"> {t("rare.with")} </span>
-                        {set.beverage}
+                        <span className="night-set-title">
+                          <strong>{set.recipe}</strong>
+                          <span className="with"> {t("rare.with")} </span>
+                          <ItemImage src={drinkImage(set.beverage)} name={set.beverage} size={16} /> {set.beverage}
+                        </span>
+                        {/* Everything that goes into the pot: the recipe's own ingredients, then the extras. */}
+                        <span className="night-set-ings" aria-label={t("rare.ingredientsUsed")}>
+                          {baseOf(set.recipe).map((n, j) => (
+                            <span key={`b${j}`} className="ing-chip ing-chip-base" title={t("rare.baseIngredient")}>
+                              <ItemImage src={image(n)} name={n} size={16} /> {n}
+                            </span>
+                          ))}
+                          {set.extras.map((n, j) => (
+                            <span key={`e${j}`} className="ing-chip ing-chip-extra" title={t("rare.extraIngredient")}>
+                              <ItemImage src={image(n)} name={n} size={16} /> {n}
+                            </span>
+                          ))}
+                        </span>
                       </span>
                       {result && <span className="night-set-price">{result.totalPrice}</span>}
                     </button>
