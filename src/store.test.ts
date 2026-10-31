@@ -94,4 +94,10 @@ describe("normalizeState", () => {
     expect(s.progress.unlocked.beverages).toEqual([]);
     expect(s.overrides.recipes["Rice Ball"]).toEqual({ price: 7 });
   });
+
+  it("keeps saved presets; older saves start with none", () => {
+    const preset = { id: "a", guest: "Chen", name: "Cheap", kind: "economy", recipe: "Rice Ball", extras: [], beverage: "Mio" };
+    expect(normalizeState({ savedSets: { sets: [preset] } }).savedSets.sets).toEqual([preset]);
+    expect(normalizeState({}).savedSets.sets).toEqual([]);
+  });
 });

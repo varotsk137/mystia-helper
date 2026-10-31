@@ -6,6 +6,7 @@ import { NO_TREND, type Trend } from "./solver/tags";
 import { defaultLang, type Lang } from "./lang";
 import { NO_GUESTS, normalizeGuests, type Guests } from "./guests";
 import { NO_PINS, normalizePins, type Pins } from "./pins";
+import { NO_SAVED_SETS, normalizeSavedSets, type SavedSets } from "./savedSets";
 import { DEFAULT_PRESET, PRESET_IDS, type Preset } from "./solver/rare";
 
 /** Data kinds the player can edit. Keys match GameData. */
@@ -48,6 +49,8 @@ export interface StoreState {
   pins: Pins;
   /** Keep the guest tab bar stuck to the top of the screen while scrolling. */
   stickyGuests: boolean;
+  /** Named sets saved per guest for later nights; clearing the night keeps them. */
+  savedSets: SavedSets;
 }
 
 const STORAGE_KEY = "mystia-helper.settings";
@@ -64,6 +67,7 @@ const DEFAULTS: StoreState = {
   ranking: { preset: DEFAULT_PRESET, pinkOnly: false },
   pins: NO_PINS,
   stickyGuests: true,
+  savedSets: NO_SAVED_SETS,
 };
 
 /** Fills in fields missing from older or hand-edited saves. */
@@ -93,6 +97,7 @@ export function normalizeState(raw: unknown): StoreState {
     },
     pins: normalizePins(s.pins),
     stickyGuests: s.stickyGuests !== false,
+    savedSets: normalizeSavedSets(s.savedSets),
   };
 }
 
@@ -126,6 +131,8 @@ interface StoreContextValue {
   /** Ends the night: no guests seated, nothing pinned. */
   clearNight: () => void;
   setStickyGuests: (sticky: boolean) => void;
+  /** Applies one of the saved-set operations from savedSets.ts. */
+  updateSavedSets: (fn: (s: SavedSets) => SavedSets) => void;
   replaceState: (next: StoreState) => void;
 }
 
@@ -175,6 +182,10 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const updatePins = useCallback((fn: (p: Pins) => Pins) => setState((s) => ({ ...s, pins: fn(s.pins) })), []);
   const clearNight = useCallback(() => setState((s) => ({ ...s, guests: NO_GUESTS, pins: NO_PINS })), []);
   const setStickyGuests = useCallback((stickyGuests: boolean) => setState((s) => ({ ...s, stickyGuests })), []);
+  const updateSavedSets = useCallback(
+    (fn: (saved: SavedSets) => SavedSets) => setState((s) => ({ ...s, savedSets: fn(s.savedSets) })),
+    [],
+  );
   const setRanking = useCallback(
     (patch: Partial<StoreState["ranking"]>) => setState((s) => ({ ...s, ranking: { ...s.ranking, ...patch } })),
     [],
@@ -182,7 +193,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const replaceState = useCallback((next: StoreState) => setState(normalizeState(next)), []);
 
   const value = useMemo(
-    () => ({ state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, setLang, updateGuests, setRanking, updatePins, clearNight, setStickyGuests, replaceState }),
+    () => ({ state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, setLang, updateGuests, setRanking, updatePins, clearNight, setStickyGuests, updateSavedSets, replaceState }),
     [
       state,
       setOwnedDlcs,
@@ -198,6 +209,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       updatePins,
       clearNight,
       setStickyGuests,
+      updateSavedSets,
       replaceState,
     ],
   );

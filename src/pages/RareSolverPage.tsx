@@ -1,14 +1,26 @@
 import { useDeferredValue, useMemo, useState } from "react";
-import type { Ingredient, RareCustomer } from "../data";
+import type { GameData, Ingredient, RareCustomer } from "../data";
 import { useAvailablePool, useGameData, useStore } from "../store";
 import { TonightBar } from "../components/TonightBar";
 import { FoodRequestPicker } from "../components/QuoteParts";
+import { requestableFoodTags } from "../quotes";
 import { NightPanel, type PinnedGuestView } from "../components/NightPanel";
 import { IngredientHints } from "../components/IngredientHints";
 import { SpellCards } from "../components/SpellCards";
 import { GuestTabs, type SeatedGuest } from "../components/GuestTabs";
 import { addGuest, removeGuest, setActiveGuest, setGuestOrder } from "../guests";
 import { isSetPinned, pinnedGuestNames, removeGuestPins, togglePinnedSet, type PinnedSet } from "../pins";
+import {
+  findSavedSet,
+  removeSavedSet,
+  saveSet,
+  savedSetsFor,
+  SAVED_SET_ICON,
+  type SavedSet,
+  type SavedSetKind,
+} from "../savedSets";
+import { SaveSetForm, SavedSetList, type SavedSetView } from "../components/SavedSets";
+import { useMediaQuery } from "../useMediaQuery";
 import {
   evaluateCombo,
   ingredientEffects,
@@ -76,8 +88,11 @@ export function RareSolverPage() {
   const t = useT();
   const pool = useAvailablePool();
   const data = useGameData();
-  const { state, setTrend, setCookware, updateGuests, setRanking, updatePins, clearNight, setStickyGuests } = useStore();
-  const { trend, guests, ranking, pins } = state;
+  const { state, setTrend, setCookware, updateGuests, setRanking, updatePins, clearNight, setStickyGuests, updateSavedSets } =
+    useStore();
+  const { trend, guests, ranking, pins, savedSets } = state;
+  // Wide screens have room beside the page, so the pinned sets get a column of their own there.
+  const wide = useMediaQuery("(min-width: 1760px)");
   const [sortKey, setSortKey] = useState<SortKey>("best");
   const [descending, setDescending] = useState(false);
   // Night Sparrow cookware in Hyper mode / after a perfect Sparrow Tune. Not saved: it only lasts a moment.
@@ -175,24 +190,58 @@ export function RareSolverPage() {
 
   // Pinned sets grouped by guest, each rated against that guest's current order.
   const pinnedViews = useMemo<PinnedGuestView[]>(() => {
-    const byName = <T extends { name: string }>(list: readonly T[], name: string) => list.find((x) => x.name === name);
     return pinnedGuestNames(pins).flatMap((name) => {
-      const c = byName(data.rareCustomers, name);
+      const c = data.rareCustomers.find((x) => x.name === name);
       if (!c) return [];
       const go = guests.list.find((g) => g.name === name) ?? null;
       const guestOrder: RareOrder = { customer: c, foodRequest: go?.food ?? null, drinkRequest: go?.drink ?? null, trend, ignoreRequests };
       const sets = pins.sets
         .filter((s) => s.guest === name)
-        .map((set) => {
-          const recipe = byName(data.recipes, set.recipe);
-          const beverage = byName(data.beverages, set.beverage);
-          const extras = set.extras.map((e) => byName(data.ingredients, e)).filter((x): x is Ingredient => !!x);
-          const result = recipe && beverage ? evaluateCombo(guestOrder, recipe, extras, beverage, solverPool.catalog) : null;
-          return { set, result };
-        });
+        .map((set) => ({ set, result: rateSet(data, solverPool.catalog, guestOrder, set) }));
       return [{ customer: c, order: go, sets }];
     });
   }, [pins, guests.list, data, trend, ignoreRequests, solverPool.catalog]);
+
+  // The current guest's presets, rated against their current order.
+  const savedViews = useMemo<SavedSetView[]>(
+    () =>
+      order
+        ? savedSetsFor(savedSets, order.customer.name).map((saved) => ({
+            saved,
+            result: rateSet(data, solverPool.catalog, order, saved),
+            pinned: isSetPinned(pins, saved),
+          }))
+        : [],
+    [order, savedSets, data, solverPool.catalog, pins],
+  );
+  const savedOf = (set: PinnedSet) => findSavedSet(savedSets, set);
+  const saveAs = (set: PinnedSet) => (name: string, kind: SavedSetKind) =>
+    updateSavedSets((s) => saveSet(s, { ...set, name, kind }));
+  const openSet = (set: PinnedSet) => {
+    updateGuests((g) => setActiveGuest(g, set.guest));
+    setDrafts((all) => ({ ...all, [set.guest]: { recipe: set.recipe, extras: set.extras, beverage: set.beverage } }));
+  };
+
+  const nightPanel = (
+    <NightPanel
+      guests={pinnedViews}
+      active={guests.active}
+      savedOf={savedOf}
+      showEmpty={wide}
+      onOpenGuest={(name) => updateGuests((g) => setActiveGuest(g, name))}
+      onOpenSet={openSet}
+      onUnpinSet={(set) => updatePins((p) => togglePinnedSet(p, set))}
+    />
+  );
+  const savedList = customer && !customer.undocumented && (
+    <SavedSetList
+      guest={customer.shortName}
+      views={savedViews}
+      onTogglePin={(saved) => updatePins((p) => togglePinnedSet(p, saved))}
+      onOpen={openSet}
+      onDelete={(saved) => updateSavedSets((s) => removeSavedSet(s, saved.id))}
+    />
+  );
 
   if (pool.rareCustomers.length === 0 && seated.length === 0) {
     return (
@@ -203,254 +252,273 @@ export function RareSolverPage() {
   }
 
   return (
-    <div className={`page solver ${state.stickyGuests ? "has-sticky-guests" : ""}`}>
-      <GuestTabs
-        seated={seatedWithBest}
-        active={guests.active}
-        customers={pool.rareCustomers}
-        onSelect={(name) => updateGuests((g) => setActiveGuest(g, name))}
-        sticky={state.stickyGuests}
-        canClear={guests.list.length > 0 || pins.sets.length > 0}
-        onRemove={(name) => {
-          updateGuests((g) => removeGuest(g, name));
-          updatePins((p) => removeGuestPins(p, name));
-          setDrafts((all) => ({ ...all, [name]: undefined }));
-        }}
-        onAdd={(name) => updateGuests((g) => addGuest(g, name))}
-        onToggleSticky={() => setStickyGuests(!state.stickyGuests)}
-        onClearNight={() => {
-          clearNight();
-          setDrafts({});
-          setEditing({});
-        }}
-      >
-        <TonightBar
-          trend={trend}
-          onTrendChange={setTrend}
-          cookware={state.cookware}
-          onCookwareChange={setCookware}
-          recipeCount={pool.recipes.length}
-          ignoreRequests={ignoreRequests}
-          onIgnoreRequestsChange={setIgnoreRequests}
-        />
-      </GuestTabs>
+    <div className={`page solver ${state.stickyGuests ? "has-sticky-guests" : ""} ${wide ? "has-rail" : ""}`}>
+      <div className="solver-main">
+        <GuestTabs
+          seated={seatedWithBest}
+          active={guests.active}
+          customers={pool.rareCustomers}
+          onSelect={(name) => updateGuests((g) => setActiveGuest(g, name))}
+          sticky={state.stickyGuests}
+          canClear={guests.list.length > 0 || pins.sets.length > 0}
+          onRemove={(name) => {
+            updateGuests((g) => removeGuest(g, name));
+            updatePins((p) => removeGuestPins(p, name));
+            setDrafts((all) => ({ ...all, [name]: undefined }));
+          }}
+          onAdd={(name) => updateGuests((g) => addGuest(g, name))}
+          onToggleSticky={() => setStickyGuests(!state.stickyGuests)}
+          onClearNight={() => {
+            clearNight();
+            setDrafts({});
+            setEditing({});
+          }}
+        >
+          <TonightBar
+            trend={trend}
+            onTrendChange={setTrend}
+            cookware={state.cookware}
+            onCookwareChange={setCookware}
+            recipeCount={pool.recipes.length}
+            ignoreRequests={ignoreRequests}
+            onIgnoreRequestsChange={setIgnoreRequests}
+          />
+        </GuestTabs>
 
-      {customer && order && slipCollapsed && (
-        <>
-          <section className="order order-compact" aria-label={t("rare.order")}>
-            <ItemImage src={customer.image} name={customer.shortName} size={40} variant="portrait" />
-            <div className="order-compact-body">
-              <h2 className="order-name">{customer.name}</h2>
-              <span className={`order-compact-requests ${ignoreRequests ? "is-ignored" : ""}`}>
-                <span className="request-chip is-picked">{foodRequest}</span>
-                <span className="request-chip is-picked">{drinkRequest}</span>
-                {ignoreRequests && <span className="hint">{t("ignore.label")}</span>}
-              </span>
-              {customer.dislikedFoodTags.length > 0 && (
-                <span className="dislikes">
-                  <span>{t("rare.dislikes")}</span>
-                  {customer.dislikedFoodTags.map((tag) => (
-                    <span key={tag} className="tag tag-disliked">
-                      {tag}
-                    </span>
-                  ))}
-                </span>
-              )}
-              <span className="order-compact-spacer" />
-              <div className="budget">
-                <span>{t("rare.budget")}</span>
-                <strong>{customer.budget ? `${customer.budget.min}–${customer.budget.max}` : "?"}</strong>
-              </div>
-              <button className="btn btn-small order-toggle" aria-expanded={false} onClick={() => setSlipEditing(true)}>
-                {t("order.edit")}
-              </button>
-            </div>
-          </section>
-
-          <SpellCards customer={customer} />
-        </>
-      )}
-
-      {customer && order && !slipCollapsed && (
-        <>
-          <section className="order" aria-label={t("rare.order")}>
-            <ItemImage src={customer.image} name={customer.shortName} size={76} variant="portrait" />
-            <div className="order-body">
-              <div className="order-row">
-                <h2 className="order-name">{customer.name}</h2>
-                <div className="budget">
-                  <span>{t("rare.budget")}</span>
-                  <strong>{customer.budget ? `${customer.budget.min}–${customer.budget.max}` : "?"}</strong>
-                </div>
-                {foodRequest && drinkRequest && (
-                  <button className="btn btn-small order-toggle" aria-expanded={true} onClick={() => setSlipEditing(false)}>
-                    {t("order.collapse")}
-                  </button>
-                )}
-              </div>
-
-              {customer.undocumented ? (
-                <p className="hint">{t("rare.undocumented", { name: customer.shortName })}</p>
-              ) : (
-                <>
-                  <div className={`requests ${ignoreRequests ? "is-ignored" : ""}`}>
-                    {ignoreRequests && <p className="ignore-note">{t("ignore.active")}</p>}
-                    <FoodRequestPicker customer={customer} value={foodRequest} onChange={setFoodRequest} />
-                    <RequestPicker
-                      label={t("rare.drinkRequest")}
-                      tags={customer.likedDrinkTags}
-                      value={drinkRequest}
-                      onChange={setDrinkRequest}
-                    />
-                  </div>
-                  <div className="dislikes">
-                    <span>{t("rare.dislikes")}</span>
-                    {customer.dislikedFoodTags.length ? (
-                      customer.dislikedFoodTags.map((tag) => (
+        {customer && order && slipCollapsed && (
+          <>
+            <section className="order order-compact" aria-label={t("rare.order")}>
+              <ItemImage src={customer.image} name={customer.shortName} size={40} variant="portrait" />
+              <div className="order-compact-body">
+                <div className="order-compact-head">
+                  <h2 className="order-name">{customer.name}</h2>
+                  {customer.dislikedFoodTags.length > 0 && (
+                    <span className="dislikes">
+                      <span>{t("rare.dislikes")}</span>
+                      {customer.dislikedFoodTags.map((tag) => (
                         <span key={tag} className="tag tag-disliked">
                           {tag}
                         </span>
-                      ))
-                    ) : (
-                      <span className="hint">{t("rare.none")}</span>
-                    )}
-                  </div>
-                  {trendTaste && (
-                    <div className="trend-taste">
-                      <span className="request-label">{t("trend.label")}</span>
-                      <span className="hint">
-                        {trendTaste}
-                        {trend.popular.length === 0 && trend.unpopular.length === 0 && ` · ${t("trend.unset")}`}
-                      </span>
-                    </div>
+                      ))}
+                    </span>
                   )}
-                </>
-              )}
-            </div>
-          </section>
-
-          <SpellCards customer={customer} />
-        </>
-      )}
-
-      {order && solution && (
-        <div className="results">
-          <section className={`suggestions ${stale ? "is-stale" : ""}`} aria-label={t("rare.suggestions")}>
-            <div className="results-head">
-              <h2>{t("rare.suggestions")}</h2>
-              <label className="check">
-                <input type="checkbox" checked={ranking.pinkOnly} onChange={(e) => setRanking({ pinkOnly: e.target.checked })} />
-                {t("rank.pinkOnly")}
-              </label>
-              <label className="sort">
-                <span>{t("rare.sortBy")}</span>
-                <select value={sortKey} onChange={(e) => setSortKey(e.target.value as SortKey)}>
-                  {SORTS.map((s) => (
-                    <option key={s.key} value={s.key}>
-                      {t(`sort.${s.key}`)}
-                    </option>
-                  ))}
-                </select>
-                {sortKey !== "best" && (
-                  <button className="btn btn-quiet" onClick={() => setDescending(!descending)}>
-                    {descending ? t("rare.descending") : t("rare.ascending")}
+                  <span className="order-compact-spacer" />
+                  <div className="budget">
+                    <span>{t("rare.budget")}</span>
+                    <strong>{customer.budget ? `${customer.budget.min}–${customer.budget.max}` : "?"}</strong>
+                  </div>
+                  <button className="btn btn-small order-toggle" aria-expanded={false} onClick={() => setSlipEditing(true)}>
+                    {t("order.edit")}
                   </button>
-                )}
-              </label>
-            </div>
-            <div className="ranking">
-              <label>
-                <span>{t("goal.label")}</span>
-                <select value={ranking.preset} onChange={(e) => setRanking({ preset: e.target.value as Preset })}>
-                  {PRESET_IDS.map((p) => (
-                    <option key={p} value={p}>
-                      {t(`goal.${p}`)}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <details className="help">
-                <summary aria-label={t("goal.help")} title={t(`goal.${ranking.preset}.hint`)}>
-                  ?
-                </summary>
-                <div className="help-body">
-                  <p>{t(`goal.${ranking.preset}.hint`)}</p>
-                  <p>{t("goal.weights", { list: weightList(ranking.preset, t) })}</p>
-                  <p className="hint">{t("goal.common")}</p>
                 </div>
-              </details>
-            </div>
-            {!ignoreRequests && foodRequest === null && drinkRequest === null && <p className="hint">{t("rare.pickRequest")}</p>}
-            {switching && <p className="hint">{t("rare.solving")}</p>}
-            {!switching && sorted.length === 0 && (
-              <p className="hint">{ranking.pinkOnly && solution.suggestions.length > 0 ? t("rank.noPink") : t("rare.noRecipes")}</p>
-            )}
-            <ol className="suggestion-list">
-              {!switching && sorted.map((s) => (
-                <SuggestionRow
-                  key={s.dish.recipe.name}
-                  s={s}
-                  preset={ranking.preset}
-                  food={ignoreRequests ? null : foodRequest}
-                  drink={ignoreRequests ? null : drinkRequest}
-                  selected={draft?.recipe === s.dish.recipe.name}
-                  pinned={isSetPinned(pins, pinOf(order.customer.name, draftOf(s)))}
-                  onPick={() => pick(s)}
-                  onTogglePin={() => updatePins((p) => togglePinnedSet(p, pinOf(order.customer.name, draftOf(s))))}
-                />
-              ))}
-            </ol>
-          </section>
-          <aside className="side-panel">
-            <NightPanel
-              guests={pinnedViews}
-              active={guests.active}
-              onOpenGuest={(name) => updateGuests((g) => setActiveGuest(g, name))}
-              onOpenSet={(set) => {
-                updateGuests((g) => setActiveGuest(g, set.guest));
-                setDrafts((all) => ({ ...all, [set.guest]: { recipe: set.recipe, extras: set.extras, beverage: set.beverage } }));
-              }}
-              onUnpinSet={(set) => updatePins((p) => togglePinnedSet(p, set))}
-            />
-            <div className="side-help">
-              {draft ? (
-                <DishBuilder
-                  order={order}
-                  draft={draft}
-                  onChange={setDraft}
-                  onClose={() => setDraft(null)}
-                  pinned={isSetPinned(pins, pinOf(order.customer.name, draft))}
-                  onTogglePin={() => updatePins((p) => togglePinnedSet(p, pinOf(order.customer.name, draft)))}
-                />
-              ) : (
-                <section aria-label={t("side.title")}>
-                  <div className="side-tabs" role="tablist">
-                    <button role="tab" aria-selected={sideTab === "ingredients"} onClick={() => setSideTab("ingredients")}>
-                      {t("hints.title")}
-                    </button>
-                    <button role="tab" aria-selected={sideTab === "drinks"} onClick={() => setSideTab("drinks")}>
-                      {t("rare.drinks")}
-                    </button>
+                {/* The guest orders again after every dish, so the requests stay one click away. */}
+                <div className={`order-compact-requests ${ignoreRequests ? "is-ignored" : ""}`}>
+                  <CompactRequestPicker
+                    label={t("rare.foodRequest")}
+                    tags={requestableFoodTags(customer)}
+                    titleOf={(tag) =>
+                      customer.foodQuotes
+                        .filter((q) => q.tag === tag)
+                        .map((q) => `“${q.text}”`)
+                        .join("\n")
+                    }
+                    value={foodRequest}
+                    onChange={setFoodRequest}
+                  />
+                  <CompactRequestPicker
+                    label={t("rare.drinkRequest")}
+                    tags={customer.likedDrinkTags}
+                    value={drinkRequest}
+                    onChange={setDrinkRequest}
+                  />
+                  {ignoreRequests && <span className="hint">{t("ignore.label")}</span>}
+                </div>
+              </div>
+            </section>
+
+            {savedList}
+            <SpellCards customer={customer} />
+          </>
+        )}
+
+        {customer && order && !slipCollapsed && (
+          <>
+            <section className="order" aria-label={t("rare.order")}>
+              <ItemImage src={customer.image} name={customer.shortName} size={76} variant="portrait" />
+              <div className="order-body">
+                <div className="order-row">
+                  <h2 className="order-name">{customer.name}</h2>
+                  <div className="budget">
+                    <span>{t("rare.budget")}</span>
+                    <strong>{customer.budget ? `${customer.budget.min}–${customer.budget.max}` : "?"}</strong>
                   </div>
-                  {sideTab === "drinks" ? (
-                    switching ? (
-                      <p className="hint">{t("rare.solving")}</p>
-                    ) : (
-                      <DrinkRanking drinks={solution.drinks} />
-                    )
-                  ) : (
-                    <IngredientHints
-                      customer={order.customer}
-                      foodRequest={ignoreRequests ? null : foodRequest}
-                      ingredients={pool.ingredients}
-                    />
+                  {foodRequest && drinkRequest && (
+                    <button className="btn btn-small order-toggle" aria-expanded={true} onClick={() => setSlipEditing(false)}>
+                      {t("order.collapse")}
+                    </button>
                   )}
-                </section>
+                </div>
+
+                {customer.undocumented ? (
+                  <p className="hint">{t("rare.undocumented", { name: customer.shortName })}</p>
+                ) : (
+                  <>
+                    <div className={`requests ${ignoreRequests ? "is-ignored" : ""}`}>
+                      {ignoreRequests && <p className="ignore-note">{t("ignore.active")}</p>}
+                      <FoodRequestPicker customer={customer} value={foodRequest} onChange={setFoodRequest} />
+                      <RequestPicker
+                        label={t("rare.drinkRequest")}
+                        tags={customer.likedDrinkTags}
+                        value={drinkRequest}
+                        onChange={setDrinkRequest}
+                      />
+                    </div>
+                    <div className="dislikes">
+                      <span>{t("rare.dislikes")}</span>
+                      {customer.dislikedFoodTags.length ? (
+                        customer.dislikedFoodTags.map((tag) => (
+                          <span key={tag} className="tag tag-disliked">
+                            {tag}
+                          </span>
+                        ))
+                      ) : (
+                        <span className="hint">{t("rare.none")}</span>
+                      )}
+                    </div>
+                    {trendTaste && (
+                      <div className="trend-taste">
+                        <span className="request-label">{t("trend.label")}</span>
+                        <span className="hint">
+                          {trendTaste}
+                          {trend.popular.length === 0 && trend.unpopular.length === 0 && ` · ${t("trend.unset")}`}
+                        </span>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            </section>
+
+            {savedList}
+            <SpellCards customer={customer} />
+          </>
+        )}
+
+        {order && solution && (
+          <div className="results">
+            <section className={`suggestions ${stale ? "is-stale" : ""}`} aria-label={t("rare.suggestions")}>
+              <div className="results-head">
+                <h2>{t("rare.suggestions")}</h2>
+                <label className="check">
+                  <input type="checkbox" checked={ranking.pinkOnly} onChange={(e) => setRanking({ pinkOnly: e.target.checked })} />
+                  {t("rank.pinkOnly")}
+                </label>
+                <label className="sort">
+                  <span>{t("rare.sortBy")}</span>
+                  <select value={sortKey} onChange={(e) => setSortKey(e.target.value as SortKey)}>
+                    {SORTS.map((s) => (
+                      <option key={s.key} value={s.key}>
+                        {t(`sort.${s.key}`)}
+                      </option>
+                    ))}
+                  </select>
+                  {sortKey !== "best" && (
+                    <button className="btn btn-quiet" onClick={() => setDescending(!descending)}>
+                      {descending ? t("rare.descending") : t("rare.ascending")}
+                    </button>
+                  )}
+                </label>
+              </div>
+              <div className="ranking">
+                <label>
+                  <span>{t("goal.label")}</span>
+                  <select value={ranking.preset} onChange={(e) => setRanking({ preset: e.target.value as Preset })}>
+                    {PRESET_IDS.map((p) => (
+                      <option key={p} value={p}>
+                        {t(`goal.${p}`)}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <details className="help">
+                  <summary aria-label={t("goal.help")} title={t(`goal.${ranking.preset}.hint`)}>
+                    ?
+                  </summary>
+                  <div className="help-body">
+                    <p>{t(`goal.${ranking.preset}.hint`)}</p>
+                    <p>{t("goal.weights", { list: weightList(ranking.preset, t) })}</p>
+                    <p className="hint">{t("goal.common")}</p>
+                  </div>
+                </details>
+              </div>
+              {!ignoreRequests && foodRequest === null && drinkRequest === null && <p className="hint">{t("rare.pickRequest")}</p>}
+              {switching && <p className="hint">{t("rare.solving")}</p>}
+              {!switching && sorted.length === 0 && (
+                <p className="hint">{ranking.pinkOnly && solution.suggestions.length > 0 ? t("rank.noPink") : t("rare.noRecipes")}</p>
               )}
-            </div>
-          </aside>
-        </div>
-      )}
+              <ol className="suggestion-list">
+                {!switching && sorted.map((s) => (
+                  <SuggestionRow
+                    key={s.dish.recipe.name}
+                    s={s}
+                    preset={ranking.preset}
+                    food={ignoreRequests ? null : foodRequest}
+                    drink={ignoreRequests ? null : drinkRequest}
+                    selected={draft?.recipe === s.dish.recipe.name}
+                    pinned={isSetPinned(pins, pinOf(order.customer.name, draftOf(s)))}
+                    saved={savedOf(pinOf(order.customer.name, draftOf(s)))}
+                    onPick={() => pick(s)}
+                    onTogglePin={() => updatePins((p) => togglePinnedSet(p, pinOf(order.customer.name, draftOf(s))))}
+                    onSave={saveAs(pinOf(order.customer.name, draftOf(s)))}
+                  />
+                ))}
+              </ol>
+            </section>
+            <aside className="side-panel">
+              {!wide && nightPanel}
+              <div className="side-help">
+                {draft ? (
+                  <DishBuilder
+                    order={order}
+                    draft={draft}
+                    onChange={setDraft}
+                    onClose={() => setDraft(null)}
+                    pinned={isSetPinned(pins, pinOf(order.customer.name, draft))}
+                    onTogglePin={() => updatePins((p) => togglePinnedSet(p, pinOf(order.customer.name, draft)))}
+                    saved={savedOf(pinOf(order.customer.name, draft))}
+                    onSave={saveAs(pinOf(order.customer.name, draft))}
+                  />
+                ) : (
+                  <section aria-label={t("side.title")}>
+                    <div className="side-tabs" role="tablist">
+                      <button role="tab" aria-selected={sideTab === "ingredients"} onClick={() => setSideTab("ingredients")}>
+                        {t("hints.title")}
+                      </button>
+                      <button role="tab" aria-selected={sideTab === "drinks"} onClick={() => setSideTab("drinks")}>
+                        {t("rare.drinks")}
+                      </button>
+                    </div>
+                    {sideTab === "drinks" ? (
+                      switching ? (
+                        <p className="hint">{t("rare.solving")}</p>
+                      ) : (
+                        <DrinkRanking drinks={solution.drinks} />
+                      )
+                    ) : (
+                      <IngredientHints
+                        customer={order.customer}
+                        foodRequest={ignoreRequests ? null : foodRequest}
+                        ingredients={pool.ingredients}
+                      />
+                    )}
+                  </section>
+                )}
+              </div>
+            </aside>
+          </div>
+        )}
+      </div>
+      {wide && <aside className="night-rail">{nightPanel}</aside>}
     </div>
   );
 }
@@ -471,6 +539,48 @@ function RequestPicker(props: { label: string; tags: string[]; value: string | n
         </button>
       ))}
     </div>
+  );
+}
+
+/** A pinned or saved set rated against a guest's order; null when its recipe or drink no longer exists. */
+function rateSet(
+  data: GameData,
+  catalog: ReturnType<typeof makeCatalog>,
+  order: RareOrder,
+  set: { recipe: string; extras: string[]; beverage: string },
+): Suggestion | null {
+  const recipe = data.recipes.find((r) => r.name === set.recipe);
+  const beverage = data.beverages.find((b) => b.name === set.beverage);
+  const extras = set.extras
+    .map((e) => data.ingredients.find((i) => i.name === e))
+    .filter((x): x is Ingredient => !!x);
+  return recipe && beverage ? evaluateCombo(order, recipe, extras, beverage, catalog) : null;
+}
+
+/** One request as a row of small chips; picking another tag switches straight to it. */
+function CompactRequestPicker(props: {
+  label: string;
+  tags: string[];
+  titleOf?: (tag: string) => string;
+  value: string | null;
+  onChange: (t: string) => void;
+}) {
+  return (
+    <span className="compact-request" role="radiogroup" aria-label={props.label}>
+      <span className="compact-request-label">{props.label}</span>
+      {props.tags.map((tag) => (
+        <button
+          key={tag}
+          role="radio"
+          aria-checked={props.value === tag}
+          className="request-chip"
+          title={props.titleOf?.(tag) || undefined}
+          onClick={() => props.onChange(tag)}
+        >
+          {tag}
+        </button>
+      ))}
+    </span>
   );
 }
 
@@ -559,8 +669,10 @@ function SuggestionRow({
   drink: drinkRequest,
   selected,
   pinned,
+  saved,
   onPick,
   onTogglePin,
+  onSave,
 }: {
   s: Suggestion;
   preset: Preset;
@@ -569,10 +681,14 @@ function SuggestionRow({
   drink: string | null;
   selected: boolean;
   pinned: boolean;
+  /** The preset this exact set was saved as, if any. */
+  saved: SavedSet | undefined;
   onPick: () => void;
   onTogglePin: () => void;
+  onSave: (name: string, kind: SavedSetKind) => void;
 }) {
   const t = useT();
+  const [saving, setSaving] = useState(false);
   const { dish, drink } = s;
   const warning = warningFor(s, t);
   return (
@@ -609,6 +725,17 @@ function SuggestionRow({
             </ul>
           </details>
         )}
+        {saving && (
+          <SaveSetForm
+            defaultName={saved?.name ?? dish.recipe.name}
+            defaultKind={saved?.kind}
+            onSave={(name, kind) => {
+              onSave(name, kind);
+              setSaving(false);
+            }}
+            onCancel={() => setSaving(false)}
+          />
+        )}
       </div>
       <div className={`price price-${s.budget}`}>
         <strong>{s.totalPrice}</strong>
@@ -618,6 +745,7 @@ function SuggestionRow({
         <button className="btn btn-small btn-quiet" aria-pressed={selected} onClick={onPick}>
           {selected ? t("rare.adjusting") : t("rare.adjust")}
         </button>
+        <SaveButton saved={saved} open={saving} onToggle={() => setSaving(!saving)} />
       </div>
     </li>
   );
@@ -731,6 +859,21 @@ function Extras({ dish }: { dish: Suggestion["dish"] }) {
 }
 
 /** Pins a set to tonight's list in the right-hand panel, or unpins it. */
+/** Opens the form that saves a set as a preset; once saved it shows the preset's icon. */
+function SaveButton({ saved, open, onToggle }: { saved: SavedSet | undefined; open: boolean; onToggle: () => void }) {
+  const t = useT();
+  return (
+    <button
+      className="btn btn-small btn-quiet save-btn"
+      aria-expanded={open}
+      title={saved ? `${SAVED_SET_ICON[saved.kind]} ${saved.name}` : t("saved.saveTitle")}
+      onClick={onToggle}
+    >
+      {saved ? `${SAVED_SET_ICON[saved.kind]} ${t("saved.saved")}` : `💾 ${t("saved.save")}`}
+    </button>
+  );
+}
+
 function PinButton({ pinned, onToggle }: { pinned: boolean; onToggle: () => void }) {
   const t = useT();
   return (
@@ -767,6 +910,8 @@ function DishBuilder({
   onClose,
   pinned,
   onTogglePin,
+  saved,
+  onSave,
 }: {
   order: RareOrder;
   draft: Draft;
@@ -774,11 +919,14 @@ function DishBuilder({
   onClose: () => void;
   pinned: boolean;
   onTogglePin: () => void;
+  saved: SavedSet | undefined;
+  onSave: (name: string, kind: SavedSetKind) => void;
 }) {
   const t = useT();
   const pool = useAvailablePool();
   const data = useGameData();
   const [helpfulOnly, setHelpfulOnly] = useState(true);
+  const [saving, setSaving] = useState(false);
   const byName = <T extends { name: string }>(list: readonly T[], name: string) => list.find((x) => x.name === name);
   // Look up in the full (edited) lists too, so a draft survives progress changes.
   const recipe = byName(pool.recipes, draft.recipe) ?? byName(data.recipes, draft.recipe);
@@ -804,11 +952,23 @@ function DishBuilder({
         <h2>{t("builder.title")}</h2>
         <span className="builder-actions">
           <PinButton pinned={pinned} onToggle={onTogglePin} />
+          <SaveButton saved={saved} open={saving} onToggle={() => setSaving(!saving)} />
           <button className="btn btn-quiet btn-small" onClick={onClose}>
             {t("builder.close")}
           </button>
         </span>
       </div>
+      {saving && (
+        <SaveSetForm
+          defaultName={saved?.name ?? recipe.name}
+          defaultKind={saved?.kind}
+          onSave={(name, kind) => {
+            onSave(name, kind);
+            setSaving(false);
+          }}
+          onCancel={() => setSaving(false)}
+        />
+      )}
 
       <div className="builder-summary">
         <RatingBadge s={result} />

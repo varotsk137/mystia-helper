@@ -3,8 +3,9 @@ import type { GuestOrder } from "../guests";
 import type { PinnedSet } from "../pins";
 import { Rating, type Suggestion } from "../solver/rare";
 import { useT, type Translate } from "../i18n";
-import { useGameData } from "../store";
+import { SAVED_SET_ICON, type SavedSet } from "../savedSets";
 import { ItemImage } from "./ItemImage";
+import { SetSummary } from "./SetSummary";
 
 const RATING_CLASS: Record<Rating, "pink" | "orange" | "green" | "purple" | "black"> = {
   [Rating.Pink]: "pink",
@@ -22,26 +23,38 @@ export interface PinnedGuestView {
   sets: { set: PinnedSet; result: Suggestion | null }[];
 }
 
-/** Tonight's pinned guests and sets, kept in view in the right-hand panel. */
+/**
+ * Tonight's pinned guests and sets, kept in view beside the results. With nothing pinned it renders nothing,
+ * or a hint when `showEmpty` (for a column of its own).
+ */
 export function NightPanel({
   guests,
   active,
+  savedOf,
+  showEmpty = false,
   onOpenGuest,
   onOpenSet,
   onUnpinSet,
 }: {
   guests: PinnedGuestView[];
   active: string | null;
+  /** The preset a pinned set was saved as, if any, to show its name. */
+  savedOf: (set: PinnedSet) => SavedSet | undefined;
+  showEmpty?: boolean;
   onOpenGuest: (name: string) => void;
   onOpenSet: (set: PinnedSet) => void;
   onUnpinSet: (set: PinnedSet) => void;
 }) {
   const t = useT();
-  const data = useGameData();
-  if (guests.length === 0) return null;
-  const image = (name: string) => data.ingredients.find((i) => i.name === name)?.image;
-  const baseOf = (recipe: string) => data.recipes.find((r) => r.name === recipe)?.ingredients ?? [];
-  const drinkImage = (name: string) => data.beverages.find((b) => b.name === name)?.image;
+  if (guests.length === 0) {
+    if (!showEmpty) return null;
+    return (
+      <section className="night-panel" aria-label={t("pins.title")}>
+        <h2>{t("pins.title")}</h2>
+        <p className="hint night-empty">{t("pins.none")}</p>
+      </section>
+    );
+  }
   return (
     <section className="night-panel" aria-label={t("pins.title")}>
       <h2>{t("pins.title")}</h2>
@@ -67,24 +80,12 @@ export function NightPanel({
                         />
                       )}
                       <span className="night-set-text">
-                        <span className="night-set-title">
-                          <strong>{set.recipe}</strong>
-                          <span className="with"> {t("rare.with")} </span>
-                          <ItemImage src={drinkImage(set.beverage)} name={set.beverage} size={16} /> {set.beverage}
-                        </span>
-                        {/* Everything that goes into the pot: the recipe's own ingredients, then the extras. */}
-                        <span className="night-set-ings" aria-label={t("rare.ingredientsUsed")}>
-                          {baseOf(set.recipe).map((n, j) => (
-                            <span key={`b${j}`} className="ing-chip ing-chip-base" title={t("rare.baseIngredient")}>
-                              <ItemImage src={image(n)} name={n} size={16} /> {n}
-                            </span>
-                          ))}
-                          {set.extras.map((n, j) => (
-                            <span key={`e${j}`} className="ing-chip ing-chip-extra" title={t("rare.extraIngredient")}>
-                              <ItemImage src={image(n)} name={n} size={16} /> {n}
-                            </span>
-                          ))}
-                        </span>
+                        {savedOf(set) && (
+                          <span className="night-set-saved">
+                            {SAVED_SET_ICON[savedOf(set)!.kind]} {savedOf(set)!.name}
+                          </span>
+                        )}
+                        <SetSummary recipe={set.recipe} extras={set.extras} beverage={set.beverage} />
                       </span>
                       {result && <span className="night-set-price">{result.totalPrice}</span>}
                     </button>
