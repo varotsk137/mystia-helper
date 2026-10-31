@@ -177,8 +177,40 @@ describe("solveRareOrder", () => {
     expect(ok.dish.dish.tags).not.toContain("Vegetarian"); // Meat overrides it
     const dark = evaluateCombo(o, recipe("Dew Runny Eggs"), [ing("Pork")], drink);
     expect(dark.dish.dish.tags).toEqual(["Dark Matter"]);
-    expect(dark.dish.score).toBe(-2);
+    expect(dark.dish.score).toBe(0);
     expect(dark.dish.requestMet).toBe(false);
+  });
+
+  it("rates Dark Matter by the drink alone, orange at best", () => {
+    const drink = gameData.beverages.find((b) => b.name === "Fruity Highball")!;
+    expect(drink.tags).toContain("Chillable");
+    // A guest who likes every tag on the drink.
+    const fan = { ...customer("Wriggle Nightbug"), likedDrinkTags: drink.tags };
+    const darkWith = (o: RareOrder) => evaluateCombo(o, recipe("Dew Runny Eggs"), [ing("Pork")], drink);
+    const met = darkWith({ customer: fan, foodRequest: "Sweet", drinkRequest: "Chillable", trend: NO_TREND });
+    expect(met.score).toBe(drink.tags.length);
+    expect(met.requestsMet).toBe(1);
+    expect(met.rating).toBe(Math.min(ratingFromScore(drink.tags.length), Rating.Orange));
+    const unmet = darkWith({ customer: fan, foodRequest: "Sweet", drinkRequest: "Hot", trend: NO_TREND });
+    expect(unmet.rating).toBe(Rating.Purple);
+    // Dark Matter doesn't get the Night Sparrow effect: the drink request counts again.
+    const ignored = darkWith({ customer: fan, foodRequest: "Sweet", drinkRequest: "Hot", trend: NO_TREND, ignoreRequests: true });
+    expect(ignored.requestsMet).toBe(0);
+    expect(ignored.rating).toBe(Rating.Purple);
+  });
+
+  it("rates at least green when both requests are served", () => {
+    const drink = gameData.beverages.find((b) => b.name === "Fruity Highball")!;
+    const sweet = gameData.recipes.find((r) => r.tags.includes("Sweet") && r.tags.length >= 3)!;
+    const others = computeDishTags(sweet, []).tags.filter((t) => t !== "Sweet");
+    const grumpy = { ...customer("Wriggle Nightbug"), likedFoodTags: ["Sweet"], dislikedFoodTags: others, likedDrinkTags: ["Chillable"] };
+    const o: RareOrder = { customer: grumpy, foodRequest: "Sweet", drinkRequest: "Chillable", trend: NO_TREND };
+    const s = evaluateCombo(o, sweet, [], drink);
+    expect(s.score).toBeLessThanOrEqual(0);
+    expect(s.requestsMet).toBe(2);
+    expect(s.rating).toBe(Rating.Green);
+    // With requests ignored there is no floor.
+    expect(evaluateCombo({ ...o, ignoreRequests: true }, sweet, [], drink).rating).toBe(Rating.Black);
   });
 
   it("ranks ingredient effects and flags Dark Matter", () => {
@@ -300,6 +332,34 @@ describe("solveRareOrder", () => {
     const cucumber = suggestions.filter((s) => s.note === "nitori-cucumber");
     expect(cucumber.length).toBeGreaterThan(0);
     for (const s of cucumber) expect(s.rating).toBeGreaterThanOrEqual(Rating.Orange);
+  });
+
+  it("applies the other character-specific rules", () => {
+    const drink = gameData.beverages[0];
+    const rate = (guest: string, dish: string, extras: string[] = []) => {
+      const c = customer(guest);
+      const o: RareOrder = { customer: c, foodRequest: c.likedFoodTags[0], drinkRequest: c.likedDrinkTags[0], trend: NO_TREND };
+      const s = evaluateCombo(o, recipe(dish), extras.map(ing), drink);
+      return { rating: s.rating, note: s.note };
+    };
+    expect(rate("Remilia Scarlet", "Scarlet Devil Cake")).toEqual({ rating: Rating.Pink, note: "remilia-cake" });
+    expect(rate("Koishi Komeiji", "Unconscious Youkai Mousse")).toEqual({ rating: Rating.Black, note: "koishi-mousse" });
+    expect(rate("Yuuma Toutetsu", "Deep Fried Tofu")).toEqual({ rating: Rating.Orange, note: "yuuma-tofu" });
+    expect(rate("Marisa Kirisame", "Two-flavor Beef Hotpot")).toEqual({ rating: Rating.Pink, note: "marisa-hotpot" });
+    for (const sister of ["Watatsuki no Toyohime", "Watatsuki no Yorihime"])
+      expect(rate(sister, "Peach Braised Pork")).toEqual({ rating: Rating.Black, note: "watatsuki-peach" });
+
+    // Momiji: Cocoa Bean anywhere in the dish caps it at purple.
+    const host = gameData.recipes.find(
+      (r) => r.ingredients.length < 5 && !ing("Cocoa Bean").tags.some((t) => r.bannedTags.includes(t)),
+    )!;
+    const momiji = rate("Momiji Inubashiri", host.name, ["Cocoa Bean"]);
+    expect(momiji.note).toBe("momiji-cocoa");
+    expect(momiji.rating).toBeLessThanOrEqual(Rating.Purple);
+
+    // Dark Matter is no longer the recipe or its ingredients, so only Medicine's rule applies to it.
+    expect(rate("Nitori Kawashiro", "Dew Runny Eggs", ["Cucumber", "Pork"]).note).toBe(null);
+    expect(rate("Medicine Melancholy", "Dew Runny Eggs", ["Pork"])).toEqual({ rating: Rating.Orange, note: "medicine-dark-matter" });
   });
 
   it("solves every rare customer quickly", () => {

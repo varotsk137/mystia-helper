@@ -232,7 +232,11 @@ export const messages = {
   "note.nitori-cucumber": { th: "Nitori ได้แตงกวา: อย่างน้อยส้ม", en: "Nitori gets cucumber: at least orange" },
   "note.remilia-cake": { th: "Remilia ได้เค้กทรงหมวกตัวเอง: ชมพูเสมอ", en: "Remilia gets the cake shaped like her hat: always pink" },
   "note.koishi-mousse": { th: "Koishi ได้มูสทรงหมวกตัวเอง: ดำเสมอ", en: "Koishi gets the mousse shaped like her hat: always black" },
-  "note.medicine-dark-matter": { th: "Medicine ได้ Dark Matter: อย่างน้อยส้ม", en: "Medicine gets Dark Matter: at least orange" },
+  "note.medicine-dark-matter": { th: "Medicine ได้ Dark Matter: ส้มเสมอ", en: "Medicine gets Dark Matter: always orange" },
+  "note.momiji-cocoa": { th: "Momiji ได้เมล็ดโกโก้: สูงสุดแค่ม่วง", en: "Momiji gets Cocoa Bean: purple at best" },
+  "note.yuuma-tofu": { th: "Yuuma ได้เต้าหู้ทอด: ส้มเสมอ", en: "Yuuma gets Deep Fried Tofu: always orange" },
+  "note.marisa-hotpot": { th: "Marisa ได้หม้อไฟเนื้อสองรส: ชมพูเสมอ", en: "Marisa gets Two-flavor Beef Hotpot: always pink" },
+  "note.watatsuki-peach": { th: "พี่น้อง Watatsuki ได้หมูตุ๋นลูกท้อ: ดำเสมอ", en: "The Watatsuki sisters get Peach Braised Pork: always black" },
 
   // Spell cards
   "spell.title": { th: "สเปลการ์ด", en: "Spell cards" },
@@ -253,8 +257,8 @@ export const messages = {
   "trend.done": { th: "เสร็จ", en: "Done" },
   "trend.clear": { th: "ล้าง", en: "Clear" },
   "trend.hint": {
-    th: "ดู Trend จากหนังสือพิมพ์ในเกม แล้วคลิก tag: 1 ครั้ง = ฮิต, 2 ครั้ง = ไม่ฮิต, 3 ครั้ง = ยกเลิก",
-    en: "Check the in-game newspaper, then click a tag: once = popular, twice = unpopular, three times = clear.",
+    th: "ดู Trend จากหนังสือพิมพ์ในเกม แล้วคลิก tag: 1 ครั้ง = ฮิต, 2 ครั้ง = ไม่ฮิต, 3 ครั้ง = ยกเลิก ถ้าร้านเป็นร้านดัง (สเปลการ์ดรางวัลของ Aya) ให้ตั้ง Signature เป็นฮิตด้วย",
+    en: "Check the in-game newspaper, then click a tag: once = popular, twice = unpopular, three times = clear. If the shop is a Famous Shop (Aya's reward card), also mark Signature as popular.",
   },
   "trend.state.none": { th: "ไม่มี Trend", en: "no trend" },
   "trend.state.popular": { th: "ฮิต", en: "popular" },

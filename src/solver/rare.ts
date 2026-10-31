@@ -26,6 +26,11 @@ export interface RareOrder {
    * cookware also cooks 25% slower.
    */
   ignoreRequests?: boolean;
+  /**
+   * Set by effectiveOrder when requests are ignored: what the guest actually asked for. A Dark Matter dish
+   * doesn't get the Night Sparrow effect, so its requests still count.
+   */
+  requested?: { food: string | null; drink: string | null };
 }
 
 /** Night Sparrow cookware takes 25% longer to cook (wiki: Stations#Night_Sparrow_Series). */
@@ -38,7 +43,9 @@ function cookTimeFor(order: RareOrder, recipe: Recipe): number {
 
 /** The order as the game scores it: with requests ignored it behaves like an order with no requested tags. */
 export function effectiveOrder(order: RareOrder): RareOrder {
-  return order.ignoreRequests ? { ...order, foodRequest: null, drinkRequest: null } : order;
+  if (!order.ignoreRequests) return order;
+  const requested = order.requested ?? { food: order.foodRequest, drink: order.drinkRequest };
+  return { ...order, foodRequest: null, drinkRequest: null, requested };
 }
 
 /**
@@ -151,7 +158,10 @@ export function ratingCap(met: number): Rating {
   return met >= 2 ? Rating.Pink : met === 1 ? Rating.Orange : Rating.Purple;
 }
 
-/** A dish carrying any tag the guest dislikes can't be rated pink, whatever the score (confirmed in-game). */
+/** Lowest rating when both requested tags are served, with requests not ignored. */
+export const BOTH_REQUESTS_FLOOR = Rating.Green;
+
+/** A dish carrying any tag the guest dislikes can't be rated pink, whatever the score (observed in-game, not settled; see docs). */
 export const DISLIKED_TAG_CAP = Rating.Orange;
 
 export function budgetStatus(total: number, customer: RareCustomer): BudgetStatus {
@@ -162,20 +172,50 @@ export function budgetStatus(total: number, customer: RareCustomer): BudgetStatu
   return "over";
 }
 
-/** Character-specific reactions listed on the wiki's Customers page. */
-export type SpecialNote = "nitori-cucumber" | "remilia-cake" | "koishi-mousse" | "medicine-dark-matter";
+/** Character-specific reactions to one dish or ingredient. */
+export type SpecialNote =
+  | "nitori-cucumber"
+  | "momiji-cocoa"
+  | "remilia-cake"
+  | "koishi-mousse"
+  | "medicine-dark-matter"
+  | "yuuma-tofu"
+  | "marisa-hotpot"
+  | "watatsuki-peach";
 
-function specialRule(customer: RareCustomer, dish: DishOption): { rating: Rating; note: SpecialNote; mode: "min" | "force" } | null {
+/** min: at least this rating, max: at most, force: exactly. */
+type SpecialRule = { rating: Rating; note: SpecialNote; mode: "min" | "max" | "force" };
+
+const RECIPE_RULES: { customers: string[]; recipe: string; rule: SpecialRule }[] = [
+  { customers: ["Remilia Scarlet"], recipe: "Scarlet Devil Cake", rule: { rating: Rating.Pink, note: "remilia-cake", mode: "force" } },
+  { customers: ["Koishi Komeiji"], recipe: "Unconscious Youkai Mousse", rule: { rating: Rating.Black, note: "koishi-mousse", mode: "force" } },
+  { customers: ["Yuuma Toutetsu"], recipe: "Deep Fried Tofu", rule: { rating: Rating.Orange, note: "yuuma-tofu", mode: "force" } },
+  { customers: ["Marisa Kirisame"], recipe: "Two-flavor Beef Hotpot", rule: { rating: Rating.Pink, note: "marisa-hotpot", mode: "force" } },
+  {
+    customers: ["Watatsuki no Toyohime", "Watatsuki no Yorihime"],
+    recipe: "Peach Braised Pork",
+    rule: { rating: Rating.Black, note: "watatsuki-peach", mode: "force" },
+  },
+];
+
+const INGREDIENT_RULES: { customer: string; ingredient: string; rule: SpecialRule }[] = [
+  { customer: "Nitori Kawashiro", ingredient: "Cucumber", rule: { rating: Rating.Orange, note: "nitori-cucumber", mode: "min" } },
+  { customer: "Momiji Inubashiri", ingredient: "Cocoa Bean", rule: { rating: Rating.Purple, note: "momiji-cocoa", mode: "max" } },
+];
+
+/** A Dark Matter dish is no longer its recipe, so only Medicine's rule can apply to it. */
+function specialRule(customer: RareCustomer, dish: DishOption): SpecialRule | null {
+  if (dish.dish.conflicts.length > 0)
+    return customer.name === "Medicine Melancholy" ? { rating: Rating.Orange, note: "medicine-dark-matter", mode: "force" } : null;
   const usesIngredient = (name: string) => dish.recipe.ingredients.includes(name) || dish.extras.some((e) => e.name === name);
-  if (customer.name === "Nitori Kawashiro" && usesIngredient("Cucumber"))
-    return { rating: Rating.Orange, note: "nitori-cucumber", mode: "min" };
-  if (customer.name === "Remilia Scarlet" && dish.recipe.name === "Scarlet Devil Cake")
-    return { rating: Rating.Pink, note: "remilia-cake", mode: "force" };
-  if (customer.name === "Koishi Komeiji" && dish.recipe.name === "Unconscious Youkai Mousse")
-    return { rating: Rating.Black, note: "koishi-mousse", mode: "force" };
-  if (customer.name === "Medicine Melancholy" && dish.dish.conflicts.length > 0)
-    return { rating: Rating.Orange, note: "medicine-dark-matter", mode: "min" };
-  return null;
+  const byRecipe = RECIPE_RULES.find((r) => r.customers.includes(customer.name) && r.recipe === dish.recipe.name);
+  if (byRecipe) return byRecipe.rule;
+  return INGREDIENT_RULES.find((r) => r.customer === customer.name && usesIngredient(r.ingredient))?.rule ?? null;
+}
+
+function applySpecial(rating: Rating, rule: SpecialRule): Rating {
+  if (rule.mode === "force") return rule.rating;
+  return (rule.mode === "min" ? Math.max(rating, rule.rating) : Math.min(rating, rule.rating)) as Rating;
 }
 
 /** Cost and top level of the recipe's own ingredients. */
@@ -200,7 +240,7 @@ function costFields(recipe: Recipe, extras: Ingredient[], catalog: Catalog) {
   };
 }
 
-/** Like scoreDish, but a dish with a banned tag is scored as Dark Matter (−2, request not met). */
+/** Like scoreDish, but a dish with a banned tag is scored as Dark Matter (no points, request not met). */
 function scoreAnyDish(order: RareOrder, recipe: Recipe, extras: Ingredient[], catalog: Catalog): DishOption {
   const opt = scoreDish(order, recipe, extras, catalog);
   if (opt) return opt;
@@ -211,7 +251,7 @@ function scoreAnyDish(order: RareOrder, recipe: Recipe, extras: Ingredient[], ca
     dish: { ...dish, tags: [DARK_MATTER] },
     liked: [],
     disliked: [],
-    score: -2,
+    score: 0,
     requestMet: false,
     ...costFields(recipe, extras, catalog),
     cookTime: cookTimeFor(order, recipe),
@@ -529,13 +569,21 @@ export function suggestionComparator(): (a: Suggestion, b: Suggestion) => number
 const NO_FACTORS = Object.fromEntries(FACTORS.map((f) => [f, 0])) as Record<Factor, number>;
 
 function combine(order: RareOrder, dish: DishOption, drink: DrinkOption): Suggestion {
+  // Dark Matter doesn't get the Night Sparrow effect, so the drink request the guest made counts again.
+  const darkMatter = dish.dish.conflicts.length > 0;
+  const drinkRequest = darkMatter && order.requested ? order.requested.drink : order.drinkRequest;
+  if (drinkRequest !== order.drinkRequest)
+    drink = { ...drink, requestMet: drinkRequest === null || drink.beverage.tags.includes(drinkRequest) };
   const score = dish.score + drink.score;
   const requestsMet = Number(dish.requestMet) + Number(drink.requestMet);
   const uncappedRating = ratingFromScore(score);
   let rating = Math.min(uncappedRating, ratingCap(requestsMet)) as Rating;
+  // Serving both requested tags guarantees green, whatever the disliked tags take away.
+  if (order.foodRequest !== null && order.drinkRequest !== null && requestsMet === 2)
+    rating = Math.max(rating, BOTH_REQUESTS_FLOOR) as Rating;
   if (dish.disliked.length > 0) rating = Math.min(rating, DISLIKED_TAG_CAP) as Rating;
   const special = specialRule(order.customer, dish);
-  if (special) rating = special.mode === "force" ? special.rating : (Math.max(rating, special.rating) as Rating);
+  if (special) rating = applySpecial(rating, special);
   const totalPrice = dish.recipe.price + drink.beverage.price;
   return {
     dish,

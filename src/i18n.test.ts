@@ -20,7 +20,8 @@ describe("messages", () => {
   it("has a label for every rating, budget status, sort, special note and spell card kind used in code", () => {
     for (const k of ["pink", "orange", "green", "purple", "black"]) expect(keys).toContain(`rating.${k}`);
     for (const k of ["safe", "risky", "over", "unknown"]) expect(keys).toContain(`budget.${k}`);
-    for (const k of ["nitori-cucumber", "remilia-cake", "koishi-mousse", "medicine-dark-matter"]) expect(keys).toContain(`note.${k}`);
+    const notes = ["nitori-cucumber", "momiji-cocoa", "remilia-cake", "koishi-mousse", "medicine-dark-matter", "yuuma-tofu", "marisa-hotpot", "watatsuki-peach"];
+    for (const k of notes) expect(keys).toContain(`note.${k}`);
     for (const c of gameData.rareCustomers) for (const card of c.spellCards) expect(keys).toContain(`spell.${card.kind}`);
   });
 });
