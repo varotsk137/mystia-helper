@@ -153,7 +153,15 @@ export const messages = {
   "tonight.label": { th: "คืนนี้", en: "Tonight" },
   "tonight.edit": { th: "ตั้งค่า Trend / อุปกรณ์", en: "Set trends / cookware" },
   "tonight.noCookware": { th: "ยังไม่ได้เลือกอุปกรณ์", en: "No cookware picked" },
-  "order.edit": { th: "แก้ออเดอร์", en: "Edit order" },
+  "tags.dish": { th: "tag จาน", en: "Dish tags" },
+  "tags.drink": { th: "tag เครื่องดื่ม", en: "Drink tags" },
+  "tags.more": { th: "+{n} tag ที่ไม่มีผล", en: "+{n} that don't matter" },
+  "tags.fewer": { th: "ซ่อน tag ที่ไม่มีผล", en: "Hide the ones that don't matter" },
+  "tags.moreHint": {
+    th: "tag ที่ลูกค้าไม่ได้ชอบหรือไม่ชอบ และ tag ที่ถูก tag อื่นทับ ไม่มีผลกับแต้ม",
+    en: "Tags the guest neither likes nor dislikes, and tags another tag overrode, don't change the points",
+  },
+  "order.edit":{ th: "แก้ออเดอร์", en: "Edit order" },
   "order.collapse": { th: "ยุบใบออเดอร์", en: "Collapse" },
 
   // Night Sparrow cookware ignoring requests

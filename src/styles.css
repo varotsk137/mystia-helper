@@ -621,13 +621,8 @@ input {
 .tag-requested {
   box-shadow: 0 0 0 1px var(--sake);
 }
-.pin-btn {
-  margin-top: 4px;
-  background: transparent;
-  border-color: var(--counter-edge);
-  color: var(--paper-dim);
-}
-.pin-btn.is-pinned {
+/* Pinning is the usual next step, so the pin is the filled button; "adjust" sits under it, quieter. */
+.btn.pin-btn.is-pinned {
   background: var(--sake);
   border-color: var(--sake);
   color: #2b2433;
@@ -760,6 +755,12 @@ input {
   gap: 12px;
   flex-wrap: wrap;
   margin-bottom: 6px;
+}
+/* Areas side by side: most have three guests, so one per row would leave the picker mostly empty. */
+.guest-picker-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0 18px;
 }
 .guest-picker-group {
   margin-top: 8px;
@@ -1129,12 +1130,6 @@ input {
   color: var(--paper-dim);
   opacity: 0.6;
 }
-.tag-sep {
-  width: 1px;
-  align-self: stretch;
-  background: var(--counter-edge);
-  margin: 0 4px;
-}
 
 /* ---------- Results ---------- */
 .results {
@@ -1251,10 +1246,24 @@ input {
   font-size: 0.8rem;
 }
 
+.tag-lines {
+  display: grid;
+  gap: 4px;
+}
 .tag-line {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 4px;
+}
+.tag-group {
+  min-width: 72px;
+  font-size: 0.75rem;
+  color: var(--paper-dim);
+}
+.tag-more {
+  font-size: 0.75rem;
+  color: var(--paper-dim);
 }
 
 .warn {

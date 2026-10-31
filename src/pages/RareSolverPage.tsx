@@ -389,6 +389,8 @@ export function RareSolverPage() {
                   key={s.dish.recipe.name}
                   s={s}
                   preset={ranking.preset}
+                  food={ignoreRequests ? null : foodRequest}
+                  drink={ignoreRequests ? null : drinkRequest}
                   selected={draft?.recipe === s.dish.recipe.name}
                   pinned={isSetPinned(pins, pinOf(order.customer.name, draftOf(s)))}
                   onPick={() => pick(s)}
@@ -485,28 +487,59 @@ function RatingBadge({ s }: { s: Suggestion }) {
   );
 }
 
-function DishTagLine({ s }: { s: Suggestion }) {
+/**
+ * The dish's tags on one line and the drink's on the next. Tags that change the rating (liked, disliked or
+ * asked for) show first; the rest, and tags another tag overrode, fold into "+N" unless `showAll`.
+ */
+function DishTagLine({
+  s,
+  food,
+  drink: drinkRequest,
+  showAll = false,
+}: {
+  s: Suggestion;
+  food: string | null;
+  drink: string | null;
+  showAll?: boolean;
+}) {
   const t = useT();
+  const [all, setAll] = useState(showAll);
   const { dish, drink } = s;
   const added = new Set(dish.dish.added);
+  const dishShown = dish.dish.tags.filter((tag) => all || tag === food || dish.liked.includes(tag) || dish.disliked.includes(tag));
+  const drinkShown = drink.beverage.tags.filter((tag) => all || tag === drinkRequest || drink.liked.includes(tag));
+  const hidden = all
+    ? 0
+    : dish.dish.tags.length - dishShown.length + dish.dish.removed.length + drink.beverage.tags.length - drinkShown.length;
   return (
-    <div className="tag-line">
-      {dish.dish.tags.map((tag) => (
-        <span key={tag} className={tagClass(tag, dish.liked, dish.disliked, added.has(tag))}>
-          {tag}
-        </span>
-      ))}
-      {dish.dish.removed.map((tag) => (
-        <s key={tag} className="tag tag-removed" title={t("rare.overridden")}>
-          {tag}
-        </s>
-      ))}
-      <span className="tag-sep" aria-hidden />
-      {drink.beverage.tags.map((tag) => (
-        <span key={tag} className={tagClass(tag, drink.liked, [], false)}>
-          {tag}
-        </span>
-      ))}
+    <div className="tag-lines">
+      <div className="tag-line">
+        <span className="tag-group">{t("tags.dish")}</span>
+        {dishShown.map((tag) => (
+          <span key={tag} className={tagClass(tag, dish.liked, dish.disliked, added.has(tag), tag === food)}>
+            {tag}
+          </span>
+        ))}
+        {all &&
+          dish.dish.removed.map((tag) => (
+            <s key={tag} className="tag tag-removed" title={t("rare.overridden")}>
+              {tag}
+            </s>
+          ))}
+      </div>
+      <div className="tag-line">
+        <span className="tag-group">{t("tags.drink")}</span>
+        {drinkShown.map((tag) => (
+          <span key={tag} className={tagClass(tag, drink.liked, [], false, tag === drinkRequest)}>
+            {tag}
+          </span>
+        ))}
+        {(hidden > 0 || (all && !showAll)) && (
+          <button className="link-btn tag-more" aria-expanded={all} title={t("tags.moreHint")} onClick={() => setAll(!all)}>
+            {all ? t("tags.fewer") : t("tags.more", { n: hidden })}
+          </button>
+        )}
+      </div>
     </div>
   );
 }
@@ -514,6 +547,8 @@ function DishTagLine({ s }: { s: Suggestion }) {
 function SuggestionRow({
   s,
   preset,
+  food,
+  drink: drinkRequest,
   selected,
   pinned,
   onPick,
@@ -521,6 +556,9 @@ function SuggestionRow({
 }: {
   s: Suggestion;
   preset: Preset;
+  /** The requests that count (null while requests are ignored), to mark them among the tags. */
+  food: string | null;
+  drink: string | null;
   selected: boolean;
   pinned: boolean;
   onPick: () => void;
@@ -546,7 +584,7 @@ function SuggestionRow({
         </div>
         <IngredientStrip dish={dish} />
         <Metrics s={s} preset={preset} />
-        <DishTagLine s={s} />
+        <DishTagLine s={s} food={food} drink={drinkRequest} />
         {warning && <div className="warn">{warning}</div>}
         {s.alternatives.length > 0 && (
           <details className="alternatives">
@@ -568,10 +606,10 @@ function SuggestionRow({
         <strong>{s.totalPrice}</strong>
         <span>{budgetLabel(s.budget, t)}</span>
         <span className="cookware">{dish.recipe.cookware}</span>
-        <button className="btn btn-small" aria-pressed={selected} onClick={onPick}>
+        <PinButton pinned={pinned} onToggle={onTogglePin} />
+        <button className="btn btn-small btn-quiet" aria-pressed={selected} onClick={onPick}>
           {selected ? t("rare.adjusting") : t("rare.adjust")}
         </button>
-        <PinButton pinned={pinned} onToggle={onTogglePin} />
       </div>
     </li>
   );
@@ -778,7 +816,12 @@ function DishBuilder({
       </div>
       <Metrics s={result} />
       {warning && <div className="warn">{warning}</div>}
-      <DishTagLine s={result} />
+      <DishTagLine
+        s={result}
+        food={order.ignoreRequests ? null : order.foodRequest}
+        drink={order.ignoreRequests ? null : order.drinkRequest}
+        showAll
+      />
 
       <h3>{t("rare.ingredients")}</h3>
       <div className="builder-ingredients">
@@ -874,7 +917,7 @@ function DishBuilder({
   );
 }
 
-function tagClass(tag: string, liked: string[], disliked: string[], added: boolean): string {
+function tagClass(tag: string, liked: string[], disliked: string[], added: boolean, requested = false): string {
   const kind = liked.includes(tag) ? "tag-liked" : disliked.includes(tag) ? "tag-disliked" : "tag-neutral";
-  return `tag ${kind}${added ? " tag-added" : ""}`;
+  return `tag ${kind}${added ? " tag-added" : ""}${requested ? " tag-requested" : ""}`;
 }

@@ -139,6 +139,7 @@ export function GuestTabs({
             onAdd(name);
             setPicking(false);
           }}
+          onClose={() => setPicking(false)}
         />
       )}
     </section>
@@ -150,17 +151,22 @@ function orderSummary(order: GuestOrder, t: Translate): string {
   return parts.length ? parts.join(" + ") : t("guests.noOrder");
 }
 
-/** Portrait grid of every rare guest that can appear, grouped by home area, with a name filter. */
+/**
+ * Portrait grid of every rare guest that can appear, grouped by home area, with a name filter. Enter seats the
+ * first match; Escape closes.
+ */
 function GuestPicker({
   customers,
   seatedNames,
   empty,
   onPick,
+  onClose,
 }: {
   customers: readonly RareCustomer[];
   seatedNames: string[];
   empty: boolean;
   onPick: (name: string) => void;
+  onClose: () => void;
 }) {
   const t = useT();
   const [query, setQuery] = useState("");
@@ -181,33 +187,39 @@ function GuestPicker({
           value={query}
           placeholder={t("db.search")}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && q && shown.length > 0) onPick(shown[0].name);
+            if (e.key === "Escape") onClose();
+          }}
           autoFocus={!empty}
         />
       </div>
-      {[...groups].map(([group, list]) => (
-        <div key={group} className="guest-picker-group">
-          <span className="guest-picker-area">{group}</span>
-          <div className="guest-picker-grid">
-            {list.map((c) => {
-              const here = seatedNames.includes(c.name);
-              return (
-                <button
-                  key={c.name}
-                  className={`guest-choice ${here ? "is-here" : ""}`}
-                  title={here ? t("guests.here") : c.name + (c.undocumented ? t("rare.noDataSuffix") : "")}
-                  onClick={() => onPick(c.name)}
-                >
-                  <ItemImage src={c.image} name={c.shortName} size={40} variant="portrait" />
-                  <span>
-                    {c.shortName}
-                    {c.undocumented && <span className="guest-choice-note">{t("rare.noDataSuffix")}</span>}
-                  </span>
-                </button>
-              );
-            })}
+      <div className="guest-picker-groups">
+        {[...groups].map(([group, list]) => (
+          <div key={group} className="guest-picker-group">
+            <span className="guest-picker-area">{group}</span>
+            <div className="guest-picker-grid">
+              {list.map((c) => {
+                const here = seatedNames.includes(c.name);
+                return (
+                  <button
+                    key={c.name}
+                    className={`guest-choice ${here ? "is-here" : ""}`}
+                    title={here ? t("guests.here") : c.name + (c.undocumented ? t("rare.noDataSuffix") : "")}
+                    onClick={() => onPick(c.name)}
+                  >
+                    <ItemImage src={c.image} name={c.shortName} size={40} variant="portrait" />
+                    <span>
+                      {c.shortName}
+                      {c.undocumented && <span className="guest-choice-note">{t("rare.noDataSuffix")}</span>}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
       {shown.length === 0 && <p className="hint">{t("guests.noMatch")}</p>}
     </div>
   );
