@@ -56,7 +56,7 @@ Other rules:
 
 - Going over budget: the customer pays what they can and leaves; if it is far over, they may trigger the punishment card.
 - Night Sparrow cookware with Hyper mode or a perfect Sparrow Tune: requested tags are ignored and the guest
-  rates the dish by their own preferences. Only Mystia cooking triggers it (not a partner chef), and this
+  rates the dish by their own preferences. This covers the drink request too (confirmed by the user in-game). Only Mystia cooking triggers it (not a partner chef), and this
   cookware cooks 25% slower. The app's "ignore requests" switch models this.
 - Special cases (override everything above):
   - Koishi + Unconscious Youkai Mousse → black.

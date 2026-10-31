@@ -5,6 +5,7 @@ import { gameData, type Beverage, type Dlc, type GameData, type Ingredient, type
 import { NO_TREND, type Trend } from "./solver/tags";
 import { defaultLang, type Lang } from "./lang";
 import { NO_GUESTS, normalizeGuests, type Guests } from "./guests";
+import { NO_PINS, normalizePins, type Pins } from "./pins";
 import { DEFAULT_PRESET, PRESET_IDS, type Preset } from "./solver/rare";
 
 /** Data kinds the player can edit. Keys match GameData. */
@@ -43,6 +44,10 @@ export interface StoreState {
   guests: Guests;
   /** Weighting preset for the recommended order, and whether to list only pink-rated sets. */
   ranking: { preset: Preset; pinkOnly: boolean };
+  /** Sets pinned to the right-hand panel for tonight. */
+  pins: Pins;
+  /** Keep the guest tab bar stuck to the top of the screen while scrolling. */
+  stickyGuests: boolean;
 }
 
 const STORAGE_KEY = "mystia-helper.settings";
@@ -57,6 +62,8 @@ const DEFAULTS: StoreState = {
   lang: defaultLang(),
   guests: NO_GUESTS,
   ranking: { preset: DEFAULT_PRESET, pinkOnly: false },
+  pins: NO_PINS,
+  stickyGuests: true,
 };
 
 /** Fills in fields missing from older or hand-edited saves. */
@@ -84,6 +91,8 @@ export function normalizeState(raw: unknown): StoreState {
       ) ?? DEFAULT_PRESET,
       pinkOnly: s.ranking?.pinkOnly === true,
     },
+    pins: normalizePins(s.pins),
+    stickyGuests: s.stickyGuests !== false,
   };
 }
 
@@ -112,6 +121,11 @@ interface StoreContextValue {
   /** Applies one of the guest operations from guests.ts. */
   updateGuests: (fn: (g: Guests) => Guests) => void;
   setRanking: (patch: Partial<StoreState["ranking"]>) => void;
+  /** Applies one of the pin operations from pins.ts. */
+  updatePins: (fn: (p: Pins) => Pins) => void;
+  /** Ends the night: no guests seated, nothing pinned. */
+  clearNight: () => void;
+  setStickyGuests: (sticky: boolean) => void;
   replaceState: (next: StoreState) => void;
 }
 
@@ -158,6 +172,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const setCollabs = useCallback((collabs: string[]) => setState((s) => ({ ...s, collabs })), []);
   const setLang = useCallback((lang: Lang) => setState((s) => ({ ...s, lang })), []);
   const updateGuests = useCallback((fn: (g: Guests) => Guests) => setState((s) => ({ ...s, guests: fn(s.guests) })), []);
+  const updatePins = useCallback((fn: (p: Pins) => Pins) => setState((s) => ({ ...s, pins: fn(s.pins) })), []);
+  const clearNight = useCallback(() => setState((s) => ({ ...s, guests: NO_GUESTS, pins: NO_PINS })), []);
+  const setStickyGuests = useCallback((stickyGuests: boolean) => setState((s) => ({ ...s, stickyGuests })), []);
   const setRanking = useCallback(
     (patch: Partial<StoreState["ranking"]>) => setState((s) => ({ ...s, ranking: { ...s.ranking, ...patch } })),
     [],
@@ -165,7 +182,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const replaceState = useCallback((next: StoreState) => setState(normalizeState(next)), []);
 
   const value = useMemo(
-    () => ({ state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, setLang, updateGuests, setRanking, replaceState }),
+    () => ({ state, setOwnedDlcs, setProgressEnabled, setUnlocked, setOverride, setTrend, setCookware, setCollabs, setLang, updateGuests, setRanking, updatePins, clearNight, setStickyGuests, replaceState }),
     [
       state,
       setOwnedDlcs,
@@ -178,6 +195,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       setLang,
       updateGuests,
       setRanking,
+      updatePins,
+      clearNight,
+      setStickyGuests,
       replaceState,
     ],
   );

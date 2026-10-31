@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { RareCustomer } from "../data";
 import type { GuestOrder } from "../guests";
 import { Rating } from "../solver/rare";
@@ -20,27 +20,47 @@ export interface SeatedGuest {
   best: Rating | null;
 }
 
-/** One tab per guest in the izakaya, plus a button that opens the picker to seat another. */
+/**
+ * One tab per guest in the izakaya; a button that opens the picker to seat another; a pin that keeps the bar
+ * stuck to the top of the screen; and "clear night", which needs a second click to confirm.
+ */
 export function GuestTabs({
   seated,
   active,
   customers,
+  sticky,
+  canClear,
   onSelect,
   onRemove,
   onAdd,
+  onToggleSticky,
+  onClearNight,
 }: {
   seated: SeatedGuest[];
   active: string | null;
   customers: readonly RareCustomer[];
+  /** Whether the bar stays at the top of the screen while scrolling. */
+  sticky: boolean;
+  /** Whether there is anything (guests or pins) to clear. */
+  canClear: boolean;
   onSelect: (name: string) => void;
   onRemove: (name: string) => void;
   onAdd: (name: string) => void;
+  onToggleSticky: () => void;
+  onClearNight: () => void;
 }) {
   const t = useT();
   const [picking, setPicking] = useState(false);
+  const [confirmingClear, setConfirmingClear] = useState(false);
   const pickerOpen = picking || seated.length === 0;
+  // The confirm state lapses after a few seconds so a stray click later doesn't clear the night.
+  useEffect(() => {
+    if (!confirmingClear) return;
+    const id = setTimeout(() => setConfirmingClear(false), 4000);
+    return () => clearTimeout(id);
+  }, [confirmingClear]);
   return (
-    <section className="guests" aria-label={t("guests.title")}>
+    <section className={`guests ${sticky ? "is-sticky" : ""}`} aria-label={t("guests.title")}>
       <div className="guest-tabs" role="tablist" aria-label={t("guests.title")}>
         {seated.map(({ order, customer, best }) => {
           const isActive = order.name === active;
@@ -70,6 +90,29 @@ export function GuestTabs({
         {seated.length > 0 && (
           <button className="guest-add" aria-expanded={pickerOpen} onClick={() => setPicking(!picking)}>
             {picking ? t("builder.close") : t("guests.add")}
+          </button>
+        )}
+        <span className="guest-tabs-spacer" />
+        <button
+          className="guest-sticky"
+          aria-pressed={sticky}
+          title={sticky ? t("guests.unstick") : t("guests.stick")}
+          aria-label={sticky ? t("guests.unstick") : t("guests.stick")}
+          onClick={onToggleSticky}
+        >
+          📌
+        </button>
+        {canClear && (
+          <button
+            className={`guest-clear ${confirmingClear ? "is-confirming" : ""}`}
+            title={t("night.clearHint")}
+            onClick={() => {
+              if (!confirmingClear) return setConfirmingClear(true);
+              setConfirmingClear(false);
+              onClearNight();
+            }}
+          >
+            {confirmingClear ? t("night.confirm") : t("night.clear")}
           </button>
         )}
       </div>

@@ -321,6 +321,231 @@ input {
 .guests {
   margin-bottom: 10px;
 }
+/* Pinned: the bar stays at the top of the page while scrolling, so guests can be switched from anywhere. */
+.guests.is-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--night);
+  padding: 8px 0;
+  margin-top: -8px;
+  box-shadow: 0 8px 12px -10px #000;
+}
+.guest-tabs-spacer {
+  flex: 1;
+}
+.guest-sticky,
+.guest-clear {
+  background: none;
+  border: 1px solid var(--counter-edge);
+  border-radius: var(--radius-m);
+  color: var(--paper-dim);
+  padding: 4px 10px;
+  cursor: pointer;
+}
+.guest-sticky {
+  filter: grayscale(1);
+  opacity: 0.6;
+}
+.guest-sticky[aria-pressed="true"] {
+  filter: none;
+  opacity: 1;
+  border-color: var(--sake);
+}
+.guest-clear:hover {
+  border-color: var(--disliked);
+  color: var(--disliked);
+}
+.guest-clear.is-confirming {
+  background: var(--disliked);
+  border-color: var(--disliked);
+  color: #2b2433;
+}
+
+/* With the guest bar pinned, the right-hand panel sticks below it. */
+.has-sticky-guests .side-panel {
+  top: 72px;
+  max-height: calc(100vh - 84px);
+}
+
+/* Right-hand panel: tonight's pinned sets, then tabs for ingredient and drink help. */
+.night-panel {
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--counter-edge);
+}
+.night-guests,
+.night-sets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.night-guest {
+  margin-bottom: 8px;
+  border-left: 3px solid transparent;
+  padding-left: 6px;
+}
+.night-guest.is-active {
+  border-left-color: var(--lantern);
+}
+.night-guest-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 0;
+  padding: 2px 0;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+.night-guest-name {
+  font-family: var(--font-display);
+}
+.night-guest-order {
+  font-size: 0.75rem;
+  color: var(--paper-dim);
+}
+.night-empty {
+  margin: 2px 0 0 32px;
+  font-size: 0.8rem;
+}
+.night-set {
+  display: flex;
+  align-items: stretch;
+  margin: 3px 0 0 26px;
+}
+.night-set-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--night-deep);
+  border: 1px solid var(--counter-edge);
+  border-radius: var(--radius-s) 0 0 var(--radius-s);
+  padding: 4px 8px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.82rem;
+}
+.night-set-main:hover {
+  border-color: var(--sake);
+}
+.night-set-text {
+  flex: 1;
+  min-width: 0;
+}
+.night-set-price {
+  font-family: var(--font-display);
+}
+.night-set-unpin {
+  background: var(--night-deep);
+  border: 1px solid var(--counter-edge);
+  border-left: 0;
+  border-radius: 0 var(--radius-s) var(--radius-s) 0;
+  color: var(--paper-dim);
+  padding: 0 8px;
+  cursor: pointer;
+}
+.night-set-unpin:hover {
+  color: var(--disliked);
+}
+.side-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--counter-edge);
+  margin-bottom: 8px;
+}
+.side-tabs button {
+  background: none;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  padding: 6px 10px;
+  cursor: pointer;
+  color: var(--paper-dim);
+  font-family: var(--font-display);
+}
+.side-tabs button[aria-selected="true"] {
+  color: var(--paper);
+  border-bottom-color: var(--lantern);
+}
+.hint-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.hint-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--counter-edge);
+}
+.hint-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.tag-requested {
+  box-shadow: 0 0 0 1px var(--sake);
+}
+.pin-btn {
+  margin-top: 4px;
+  background: transparent;
+  border-color: var(--counter-edge);
+  color: var(--paper-dim);
+}
+.pin-btn.is-pinned {
+  background: var(--sake);
+  border-color: var(--sake);
+  color: #2b2433;
+}
+.builder-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.builder-actions .pin-btn {
+  margin-top: 0;
+}
+
+/* "?" help next to the goal picker. */
+.help {
+  position: relative;
+}
+.help > summary {
+  list-style: none;
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--counter-edge);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sake);
+  font-weight: 600;
+}
+.help > summary::-webkit-details-marker {
+  display: none;
+}
+.help-body {
+  position: absolute;
+  z-index: 6;
+  top: 28px;
+  left: 0;
+  width: min(360px, 80vw);
+  background: var(--night-deep);
+  border: 1px solid var(--counter-edge);
+  border-radius: var(--radius-m);
+  padding: 10px 12px;
+  font-size: 0.85rem;
+  box-shadow: 0 10px 24px -12px #000;
+}
+.help-body p {
+  margin: 0 0 6px;
+}
 .guest-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -441,20 +666,6 @@ input {
   display: block;
   font-size: 0.7rem;
   color: var(--paper-dim);
-}
-.solver > .quote-search {
-  margin-bottom: 12px;
-}
-.solver > .quote-search .quote-search-field input {
-  background: var(--night-deep);
-  border-color: var(--counter-edge);
-  color: var(--paper);
-}
-.solver > .quote-search .request-label {
-  color: var(--paper-dim);
-}
-.solver > .quote-search .quote-results {
-  margin-left: 102px;
 }
 .order-name {
   font-size: 1.35rem;
@@ -615,73 +826,6 @@ input {
 }
 .quote-variant {
   font-weight: 600;
-}
-
-.quote-search {
-  display: grid;
-  gap: 6px;
-}
-.quote-search-field {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.quote-search-field input {
-  flex: 1;
-  max-width: 520px;
-  background: #fffaf0;
-  border: 1px solid #cbbfa8;
-  border-radius: var(--radius-s);
-  padding: 6px 10px;
-  color: #2b2433;
-}
-.quote-results {
-  list-style: none;
-  margin: 0 0 0 102px;
-  padding: 0;
-  border: 1px solid #ddd0b8;
-  border-radius: var(--radius-s);
-  background: #f7f0e2;
-  max-width: 720px;
-}
-.quote-results .hint {
-  padding: 6px 10px;
-}
-.quote-result {
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto auto auto minmax(0, 1fr);
-  align-items: center;
-  gap: 8px;
-  text-align: left;
-  background: none;
-  border: 0;
-  border-bottom: 1px solid #e6dcc8;
-  padding: 5px 10px;
-  color: #2b2433;
-  cursor: pointer;
-}
-.quote-result:hover {
-  background: #fdf0d4;
-}
-.quote-result-who {
-  font-family: var(--font-display);
-}
-.quote-result-tag {
-  font-size: 0.78rem;
-  border: 1px solid var(--lantern);
-  color: var(--lantern);
-  border-radius: var(--radius-s);
-  padding: 0 6px;
-}
-.quote-result-text {
-  font-size: 0.85rem;
-  color: #4a4256;
-}
-.quote-result-text mark {
-  background: #f8d98c;
-  color: inherit;
-  border-radius: 2px;
 }
 
 /* Trend picker sits on the paper order slip, so it uses dark ink colours. */
@@ -1680,7 +1824,6 @@ h3 {
 }
 
 @media (max-width: 900px) {
-  .quote-results,
   .trend-note {
     margin-left: 0;
   }

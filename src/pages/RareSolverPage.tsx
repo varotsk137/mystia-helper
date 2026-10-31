@@ -3,10 +3,13 @@ import type { Ingredient, RareCustomer } from "../data";
 import { useAvailablePool, useGameData, useStore } from "../store";
 import { TrendPicker } from "../components/TrendPicker";
 import { CookwarePicker } from "../components/CookwarePicker";
-import { FoodRequestPicker, QuoteSearch } from "../components/QuoteParts";
+import { FoodRequestPicker } from "../components/QuoteParts";
+import { NightPanel, type PinnedGuestView } from "../components/NightPanel";
+import { IngredientHints } from "../components/IngredientHints";
 import { SpellCards } from "../components/SpellCards";
 import { GuestTabs, type SeatedGuest } from "../components/GuestTabs";
 import { addGuest, removeGuest, setActiveGuest, setGuestOrder } from "../guests";
+import { isSetPinned, pinnedGuestNames, removeGuestPins, togglePinnedSet, type PinnedSet } from "../pins";
 import {
   evaluateCombo,
   ingredientEffects,
@@ -74,14 +77,15 @@ export function RareSolverPage() {
   const t = useT();
   const pool = useAvailablePool();
   const data = useGameData();
-  const { state, setTrend, setCookware, updateGuests, setRanking } = useStore();
-  const { trend, guests, ranking } = state;
+  const { state, setTrend, setCookware, updateGuests, setRanking, updatePins, clearNight, setStickyGuests } = useStore();
+  const { trend, guests, ranking, pins } = state;
   const [sortKey, setSortKey] = useState<SortKey>("best");
   const [descending, setDescending] = useState(false);
   // Night Sparrow cookware in Hyper mode / after a perfect Sparrow Tune. Not saved: it only lasts a moment.
   const [ignoreRequests, setIgnoreRequests] = useState(false);
   // Hand-tuned sets, kept per guest so switching tabs doesn't lose them.
   const [drafts, setDrafts] = useState<Record<string, Draft | undefined>>({});
+  const [sideTab, setSideTab] = useState<"drinks" | "ingredients">("ingredients");
 
   // The recipe's own ingredients are priced from the full list, even ones not unlocked or owned.
   const solverPool = useMemo(() => ({ ...pool, catalog: makeCatalog(data.ingredients) }), [pool, data.ingredients]);
@@ -149,6 +153,33 @@ export function RareSolverPage() {
 
   const pick = (s: Suggestion) =>
     setDraft({ recipe: s.dish.recipe.name, extras: s.dish.extras.map((e) => e.name), beverage: s.drink.beverage.name });
+  const pinOf = (guest: string, d: Draft): PinnedSet => ({ guest, recipe: d.recipe, extras: d.extras, beverage: d.beverage });
+  const draftOf = (s: Suggestion): Draft => ({
+    recipe: s.dish.recipe.name,
+    extras: s.dish.extras.map((e) => e.name),
+    beverage: s.drink.beverage.name,
+  });
+
+  // Pinned sets grouped by guest, each rated against that guest's current order.
+  const pinnedViews = useMemo<PinnedGuestView[]>(() => {
+    const byName = <T extends { name: string }>(list: readonly T[], name: string) => list.find((x) => x.name === name);
+    return pinnedGuestNames(pins).flatMap((name) => {
+      const c = byName(data.rareCustomers, name);
+      if (!c) return [];
+      const go = guests.list.find((g) => g.name === name) ?? null;
+      const guestOrder: RareOrder = { customer: c, foodRequest: go?.food ?? null, drinkRequest: go?.drink ?? null, trend, ignoreRequests };
+      const sets = pins.sets
+        .filter((s) => s.guest === name)
+        .map((set) => {
+          const recipe = byName(data.recipes, set.recipe);
+          const beverage = byName(data.beverages, set.beverage);
+          const extras = set.extras.map((e) => byName(data.ingredients, e)).filter((x): x is Ingredient => !!x);
+          const result = recipe && beverage ? evaluateCombo(guestOrder, recipe, extras, beverage, solverPool.catalog) : null;
+          return { set, result };
+        });
+      return [{ customer: c, order: go, sets }];
+    });
+  }, [pins, guests.list, data, trend, ignoreRequests, solverPool.catalog]);
 
   if (pool.rareCustomers.length === 0 && seated.length === 0) {
     return (
@@ -159,22 +190,25 @@ export function RareSolverPage() {
   }
 
   return (
-    <div className="page solver">
+    <div className={`page solver ${state.stickyGuests ? "has-sticky-guests" : ""}`}>
       <GuestTabs
         seated={seatedWithBest}
         active={guests.active}
         customers={pool.rareCustomers}
         onSelect={(name) => updateGuests((g) => setActiveGuest(g, name))}
+        sticky={state.stickyGuests}
+        canClear={guests.list.length > 0 || pins.sets.length > 0}
         onRemove={(name) => {
           updateGuests((g) => removeGuest(g, name));
+          updatePins((p) => removeGuestPins(p, name));
           setDrafts((all) => ({ ...all, [name]: undefined }));
         }}
         onAdd={(name) => updateGuests((g) => addGuest(g, name))}
-      />
-      <QuoteSearch
-        customers={pool.rareCustomers}
-        currentName={customer?.name ?? null}
-        onPick={(c, tag) => updateGuests((g) => addGuest(g, c.name, tag))}
+        onToggleSticky={() => setStickyGuests(!state.stickyGuests)}
+        onClearNight={() => {
+          clearNight();
+          setDrafts({});
+        }}
       />
 
       {customer && order && (
@@ -268,10 +302,16 @@ export function RareSolverPage() {
                   ))}
                 </select>
               </label>
-              <span className="hint">
-                {t(`goal.${ranking.preset}.hint`)} {t("goal.weights", { list: weightList(ranking.preset, t) })}
-              </span>
-              <span className="hint">{t("goal.common")}</span>
+              <details className="help">
+                <summary aria-label={t("goal.help")} title={t(`goal.${ranking.preset}.hint`)}>
+                  ?
+                </summary>
+                <div className="help-body">
+                  <p>{t(`goal.${ranking.preset}.hint`)}</p>
+                  <p>{t("goal.weights", { list: weightList(ranking.preset, t) })}</p>
+                  <p className="hint">{t("goal.common")}</p>
+                </div>
+              </details>
             </div>
             {!ignoreRequests && foodRequest === null && drinkRequest === null && <p className="hint">{t("rare.pickRequest")}</p>}
             {sorted.length === 0 && (
@@ -284,16 +324,53 @@ export function RareSolverPage() {
                   s={s}
                   preset={ranking.preset}
                   selected={draft?.recipe === s.dish.recipe.name}
+                  pinned={isSetPinned(pins, pinOf(order.customer.name, draftOf(s)))}
                   onPick={() => pick(s)}
+                  onTogglePin={() => updatePins((p) => togglePinnedSet(p, pinOf(order.customer.name, draftOf(s))))}
                 />
               ))}
             </ol>
           </section>
           <aside className="side-panel">
+            <NightPanel
+              guests={pinnedViews}
+              active={guests.active}
+              onOpenGuest={(name) => updateGuests((g) => setActiveGuest(g, name))}
+              onOpenSet={(set) => {
+                updateGuests((g) => setActiveGuest(g, set.guest));
+                setDrafts((all) => ({ ...all, [set.guest]: { recipe: set.recipe, extras: set.extras, beverage: set.beverage } }));
+              }}
+              onUnpinSet={(set) => updatePins((p) => togglePinnedSet(p, set))}
+            />
             {draft ? (
-              <DishBuilder order={order} draft={draft} onChange={setDraft} onClose={() => setDraft(null)} />
+              <DishBuilder
+                order={order}
+                draft={draft}
+                onChange={setDraft}
+                onClose={() => setDraft(null)}
+                pinned={isSetPinned(pins, pinOf(order.customer.name, draft))}
+                onTogglePin={() => updatePins((p) => togglePinnedSet(p, pinOf(order.customer.name, draft)))}
+              />
             ) : (
-              <DrinkRanking drinks={solution.drinks} />
+              <section aria-label={t("side.title")}>
+                <div className="side-tabs" role="tablist">
+                  <button role="tab" aria-selected={sideTab === "ingredients"} onClick={() => setSideTab("ingredients")}>
+                    {t("hints.title")}
+                  </button>
+                  <button role="tab" aria-selected={sideTab === "drinks"} onClick={() => setSideTab("drinks")}>
+                    {t("rare.drinks")}
+                  </button>
+                </div>
+                {sideTab === "drinks" ? (
+                  <DrinkRanking drinks={solution.drinks} />
+                ) : (
+                  <IngredientHints
+                    customer={order.customer}
+                    foodRequest={ignoreRequests ? null : foodRequest}
+                    ingredients={pool.ingredients}
+                  />
+                )}
+              </section>
             )}
           </aside>
         </div>
@@ -372,12 +449,16 @@ function SuggestionRow({
   s,
   preset,
   selected,
+  pinned,
   onPick,
+  onTogglePin,
 }: {
   s: Suggestion;
   preset: Preset;
   selected: boolean;
+  pinned: boolean;
   onPick: () => void;
+  onTogglePin: () => void;
 }) {
   const t = useT();
   const { dish, drink } = s;
@@ -424,6 +505,7 @@ function SuggestionRow({
         <button className="btn btn-small" aria-pressed={selected} onClick={onPick}>
           {selected ? t("rare.adjusting") : t("rare.adjust")}
         </button>
+        <PinButton pinned={pinned} onToggle={onTogglePin} />
       </div>
     </li>
   );
@@ -536,11 +618,20 @@ function Extras({ dish }: { dish: Suggestion["dish"] }) {
   );
 }
 
+/** Pins a set to tonight's list in the right-hand panel, or unpins it. */
+function PinButton({ pinned, onToggle }: { pinned: boolean; onToggle: () => void }) {
+  const t = useT();
+  return (
+    <button className={`btn btn-small pin-btn ${pinned ? "is-pinned" : ""}`} aria-pressed={pinned} onClick={onToggle}>
+      📌 {pinned ? t("pins.unpin") : t("pins.pin")}
+    </button>
+  );
+}
+
 function DrinkRanking({ drinks }: { drinks: DrinkOption[] }) {
   const t = useT();
   return (
     <section aria-label={t("rare.drinks")}>
-      <h2>{t("rare.drinks")}</h2>
       <p className="hint">{t("rare.drinksHint")}</p>
       <ol className="drink-list">
         {drinks.slice(0, 14).map((d) => (
@@ -562,11 +653,15 @@ function DishBuilder({
   draft,
   onChange,
   onClose,
+  pinned,
+  onTogglePin,
 }: {
   order: RareOrder;
   draft: Draft;
   onChange: (d: Draft) => void;
   onClose: () => void;
+  pinned: boolean;
+  onTogglePin: () => void;
 }) {
   const t = useT();
   const pool = useAvailablePool();
@@ -595,9 +690,12 @@ function DishBuilder({
     <section className="builder" aria-label={t("builder.title")}>
       <div className="builder-head">
         <h2>{t("builder.title")}</h2>
-        <button className="btn btn-quiet btn-small" onClick={onClose}>
-          {t("builder.close")}
-        </button>
+        <span className="builder-actions">
+          <PinButton pinned={pinned} onToggle={onTogglePin} />
+          <button className="btn btn-quiet btn-small" onClick={onClose}>
+            {t("builder.close")}
+          </button>
+        </span>
       </div>
 
       <div className="builder-summary">

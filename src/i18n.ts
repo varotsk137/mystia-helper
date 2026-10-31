@@ -157,6 +157,30 @@ export const messages = {
     en: "Requests ignored: the requested tags have no effect, so sets only need enough points for pink.",
   },
 
+  // Pinned sets, side panel and the night
+  "pins.title": { th: "ชุดที่ปักหมุดคืนนี้", en: "Pinned for tonight" },
+  "pins.pin": { th: "ปักหมุด", en: "Pin" },
+  "pins.unpin": { th: "เลิกปักหมุด", en: "Unpin" },
+  "pins.open": { th: "เปิดชุดนี้เพื่อปรับ", en: "Open this set to adjust it" },
+  "pins.noSets": { th: "ยังไม่มีชุดที่ปักหมุด", en: "No pinned sets" },
+  "pins.left": { th: "กลับไปแล้ว", en: "Left" },
+  "side.title": { th: "ตัวช่วยเลือก", en: "Helpers" },
+  "hints.title": { th: "วัตถุดิบเติม", en: "Extra ingredients" },
+  "hints.note": {
+    th: "วัตถุดิบที่ให้ tag ที่ลูกค้าคนนี้ชอบ (สีเขียว) หรือไม่ชอบ (สีแดง) เมื่อเติมลงในจาน ใช้ได้กับจานที่ไม่ห้าม tag นั้น และระวัง tag ที่ทับกัน",
+    en: "Ingredients that add tags this guest likes (green) or dislikes (red). They work on dishes that don't ban the tag; mind tags that override others.",
+  },
+  "hints.none": { th: "ไม่มีวัตถุดิบที่ให้ tag ที่ลูกค้าชอบ", en: "No ingredient adds a tag this guest likes." },
+  "night.clear": { th: "ล้างคืนนี้", en: "Clear night" },
+  "night.confirm": { th: "กดอีกครั้งเพื่อล้าง", en: "Click again to clear" },
+  "night.clearHint": {
+    th: "เอาลูกค้าในร้านและชุดที่ปักหมุดออกทั้งหมด เพื่อเริ่มคืนใหม่",
+    en: "Removes every seated guest and pinned set, to start a new night.",
+  },
+  "guests.stick": { th: "ตรึงแถบลูกค้าไว้บนจอ", en: "Keep the guest bar on screen" },
+  "guests.unstick": { th: "เลิกตรึงแถบลูกค้า", en: "Stop keeping the guest bar on screen" },
+  "goal.help": { th: "เป้าหมายนี้คืออะไร", en: "What this goal does" },
+
   // Guests in the izakaya
   "guests.title": { th: "ลูกค้าในร้าน", en: "Guests in the izakaya" },
   "guests.add": { th: "+ เพิ่มลูกค้า", en: "+ Add guest" },
@@ -203,12 +227,6 @@ export const messages = {
   "cookware.label": { th: "อุปกรณ์คืนนี้", en: "Cookware tonight" },
   "cookware.none": { th: "ยังไม่ได้เลือกอุปกรณ์ เลือกอย่างน้อย 1 อย่าง", en: "No cookware picked. Pick at least one." },
   "cookware.count": { th: "ทำได้ {n} สูตร", en: "{n} recipes possible" },
-  "quote.search": { th: "ค้นจากคำพูด", en: "Search by quote" },
-  "quote.placeholder": { th: "พิมพ์คำที่ลูกค้าพูดในเกม เช่น carnivores", en: "Type words the guest says in-game, e.g. carnivores" },
-  "quote.noResults": {
-    th: "ไม่พบคำพูดที่มีคำเหล่านี้ ลองพิมพ์คำอื่นจากประโยค",
-    en: "No order line has these words. Try other words from the line.",
-  },
   "trend.now": { th: "Trend ตอนนี้", en: "Current trends" },
   "trend.nonePicked": { th: "ยังไม่ได้เลือก", en: "None picked" },
   "trend.popular": { th: "ฮิต: {tag}", en: "Popular: {tag}" },
