@@ -71,23 +71,30 @@ export function NightPanel({
             ) : (
               <ul className="night-sets">
                 {sets.map(({ set, result }, i) => (
-                  <li key={i} className="night-set">
+                  <li key={i} className={`night-set ${result ? `rate-${RATING_CLASS[result.rating]}` : ""}`}>
                     <button className="night-set-main" onClick={() => onOpenSet(set)} title={t("pins.open")}>
-                      {result && (
-                        <span
-                          className={`rating-dot rating-${RATING_CLASS[result.rating]}`}
-                          title={t(`rating.${RATING_CLASS[result.rating]}`)}
-                        />
-                      )}
                       <span className="night-set-text">
                         {savedOf(set) && (
                           <span className="night-set-saved">
                             {SAVED_SET_ICON[savedOf(set)!.kind]} {savedOf(set)!.name}
                           </span>
                         )}
-                        <SetSummary recipe={set.recipe} extras={set.extras} beverage={set.beverage} />
+                        <SetSummary
+                          recipe={set.recipe}
+                          extras={set.extras}
+                          beverage={set.beverage}
+                          aside={
+                            result && (
+                              <span className="night-set-price">
+                                <strong>{result.totalPrice}</strong>
+                                <span className="night-set-rating">
+                                  {t(`rating.${RATING_CLASS[result.rating]}`)} {result.score}
+                                </span>
+                              </span>
+                            )
+                          }
+                        />
                       </span>
-                      {result && <span className="night-set-price">{result.totalPrice}</span>}
                     </button>
                     <button
                       className="night-set-unpin"

@@ -22,6 +22,7 @@ import {
 import { SaveSetForm, SavedSetList, type SavedSetView } from "../components/SavedSets";
 import { useMediaQuery } from "../useMediaQuery";
 import {
+  budgetStatus,
   evaluateCombo,
   ingredientEffects,
   rankDrinks,
@@ -43,6 +44,8 @@ import {
 } from "../solver/rare";
 import { MAX_INGREDIENTS, TREND_POPULAR, TREND_UNPOPULAR } from "../solver/tags";
 import { ItemImage } from "../components/ItemImage";
+import { IngredientShelf, SlotInfo, type ShelfItem } from "../components/IngredientShelf";
+import { Popover } from "../components/Popover";
 import { useT, type MessageKey, type Translate } from "../i18n";
 
 const RATING_CLASS: Record<Rating, "pink" | "orange" | "green" | "purple" | "black"> = {
@@ -74,6 +77,12 @@ interface Draft {
   extras: string[];
   beverage: string;
 }
+
+const draftOf = (s: Suggestion): Draft => ({
+  recipe: s.dish.recipe.name,
+  extras: s.dish.extras.map((e) => e.name),
+  beverage: s.drink.beverage.name,
+});
 
 /** Why a set falls short of the requests, or the character-specific reaction that decides its rating. */
 function warningFor(s: Suggestion, t: Translate): string | null {
@@ -179,14 +188,7 @@ export function RareSolverPage() {
     return ranking.pinkOnly ? list.filter((s) => s.rating === Rating.Pink) : list;
   }, [solution, sortKey, descending, ranking.pinkOnly]);
 
-  const pick = (s: Suggestion) =>
-    setDraft({ recipe: s.dish.recipe.name, extras: s.dish.extras.map((e) => e.name), beverage: s.drink.beverage.name });
   const pinOf = (guest: string, d: Draft): PinnedSet => ({ guest, recipe: d.recipe, extras: d.extras, beverage: d.beverage });
-  const draftOf = (s: Suggestion): Draft => ({
-    recipe: s.dish.recipe.name,
-    extras: s.dish.extras.map((e) => e.name),
-    beverage: s.drink.beverage.name,
-  });
 
   // Pinned sets grouped by guest, each rated against that guest's current order.
   const pinnedViews = useMemo<PinnedGuestView[]>(() => {
@@ -459,17 +461,21 @@ export function RareSolverPage() {
               <ol className="suggestion-list">
                 {!switching && sorted.map((s) => (
                   <SuggestionRow
-                    key={s.dish.recipe.name}
+                    // A new order starts every card from the solver's set again.
+                    key={`${order.customer.name}|${foodRequest}|${drinkRequest}|${ignoreRequests}|${s.dish.recipe.name}`}
                     s={s}
+                    order={order}
                     preset={ranking.preset}
                     food={ignoreRequests ? null : foodRequest}
                     drink={ignoreRequests ? null : drinkRequest}
+                    ranked={solution.drinks}
+                    rate={(d) => rateSet(data, solverPool.catalog, order, d)}
                     selected={draft?.recipe === s.dish.recipe.name}
-                    pinned={isSetPinned(pins, pinOf(order.customer.name, draftOf(s)))}
-                    saved={savedOf(pinOf(order.customer.name, draftOf(s)))}
-                    onPick={() => pick(s)}
-                    onTogglePin={() => updatePins((p) => togglePinnedSet(p, pinOf(order.customer.name, draftOf(s))))}
-                    onSave={saveAs(pinOf(order.customer.name, draftOf(s)))}
+                    isPinned={(d) => isSetPinned(pins, pinOf(order.customer.name, d))}
+                    savedOf={(d) => savedOf(pinOf(order.customer.name, d))}
+                    onPick={setDraft}
+                    onTogglePin={(d) => updatePins((p) => togglePinnedSet(p, pinOf(order.customer.name, d)))}
+                    onSave={(d) => saveAs(pinOf(order.customer.name, d))}
                   />
                 ))}
               </ol>
@@ -542,6 +548,9 @@ function RequestPicker(props: { label: string; tags: string[]; value: string | n
   );
 }
 
+const MAX_BETTER_DRINKS = 6;
+const MAX_ADD_OPTIONS = 8;
+
 /** A pinned or saved set rated against a guest's order; null when its recipe or drink no longer exists. */
 function rateSet(
   data: GameData,
@@ -605,6 +614,17 @@ function RatingBadge({ s }: { s: Suggestion }) {
   );
 }
 
+/** "● Pink · 4 pts" in the rating's colour; the points turn gold when a swap on the card raised them. */
+function RatingPill({ s, raised }: { s: Suggestion; raised: boolean }) {
+  const t = useT();
+  return (
+    <span className={`rating-pill ${raised ? "is-raised" : ""}`}>
+      <span className="rating-pill-dot" aria-hidden />
+      {ratingLabel(s.rating, t)} · <span className="rating-pill-pts">{t("rare.points", { n: s.score })}</span>
+    </span>
+  );
+}
+
 /**
  * The dish's tags on one line and the drink's on the next. Tags that change the rating (liked, disliked or
  * asked for) show first; the rest, and tags another tag overrode, fold into "+N" unless `showAll`.
@@ -662,92 +682,458 @@ function DishTagLine({
   );
 }
 
+/** What was changed on a card: the drink, and the extra ingredients; null keeps the solver's choice. */
+interface CardSwap {
+  beverage: string | null;
+  extras: string[] | null;
+}
+const NO_SWAP: CardSwap = { beverage: null, extras: null };
+const sameList = (a: string[], b: string[]) => a.length === b.length && a.every((x, i) => x === b[i]);
+
+/**
+ * One suggested set. The pot shows as five slots; an empty slot lists ingredients that add points and the drink
+ * lists the other drinks, and picking one there changes the set on this card. Pin, save and adjust act on the
+ * set as it is shown.
+ */
 function SuggestionRow({
   s,
+  order,
   preset,
   food,
   drink: drinkRequest,
+  ranked,
+  rate,
   selected,
-  pinned,
-  saved,
+  isPinned,
+  savedOf,
   onPick,
   onTogglePin,
   onSave,
 }: {
   s: Suggestion;
+  order: RareOrder;
   preset: Preset;
   /** The requests that count (null while requests are ignored), to mark them among the tags. */
   food: string | null;
   drink: string | null;
+  /** Every drink ranked for this order, best first. */
+  ranked: DrinkOption[];
+  /** Rates a changed set against the order. */
+  rate: (set: Draft) => Suggestion | null;
   selected: boolean;
-  pinned: boolean;
-  /** The preset this exact set was saved as, if any. */
-  saved: SavedSet | undefined;
-  onPick: () => void;
-  onTogglePin: () => void;
-  onSave: (name: string, kind: SavedSetKind) => void;
+  isPinned: (set: Draft) => boolean;
+  /** The preset a set was saved as, if any. */
+  savedOf: (set: Draft) => SavedSet | undefined;
+  /** Opens a set in the builder. */
+  onPick: (set: Draft) => void;
+  onTogglePin: (set: Draft) => void;
+  onSave: (set: Draft) => (name: string, kind: SavedSetKind) => void;
 }) {
   const t = useT();
+  const data = useGameData();
   const [saving, setSaving] = useState(false);
-  const { dish, drink } = s;
-  const warning = warningFor(s, t);
+  const [swap, setSwap] = useState<CardSwap>(NO_SWAP);
+  const base = draftOf(s);
+  const extras = swap.extras ?? base.extras;
+  const set: Draft = { ...base, extras, beverage: swap.beverage ?? base.beverage };
+  const changed = swap.beverage !== null || swap.extras !== null;
+  const shown = (changed && rate(set)) || s;
+  const { dish } = shown;
+  const station = data.cookware.find((c) => c.name === dish.recipe.cookware);
+  const ingredient = (name: string) => data.ingredients.find((i) => i.name === name);
+  const warning = warningFor(shown, t);
+  const saved = savedOf(set);
+  const liked = order.customer.likedFoodTags;
+  const disliked = order.customer.dislikedFoodTags;
+  const setExtras = (next: string[]) => setSwap({ ...swap, extras: sameList(next, base.extras) ? null : next });
+  // Ingredients that add the same tags as one of the solver's extras give the same dish in its place.
+  const subsOf = (name: string): Ingredient[] => {
+    const j = s.dish.extras.findIndex((e, k) => e.name === name || s.dish.substitutes[k]?.some((x) => x.name === name));
+    return j < 0 ? [] : [s.dish.extras[j], ...(s.dish.substitutes[j] ?? [])].filter((x) => x.name !== name);
+  };
+  const items: ShelfItem[] = [
+    ...dish.recipe.ingredients.map((name) => ({ name, ingredient: ingredient(name), kind: "base" as const })),
+    ...extras.map((name, i) => {
+      const item: ShelfItem = { name, ingredient: ingredient(name), kind: "extra", hasSubs: subsOf(name).length > 0 };
+      item.menu = (close) => (
+        <ExtraMenu
+          item={item}
+          liked={liked}
+          disliked={disliked}
+          subs={subsOf(name)}
+          shown={shown}
+          without={() => rate({ ...set, extras: extras.filter((_, j) => j !== i) })}
+          onReplace={(sub) => {
+            setExtras(extras.map((x, j) => (j === i ? sub : x)));
+            close();
+          }}
+          onRemove={() => {
+            setExtras(extras.filter((_, j) => j !== i));
+            close();
+          }}
+        />
+      );
+      return item;
+    }),
+  ];
   return (
-    <li className={`suggestion ${selected ? "is-selected" : ""}`}>
-      <RatingBadge s={s} />
-      <div className="suggestion-body">
-        <div className="dish-line">
-          <ItemImage src={dish.recipe.image} name={dish.recipe.name} size={32} />
+    <li className={`suggestion rate-${RATING_CLASS[shown.rating]} ${selected ? "is-selected" : ""}`}>
+      <div className="card-head">
+        <span className="dish-tile">
+          <ItemImage src={dish.recipe.image} name={dish.recipe.name} size={44} />
+        </span>
+        <div className="card-title">
           <strong className="dish-name">{dish.recipe.name}</strong>
-          <Extras dish={dish} />
-          <span className="with">{t("rare.with")}</span>
-          <ItemImage src={drink.beverage.image} name={drink.beverage.name} size={28} />
-          <strong className="drink-name">{drink.beverage.name}</strong>
-          {s.altDrinks.length > 0 && (
-            <span className="or">{t("rare.orList", { list: s.altDrinks.map((d) => d.beverage.name).join(", ") })}</span>
-          )}
+          <span className="card-station">
+            {station && <ItemImage src={station.image} name={station.name} size={18} />}
+            {dish.recipe.cookware}
+          </span>
         </div>
-        <IngredientStrip dish={dish} />
-        <Metrics s={s} preset={preset} />
-        <DishTagLine s={s} food={food} drink={drinkRequest} />
-        {warning && <div className="warn">{warning}</div>}
-        {s.alternatives.length > 0 && (
-          <details className="alternatives">
-            <summary>{t("rare.alternatives", { rating: ratingLabel(s.rating, t), n: s.alternatives.length })}</summary>
-            <ul>
-              {s.alternatives.map((alt, i) => (
-                <li key={i}>
-                  {alt.dish.extras.length === 0 ? <span className="with">{t("rare.noExtras")}</span> : <Extras dish={alt.dish} />}
-                  <span className="with">{t("rare.with")}</span>
-                  <span>{alt.drink.beverage.name}</span>
-                  <span className="alt-meta">{t("rare.altMeta", { n: alt.score, price: alt.totalPrice })}</span>
-                </li>
-              ))}
-            </ul>
-          </details>
-        )}
-        {saving && (
-          <SaveSetForm
-            defaultName={saved?.name ?? dish.recipe.name}
-            defaultKind={saved?.kind}
-            onSave={(name, kind) => {
-              onSave(name, kind);
-              setSaving(false);
-            }}
-            onCancel={() => setSaving(false)}
-          />
+        <div className="card-score">
+          <RatingPill s={shown} raised={shown.score > s.score} />
+          <span className={`card-price price-${shown.budget}`}>
+            <strong>{shown.totalPrice}</strong>
+            <span>{budgetLabel(shown.budget, t)}</span>
+          </span>
+        </div>
+      </div>
+      <div className="card-build">
+        <IngredientShelf
+          items={items}
+          liked={liked}
+          disliked={disliked}
+          renderEmpty={() => <AddIngredient order={order} current={shown} onAdd={(name) => setExtras([...extras, name])} />}
+        />
+        <span className="card-plus" aria-hidden>
+          +
+        </span>
+        <DrinkPicker
+          s={s}
+          shown={shown}
+          ranked={ranked}
+          customer={order.customer}
+          onPick={(beverage) => setSwap({ ...swap, beverage: beverage === base.beverage ? null : beverage })}
+        />
+        {changed && (
+          <span className="card-changed">
+            {t("card.changed")} ·{" "}
+            <button className="link-btn" onClick={() => setSwap(NO_SWAP)}>
+              {t("card.reset")}
+            </button>
+          </span>
         )}
       </div>
-      <div className={`price price-${s.budget}`}>
-        <strong>{s.totalPrice}</strong>
-        <span>{budgetLabel(s.budget, t)}</span>
-        <span className="cookware">{dish.recipe.cookware}</span>
-        <PinButton pinned={pinned} onToggle={onTogglePin} />
-        <button className="btn btn-small btn-quiet" aria-pressed={selected} onClick={onPick}>
-          {selected ? t("rare.adjusting") : t("rare.adjust")}
-        </button>
-        <SaveButton saved={saved} open={saving} onToggle={() => setSaving(!saving)} />
+      <DishTagLine s={shown} food={food} drink={drinkRequest} />
+      {warning && <div className="warn">{warning}</div>}
+      {!changed && s.alternatives.length > 0 && (
+        <details className="alternatives">
+          <summary>{t("rare.alternatives", { rating: ratingLabel(s.rating, t), n: s.alternatives.length })}</summary>
+          <ul>
+            {s.alternatives.map((alt, i) => (
+              <li key={i}>
+                {alt.dish.extras.length === 0 ? <span className="with">{t("rare.noExtras")}</span> : <Extras dish={alt.dish} />}
+                <span className="with">{t("rare.with")}</span>
+                <span>{alt.drink.beverage.name}</span>
+                <span className="alt-meta">{t("rare.altMeta", { n: alt.score, price: alt.totalPrice })}</span>
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
+      <div className="card-foot">
+        <Metrics s={shown} preset={changed ? undefined : preset} />
+        <span className="card-actions">
+          <PinButton pinned={isPinned(set)} onToggle={() => onTogglePin(set)} />
+          <button className="btn btn-small btn-quiet" aria-pressed={selected} onClick={() => onPick(set)}>
+            {selected ? t("rare.adjusting") : t("rare.adjust")}
+          </button>
+          <SaveButton saved={saved} open={saving} onToggle={() => setSaving(!saving)} />
+        </span>
       </div>
+      {saving && (
+        <SaveSetForm
+          defaultName={saved?.name ?? dish.recipe.name}
+          defaultKind={saved?.kind}
+          onSave={(name, kind) => {
+            onSave(set)(name, kind);
+            setSaving(false);
+          }}
+          onCancel={() => setSaving(false)}
+        />
+      )}
     </li>
+  );
+}
+
+/**
+ * The set's drink as a tile that opens the other drinks: ones worth more points first (the set is picked with
+ * the cheapest drink that reaches its rating, but more points can still be wanted), then ones worth the same.
+ */
+function DrinkPicker({
+  s,
+  shown,
+  ranked,
+  customer,
+  onPick,
+}: {
+  /** The solver's set, which the lists are built from. */
+  s: Suggestion;
+  /** The set as the card shows it now. */
+  shown: Suggestion;
+  ranked: DrinkOption[];
+  customer: RareCustomer;
+  onPick: (beverage: string) => void;
+}) {
+  const t = useT();
+  const current = shown.drink;
+  const better = ranked.filter((d) => d.requestMet && d.score > s.drink.score).slice(0, MAX_BETTER_DRINKS);
+  const same = [s.drink, ...s.altDrinks];
+  const top = better[0] && better[0].score > current.score ? better[0] : null;
+  return (
+    <Popover
+      label={t("drinks.title")}
+      className="drink-picker"
+      buttonClassName="drink-slot"
+      button={
+        <>
+          <span className="slot slot-base">
+            <ItemImage src={current.beverage.image} name={current.beverage.name} size={34} />
+          </span>
+          <span className="drink-slot-text">
+            <strong>{current.beverage.name}</strong>
+            <small>
+              <b>+{current.score}</b> {t("drinks.points", { price: current.beverage.price })} ▾
+            </small>
+          </span>
+          {top && (
+            <span className="drink-flag" title={t("drinks.flag", { n: top.score })}>
+              ▲ +{top.score}
+            </span>
+          )}
+        </>
+      }
+    >
+      {(close) => {
+        const pick = (name: string) => {
+          onPick(name);
+          close();
+        };
+        const rowOf = (d: DrinkOption) => <DrinkRow key={d.beverage.name} d={d} shown={shown} customer={customer} onPick={pick} />;
+        return (
+          <>
+            {better.length > 0 ? (
+              <>
+                <h4 className="pick-head">
+                  <span>▲ {t("rare.betterDrinks")}</span>
+                  <span>{t("drinks.total")}</span>
+                </h4>
+                <ul className="pick-rows">{better.map(rowOf)}</ul>
+              </>
+            ) : (
+              <p className="pick-foot">{t("drinks.none")}</p>
+            )}
+            <h4 className="pick-head">
+              <span>{t("drinks.same", { n: s.drink.score })}</span>
+              <span>{t("drinks.total")}</span>
+            </h4>
+            <ul className="pick-rows">{same.map(rowOf)}</ul>
+            <p className="pick-foot">{t("drinks.foot", { dish: shown.dish.score })}</p>
+          </>
+        );
+      }}
+    </Popover>
+  );
+}
+
+/** A drink in the picker: its points and what it changes, then the set's total with it. */
+function DrinkRow({
+  d,
+  shown,
+  customer,
+  onPick,
+}: {
+  d: DrinkOption;
+  shown: Suggestion;
+  customer: RareCustomer;
+  onPick: (beverage: string) => void;
+}) {
+  const t = useT();
+  const isCurrent = d.beverage.name === shown.drink.beverage.name;
+  const total = shown.totalPrice - shown.drink.beverage.price + d.beverage.price;
+  const gain = d.score - shown.drink.score;
+  const diff = total - shown.totalPrice;
+  return (
+    <li>
+      <button
+        className={`pick-row ${isCurrent ? "is-current" : ""}`}
+        disabled={isCurrent}
+        aria-current={isCurrent || undefined}
+        onClick={() => onPick(d.beverage.name)}
+      >
+        <ItemImage src={d.beverage.image} name={d.beverage.name} size={28} />
+        <span className="pick-row-name">
+          {d.beverage.name}
+          {isCurrent && " ✓"}
+          <small>{t("drinks.price", { n: d.beverage.price })}</small>
+        </span>
+        <span className="pick-row-pts">
+          +{d.score}
+          <small>
+            {gain > 0 ? t("drinks.gain", { n: gain }) : gain < 0 ? t("drinks.loss", { n: -gain }) : t("drinks.samePts")}
+          </small>
+        </span>
+        <span className={`pick-row-price price-${budgetStatus(total, customer)}`}>
+          {total}
+          <small>{diff === 0 ? t("drinks.samePrice") : `${diff > 0 ? "+" : ""}${diff}`}</small>
+        </span>
+      </button>
+    </li>
+  );
+}
+
+/**
+ * The menu of an extra ingredient on a card: what it is, the ingredients that give the same dish in its place
+ * (with their value), and taking it out, with the points that would cost.
+ */
+function ExtraMenu({
+  item,
+  liked,
+  disliked,
+  subs,
+  shown,
+  without,
+  onReplace,
+  onRemove,
+}: {
+  item: ShelfItem;
+  liked: string[];
+  disliked: string[];
+  subs: Ingredient[];
+  shown: Suggestion;
+  /** The set rated without this ingredient. */
+  without: () => Suggestion | null;
+  onReplace: (name: string) => void;
+  onRemove: () => void;
+}) {
+  const t = useT();
+  const after = without();
+  const price = item.ingredient?.price ?? 0;
+  const change = after ? after.score - shown.score : 0;
+  return (
+    <>
+      <SlotInfo item={item} liked={liked} disliked={disliked} />
+      {subs.length > 0 ? (
+        <>
+          <h4 className="pick-head pick-head-gap">
+            <span>⇄ {t("slot.swapTitle")}</span>
+            <span>{t("slot.value")}</span>
+          </h4>
+          <ul className="pick-rows">
+            {subs.map((x) => (
+              <li key={x.name}>
+                <button className="pick-row pick-row-3" onClick={() => onReplace(x.name)}>
+                  <ItemImage src={x.image} name={x.name} size={28} />
+                  <span className="pick-row-name">
+                    {x.name}
+                    <small>{x.tags.join(" · ")}</small>
+                  </span>
+                  <span className="pick-row-price">
+                    {x.price}
+                    <small>{x.price === price ? t("drinks.samePrice") : `${x.price > price ? "+" : ""}${x.price - price}`}</small>
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <p className="pick-foot pick-head-gap">{t("slot.noSubs")}</p>
+      )}
+      <button className="pick-row pick-row-2 pick-remove" onClick={onRemove}>
+        <span className="pick-remove-icon" aria-hidden>
+          ✕
+        </span>
+        <span className="pick-row-name">
+          {t("slot.takeOut")}
+          {after && (
+            <small>
+              {t("slot.takeOutEffect", { n: change > 0 ? `+${change}` : change === 0 ? "±0" : change, rating: ratingLabel(after.rating, t) })}
+            </small>
+          )}
+        </span>
+      </button>
+    </>
+  );
+}
+
+/** An empty slot that lists the ingredients that would add points, and adds the one picked to the card. */
+function AddIngredient({ order, current, onAdd }: { order: RareOrder; current: Suggestion; onAdd: (name: string) => void }) {
+  const t = useT();
+  return (
+    <Popover label={t("slot.empty")} buttonClassName="slot slot-empty is-open" buttonTitle={t("slot.empty")} button="+">
+      {(close) => (
+        <AddIngredientList
+          order={order}
+          current={current}
+          onAdd={(name) => {
+            onAdd(name);
+            close();
+          }}
+        />
+      )}
+    </Popover>
+  );
+}
+
+function AddIngredientList({ order, current, onAdd }: { order: RareOrder; current: Suggestion; onAdd: (name: string) => void }) {
+  const t = useT();
+  const pool = useAvailablePool();
+  const data = useGameData();
+  const catalog = useMemo(() => makeCatalog(data.ingredients), [data.ingredients]);
+  const { recipe, extras } = current.dish;
+  const liked = order.customer.likedFoodTags;
+  const effects = ingredientEffects(order, recipe, extras, current.drink.beverage, pool.ingredients, catalog)
+    .filter((e) => !e.darkMatter && (e.delta > 0 || e.result.requestsMet > current.requestsMet || e.result.rating > current.rating))
+    .slice(0, MAX_ADD_OPTIONS);
+  const left = MAX_INGREDIENTS - recipe.ingredients.length - extras.length;
+  if (effects.length === 0) return <p className="pick-foot">{t("builder.noneHelpful")}</p>;
+  return (
+    <>
+      <h4 className="pick-head">
+        <span>{t("slot.addTitle", { n: left })}</span>
+      </h4>
+      <ul className="pick-rows">
+        {effects.map((e) => (
+          <li key={e.ingredient.name}>
+            <button className="pick-row" onClick={() => onAdd(e.ingredient.name)}>
+              <ItemImage src={e.ingredient.image} name={e.ingredient.name} size={28} />
+              <span className="pick-row-name">
+                {e.ingredient.name}
+                <small>
+                  {[...e.gainedTags].sort((a, b) => Number(liked.includes(b)) - Number(liked.includes(a))).map((tag) => (
+                    <span key={tag} className={liked.includes(tag) ? "gain-liked" : ""}>
+                      +{tag}{" "}
+                    </span>
+                  ))}
+                  {e.lostTags.map((tag) => (
+                    <s key={tag}>{tag} </s>
+                  ))}
+                </small>
+              </span>
+              <span className="pick-row-pts">
+                {e.delta > 0 ? `+${e.delta}` : e.delta}
+                <small>{ratingLabel(e.result.rating, t)}</small>
+              </span>
+              <span className="pick-row-price">
+                {e.ingredient.price}
+                <small>{t("slot.value")}</small>
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+      <p className="pick-foot">{t("slot.addFoot")}</p>
+    </>
   );
 }
 
@@ -811,28 +1197,6 @@ function ValueBreakdown({ s, preset }: { s: Suggestion; preset: Preset }) {
         </ul>
       </div>
     </details>
-  );
-}
-
-/** Everything that goes into the pot: the recipe's base ingredients, then the extras. */
-function IngredientStrip({ dish }: { dish: Suggestion["dish"] }) {
-  const t = useT();
-  const data = useGameData();
-  const image = (name: string) => data.ingredients.find((i) => i.name === name)?.image;
-  return (
-    <div className="ingredient-strip" aria-label={t("rare.ingredientsUsed")}>
-      <span className="strip-label">{t("rare.ingredients")}</span>
-      {dish.recipe.ingredients.map((n, i) => (
-        <span key={`base-${i}`} className="ing-chip ing-chip-base" title={t("rare.baseIngredient")}>
-          <ItemImage src={image(n)} name={n} size={20} /> {n}
-        </span>
-      ))}
-      {dish.extras.map((e, i) => (
-        <span key={`extra-${i}`} className="ing-chip ing-chip-extra" title={t("rare.extraIngredient")}>
-          <ItemImage src={e.image} name={e.name} size={20} /> {e.name}
-        </span>
-      ))}
-    </div>
   );
 }
 
