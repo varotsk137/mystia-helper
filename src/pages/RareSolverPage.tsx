@@ -808,10 +808,10 @@ function SuggestionRow({
           +
         </span>
         <DrinkPicker
-          s={s}
           shown={shown}
           ranked={ranked}
           customer={order.customer}
+          rate={(beverage) => rate({ ...set, beverage })}
           onPick={(beverage) => setSwap({ ...swap, beverage: beverage === base.beverage ? null : beverage })}
         />
         {changed && (
@@ -866,29 +866,32 @@ function SuggestionRow({
 }
 
 /**
- * The set's drink as a tile that opens the other drinks: ones worth more points first (the set is picked with
- * the cheapest drink that reaches its rating, but more points can still be wanted), then ones worth the same.
+ * The set's drink as a tile that opens the other drinks that meet the request, grouped against the drink in the
+ * set now: worth more points, worth the same, and worth fewer (once the dish carries more points, a cheaper drink
+ * can keep the rating). Each row shows the rating the set gets with it.
  */
 function DrinkPicker({
-  s,
   shown,
   ranked,
   customer,
+  rate,
   onPick,
 }: {
-  /** The solver's set, which the lists are built from. */
-  s: Suggestion;
   /** The set as the card shows it now. */
   shown: Suggestion;
   ranked: DrinkOption[];
   customer: RareCustomer;
+  /** Rates the card's set with another drink. */
+  rate: (beverage: string) => Suggestion | null;
   onPick: (beverage: string) => void;
 }) {
   const t = useT();
   const current = shown.drink;
-  const better = ranked.filter((d) => d.requestMet && d.score > s.drink.score).slice(0, MAX_BETTER_DRINKS);
-  const same = [s.drink, ...s.altDrinks];
-  const top = better[0] && better[0].score > current.score ? better[0] : null;
+  const usable = ranked.filter((d) => d.requestMet);
+  const better = usable.filter((d) => d.score > current.score).slice(0, MAX_BETTER_DRINKS);
+  const same = usable.filter((d) => d.score === current.score && d.beverage.name !== current.beverage.name);
+  const fewer = usable.filter((d) => d.score < current.score).slice(0, MAX_BETTER_DRINKS);
+  const top = better[0] ?? null;
   return (
     <Popover
       label={t("drinks.title")}
@@ -918,7 +921,9 @@ function DrinkPicker({
           onPick(name);
           close();
         };
-        const rowOf = (d: DrinkOption) => <DrinkRow key={d.beverage.name} d={d} shown={shown} customer={customer} onPick={pick} />;
+        const rowOf = (d: DrinkOption) => (
+          <DrinkRow key={d.beverage.name} d={d} shown={shown} customer={customer} rated={rate(d.beverage.name)} onPick={pick} />
+        );
         return (
           <>
             {better.length > 0 ? (
@@ -933,10 +938,19 @@ function DrinkPicker({
               <p className="pick-foot">{t("drinks.none")}</p>
             )}
             <h4 className="pick-head">
-              <span>{t("drinks.same", { n: s.drink.score })}</span>
+              <span>{t("drinks.same", { n: current.score })}</span>
               <span>{t("drinks.total")}</span>
             </h4>
-            <ul className="pick-rows">{same.map(rowOf)}</ul>
+            <ul className="pick-rows">{[current, ...same].map(rowOf)}</ul>
+            {fewer.length > 0 && (
+              <>
+                <h4 className="pick-head">
+                  <span>▼ {t("drinks.fewer")}</span>
+                  <span>{t("drinks.total")}</span>
+                </h4>
+                <ul className="pick-rows">{fewer.map(rowOf)}</ul>
+              </>
+            )}
             <p className="pick-foot">{t("drinks.foot", { dish: shown.dish.score })}</p>
           </>
         );
@@ -945,16 +959,19 @@ function DrinkPicker({
   );
 }
 
-/** A drink in the picker: its points and what it changes, then the set's total with it. */
+/** A drink in the picker: its points and what it changes, the set's rating with it, then the set's total. */
 function DrinkRow({
   d,
   shown,
   customer,
+  rated,
   onPick,
 }: {
   d: DrinkOption;
   shown: Suggestion;
   customer: RareCustomer;
+  /** The set rated with this drink. */
+  rated: Suggestion | null;
   onPick: (beverage: string) => void;
 }) {
   const t = useT();
@@ -977,6 +994,12 @@ function DrinkRow({
           <small>{t("drinks.price", { n: d.beverage.price })}</small>
         </span>
         <span className="pick-row-pts">
+          {rated && (
+            <span
+              className={`rating-dot rating-${RATING_CLASS[rated.rating]}`}
+              title={t("drinks.rating", { rating: ratingLabel(rated.rating, t), n: rated.score })}
+            />
+          )}
           +{d.score}
           <small>
             {gain > 0 ? t("drinks.gain", { n: gain }) : gain < 0 ? t("drinks.loss", { n: -gain }) : t("drinks.samePts")}

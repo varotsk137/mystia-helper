@@ -1807,6 +1807,13 @@ input {
   font-weight: 600;
   color: var(--liked);
 }
+.pick-row-pts .rating-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 6px;
+  vertical-align: 1px;
+}
 .pick-row-price {
   min-width: 56px;
   text-align: right;

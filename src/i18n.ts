@@ -154,6 +154,8 @@ export const messages = {
   "drinks.points": { th: "แต้ม · {price}", en: "pts · {price}" },
   "drinks.flag": { th: "มีเครื่องดื่มที่ได้ +{n} แต้ม", en: "There's a drink worth +{n}" },
   "drinks.same": { th: "แต้มเท่ากัน (+{n})", en: "Same points (+{n})" },
+  "drinks.fewer": { th: "แต้มน้อยกว่า", en: "Fewer points" },
+  "drinks.rating": { th: "ชุดนี้จะได้{rating} · {n} แต้ม", en: "The set rates {rating} · {n} pts" },
   "drinks.total": { th: "ราคารวม", en: "Set total" },
   "drinks.price": { th: "ราคา {n}", en: "Price {n}" },
   "drinks.gain": { th: "▲ +{n} แต้ม", en: "▲ +{n} pts" },
