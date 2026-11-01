@@ -1,4 +1,4 @@
-import { useDeferredValue, useMemo, useState } from "react";
+import { useDeferredValue, useMemo, useState, type ReactNode } from "react";
 import type { GameData, Ingredient, RareCustomer } from "../data";
 import { useAvailablePool, useGameData, useStore } from "../store";
 import { TonightBar } from "../components/TonightBar";
@@ -551,6 +551,23 @@ function RequestPicker(props: { label: string; tags: string[]; value: string | n
 const MAX_BETTER_DRINKS = 6;
 const MAX_ADD_OPTIONS = 8;
 
+/** A picker's rows, cut to the first `limit` until "Show all" is clicked. */
+function CappedRows<T>({ items, limit, row }: { items: T[]; limit: number; row: (item: T) => ReactNode }) {
+  const t = useT();
+  const [all, setAll] = useState(false);
+  const hidden = all ? 0 : Math.max(0, items.length - limit);
+  return (
+    <>
+      <ul className="pick-rows">{(hidden > 0 ? items.slice(0, limit) : items).map(row)}</ul>
+      {hidden > 0 && (
+        <button className="link-btn pick-more" onClick={() => setAll(true)}>
+          {t("pick.showAll", { n: hidden })}
+        </button>
+      )}
+    </>
+  );
+}
+
 /** A pinned or saved set rated against a guest's order; null when its recipe or drink no longer exists. */
 function rateSet(
   data: GameData,
@@ -761,6 +778,8 @@ function SuggestionRow({
           liked={liked}
           disliked={disliked}
           subs={subsOf(name)}
+          order={order}
+          index={i}
           shown={shown}
           without={() => rate({ ...set, extras: extras.filter((_, j) => j !== i) })}
           onReplace={(sub) => {
@@ -888,9 +907,9 @@ function DrinkPicker({
   const t = useT();
   const current = shown.drink;
   const usable = ranked.filter((d) => d.requestMet);
-  const better = usable.filter((d) => d.score > current.score).slice(0, MAX_BETTER_DRINKS);
+  const better = usable.filter((d) => d.score > current.score);
   const same = usable.filter((d) => d.score === current.score && d.beverage.name !== current.beverage.name);
-  const fewer = usable.filter((d) => d.score < current.score).slice(0, MAX_BETTER_DRINKS);
+  const fewer = usable.filter((d) => d.score < current.score);
   const top = better[0] ?? null;
   return (
     <Popover
@@ -932,7 +951,7 @@ function DrinkPicker({
                   <span>▲ {t("rare.betterDrinks")}</span>
                   <span>{t("drinks.total")}</span>
                 </h4>
-                <ul className="pick-rows">{better.map(rowOf)}</ul>
+                <CappedRows items={better} limit={MAX_BETTER_DRINKS} row={rowOf} />
               </>
             ) : (
               <p className="pick-foot">{t("drinks.none")}</p>
@@ -948,7 +967,7 @@ function DrinkPicker({
                   <span>▼ {t("drinks.fewer")}</span>
                   <span>{t("drinks.total")}</span>
                 </h4>
-                <ul className="pick-rows">{fewer.map(rowOf)}</ul>
+                <CappedRows items={fewer} limit={MAX_BETTER_DRINKS} row={rowOf} />
               </>
             )}
             <p className="pick-foot">{t("drinks.foot", { dish: shown.dish.score })}</p>
@@ -1015,14 +1034,17 @@ function DrinkRow({
 }
 
 /**
- * The menu of an extra ingredient on a card: what it is, the ingredients that give the same dish in its place
- * (with their value), and taking it out, with the points that would cost.
+ * The menu of an extra ingredient on a card: what it is, the ingredients that can take its slot without the set
+ * losing points or its rating (with what they add and their value), and taking it out, with the points that
+ * would cost.
  */
 function ExtraMenu({
   item,
   liked,
   disliked,
   subs,
+  order,
+  index,
   shown,
   without,
   onReplace,
@@ -1031,7 +1053,11 @@ function ExtraMenu({
   item: ShelfItem;
   liked: string[];
   disliked: string[];
+  /** Ingredients that give exactly the same dish in this slot. */
   subs: Ingredient[];
+  order: RareOrder;
+  /** The slot's place among the set's extras. */
+  index: number;
   shown: Suggestion;
   /** The set rated without this ingredient. */
   without: () => Suggestion | null;
@@ -1039,35 +1065,70 @@ function ExtraMenu({
   onRemove: () => void;
 }) {
   const t = useT();
+  const pool = useAvailablePool();
+  const data = useGameData();
+  const catalog = useMemo(() => makeCatalog(data.ingredients), [data.ingredients]);
   const after = without();
   const price = item.ingredient?.price ?? 0;
   const change = after ? after.score - shown.score : 0;
+  const { recipe, extras } = shown.dish;
+  const others = extras.filter((_, j) => j !== index);
+  const swaps = ingredientEffects(order, recipe, others, shown.drink.beverage, pool.ingredients, catalog)
+    .filter(
+      (e) =>
+        !e.darkMatter &&
+        e.ingredient.name !== item.name &&
+        e.result.score >= shown.score &&
+        e.result.rating >= shown.rating &&
+        e.result.requestsMet >= shown.requestsMet,
+    )
+    .sort((a, b) => b.result.score - a.result.score || a.ingredient.price - b.ingredient.price);
   return (
     <>
       <SlotInfo item={item} liked={liked} disliked={disliked} />
-      {subs.length > 0 ? (
+      {swaps.length > 0 ? (
         <>
           <h4 className="pick-head pick-head-gap">
             <span>⇄ {t("slot.swapTitle")}</span>
             <span>{t("slot.value")}</span>
           </h4>
-          <ul className="pick-rows">
-            {subs.map((x) => (
-              <li key={x.name}>
-                <button className="pick-row pick-row-3" onClick={() => onReplace(x.name)}>
-                  <ItemImage src={x.image} name={x.name} size={28} />
-                  <span className="pick-row-name">
-                    {x.name}
-                    <small>{x.tags.join(" · ")}</small>
-                  </span>
-                  <span className="pick-row-price">
-                    {x.price}
-                    <small>{x.price === price ? t("drinks.samePrice") : `${x.price > price ? "+" : ""}${x.price - price}`}</small>
-                  </span>
-                </button>
-              </li>
-            ))}
-          </ul>
+          <CappedRows
+            items={swaps}
+            limit={MAX_ADD_OPTIONS}
+            row={(e) => {
+              const x = e.ingredient;
+              const gain = e.result.score - shown.score;
+              return (
+                <li key={x.name}>
+                  <button className="pick-row" onClick={() => onReplace(x.name)}>
+                    <ItemImage src={x.image} name={x.name} size={28} />
+                    <span className="pick-row-name">
+                      {x.name}
+                      <small>
+                        {subs.some((s) => s.name === x.name)
+                          ? t("slot.sameDish")
+                          : [...e.gainedTags]
+                              .sort((a, b) => Number(liked.includes(b)) - Number(liked.includes(a)))
+                              .map((tag) => (
+                                <span key={tag} className={liked.includes(tag) ? "gain-liked" : ""}>
+                                  +{tag}{" "}
+                                </span>
+                              ))}
+                      </small>
+                    </span>
+                    <span className="pick-row-pts">
+                      {gain > 0 ? `+${gain}` : "±0"}
+                      <small>{ratingLabel(e.result.rating, t)}</small>
+                    </span>
+                    <span className="pick-row-price">
+                      {x.price}
+                      <small>{x.price === price ? t("drinks.samePrice") : `${x.price > price ? "+" : ""}${x.price - price}`}</small>
+                    </span>
+                  </button>
+                </li>
+              );
+            }}
+          />
         </>
       ) : (
         <p className="pick-foot pick-head-gap">{t("slot.noSubs")}</p>
@@ -1116,8 +1177,7 @@ function AddIngredientList({ order, current, onAdd }: { order: RareOrder; curren
   const { recipe, extras } = current.dish;
   const liked = order.customer.likedFoodTags;
   const effects = ingredientEffects(order, recipe, extras, current.drink.beverage, pool.ingredients, catalog)
-    .filter((e) => !e.darkMatter && (e.delta > 0 || e.result.requestsMet > current.requestsMet || e.result.rating > current.rating))
-    .slice(0, MAX_ADD_OPTIONS);
+    .filter((e) => !e.darkMatter && (e.delta > 0 || e.result.requestsMet > current.requestsMet || e.result.rating > current.rating));
   const left = MAX_INGREDIENTS - recipe.ingredients.length - extras.length;
   if (effects.length === 0) return <p className="pick-foot">{t("builder.noneHelpful")}</p>;
   return (
@@ -1125,8 +1185,10 @@ function AddIngredientList({ order, current, onAdd }: { order: RareOrder; curren
       <h4 className="pick-head">
         <span>{t("slot.addTitle", { n: left })}</span>
       </h4>
-      <ul className="pick-rows">
-        {effects.map((e) => (
+      <CappedRows
+        items={effects}
+        limit={MAX_ADD_OPTIONS}
+        row={(e) => (
           <li key={e.ingredient.name}>
             <button className="pick-row" onClick={() => onAdd(e.ingredient.name)}>
               <ItemImage src={e.ingredient.image} name={e.ingredient.name} size={28} />
@@ -1153,8 +1215,8 @@ function AddIngredientList({ order, current, onAdd }: { order: RareOrder; curren
               </span>
             </button>
           </li>
-        ))}
-      </ul>
+        )}
+      />
       <p className="pick-foot">{t("slot.addFoot")}</p>
     </>
   );

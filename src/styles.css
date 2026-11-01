@@ -1832,8 +1832,10 @@ input {
   font-size: 0.75rem;
   color: var(--paper-dim);
 }
-.pick-row-3 {
-  grid-template-columns: 28px minmax(0, 1fr) auto;
+.pick-more {
+  display: block;
+  margin: -4px 0 8px auto;
+  font-size: 0.78rem;
 }
 .pick-row-2 {
   grid-template-columns: 28px minmax(0, 1fr);
