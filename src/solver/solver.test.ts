@@ -176,6 +176,8 @@ describe("solveRareOrder", () => {
     expect(dark.dish.dish.tags).toEqual(["Dark Matter"]);
     expect(dark.dish.score).toBe(0);
     expect(dark.dish.requestMet).toBe(false);
+    // It sells at Dark Matter's price, not the recipe's.
+    expect(dark.totalPrice).toBe(1 + drink.price);
   });
 
   it("rates Dark Matter by the drink alone, orange at best", () => {

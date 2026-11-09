@@ -208,6 +208,30 @@ for (const name of specialNames) {
   });
 }
 
+// ---------- Corrections (data/corrections.json, hand-maintained) ----------
+// Where the wiki differs from what was found in the game; each field given replaces the wiki's.
+const corrections = JSON.parse(await readFile(join(root, "data", "corrections.json"), "utf8"));
+const correct = (list, fixes, kind) => {
+  for (const [name, fields] of Object.entries(fixes ?? {})) {
+    const item = list.find((x) => x.name === name);
+    if (!item) {
+      warn(`Correction for unknown ${kind} "${name}"`);
+      continue;
+    }
+    for (const [field, value] of Object.entries(fields)) {
+      if (JSON.stringify(item[field]) === JSON.stringify(value))
+        warn(`Correction to ${kind} "${name}" ${field} now matches the wiki; it can be removed`);
+      item[field] = value;
+    }
+  }
+};
+correct(recipes, corrections.recipes, "recipe");
+correct(rareCustomers, corrections.rareCustomers, "customer");
+for (const r of corrections.newRecipes ?? []) {
+  if (recipes.some((x) => x.name === r.name)) warn(`Added recipe "${r.name}" is now on the wiki; it can be removed from corrections`);
+  else recipes.push({ ...r });
+}
+
 // ---------- Merchants ----------
 const merRaw = await load("Merchant_data.lua");
 const merchants = [];

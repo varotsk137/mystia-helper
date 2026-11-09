@@ -1,0 +1,51 @@
+{
+ "about": "Hand-maintained fixes applied on top of the wiki data by scripts/wiki/build.mjs. Each one is where the wiki differs from what was found in the game. Fields given here replace the wiki's.",
+ "recipes": {
+  "Daimyo's Feast": { "bannedTags": ["Economical", "Homecooking"] },
+  "Falling Blossoms": { "bannedTags": ["Greasy"] },
+  "Fuji's Lava": { "bannedTags": ["Refreshing"] },
+  "Udumbara Cake": { "tags": ["Dreamy", "Expensive", "Legendary", "Photogenic", "Premium", "Sweet", "Wonderful"] }
+ },
+ "newRecipes": [
+  {
+   "name": "Moon Cake",
+   "dlc": "BaseGame",
+   "level": 5,
+   "price": 35,
+   "tags": ["Filling", "Chinese", "Sweet", "Cultural Heritage", "Wonderful", "Small Portion"],
+   "bannedTags": [],
+   "ingredients": ["Lunar Herb", "Flour"],
+   "cookware": "Steamer",
+   "cookTime": 6
+  }
+ ],
+ "rareCustomers": {
+  "Sanae Kochiya": { "likedFoodTags": ["Dreamy", "Homecooking", "Japanese", "Photogenic", "Sweet", "Trend - Popular"] },
+  "Shio Tachisora": {
+   "likedFoodTags": ["Expensive", "Good w/ Alcohol", "Japanese", "Meat", "Mountain Delicacy", "Strength-Boosting", "Trend - Unpopular"]
+  },
+  "Rin Satsuki": { "dislikedFoodTags": ["Greasy", "Good w/ Alcohol", "Raw"] },
+  "Jien Yuu": { "dislikedFoodTags": ["Aquatic", "Greasy", "Filling"] },
+  "Yukari Yakumo": { "likedDrinkTags": ["Vintage", "Mid Alcohol", "High Alcohol", "Shochu"] },
+  "Flandre Scarlet": {
+   "undocumented": false,
+   "budget": { "min": 2500, "max": 3200 },
+   "likedFoodTags": ["Raw", "Signature", "Photogenic", "Hot", "Peculiar", "Wonderful", "Spicy"],
+   "likedDrinkTags": ["Mid Alcohol", "High Alcohol", "Heatable", "Fruity", "Dry"]
+  },
+  "Eirin Yagokoro": {
+   "undocumented": false,
+   "budget": { "min": 2000, "max": 2400 },
+   "likedFoodTags": ["Trend - Popular", "Homecooking", "Legendary", "Cultural Heritage", "Dreamy", "Specialty", "Poison"],
+   "dislikedFoodTags": ["Greasy", "Raw"],
+   "likedDrinkTags": ["Low Alcohol", "Mid Alcohol", "Chillable", "Sake", "Neat", "Sweet", "Vintage"]
+  },
+  "Shinki": {
+   "undocumented": false,
+   "budget": { "min": 3000, "max": 3500 },
+   "likedFoodTags": ["Homecooking", "Premium", "Legendary", "Western", "Sweet", "Wonderful", "Dreamy"],
+   "dislikedFoodTags": ["Trend - Unpopular", "Greasy", "Raw", "Peculiar", "Sour"],
+   "likedDrinkTags": ["No Alcohol", "Neat", "Fruity", "Sweet", "Vintage"]
+  }
+ }
+}

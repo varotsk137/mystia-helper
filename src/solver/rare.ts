@@ -490,8 +490,12 @@ function compareDish(a: DishOption, b: DishOption, enough: number): number {
   return Number(b.requestMet) - Number(a.requestMet) || Math.min(b.score, enough) - Math.min(a.score, enough);
 }
 
+/** A dish that turns into Dark Matter sells at Dark Matter's price, not its recipe's. */
+const DARK_MATTER_PRICE = 1;
+const dishPrice = (dish: DishOption) => (dish.dish.conflicts.length > 0 ? DARK_MATTER_PRICE : dish.recipe.price);
+
 /** Dish price minus the value of its ingredients (an estimate; see DishOption.ingredientCost). */
-export const dishProfit = (s: Suggestion) => s.dish.recipe.price - s.dish.ingredientCost;
+export const dishProfit = (s: Suggestion) => dishPrice(s.dish) - s.dish.ingredientCost;
 
 /**
  * Value of everything a set uses up: the ingredients plus the drink. On this basis a drink's value equals its
@@ -578,7 +582,7 @@ function combine(order: RareOrder, dish: DishOption, drink: DrinkOption): Sugges
     rating = Math.max(rating, BOTH_REQUESTS_FLOOR) as Rating;
   const special = specialRule(order.customer, dish);
   if (special) rating = applySpecial(rating, special);
-  const totalPrice = dish.recipe.price + drink.beverage.price;
+  const totalPrice = dishPrice(dish) + drink.beverage.price;
   return {
     dish,
     drink,

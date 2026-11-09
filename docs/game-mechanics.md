@@ -3,7 +3,8 @@
 Sources:
 
 - the wiki's `Customers` and `Tags` pages (https://touhou-mystias-izakaya.fandom.com), read 2026-10-19;
-- my own play, marked *observed in-game*. These come from a few tests each, so they can be wrong;
+- my own play, marked *observed in-game*. These come from a few tests each, so they can be wrong. Where the
+  wiki's recipe or guest data differs from what I found in-game, `data/corrections.json` overrides it;
 - the scorer of [izakaya.cc](https://izakaya.cc), where noted (see
   [issue #1](https://github.com/varotsk137/mystia-helper/issues/1)).
 
@@ -46,7 +47,8 @@ Score:
 - +1 per tag on the dish that the customer likes
 - +1 per tag on the drink that the customer likes
 - −1 per tag on the dish that the customer dislikes
-- A Dark Matter dish scores 0 and never fulfils the food request, so only the drink counts.
+- A Dark Matter dish scores 0 and never fulfils the food request, so only the drink counts. It sells for
+  Dark Matter's price (1), not the recipe's.
 
 Rating from score, capped by how many of the two requested tags were fulfilled:
 

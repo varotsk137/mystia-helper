@@ -9,7 +9,7 @@ Fetched: 2026-10-25T08:40:53.706Z
 | collaborations | 4 |
 | ingredients | 62 |
 | beverages | 46 |
-| recipes | 163 |
+| recipes | 164 |
 | normalCustomers | 47 |
 | rareCustomers | 67 |
 | merchants | 24 |
@@ -38,13 +38,10 @@ These are tags the game adds dynamically (price, trend, etc.) or wiki inconsiste
 - Tag "Trend-Popular" -> "Trend - Popular" (Ellen)
 - Special guest "Hata no Kokoro" has data but is missing from the wiki's order list; added at the end
 - Customer "Okina Matara" preferences not documented on wiki
-- Customer "Flandre Scarlet" preferences not documented on wiki
 - Customer "Wakasagihime" preferences not documented on wiki
-- Customer "Eirin Yagokoro" preferences not documented on wiki
 - Customer "Sagume Kishin" preferences not documented on wiki
 - Customer "Shiki Eiki" preferences not documented on wiki
 - Customer "Mizuchi Miyadeguchi" preferences not documented on wiki
-- Customer "Shinki" preferences not documented on wiki
 - Tag "Good with Alcohol" -> "Good w/ Alcohol" (Kasen Ibaraki quote)
 - Tag "Good with Alcohol" -> "Good w/ Alcohol" (Suika Ibuki quote)
 - Tag "Good with Alcohol" -> "Good w/ Alcohol" (Nitori Kawashiro quote)
@@ -53,3 +50,6 @@ These are tags the game adds dynamically (price, trend, etc.) or wiki inconsiste
 - Quote for "Legendary" but Youmu Konpaku does not list it as liked
 - Quote for "Japanese" but Youmu Konpaku does not list it as liked
 - Tag "Good with Alcohol" -> "Good w/ Alcohol" (Mamizou Futatsuiwa quote)
+- No spell cards found on the wiki page of Flandre Scarlet
+- No spell cards found on the wiki page of Eirin Yagokoro
+- No spell cards found on the wiki page of Shinki

@@ -2,7 +2,7 @@
  "meta": {
   "source": "https://touhou-mystias-izakaya.fandom.com",
   "fetchedAt": "2026-10-25T08:40:53.706Z",
-  "builtAt": "2026-10-25T09:03:46.911Z",
+  "builtAt": "2026-10-31T17:41:32.997Z",
   "dlcs": [
    "BaseGame",
    "DLC1",
@@ -2113,7 +2113,8 @@
     "Legendary",
     "Photogenic",
     "Premium",
-    "Sweet"
+    "Sweet",
+    "Wonderful"
    ],
    "bannedTags": [
     "Aquatic",
@@ -2501,7 +2502,10 @@
     "Mountain Delicacy",
     "Premium"
    ],
-   "bannedTags": [],
+   "bannedTags": [
+    "Economical",
+    "Homecooking"
+   ],
    "ingredients": [
     "Iberico Pork",
     "Wagyu Beef",
@@ -2571,7 +2575,9 @@
     "Sea Delicacy",
     "Small Portion"
    ],
-   "bannedTags": [],
+   "bannedTags": [
+    "Greasy"
+   ],
    "ingredients": [
     "Premium Tuna"
    ],
@@ -3366,7 +3372,9 @@
     "Premium",
     "Strength-Boosting"
    ],
-   "bannedTags": [],
+   "bannedTags": [
+    "Refreshing"
+   ],
    "ingredients": [
     "Beef",
     "Wagyu Beef",
@@ -5677,6 +5685,29 @@
    "cookTime": 6,
    "collab": null,
    "image": "images/recipes/CuisineIconSupremeSeafoodNoodles.png"
+  },
+  {
+   "name": "Moon Cake",
+   "dlc": "BaseGame",
+   "level": 5,
+   "price": 35,
+   "tags": [
+    "Filling",
+    "Chinese",
+    "Sweet",
+    "Cultural Heritage",
+    "Wonderful",
+    "Small Portion"
+   ],
+   "bannedTags": [],
+   "ingredients": [
+    "Lunar Herb",
+    "Flour"
+   ],
+   "cookware": "Steamer",
+   "cookTime": 6,
+   "collab": null,
+   "image": null
   }
  ],
  "normalCustomers": [
@@ -8736,7 +8767,8 @@
     "Homecooking",
     "Japanese",
     "Photogenic",
-    "Sweet"
+    "Sweet",
+    "Trend - Popular"
    ],
    "dislikedFoodTags": [
     "Greasy",
@@ -11807,7 +11839,9 @@
     "Trend - Popular"
    ],
    "dislikedFoodTags": [
-    "Greasy"
+    "Greasy",
+    "Good w/ Alcohol",
+    "Raw"
    ],
    "likedDrinkTags": [
     "No Alcohol",
@@ -11881,7 +11915,8 @@
     "Japanese",
     "Meat",
     "Mountain Delicacy",
-    "Strength-Boosting"
+    "Strength-Boosting",
+    "Trend - Unpopular"
    ],
    "dislikedFoodTags": [
     "Mild",
@@ -11945,7 +11980,8 @@
    ],
    "dislikedFoodTags": [
     "Aquatic",
-    "Greasy"
+    "Greasy",
+    "Filling"
    ],
    "likedDrinkTags": [
     "Cocktail",
@@ -12337,12 +12373,29 @@
    "kind": "special",
    "dlc": null,
    "homeLocation": null,
-   "budget": null,
+   "budget": {
+    "min": 2500,
+    "max": 3200
+   },
    "locations": [],
-   "undocumented": true,
-   "likedFoodTags": [],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Raw",
+    "Signature",
+    "Photogenic",
+    "Hot",
+    "Peculiar",
+    "Wonderful",
+    "Spicy"
+   ],
    "dislikedFoodTags": [],
-   "likedDrinkTags": [],
+   "likedDrinkTags": [
+    "Mid Alcohol",
+    "High Alcohol",
+    "Heatable",
+    "Fruity",
+    "Dry"
+   ],
    "collab": null,
    "foodQuotes": [],
    "spellCards": [],
@@ -12373,12 +12426,34 @@
    "kind": "special",
    "dlc": null,
    "homeLocation": null,
-   "budget": null,
+   "budget": {
+    "min": 2000,
+    "max": 2400
+   },
    "locations": [],
-   "undocumented": true,
-   "likedFoodTags": [],
-   "dislikedFoodTags": [],
-   "likedDrinkTags": [],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Trend - Popular",
+    "Homecooking",
+    "Legendary",
+    "Cultural Heritage",
+    "Dreamy",
+    "Specialty",
+    "Poison"
+   ],
+   "dislikedFoodTags": [
+    "Greasy",
+    "Raw"
+   ],
+   "likedDrinkTags": [
+    "Low Alcohol",
+    "Mid Alcohol",
+    "Chillable",
+    "Sake",
+    "Neat",
+    "Sweet",
+    "Vintage"
+   ],
    "collab": null,
    "foodQuotes": [],
    "spellCards": [],
@@ -12447,7 +12522,8 @@
    "likedDrinkTags": [
     "Vintage",
     "Mid Alcohol",
-    "High Alcohol"
+    "High Alcohol",
+    "Shochu"
    ],
    "collab": null,
    "foodQuotes": [
@@ -12558,12 +12634,35 @@
    "kind": "special",
    "dlc": null,
    "homeLocation": null,
-   "budget": null,
+   "budget": {
+    "min": 3000,
+    "max": 3500
+   },
    "locations": [],
-   "undocumented": true,
-   "likedFoodTags": [],
-   "dislikedFoodTags": [],
-   "likedDrinkTags": [],
+   "undocumented": false,
+   "likedFoodTags": [
+    "Homecooking",
+    "Premium",
+    "Legendary",
+    "Western",
+    "Sweet",
+    "Wonderful",
+    "Dreamy"
+   ],
+   "dislikedFoodTags": [
+    "Trend - Unpopular",
+    "Greasy",
+    "Raw",
+    "Peculiar",
+    "Sour"
+   ],
+   "likedDrinkTags": [
+    "No Alcohol",
+    "Neat",
+    "Fruity",
+    "Sweet",
+    "Vintage"
+   ],
    "collab": null,
    "foodQuotes": [],
    "spellCards": [],
