@@ -1,6 +1,6 @@
 // Finds the best dish (+ extra ingredients) and drink for a rare customer's order.
 // Scoring rules: docs/game-mechanics.md.
-import type { Beverage, Ingredient, RareCustomer, Recipe } from "../data/types";
+import type { Beverage, Ingredient, Range, RareCustomer, Recipe } from "../data/types";
 import { computeDishTags, DARK_MATTER, MAX_INGREDIENTS, TAG_OVERRIDES, LARGE_PORTION, TREND_POPULAR, TREND_UNPOPULAR, type DishTags, type Trend } from "./tags";
 
 export enum Rating {
@@ -169,6 +169,30 @@ export function budgetStatus(total: number, customer: RareCustomer): BudgetStatu
   if (total <= b.min) return "safe";
   if (total <= b.max) return "risky";
   return "over";
+}
+
+/** A rare guest eats at most this many meals per visit; Shio's lock can't break the cap. */
+export const MAX_RARE_ORDERS = 5;
+/** Share of the budget one "paced" set costs. */
+const PACE_LOW = 0.18;
+const PACE_HIGH = 0.2;
+
+/**
+ * Price of one set that has the guest about 75% spent (72-80%) after four orders and 90-100% after the
+ * fifth, the most a rare guest orders. The budget is the midpoint of the guest's range; null when the guest
+ * has no known budget.
+ */
+export function pacedPrice(customer: RareCustomer): Range | null {
+  const b = customer.budget;
+  if (!b) return null;
+  const mid = (b.min + b.max) / 2;
+  return { min: Math.ceil(mid * PACE_LOW), max: Math.floor(mid * PACE_HIGH) };
+}
+
+/** True when the set's total price is within pacedPrice. */
+export function pacesFiveOrders(total: number, customer: RareCustomer): boolean {
+  const p = pacedPrice(customer);
+  return !!p && total >= p.min && total <= p.max;
 }
 
 /** Character-specific reactions to one dish or ingredient. */

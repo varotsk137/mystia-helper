@@ -85,7 +85,8 @@ export interface StoreState {
    * Goal for the recommended order (with the factors its custom version uses), guests' own default goals, and
    * whether to list only pink-rated sets.
    */
-  ranking: GoalChoice & { guests: Record<string, GoalChoice>; pinkOnly: boolean };
+  /** paceFive: only sets priced so the guest has spent about 75% of their budget after five orders. */
+  ranking: GoalChoice & { guests: Record<string, GoalChoice>; pinkOnly: boolean; paceFive: boolean };
   /** Sets pinned to the right-hand panel for tonight. */
   pins: Pins;
   /** Keep the guest tab bar stuck to the top of the screen while scrolling. */
@@ -105,7 +106,7 @@ const DEFAULTS: StoreState = {
   collabs: gameData.collaborations.map((c) => c.id),
   lang: defaultLang(),
   guests: NO_GUESTS,
-  ranking: { preset: DEFAULT_PRESET, custom: DEFAULT_CUSTOM, guests: {}, pinkOnly: false },
+  ranking: { preset: DEFAULT_PRESET, custom: DEFAULT_CUSTOM, guests: {}, pinkOnly: false, paceFive: false },
   pins: NO_PINS,
   stickyGuests: true,
   savedSets: NO_SAVED_SETS,
@@ -138,6 +139,7 @@ export function normalizeState(raw: unknown): StoreState {
         ]),
       ),
       pinkOnly: s.ranking?.pinkOnly === true,
+      paceFive: s.ranking?.paceFive === true,
     },
     pins: normalizePins(s.pins),
     stickyGuests: s.stickyGuests !== false,

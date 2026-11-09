@@ -94,6 +94,15 @@ export const messages = {
     th: "ไม่มีชุดที่ได้ชมพูสำหรับออเดอร์นี้ เอาติ๊ก \"เฉพาะชุดที่ได้ชมพู\" ออกเพื่อดูชุดอื่น",
     en: "No set reaches pink for this order. Untick \"Pink sets only\" to see the others.",
   },
+  "rank.paceFive": { th: "ให้สั่งครบ 5 รอบ (ราคา {min}–{max})", en: "Last 5 orders ({min}–{max} each)" },
+  "rank.paceFive.hint": {
+    th: "เฉพาะชุดที่ราคา 18–20% ของงบ 4 รอบแรกใช้งบไปราว 75% และรอบที่ 5 ซึ่งเป็นรอบสูงสุดของลูกค้าพิเศษ ใช้ไป 90–100% คิดจากงบกลางช่วง",
+    en: "Only sets costing 18–20% of the budget: four orders spend about 75%, and the fifth, the most a rare guest orders, brings it to 90–100%. Uses the middle of their budget.",
+  },
+  "rank.noPace": {
+    th: "ไม่มีชุดราคา {min}–{max} สำหรับออเดอร์นี้ เอาติ๊ก \"ให้สั่งครบ 5 รอบ\" ออกเพื่อดูชุดอื่น",
+    en: "No set costs {min}–{max} for this order. Untick \"Last 5 orders\" to see the others.",
+  },
   "sort.price": { th: "ราคารวม", en: "Total price" },
   "sort.score": { th: "แต้ม", en: "Points" },
   "sort.extras": { th: "จำนวนวัตถุดิบที่เติม", en: "Extra ingredients" },

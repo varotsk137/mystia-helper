@@ -67,7 +67,8 @@ describe("normalizeState", () => {
   });
 
   it("defaults the ranking preset and carries over older choices", () => {
-    expect(normalizeState({}).ranking).toMatchObject({ preset: "balanced", pinkOnly: false });
+    expect(normalizeState({}).ranking).toMatchObject({ preset: "balanced", pinkOnly: false, paceFive: false });
+    expect(normalizeState({ ranking: { paceFive: true } }).ranking.paceFive).toBe(true);
     expect(normalizeState({ ranking: { preset: "fast", pinkOnly: true } }).ranking).toMatchObject({ preset: "fast", pinkOnly: true });
     // The goal version's choice maps to the preset of the same name.
     expect(normalizeState({ ranking: { goal: "profit", pinkOnly: true } }).ranking).toMatchObject({ preset: "profit", pinkOnly: true });

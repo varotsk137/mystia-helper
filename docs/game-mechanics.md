@@ -69,6 +69,12 @@ no such cap.)
 Other rules:
 
 - Going over budget: the customer pays what they can and leaves; if it is far over, they may trigger the punishment card.
+- Follow-up orders: a rare guest eats at most 5 meals per visit (a normal guest 3), and reorders only while
+  money is left; expensive dishes lower the reorder chance. Shio's reward card holds guests until they've
+  spent over 70% of their budget, but can't break the 5-meal cap. The "Last 5 orders" filter keeps sets priced
+  at 18–20% of the budget's midpoint, so four orders spend 72–80% and the fifth 90–100% (sources: the Chinese Steam guide
+  [夜雀食堂稀客应对攻略](https://steamcommunity.com/sharedfiles/filedetails/?l=schinese&id=2760533649) and a
+  [9game article](https://www.9game.cn/dongfangyequeshitang/6587254.html)).
 - Night Sparrow cookware with Hyper mode or a perfect Sparrow Tune: requested tags are ignored and the guest
   rates the dish by their own preferences. This covers the drink request too (*observed in-game*). Only Mystia cooking triggers it (not a partner chef), and this
   cookware cooks 25% slower. The app's "ignore requests" switch models this. There is no Green floor in

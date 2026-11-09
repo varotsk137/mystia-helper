@@ -33,6 +33,8 @@ import {
   FACTORS,
   dishProfit,
   makeCatalog,
+  pacedPrice,
+  pacesFiveOrders,
   setCost,
   setTopLevel,
   valueOf,
@@ -193,9 +195,12 @@ export function RareSolverPage() {
       const cmp = typeof va === "string" ? va.localeCompare(vb as string) : va - (vb as number);
       return (descending ? -cmp : cmp) || a.i - b.i;
     });
-    const list = indexed.map((x) => x.s);
-    return ranking.pinkOnly ? list.filter((s) => s.rating === Rating.Pink) : list;
-  }, [solution, sortKey, descending, ranking.pinkOnly]);
+    return indexed
+      .map((x) => x.s)
+      .filter((s) => !ranking.pinkOnly || s.rating === Rating.Pink)
+      .filter((s) => !ranking.paceFive || !customer || pacesFiveOrders(s.totalPrice, customer));
+  }, [solution, sortKey, descending, ranking.pinkOnly, ranking.paceFive, customer]);
+  const paced = customer ? pacedPrice(customer) : null;
 
   const pinOf = (guest: string, d: Draft): PinnedSet => ({ guest, recipe: d.recipe, extras: d.extras, beverage: d.beverage });
 
@@ -440,6 +445,12 @@ export function RareSolverPage() {
                   <input type="checkbox" checked={ranking.pinkOnly} onChange={(e) => setRanking({ pinkOnly: e.target.checked })} />
                   {t("rank.pinkOnly")}
                 </label>
+                {paced && (
+                  <label className="check" title={t("rank.paceFive.hint")}>
+                    <input type="checkbox" checked={ranking.paceFive} onChange={(e) => setRanking({ paceFive: e.target.checked })} />
+                    {t("rank.paceFive", { min: paced.min, max: paced.max })}
+                  </label>
+                )}
                 <label className="sort">
                   <span>{t("rare.sortBy")}</span>
                   <select value={sortKey} onChange={(e) => setSortKey(e.target.value as SortKey)}>
@@ -516,7 +527,13 @@ export function RareSolverPage() {
               {!ignoreRequests && foodRequest === null && drinkRequest === null && <p className="hint">{t("rare.pickRequest")}</p>}
               {switching && <p className="hint">{t("rare.solving")}</p>}
               {!switching && sorted.length === 0 && (
-                <p className="hint">{ranking.pinkOnly && solution.suggestions.length > 0 ? t("rank.noPink") : t("rare.noRecipes")}</p>
+                <p className="hint">
+                  {solution.suggestions.length === 0
+                    ? t("rare.noRecipes")
+                    : ranking.paceFive && paced
+                      ? t("rank.noPace", { min: paced.min, max: paced.max })
+                      : t("rank.noPink")}
+                </p>
               )}
               <ol className="suggestion-list">
                 {!switching && sorted.map((s) => (

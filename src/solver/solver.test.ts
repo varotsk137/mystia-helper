@@ -3,6 +3,8 @@ import { gameData } from "../data";
 import { computeDishTags, NO_TREND } from "./tags";
 import {
   budgetStatus,
+  pacedPrice,
+  pacesFiveOrders,
   evaluateCombo,
   ingredientEffects,
   Rating,
@@ -90,6 +92,17 @@ describe("rating", () => {
     expect(budgetStatus(200, wriggle)).toBe("safe");
     expect(budgetStatus(300, wriggle)).toBe("risky");
     expect(budgetStatus(401, wriggle)).toBe("over");
+  });
+
+  it("paces a set so four orders spend about 75% of the budget and the fifth 90-100%", () => {
+    const wriggle = customer("Wriggle Nightbug"); // 200 - 400, midpoint 300
+    expect(pacedPrice(wriggle)).toEqual({ min: 54, max: 60 });
+    expect(pacesFiveOrders(53, wriggle)).toBe(false);
+    expect(pacesFiveOrders(57, wriggle)).toBe(true);
+    expect(pacesFiveOrders(61, wriggle)).toBe(false);
+    expect(4 * 54).toBeGreaterThanOrEqual(0.72 * 300);
+    expect(5 * 60).toBeLessThanOrEqual(300);
+    expect(pacedPrice({ ...wriggle, budget: null })).toBeNull();
   });
 });
 
