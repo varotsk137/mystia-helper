@@ -798,6 +798,19 @@ input {
 .night-set-unpin:hover {
   color: var(--disliked);
 }
+.night-set-pin:hover {
+  color: var(--lantern);
+}
+.night-free {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--counter-edge);
+}
+.night-free h3 {
+  margin: 0 0 4px;
+  font: 500 0.85rem var(--font-display);
+  color: var(--paper-dim);
+}
 .side-tabs {
   display: flex;
   gap: 4px;

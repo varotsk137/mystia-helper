@@ -23,41 +23,45 @@ export interface PinnedGuestView {
   sets: { set: PinnedSet; result: Suggestion | null }[];
 }
 
+/** Sets suggested for one guest on the cookware that no pinned set uses yet. */
+export interface FreeCookwareView {
+  guest: string;
+  sets: { set: PinnedSet; result: Suggestion }[];
+}
+
 /**
- * Tonight's pinned guests and sets, kept in view beside the results. With nothing pinned it renders nothing,
- * or a hint when `showEmpty` (for a column of its own).
+ * Tonight's pinned guests and sets, kept in view beside the results, then any `free` suggestions. With nothing
+ * to show it renders nothing, or a hint when `showEmpty` (for a column of its own).
  */
 export function NightPanel({
   guests,
   active,
+  free,
   savedOf,
   showEmpty = false,
   onOpenGuest,
   onOpenSet,
   onUnpinSet,
+  onPinSet,
 }: {
   guests: PinnedGuestView[];
   active: string | null;
+  free?: FreeCookwareView;
   /** The preset a pinned set was saved as, if any, to show its name. */
   savedOf: (set: PinnedSet) => SavedSet | undefined;
   showEmpty?: boolean;
   onOpenGuest: (name: string) => void;
   onOpenSet: (set: PinnedSet) => void;
   onUnpinSet: (set: PinnedSet) => void;
+  onPinSet: (set: PinnedSet) => void;
 }) {
   const t = useT();
-  if (guests.length === 0) {
-    if (!showEmpty) return null;
-    return (
-      <section className="night-panel" aria-label={t("pins.title")}>
-        <h2>{t("pins.title")}</h2>
-        <p className="hint night-empty">{t("pins.none")}</p>
-      </section>
-    );
-  }
+  const hasFree = !!free && free.sets.length > 0;
+  if (guests.length === 0 && !hasFree && !showEmpty) return null;
   return (
     <section className="night-panel" aria-label={t("pins.title")}>
       <h2>{t("pins.title")}</h2>
+      {guests.length === 0 && <p className="hint night-empty">{t("pins.none")}</p>}
       <ul className="night-guests">
         {guests.map(({ customer, order, sets }) => (
           <li key={customer.name} className={`night-guest ${customer.name === active ? "is-active" : ""}`}>
@@ -72,30 +76,7 @@ export function NightPanel({
               <ul className="night-sets">
                 {sets.map(({ set, result }, i) => (
                   <li key={i} className={`night-set ${result ? `rate-${RATING_CLASS[result.rating]}` : ""}`}>
-                    <button className="night-set-main" onClick={() => onOpenSet(set)} title={t("pins.open")}>
-                      <span className="night-set-text">
-                        {savedOf(set) && (
-                          <span className="night-set-saved">
-                            {SAVED_SET_ICON[savedOf(set)!.kind]} {savedOf(set)!.name}
-                          </span>
-                        )}
-                        <SetSummary
-                          recipe={set.recipe}
-                          extras={set.extras}
-                          beverage={set.beverage}
-                          aside={
-                            result && (
-                              <span className="night-set-price">
-                                <strong>{result.totalPrice}</strong>
-                                <span className="night-set-rating">
-                                  {t(`rating.${RATING_CLASS[result.rating]}`)} {result.score}
-                                </span>
-                              </span>
-                            )
-                          }
-                        />
-                      </span>
-                    </button>
+                    <SetButton set={set} result={result} saved={savedOf(set)} onOpen={onOpenSet} />
                     <button
                       className="night-set-unpin"
                       aria-label={t("pins.unpin")}
@@ -111,7 +92,63 @@ export function NightPanel({
           </li>
         ))}
       </ul>
+      {hasFree && (
+        <div className="night-free">
+          <h3>{t("pins.free", { guest: free.guest })}</h3>
+          <ul className="night-sets">
+            {free.sets.map(({ set, result }) => (
+              <li key={set.recipe} className={`night-set rate-${RATING_CLASS[result.rating]}`}>
+                <SetButton set={set} result={result} onOpen={onOpenSet} />
+                <button className="night-set-unpin night-set-pin" aria-label={t("pins.pin")} title={t("pins.pin")} onClick={() => onPinSet(set)}>
+                  📌
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </section>
+  );
+}
+
+/** A set as a button that opens it, with its picture, price and rating. */
+function SetButton({
+  set,
+  result,
+  saved,
+  onOpen,
+}: {
+  set: PinnedSet;
+  result: Suggestion | null;
+  saved?: SavedSet;
+  onOpen: (set: PinnedSet) => void;
+}) {
+  const t = useT();
+  return (
+    <button className="night-set-main" onClick={() => onOpen(set)} title={t("pins.open")}>
+      <span className="night-set-text">
+        {saved && (
+          <span className="night-set-saved">
+            {SAVED_SET_ICON[saved.kind]} {saved.name}
+          </span>
+        )}
+        <SetSummary
+          recipe={set.recipe}
+          extras={set.extras}
+          beverage={set.beverage}
+          aside={
+            result && (
+              <span className="night-set-price">
+                <strong>{result.totalPrice}</strong>
+                <span className="night-set-rating">
+                  {t(`rating.${RATING_CLASS[result.rating]}`)} {result.score}
+                </span>
+              </span>
+            )
+          }
+        />
+      </span>
+    </button>
   );
 }
 

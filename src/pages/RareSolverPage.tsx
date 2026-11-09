@@ -4,7 +4,7 @@ import { GOAL_IDS, MAX_WEIGHT, goalFor, goalWeights, useAvailablePool, useGameDa
 import { TonightBar } from "../components/TonightBar";
 import { FoodRequestPicker } from "../components/QuoteParts";
 import { requestableFoodTags } from "../quotes";
-import { NightPanel, type PinnedGuestView } from "../components/NightPanel";
+import { NightPanel, type FreeCookwareView, type PinnedGuestView } from "../components/NightPanel";
 import { IngredientHints } from "../components/IngredientHints";
 import { SpellCards } from "../components/SpellCards";
 import { GuestTabs, type SeatedGuest } from "../components/GuestTabs";
@@ -233,15 +233,31 @@ export function RareSolverPage() {
     setDrafts((all) => ({ ...all, [set.guest]: { recipe: set.recipe, extras: set.extras, beverage: set.beverage } }));
   };
 
+  // With requests ignored any cookware will do, so for each of tonight's cookware that no pinned set uses yet,
+  // the current guest's best set on it, to keep every cookware busy.
+  const freeCookware = useMemo<FreeCookwareView | undefined>(() => {
+    if (!ignoreRequests || !customer || !solution || switching) return undefined;
+    const used = new Set(pins.sets.map((p) => data.recipes.find((r) => r.name === p.recipe)?.cookware));
+    const sets = state.cookware
+      .filter((c) => !used.has(c))
+      .flatMap((c) => {
+        const best = solution.suggestions.find((s) => s.dish.recipe.cookware === c);
+        return best ? [{ set: pinOf(customer.name, draftOf(best)), result: best }] : [];
+      });
+    return { guest: customer.shortName, sets };
+  }, [ignoreRequests, customer, solution, switching, pins, data.recipes, state.cookware]);
+
   const nightPanel = (
     <NightPanel
       guests={pinnedViews}
       active={guests.active}
+      free={freeCookware}
       savedOf={savedOf}
       showEmpty={wide}
       onOpenGuest={(name) => updateGuests((g) => setActiveGuest(g, name))}
       onOpenSet={openSet}
       onUnpinSet={(set) => updatePins((p) => togglePinnedSet(p, set))}
+      onPinSet={(set) => updatePins((p) => togglePinnedSet(p, set))}
     />
   );
   const savedList = customer && !customer.undocumented && (

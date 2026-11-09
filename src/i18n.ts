@@ -228,6 +228,7 @@ export const messages = {
   "pins.title": { th: "ชุดที่ปักหมุดคืนนี้", en: "Pinned for tonight" },
   "pins.pin": { th: "ปักหมุด", en: "Pin" },
   "pins.unpin": { th: "เลิกปักหมุด", en: "Unpin" },
+  "pins.free": { th: "อุปกรณ์ที่ยังว่าง · ชุดที่ดีที่สุดของ {guest}", en: "Cookware not in use · {guest}'s best set" },
   "pins.open": { th: "เปิดชุดนี้เพื่อปรับ", en: "Open this set to adjust it" },
   "pins.none": {
     th: "ยังไม่ได้ปักหมุดชุดไหน กด 📌 ที่ชุดอาหารหรือพรีเซ็ต",
