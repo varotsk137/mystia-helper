@@ -49,6 +49,20 @@ export const messages = {
     th: "ราคารวมต่ำ งบของลูกค้าจึงหมดช้า สั่งได้หลายรอบและได้ชมพูหลายครั้ง โดยไม่ขาดทุน",
     en: "Low total price so the guest's budget lasts for more orders and pink ratings, without losing money.",
   },
+  "goal.few": { th: "ใช้วัตถุดิบน้อย", en: "Few ingredients" },
+  "goal.few.hint": {
+    th: "ใส่ของเพิ่มน้อยที่สุดก่อน (ตามสูตรเดิมได้ยิ่งดี) แล้วตามกำไรและต้นทุน",
+    en: "Fewest added ingredients first (the plain recipe is best), then by profit and cost.",
+  },
+  "goal.custom": { th: "กำหนดเอง", en: "Custom" },
+  "goal.custom.hint": {
+    th: "ใส่น้ำหนักแต่ละเกณฑ์เอง 0–9 ยิ่งมากยิ่งสำคัญ 0 คือไม่ใช้เกณฑ์นั้น ค่าตั้งต้นเท่ากับเป้าหมาย สมดุล",
+    en: "Set each factor's weight yourself, 0–9: higher matters more, 0 leaves it out. Starts from Balanced.",
+  },
+  "goal.customNone": { th: "ทุกเกณฑ์เป็น 0 ชุดที่เรตติ้งเท่ากันจะไม่ถูกเรียงตามความคุ้มค่า", en: "Every weight is 0: sets of the same rating aren't ordered by value." },
+  "goal.guestSave": { th: "ใช้เป็นค่าเริ่มต้นของ {guest}", en: "Make this {guest}'s default" },
+  "goal.guestDefault": { th: "★ ค่าเริ่มต้นของ {guest}", en: "★ {guest}'s default" },
+  "goal.guestClear": { th: "เลิกใช้", en: "Remove" },
   "goal.weights": { th: "น้ำหนัก: {list}", en: "Weights: {list}" },
   "goal.common": {
     th: "เรียงตามเรตติ้งก่อน ชุดที่เกินงบไปอยู่ท้าย แล้วตามคะแนนความคุ้มค่า (0–100) ซึ่งเทียบกับชุดอื่นของออเดอร์นี้ แต้มที่เกินเรตติ้งไม่นำมาคิด",

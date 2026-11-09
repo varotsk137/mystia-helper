@@ -68,14 +68,16 @@ export type Weights = Partial<Record<Factor, number>>;
  * Ready-made weightings. Rating always comes first, sets over the guest's budget last, and points above
  * what a rating needs never count (every pink set is equally good); the weights order the rest.
  */
-export type Preset = "balanced" | "save" | "profit" | "fast" | "stay";
-export const PRESET_IDS: Preset[] = ["balanced", "save", "profit", "fast", "stay"];
+export type Preset = "balanced" | "save" | "profit" | "fast" | "stay" | "few";
+export const PRESET_IDS: Preset[] = ["balanced", "save", "profit", "fast", "stay", "few"];
 export const PRESETS: Record<Preset, Weights> = {
   balanced: { profit: 2, rarity: 2, cost: 1, speed: 1, extras: 1, budget: 1 },
   save: { rarity: 3, cost: 2, extras: 1 },
   profit: { profit: 3, revenue: 1, rarity: 1, budget: 1 },
   fast: { speed: 4, profit: 1, cost: 1 },
   stay: { cheap: 3, profit: 2, budget: 1 },
+  // One extra fewer is worth at least 9/4 (at most 4 extras), more than profit and cost can add up to (2).
+  few: { extras: 9, profit: 1, cost: 1 },
 };
 export const DEFAULT_PRESET: Preset = "balanced";
 

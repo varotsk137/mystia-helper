@@ -7,7 +7,45 @@ import { defaultLang, type Lang } from "./lang";
 import { NO_GUESTS, normalizeGuests, type Guests } from "./guests";
 import { NO_PINS, normalizePins, type Pins } from "./pins";
 import { NO_SAVED_SETS, normalizeSavedSets, type SavedSets } from "./savedSets";
-import { DEFAULT_PRESET, PRESET_IDS, type Preset } from "./solver/rare";
+import { DEFAULT_PRESET, FACTORS, PRESETS, PRESET_IDS, type Preset, type Weights } from "./solver/rare";
+
+/** A ready-made preset, or "custom": the player's own weight for each factor. */
+export type Goal = Preset | "custom";
+export const GOAL_IDS: Goal[] = [...PRESET_IDS, "custom"];
+export const MAX_WEIGHT = 9;
+const DEFAULT_CUSTOM: Weights = PRESETS[DEFAULT_PRESET];
+
+/** The weights a goal ranks sets by. */
+export const goalWeights = (goal: Goal, custom: Weights): Weights => (goal === "custom" ? custom : PRESETS[goal]);
+
+/** A goal and the weights its custom version uses. */
+export interface GoalChoice {
+  preset: Goal;
+  custom: Weights;
+}
+
+/** Custom weights as whole numbers 0–MAX_WEIGHT, zeros dropped. */
+function normalizeWeights(raw: unknown): Weights {
+  if (!raw || typeof raw !== "object") return DEFAULT_CUSTOM;
+  const out: Weights = {};
+  for (const f of FACTORS) {
+    const w = Math.round(Math.min(MAX_WEIGHT, Math.max(0, Number((raw as Record<string, unknown>)[f]) || 0)));
+    if (w > 0) out[f] = w;
+  }
+  return out;
+}
+
+/** The goal for a guest: their own default if one is saved, otherwise the general one. */
+export const goalFor = (ranking: StoreState["ranking"], guest: string | null | undefined): GoalChoice =>
+  (guest ? ranking.guests[guest] : undefined) ?? { preset: ranking.preset, custom: ranking.custom };
+
+function normalizeGoal(raw: { preset?: unknown; goal?: unknown; custom?: unknown } | undefined): GoalChoice {
+  return {
+    // Saves from the goal version keep their choice: each goal became the preset of the same name.
+    preset: [raw?.preset, raw?.goal].find((p): p is Goal => GOAL_IDS.includes(p as Goal)) ?? DEFAULT_PRESET,
+    custom: normalizeWeights(raw?.custom),
+  };
+}
 
 /** Data kinds the player can edit. Keys match GameData. */
 export type EditableKind = "recipes" | "ingredients" | "beverages" | "rareCustomers";
@@ -43,8 +81,11 @@ export interface StoreState {
   lang: Lang;
   /** Rare guests seated in the izakaya right now, with their orders. */
   guests: Guests;
-  /** Weighting preset for the recommended order, and whether to list only pink-rated sets. */
-  ranking: { preset: Preset; pinkOnly: boolean };
+  /**
+   * Goal for the recommended order (with the factors its custom version uses), guests' own default goals, and
+   * whether to list only pink-rated sets.
+   */
+  ranking: GoalChoice & { guests: Record<string, GoalChoice>; pinkOnly: boolean };
   /** Sets pinned to the right-hand panel for tonight. */
   pins: Pins;
   /** Keep the guest tab bar stuck to the top of the screen while scrolling. */
@@ -64,7 +105,7 @@ const DEFAULTS: StoreState = {
   collabs: gameData.collaborations.map((c) => c.id),
   lang: defaultLang(),
   guests: NO_GUESTS,
-  ranking: { preset: DEFAULT_PRESET, pinkOnly: false },
+  ranking: { preset: DEFAULT_PRESET, custom: DEFAULT_CUSTOM, guests: {}, pinkOnly: false },
   pins: NO_PINS,
   stickyGuests: true,
   savedSets: NO_SAVED_SETS,
@@ -89,10 +130,13 @@ export function normalizeState(raw: unknown): StoreState {
     lang: s.lang === "th" || s.lang === "en" ? s.lang : DEFAULTS.lang,
     guests: normalizeGuests(s.guests),
     ranking: {
-      // Saves from the goal version keep their choice: each goal became the preset of the same name.
-      preset: [s.ranking?.preset, (s.ranking as { goal?: string } | undefined)?.goal].find((p): p is Preset =>
-        PRESET_IDS.includes(p as Preset),
-      ) ?? DEFAULT_PRESET,
+      ...normalizeGoal(s.ranking),
+      guests: Object.fromEntries(
+        Object.entries(s.ranking?.guests && typeof s.ranking.guests === "object" ? s.ranking.guests : {}).map(([name, g]) => [
+          name,
+          normalizeGoal(g),
+        ]),
+      ),
       pinkOnly: s.ranking?.pinkOnly === true,
     },
     pins: normalizePins(s.pins),

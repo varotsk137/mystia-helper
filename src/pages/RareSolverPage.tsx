@@ -1,6 +1,6 @@
 import { useDeferredValue, useMemo, useState, type ReactNode } from "react";
 import type { GameData, Ingredient, RareCustomer } from "../data";
-import { useAvailablePool, useGameData, useStore } from "../store";
+import { GOAL_IDS, MAX_WEIGHT, goalFor, goalWeights, useAvailablePool, useGameData, useStore, type Goal, type GoalChoice } from "../store";
 import { TonightBar } from "../components/TonightBar";
 import { FoodRequestPicker } from "../components/QuoteParts";
 import { requestableFoodTags } from "../quotes";
@@ -31,15 +31,13 @@ import {
   type BudgetStatus,
   type DrinkOption,
   FACTORS,
-  PRESETS,
-  PRESET_IDS,
   dishProfit,
   makeCatalog,
   setCost,
   setTopLevel,
   valueOf,
-  type Preset,
   type RareOrder,
+  type Weights,
   type Suggestion,
 } from "../solver/rare";
 import { MAX_INGREDIENTS, TREND_POPULAR, TREND_UNPOPULAR } from "../solver/tags";
@@ -162,12 +160,23 @@ export function RareSolverPage() {
     [customer, foodRequest, drinkRequest, trend, ignoreRequests],
   );
   const deferredOrder = useDeferredValue(order);
+  const goal = goalFor(ranking, customer?.name);
+  const guestGoal = customer ? ranking.guests[customer.name] : undefined;
+  // While the guest has a default goal of their own, changing the goal changes that default.
+  const setGoal = (patch: Partial<GoalChoice>) =>
+    guestGoal && customer
+      ? setRanking({ guests: { ...ranking.guests, [customer.name]: { ...guestGoal, ...patch } } })
+      : setRanking(patch);
+  const setGuestGoal = (g: GoalChoice | null) => {
+    if (!customer) return;
+    const others = Object.fromEntries(Object.entries(ranking.guests).filter(([name]) => name !== customer.name));
+    setRanking({ guests: g ? { ...others, [customer.name]: g } : others });
+  };
+  const weights = useMemo(() => goalWeights(goal.preset, goal.custom), [goal.preset, goal.custom]);
   const solution = useMemo(
     () =>
-      deferredOrder && !deferredOrder.customer.undocumented
-        ? solveRareOrder(deferredOrder, solverPool, 1000, PRESETS[ranking.preset])
-        : null,
-    [deferredOrder, solverPool, ranking.preset],
+      deferredOrder && !deferredOrder.customer.undocumented ? solveRareOrder(deferredOrder, solverPool, 1000, weights) : null,
+    [deferredOrder, solverPool, weights],
   );
   const stale = deferredOrder !== order;
   // Right after a guest switch the solution is still the previous guest's; showing it would let a set be
@@ -434,8 +443,8 @@ export function RareSolverPage() {
               <div className="ranking">
                 <label>
                   <span>{t("goal.label")}</span>
-                  <select value={ranking.preset} onChange={(e) => setRanking({ preset: e.target.value as Preset })}>
-                    {PRESET_IDS.map((p) => (
+                  <select value={goal.preset} onChange={(e) => setGoal({ preset: e.target.value as Goal })}>
+                    {GOAL_IDS.map((p) => (
                       <option key={p} value={p}>
                         {t(`goal.${p}`)}
                       </option>
@@ -443,15 +452,50 @@ export function RareSolverPage() {
                   </select>
                 </label>
                 <details className="help">
-                  <summary aria-label={t("goal.help")} title={t(`goal.${ranking.preset}.hint`)}>
+                  <summary aria-label={t("goal.help")} title={t(`goal.${goal.preset}.hint`)}>
                     ?
                   </summary>
                   <div className="help-body">
-                    <p>{t(`goal.${ranking.preset}.hint`)}</p>
-                    <p>{t("goal.weights", { list: weightList(ranking.preset, t) })}</p>
+                    <p>{t(`goal.${goal.preset}.hint`)}</p>
+                    {goal.preset !== "custom" && <p>{t("goal.weights", { list: weightList(weights, t) })}</p>}
                     <p className="hint">{t("goal.common")}</p>
                   </div>
                 </details>
+                {customer &&
+                  (guestGoal ? (
+                    <span className="goal-guest">
+                      {t("goal.guestDefault", { guest: customer.shortName })}
+                      <button className="link-btn" onClick={() => setGuestGoal(null)}>
+                        {t("goal.guestClear")}
+                      </button>
+                    </span>
+                  ) : (
+                    <button className="btn btn-small btn-quiet" onClick={() => setGuestGoal(goal)}>
+                      {t("goal.guestSave", { guest: customer.shortName })}
+                    </button>
+                  ))}
+                {goal.preset === "custom" && (
+                  <fieldset className="goal-factors" aria-label={t("goal.custom")}>
+                    {FACTORS.map((f) => (
+                      <label key={f} className={`goal-weight${goal.custom[f] ? "" : " goal-weight-off"}`}>
+                        {t(`factor.${f}`)}
+                        <input
+                          type="number"
+                          min={0}
+                          max={MAX_WEIGHT}
+                          step={1}
+                          value={goal.custom[f] ?? 0}
+                          onChange={(e) => {
+                            const w = Math.round(Math.min(MAX_WEIGHT, Math.max(0, Number(e.target.value) || 0)));
+                            const { [f]: _, ...rest } = goal.custom;
+                            setGoal({ custom: w ? { ...rest, [f]: w } : rest });
+                          }}
+                        />
+                      </label>
+                    ))}
+                    {Object.keys(goal.custom).length === 0 && <p className="hint">{t("goal.customNone")}</p>}
+                  </fieldset>
+                )}
               </div>
               {!ignoreRequests && foodRequest === null && drinkRequest === null && <p className="hint">{t("rare.pickRequest")}</p>}
               {switching && <p className="hint">{t("rare.solving")}</p>}
@@ -465,7 +509,6 @@ export function RareSolverPage() {
                     key={`${order.customer.name}|${foodRequest}|${drinkRequest}|${ignoreRequests}|${s.dish.recipe.name}`}
                     s={s}
                     order={order}
-                    preset={ranking.preset}
                     food={ignoreRequests ? null : foodRequest}
                     drink={ignoreRequests ? null : drinkRequest}
                     ranked={solution.drinks}
@@ -715,7 +758,6 @@ const sameList = (a: string[], b: string[]) => a.length === b.length && a.every(
 function SuggestionRow({
   s,
   order,
-  preset,
   food,
   drink: drinkRequest,
   ranked,
@@ -729,7 +771,6 @@ function SuggestionRow({
 }: {
   s: Suggestion;
   order: RareOrder;
-  preset: Preset;
   /** The requests that count (null while requests are ignored), to mark them among the tags. */
   food: string | null;
   drink: string | null;
@@ -860,7 +901,7 @@ function SuggestionRow({
         </details>
       )}
       <div className="card-foot">
-        <Metrics s={shown} preset={changed ? undefined : preset} />
+        <Metrics s={shown} value={!changed} />
         <span className="card-actions">
           <PinButton pinned={isPinned(set)} onToggle={() => onTogglePin(set)} />
           <button className="btn btn-small btn-quiet" aria-pressed={selected} onClick={() => onPick(set)}>
@@ -1224,9 +1265,9 @@ function AddIngredientList({ order, current, onAdd }: { order: RareOrder; curren
 
 const pct = (x: number) => Math.round(x * 100);
 
-/** "Dish profit ×2, Spares rare stock ×2, ..." for a preset, heaviest first. */
-function weightList(preset: Preset, t: Translate): string {
-  return Object.entries(PRESETS[preset])
+/** "Dish profit ×2, Spares rare stock ×2, ..." for a goal's weights, heaviest first. */
+function weightList(weights: Weights, t: Translate): string {
+  return Object.entries(weights)
     .sort((a, b) => b[1] - a[1])
     .map(([f, w]) => `${t(`factor.${f}` as MessageKey)} ×${w}`)
     .join(", ");
@@ -1236,11 +1277,11 @@ function weightList(preset: Preset, t: Translate): string {
  * Value under the chosen goal, plus estimated cost and profit, rarest stock and cooking time. The value
  * opens to show each factor's score and what the set would score under the other goals.
  */
-function Metrics({ s, preset }: { s: Suggestion; preset?: Preset }) {
+function Metrics({ s, value = false }: { s: Suggestion; value?: boolean }) {
   const t = useT();
   return (
     <div className="metrics">
-      {preset && <ValueBreakdown s={s} preset={preset} />}
+      {value && <ValueBreakdown s={s} />}
       <span title={t("metric.note")}>{t("metric.cost", { n: setCost(s) })}</span>
       <span title={t("metric.note")}>{t("metric.profit", { n: dishProfit(s) })}</span>
       <span>{t("metric.level", { n: setTopLevel(s) })}</span>
@@ -1249,9 +1290,11 @@ function Metrics({ s, preset }: { s: Suggestion; preset?: Preset }) {
   );
 }
 
-function ValueBreakdown({ s, preset }: { s: Suggestion; preset: Preset }) {
+function ValueBreakdown({ s }: { s: Suggestion }) {
   const t = useT();
-  const weights = PRESETS[preset];
+  const { ranking, guests } = useStore().state;
+  const { preset, custom } = goalFor(ranking, guests.active);
+  const weights = goalWeights(preset, custom);
   const factors = FACTORS.filter((f) => (weights[f] ?? 0) > 0).sort((a, b) => (weights[b] ?? 0) - (weights[a] ?? 0));
   return (
     <details className="value">
@@ -1273,10 +1316,10 @@ function ValueBreakdown({ s, preset }: { s: Suggestion; preset: Preset }) {
         </ul>
         <p className="hint">{t("value.presets")}</p>
         <ul className="value-presets">
-          {PRESET_IDS.map((p) => (
+          {GOAL_IDS.map((p) => (
             <li key={p} className={p === preset ? "is-current" : ""}>
               <span>{t(`goal.${p}`)}</span>
-              <span className="value-num">{pct(valueOf(s.factors, PRESETS[p]))}</span>
+              <span className="value-num">{pct(valueOf(s.factors, goalWeights(p, custom)))}</span>
             </li>
           ))}
         </ul>

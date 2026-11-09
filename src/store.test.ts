@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { gameData } from "./data";
-import { applyOverrides, availablePool, normalizeState } from "./store";
+import { applyOverrides, availablePool, goalFor, normalizeState } from "./store";
+import { PRESETS } from "./solver/rare";
 
 describe("applyOverrides", () => {
   it("patches only the edited item and keeps the rest", () => {
@@ -66,13 +67,30 @@ describe("normalizeState", () => {
   });
 
   it("defaults the ranking preset and carries over older choices", () => {
-    expect(normalizeState({}).ranking).toEqual({ preset: "balanced", pinkOnly: false });
-    expect(normalizeState({ ranking: { preset: "fast", pinkOnly: true } }).ranking).toEqual({ preset: "fast", pinkOnly: true });
+    expect(normalizeState({}).ranking).toMatchObject({ preset: "balanced", pinkOnly: false });
+    expect(normalizeState({ ranking: { preset: "fast", pinkOnly: true } }).ranking).toMatchObject({ preset: "fast", pinkOnly: true });
     // The goal version's choice maps to the preset of the same name.
-    expect(normalizeState({ ranking: { goal: "profit", pinkOnly: true } }).ranking).toEqual({ preset: "profit", pinkOnly: true });
+    expect(normalizeState({ ranking: { goal: "profit", pinkOnly: true } }).ranking).toMatchObject({ preset: "profit", pinkOnly: true });
     // Saves from the budget/extras version, or with a bad value, fall back to the default.
-    expect(normalizeState({ ranking: { budget: "cheap", extras: "cost" } }).ranking).toEqual({ preset: "balanced", pinkOnly: false });
-    expect(normalizeState({ ranking: { preset: "bogus" } }).ranking).toEqual({ preset: "balanced", pinkOnly: false });
+    expect(normalizeState({ ranking: { budget: "cheap", extras: "cost" } }).ranking).toMatchObject({ preset: "balanced", pinkOnly: false });
+    expect(normalizeState({ ranking: { preset: "bogus" } }).ranking).toMatchObject({ preset: "balanced", pinkOnly: false });
+  });
+
+  it("keeps the custom goal's weights as whole numbers 0-9, dropping unknown factors and zeros", () => {
+    expect(normalizeState({}).ranking.custom).toEqual(PRESETS.balanced);
+    const r = normalizeState({ ranking: { preset: "custom", custom: { speed: 3, bogus: 2, profit: 12, cost: 0, rarity: 1.6, extras: "x" } } }).ranking;
+    expect(r).toMatchObject({ preset: "custom", custom: { speed: 3, profit: 9, rarity: 2 } });
+    expect(Object.keys(r.custom)).toHaveLength(3);
+  });
+
+  it("keeps guests' default goals and falls back to the general goal", () => {
+    const r = normalizeState({
+      ranking: { preset: "fast", guests: { Rumia: { preset: "few" }, Chen: { preset: "bogus", custom: { speed: 2 } } } },
+    }).ranking;
+    expect(goalFor(r, "Rumia")).toEqual({ preset: "few", custom: PRESETS.balanced });
+    expect(goalFor(r, "Chen")).toEqual({ preset: "balanced", custom: { speed: 2 } });
+    expect(goalFor(r, "Mystia").preset).toBe("fast");
+    expect(goalFor(r, null).preset).toBe("fast");
   });
 
   it("keeps saved trends and drops malformed ones", () => {

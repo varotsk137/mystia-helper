@@ -2417,6 +2417,35 @@ h3 {
   margin: 0;
   font-size: 0.8rem;
 }
+.goal-guest {
+  color: var(--sake);
+}
+.goal-factors {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 0;
+  padding: 6px 10px;
+  border: 1px solid var(--counter-edge);
+  border-radius: var(--radius-s);
+}
+.goal-weight {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.goal-weight input {
+  width: 3.2em;
+  padding: 2px 4px;
+  background: var(--counter);
+  border: 1px solid var(--counter-edge);
+  border-radius: var(--radius-s);
+  text-align: center;
+}
+.goal-weight-off {
+  color: var(--paper-dim);
+}
 .metrics {
   display: flex;
   flex-wrap: wrap;
