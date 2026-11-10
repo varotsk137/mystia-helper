@@ -58,6 +58,12 @@ describe("parseSpellCards", () => {
     expect(cards[1].name).toBe(`Big Four Arcanum "Knock Out in Three Steps"`);
   });
 
+  it("reads a Reward Alt. card as a reward, keeping the label in its name (Aya)", () => {
+    const cards = parseSpellCards(`==="Crossroads" (Reward)===\nx\n==="Peerless Chef" (Reward Alt.)===\ny\n==="Forbidden Technique"===\nz`);
+    expect(cards.map((c) => c.kind)).toEqual(["reward", "reward", "punishment"]);
+    expect(cards[1].name).toBe(`"Peerless Chef" (Reward Alt.)`);
+  });
+
   it("recognises follow-up cards (Tewi)", () => {
     expect(parseSpellCards(`===Trick "Combo Disappearance Jutsu" (Follow-up)===\nz`)[0].kind).toBe("follow-up");
   });

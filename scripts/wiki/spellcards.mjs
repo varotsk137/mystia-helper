@@ -34,7 +34,8 @@ export function level2Section(wikitext, pattern) {
 }
 
 const KIND_LABELS = [
-  [/\(\s*reward\s*\)/i, "reward"],
+  // "(Reward Alt.)" is the reward's other form (Aya, Seija); its name keeps the label so it reads as such.
+  [/\(\s*reward(\s+alt\.?)?\s*\)/i, "reward"],
   [/\(\s*punishment\s*\)/i, "punishment"],
   [/\(\s*follow-?up\s*\)/i, "follow-up"],
 ];

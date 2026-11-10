@@ -2,7 +2,7 @@
  "meta": {
   "source": "https://touhou-mystias-izakaya.fandom.com",
   "fetchedAt": "2026-10-25T08:40:53.706Z",
-  "builtAt": "2026-10-31T17:41:32.997Z",
+  "builtAt": "2026-11-09T18:46:27.848Z",
   "dlcs": [
    "BaseGame",
    "DLC1",
@@ -10183,7 +10183,7 @@
     },
     {
      "name": "\"Peerless Chef of the Izakaya\" (Reward Alt.)",
-     "kind": "punishment",
+     "kind": "reward",
      "blocks": [
       {
        "type": "p",
@@ -10526,7 +10526,7 @@
     },
     {
      "name": "Reverse Bow \"Decree of the Dream Bow of Heaven and Earth\" (Reward Alt.)",
-     "kind": "punishment",
+     "kind": "reward",
      "blocks": [
       {
        "type": "p",

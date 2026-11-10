@@ -2089,7 +2089,7 @@
       },
       {
         "name": "\"Peerless Chef of the Izakaya\" (Reward Alt.)",
-        "kind": "punishment",
+        "kind": "reward",
         "blocks": [
           {
             "type": "p",
@@ -2329,7 +2329,7 @@
       },
       {
         "name": "Reverse Bow \"Decree of the Dream Bow of Heaven and Earth\" (Reward Alt.)",
-        "kind": "punishment",
+        "kind": "reward",
         "blocks": [
           {
             "type": "p",
