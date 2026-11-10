@@ -189,12 +189,6 @@ export function pacedPrice(customer: RareCustomer): Range | null {
   return { min: Math.ceil(mid * PACE_LOW), max: Math.floor(mid * PACE_HIGH) };
 }
 
-/** True when the set's total price is within pacedPrice. */
-export function pacesFiveOrders(total: number, customer: RareCustomer): boolean {
-  const p = pacedPrice(customer);
-  return !!p && total >= p.min && total <= p.max;
-}
-
 /** Character-specific reactions to one dish or ingredient. */
 export type SpecialNote =
   | "nitori-cucumber"
@@ -631,13 +625,15 @@ const MAX_ALT_DRINKS = 4;
 
 /**
  * Returns the best suggestion per recipe, best first, each with equally rated alternatives. Sets are ranked by
- * rating, then over-budget last, then by value under `weights` (see PRESETS).
+ * rating, then over-budget last, then by value under `weights` (see PRESETS). With `priceRange`, only sets whose
+ * total price is in it count, so a dish can come with a different drink that brings it into the range.
  */
 export function solveRareOrder(
   order: RareOrder,
   pool: SolverPool,
   limit = 50,
   weights: Weights = PRESETS[DEFAULT_PRESET],
+  priceRange: Range | null = null,
 ): RareSolution {
   order = effectiveOrder(order);
   const drinks = rankDrinks(order, pool.beverages);
@@ -650,7 +646,10 @@ export function solveRareOrder(
     if (recipe.name === "Dark Matter") continue;
     const perVariant: Suggestion[][] = [];
     for (const dish of dishVariants(order, recipe, pool.ingredients, wanted, catalog)) {
-      const combos = drinks.map((drink) => combine(order, dish, drink));
+      const combos = drinks
+        .map((drink) => combine(order, dish, drink))
+        .filter((c) => !priceRange || (c.totalPrice >= priceRange.min && c.totalPrice <= priceRange.max));
+      if (combos.length === 0) continue;
       const top = Math.max(...combos.map((c) => c.rating));
       perVariant.push(combos.filter((c) => c.rating === top));
     }

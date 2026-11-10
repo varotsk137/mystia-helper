@@ -34,7 +34,6 @@ import {
   dishProfit,
   makeCatalog,
   pacedPrice,
-  pacesFiveOrders,
   setCost,
   setTopLevel,
   valueOf,
@@ -177,8 +176,10 @@ export function RareSolverPage() {
   const weights = useMemo(() => goalWeights(goal.preset, goal.custom), [goal.preset, goal.custom]);
   const solution = useMemo(
     () =>
-      deferredOrder && !deferredOrder.customer.undocumented ? solveRareOrder(deferredOrder, solverPool, 1000, weights) : null,
-    [deferredOrder, solverPool, weights],
+      deferredOrder && !deferredOrder.customer.undocumented
+        ? solveRareOrder(deferredOrder, solverPool, 1000, weights, ranking.paceFive ? pacedPrice(deferredOrder.customer) : null)
+        : null,
+    [deferredOrder, solverPool, weights, ranking.paceFive],
   );
   const stale = deferredOrder !== order;
   // Right after a guest switch the solution is still the previous guest's; showing it would let a set be
@@ -195,11 +196,9 @@ export function RareSolverPage() {
       const cmp = typeof va === "string" ? va.localeCompare(vb as string) : va - (vb as number);
       return (descending ? -cmp : cmp) || a.i - b.i;
     });
-    return indexed
-      .map((x) => x.s)
-      .filter((s) => !ranking.pinkOnly || s.rating === Rating.Pink)
-      .filter((s) => !ranking.paceFive || !customer || pacesFiveOrders(s.totalPrice, customer));
-  }, [solution, sortKey, descending, ranking.pinkOnly, ranking.paceFive, customer]);
+    const list = indexed.map((x) => x.s);
+    return ranking.pinkOnly ? list.filter((s) => s.rating === Rating.Pink) : list;
+  }, [solution, sortKey, descending, ranking.pinkOnly]);
   const paced = customer ? pacedPrice(customer) : null;
 
   const pinOf = (guest: string, d: Draft): PinnedSet => ({ guest, recipe: d.recipe, extras: d.extras, beverage: d.beverage });
@@ -528,10 +527,10 @@ export function RareSolverPage() {
               {switching && <p className="hint">{t("rare.solving")}</p>}
               {!switching && sorted.length === 0 && (
                 <p className="hint">
-                  {solution.suggestions.length === 0
-                    ? t("rare.noRecipes")
-                    : ranking.paceFive && paced
-                      ? t("rank.noPace", { min: paced.min, max: paced.max })
+                  {ranking.paceFive && paced && solution.suggestions.length === 0
+                    ? t("rank.noPace", { min: paced.min, max: paced.max })
+                    : solution.suggestions.length === 0
+                      ? t("rare.noRecipes")
                       : t("rank.noPink")}
                 </p>
               )}

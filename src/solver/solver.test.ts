@@ -4,7 +4,6 @@ import { computeDishTags, NO_TREND } from "./tags";
 import {
   budgetStatus,
   pacedPrice,
-  pacesFiveOrders,
   evaluateCombo,
   ingredientEffects,
   Rating,
@@ -97,9 +96,6 @@ describe("rating", () => {
   it("paces a set so four orders spend about 75% of the budget and the fifth 90-100%", () => {
     const wriggle = customer("Wriggle Nightbug"); // 200 - 400, midpoint 300
     expect(pacedPrice(wriggle)).toEqual({ min: 54, max: 60 });
-    expect(pacesFiveOrders(53, wriggle)).toBe(false);
-    expect(pacesFiveOrders(57, wriggle)).toBe(true);
-    expect(pacesFiveOrders(61, wriggle)).toBe(false);
     expect(4 * 54).toBeGreaterThanOrEqual(0.72 * 300);
     expect(5 * 60).toBeLessThanOrEqual(300);
     expect(pacedPrice({ ...wriggle, budget: null })).toBeNull();
@@ -136,6 +132,17 @@ describe("solveRareOrder", () => {
     const { suggestions } = solveRareOrder(order("Chen", "Grilled", "Dry"), pool, 1000);
     const names = suggestions.map((s) => s.dish.recipe.name);
     expect(new Set(names).size).toBe(names.length);
+  });
+
+  it("with a price range, swaps in a drink that brings a dish into it", () => {
+    const chen = order("Chen", "Grilled", "Dry");
+    const range = pacedPrice(chen.customer)!; // 90 - 100
+    const free = solveRareOrder(chen, pool, 1000).suggestions;
+    const inRange = (s: { totalPrice: number }) => s.totalPrice >= range.min && s.totalPrice <= range.max;
+    const { suggestions } = solveRareOrder(chen, pool, 1000, undefined, range);
+    expect(suggestions.every(inRange)).toBe(true);
+    // More sets than filtering the unrestricted picks by price, because other drinks are tried.
+    expect(suggestions.length).toBeGreaterThan(free.filter(inRange).length);
   });
 
   it("offers equally rated alternatives and drinks", () => {
